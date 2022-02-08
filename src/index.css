@@ -1,0 +1,69 @@
+:root {
+  --clr-black: #1d2226;
+  --clr-blue-1: #8c9efc;
+  --clr-blue-2: #424d83;
+  --clr-white-1: #ffffff;
+  --clr-white-2: #f7f8ff;
+}
+
+/*
+==============================
+Global Styles
+==============================
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+::after,
+::before {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+p {
+  font-weight: 400;
+}
+/*
+==============================
+Button Styles
+==============================
+*/
+.btn-small:link,
+.btn-small:visited {
+  display: inline-block;
+  color: var(--clr-blue-2);
+  background-color: white;
+  border-radius: 24px;
+  text-decoration: none;
+  padding: 0.7rem 4.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 850px) {
+  .btn-small:link,
+  .btn-small:visited {
+    font-size: 1.6rem;
+    padding: 0.9rem 3rem;
+  }
+}
+
+.bg {
+  background-color: #f7f8ff;
+}
