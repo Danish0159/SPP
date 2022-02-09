@@ -66,9 +66,9 @@ const Signup = () => {
             />
           </div>
 
-          <button type="submit" id="submit" class="submit-button">
-            <p>REGISTER</p>
-          </button>
+          <Link to="/Login" type="submit" className="blue-btn submit-button">
+            REGISTER
+          </Link>
 
           <p className="signup__dont">
             Already have an account?{" "}
@@ -169,19 +169,7 @@ const Wrapper = styled.section`
   }
   .submit-button {
     display: block;
-    margin: auto;
-    margin-top: 3rem;
-    padding: 1rem 6rem;
-    color: white;
-    font-size: 2.4rem;
-    background-color: var(--clr-blue-2);
-    border: none;
-    font-weight: 800;
-    border-radius: 20px;
-    cursor: pointer;
-    @media only screen and (max-width: 850px) {
-      font-size: 2rem;
-    }
+    width: 200px;
   }
   .signup__dont {
     text-align: center;

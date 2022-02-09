@@ -11,7 +11,7 @@ const WelcomePage = () => {
         id="1"
         title="Easy way to find the best Contractor in your Area"
         cardsData={cardsData.slice(3, 6)}
-        bgColor="bg"
+        bgColor="true"
       ></Cards>
       <Footer></Footer>
     </main>

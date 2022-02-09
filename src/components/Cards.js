@@ -3,10 +3,12 @@ import styled from "styled-components";
 
 const Cards = ({ title, cardsData, bgColor, id }) => {
   return (
-    // Global style to bg(index.css)
-    <div id={id} className={bgColor}>
+    <div
+      id={id}
+      className={bgColor === "true" ? "section__blue" : "section__white"}
+    >
       <Wrapper>
-        <h3 className="cards__title">{title}</h3>
+        <h3 className="section__title">{title}</h3>
         <div className="cards__grid">
           {cardsData.map((card) => {
             const { id, photo, line } = card;
@@ -28,8 +30,6 @@ const Cards = ({ title, cardsData, bgColor, id }) => {
 export default Cards;
 
 const Wrapper = styled.section`
-  padding: 5rem 4rem;
-
   .cards__div-text {
     font-size: 1.6rem;
     font-weight: 700;
@@ -37,21 +37,10 @@ const Wrapper = styled.section`
     text-align: center;
     margin-top: 2.2rem;
   }
-  .cards__title {
-    max-width: 80rem;
-    margin: auto;
-    text-align: center;
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--clr-black);
-    @media only screen and (max-width: 900px) {
-      font-size: 3rem;
-    }
-  }
+
   .cards__grid {
     max-width: 100rem;
     margin: auto;
-    margin-top: 5rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     grid-gap: 4rem;

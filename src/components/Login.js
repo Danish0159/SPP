@@ -24,7 +24,7 @@ const Login = () => {
               name="name"
               id="name"
               class="form-control"
-              required
+              // required
             />
           </div>
 
@@ -37,13 +37,13 @@ const Login = () => {
               name="email"
               id="email"
               class="form-control"
-              required
+              // required
             />
           </div>
 
-          <button type="submit" id="submit" class="submit-button">
-            <p>LOGIN</p>
-          </button>
+          <Link to="/Welcome" type="submit" className="blue-btn submit-button">
+            LOGIN
+          </Link>
 
           <p className="login__dont">
             Don’t have an account?{" "}
@@ -146,22 +146,12 @@ const Wrapper = styled.section`
     border-color: #80bdff;
     outline: 0;
   }
+
   .submit-button {
     display: block;
-    margin: auto;
-    margin-top: 3rem;
-    padding: 1rem 6rem;
-    color: white;
-    font-size: 2.4rem;
-    background-color: var(--clr-blue-2);
-    border: none;
-    font-weight: 800;
-    border-radius: 20px;
-    cursor: pointer;
-    @media only screen and (max-width: 850px) {
-      font-size: 2rem;
-    }
+    width: 200px;
   }
+
   .login__dont {
     text-align: center;
     margin-top: 2rem;
