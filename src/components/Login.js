@@ -33,9 +33,9 @@ const Login = () => {
               Password
             </label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="password"
+              name="password"
+              id="password"
               class="form-control"
               // required
             />

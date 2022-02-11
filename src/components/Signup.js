@@ -1,74 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import signupImage from "../images/signup.png";
+const axios = require("axios");
 
 const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const collectData = async () => {
+    console.log("Before hitting");
+    console.log(name, email, password);
+
+    // Proxy
+    // https://cors-anywhere.herokuapp.com/
+    const result = await fetch(
+      "http://df2b-103-125-176-197.ngrok.io/user/signup/",
+      {
+        method: "post",
+        body: JSON.stringify({ name, email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await result.json();
+    console.log("After hitting");
+    console.log(data);
+  };
+
   return (
     <Wrapper>
       <div class="signup__grid">
         <figure class="signup__div">
           <img class="signup__img" src={signupImage} alt="SignUp Image" />
         </figure>
-
         <form class="signup__form">
           <h2 className="signup__title">Register</h2>
 
           <div class="form-group">
-            <label for="name" id="name-label">
-              Name
-            </label>
+            <label for="name">Name</label>
             <input
               type="text"
               name="name"
-              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               class="form-control"
               required
             />
           </div>
 
           <div class="form-group">
-            <label for="email" id="email-label">
-              Email Address
-            </label>
+            <label for="email">Email Address</label>
             <input
               type="email"
               name="email"
-              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               class="form-control"
               required
             />
           </div>
 
           <div class="form-group">
-            <label for="password" id="password-label">
-              Password
-            </label>
+            <label for="password">Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
-              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               class="form-control"
               required
             />
           </div>
 
-          <div class="form-group">
-            <label for="confirm" id="confirm-label">
-              Confirm Password
-            </label>
-            <input
-              type="confirm"
-              name="confirm"
-              id="confirm"
-              class="form-control"
-              required
-            />
-          </div>
-
-          <Link to="/Login" type="submit" className="blue-btn submit-button">
+          <a
+            onClick={collectData}
+            type="submit"
+            className="blue-btn submit-button"
+          >
             REGISTER
-          </Link>
+          </a>
 
           <p className="signup__dont">
             Already have an account?{" "}
