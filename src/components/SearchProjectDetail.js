@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Reviews, Gallery } from "../components";
+import { Reviews, Gallery, BackToProfile } from "../components";
 
 const SearchProjectDetail = () => {
   return (
     <Wrapper>
+      <BackToProfile></BackToProfile>
       <div className="project">
         <h1>ProjectDetail</h1>
         <h1>ProjectName</h1>
@@ -32,7 +33,7 @@ export default SearchProjectDetail;
 const Wrapper = styled.section`
   .project {
     text-align: center;
-    background-color: #fffff;
+    background-color: skyblue;
     padding: 10rem 0rem;
   }
   .project__btn {

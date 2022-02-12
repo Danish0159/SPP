@@ -1,27 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { BackToProfile, Table } from "../components";
+import jsonData from "../MOCK_DATA.json";
 
 const SearchProject = () => {
   return (
     <Wrapper>
-      <Link to="/Details">
-        <h2>Project1</h2>
-        <h2>Project2</h2>
-        <h2>Project3</h2>
-        <h2>Project4</h2>
-        <h2>Project5</h2>
-        <h2>Project6</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>
-        <h2>Project1</h2>{" "}
-      </Link>
+      <BackToProfile></BackToProfile>
+      <Table
+        jsonData={jsonData}
+        title="Projects Completed"
+        link="/Details"
+      ></Table>
+      ;
     </Wrapper>
   );
 };

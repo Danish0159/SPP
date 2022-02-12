@@ -12,6 +12,8 @@ import SearchProjectDetail from "./SearchProjectDetail";
 import SearchProjectGallery from "./SearchProjectGallery";
 import Reviews from "./Reviews";
 import Gallery from "./Gallery";
+import BackToProfile from "./BackToProfile";
+import Table from "./Table";
 
 export {
   Navbar,
@@ -28,4 +30,6 @@ export {
   SearchProjectGallery,
   Reviews,
   Gallery,
+  BackToProfile,
+  Table,
 };

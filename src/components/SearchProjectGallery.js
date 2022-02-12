@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Reviews, Gallery } from "../components";
+import { Reviews, Gallery, BackToProfile } from "../components";
 
 const SearchProjectGallery = () => {
   return (
     <Wrapper>
+      <BackToProfile></BackToProfile>
       <div className="gallery">
         <h2>Last Page</h2>
         <h1>ProjectDetail</h1>
