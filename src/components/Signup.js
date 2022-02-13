@@ -2,34 +2,113 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import signupImage from "../images/signup.png";
-const axios = require("axios");
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { TextField } from "@mui/material";
+// import axios from "axios";
 
 const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const collectData = async () => {
-    console.log("Before hitting");
-    console.log(name, email, password);
-
-    // Proxy
-    // https://cors-anywhere.herokuapp.com/
-    const result = await fetch(
-      "http://df2b-103-125-176-197.ngrok.io/user/signup/",
-      {
-        method: "post",
-        body: JSON.stringify({ name, email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    const data = await result.json();
-    console.log("After hitting");
-    console.log(data);
+  // initial values
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
   };
+
+  // validation schema
+  const validationSchema = yup.object({
+    name: yup
+      .string("Enter your name")
+      .min(3)
+      .max(25)
+      .required("Name is required"),
+    email: yup
+      .string("Enter your email")
+      .email("Enter a valid email")
+      .required("Email is required"),
+    password: yup
+      .string("Enter your password")
+      .required("Password is required"),
+    passwordConfirmation: yup
+      .string()
+      .required("Confirm Password is required")
+      .oneOf([yup.ref("password"), null], "Passwords must match"),
+  });
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: validationSchema,
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        resetForm();
+        // Api Call Started
+        console.log("Before Hitting");
+        const responce = await fetch(
+          "http://df2b-103-125-176-197.ngrok.io/user/signup/",
+          {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods":
+                "GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH",
+            },
+          }
+        );
+        const data = await responce.json();
+        console.log("After hitting");
+        console.log(data);
+        // Api Call Ended.
+
+        // For output etc.
+        console.log(JSON.stringify(values));
+        console.log(values);
+        alert(JSON.stringify(values, null, 2));
+        // setSubmitting(false);
+      } catch (error) {
+        alert(error);
+        console.log(error);
+        // setSubmitting(false);
+        // setErrors(error);
+      }
+    },
+  });
+
+  // const collectData = () => {
+  //   console.log("Before hitting");
+  //   console.log(name, email, password);
+
+  //   try {
+  //     const payloadData = { name, email, password };
+  //     const headers = {
+  //       "Content-Type": "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Access-Control-Allow-Methods":
+  //         "GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH",
+  //     };
+
+  //     axios
+  //       .post(
+  //         "http://df2b-103-125-176-197.ngrok.io/user/signup/",
+  //         payloadData,
+  //         {
+  //           headers,
+  //         }
+  //       )
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+
+  //     console.log("After hitting");
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // };
 
   return (
     <Wrapper>
@@ -37,52 +116,86 @@ const Signup = () => {
         <figure class="signup__div">
           <img class="signup__img" src={signupImage} alt="SignUp Image" />
         </figure>
-        <form class="signup__form">
+        <form onSubmit={formik.handleSubmit} class="signup__form">
           <h2 className="signup__title">Register</h2>
 
           <div class="form-group">
             <label for="name">Name</label>
-            <input
+            <TextField
+              fullWidth
               type="text"
               name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              class="form-control"
-              required
+              id="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              error={formik.touched.name && Boolean(formik.errors.name)}
             />
+            <p className="error-p">
+              {formik.touched.name && formik.errors.name}
+            </p>
           </div>
 
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input
+            <TextField
+              fullWidth
               type="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              class="form-control"
-              required
+              id="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
             />
+            <p className="error-p">
+              {formik.touched.email && formik.errors.email}
+            </p>
           </div>
 
           <div class="form-group">
             <label for="password">Password</label>
-            <input
+            <TextField
+              fullWidth
               type="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              class="form-control"
-              required
+              type="password"
+              id="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
             />
+            <p className="error-p">
+              {formik.touched.password && formik.errors.password}
+            </p>
           </div>
 
-          <a
-            onClick={collectData}
+          <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <TextField
+              fullWidth
+              type="password"
+              name="passwordConfirmation"
+              type="password"
+              id="passwordConfirmation"
+              value={formik.values.passwordConfirmation}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.passwordConfirmation &&
+                Boolean(formik.errors.passwordConfirmation)
+              }
+            />
+            <p className="error-p">
+              {formik.touched.passwordConfirmation &&
+                formik.errors.passwordConfirmation}
+            </p>
+          </div>
+
+          <button
             type="submit"
+            variant="contained"
             className="blue-btn submit-button"
           >
             REGISTER
-          </a>
+          </button>
 
           <p className="signup__dont">
             Already have an account?{" "}
@@ -102,7 +215,7 @@ export default Signup;
 const Wrapper = styled.section`
   background-color: #424d83;
   min-height: calc(100vh - 81px);
-  padding: 1rem 3rem 1rem 3rem;
+  padding: 1rem 3rem 5rem 3rem;
   display: flex;
   align-items: center;
   @media only screen and (max-width: 850px) {
@@ -192,5 +305,22 @@ const Wrapper = styled.section`
   }
   .signup__register {
     color: var(--clr-blue-2);
+  }
+  #name,
+  #email,
+  #password,
+  #passwordConfirmation {
+    font-family: "Nunito Sans", sans-serif;
+    color: #2a2a2a;
+    font-size: 1.8rem;
+    padding: 12px 14px;
+    font-weight: 400;
+  }
+  .error-p {
+    padding: 0px 0px 0px 3px;
+    margin: 0px;
+    font-size: 15px;
+    color: red;
+    height: 5px;
   }
 `;

@@ -120,7 +120,7 @@ const Wrapper = styled.section`
     }
 
     .search__columns {
-      display: none;
+      /* display: none; */
     }
   }
 

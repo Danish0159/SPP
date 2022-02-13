@@ -2,8 +2,37 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import loginImage from "../images/Login.png";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { TextField } from "@mui/material";
+
+// initial values
+const initialValues = {
+  email: "",
+  password: "",
+};
+
+// validation schema
+const validationSchema = yup.object({
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: yup.string("Enter your password").required("Password is required"),
+});
 
 const Login = () => {
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: validationSchema,
+    onSubmit: (values, { resetForm }) => {
+      console.log(values);
+      console.log(JSON.stringify(values));
+      alert(JSON.stringify(values, null, 2));
+      resetForm();
+    },
+  });
+
   return (
     <Wrapper>
       <div class="login__grid">
@@ -11,40 +40,50 @@ const Login = () => {
           <img class="login__img" src={loginImage} alt="login Image" />
         </figure>
 
-        <form class="login__form">
+        <form noValidate onSubmit={formik.handleSubmit} class="login__form">
           <h2 className="login__title">Welcome</h2>
           <p className="login__subTitle">Please login to your account.</p>
 
           <div class="form-group">
-            <label for="name" id="name-label">
-              Email Address
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              class="form-control"
-              // required
+            <label for="email">Email Address</label>
+            <TextField
+              fullWidth
+              type="email"
+              name="email"
+              id="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
             />
+            <p className="error-p">
+              {formik.touched.email && formik.errors.email}
+            </p>
           </div>
 
           <div class="form-group">
-            <label for="email" id="email-label">
-              Password
-            </label>
-            <input
+            <label for="password">Password</label>
+            <TextField
+              fullWidth
               type="password"
               name="password"
+              type="password"
               id="password"
-              class="form-control"
-              // required
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
             />
+            <p className="error-p">
+              {formik.touched.password && formik.errors.password}
+            </p>
           </div>
 
-          <Link to="/Welcome" type="submit" className="blue-btn submit-button">
+          <button
+            type="submit"
+            variant="contained"
+            className="blue-btn submit-button"
+          >
             LOGIN
-          </Link>
-
+          </button>
           <p className="login__dont">
             Don’t have an account?{" "}
             <span className="login__register">
@@ -62,7 +101,7 @@ export default Login;
 
 const Wrapper = styled.section`
   background-color: #424d83;
-  min-height: calc(100vh - 81px);
+  min-height: calc(100vh - 60px);
   padding: 3rem 3rem 5rem 3rem;
   display: flex;
   align-items: center;
@@ -110,41 +149,23 @@ const Wrapper = styled.section`
     font-size: 3.6rem;
     font-weight: 900;
     color: var(--clr-black);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
   }
   .login__subTitle {
     font-size: 2rem;
     color: var(--clr-black);
-    margin-bottom: 4.5rem;
+    margin-bottom: 3.5rem;
   }
   label {
     display: flex;
     align-items: center;
     color: #2a2a2a;
     font-size: 1.8rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
   }
   .form-group {
     margin: 0 auto 1.25rem auto;
     padding: 0.25rem;
-  }
-  .form-control {
-    display: block;
-    width: 100%;
-    height: 3rem;
-    padding: 0.375rem 0.7rem;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    border: none;
-    border-bottom: 1px solid #ced4da;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  .form-control:focus {
-    border-color: #80bdff;
-    outline: 0;
   }
 
   .submit-button {
@@ -154,10 +175,26 @@ const Wrapper = styled.section`
 
   .login__dont {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     font-size: 1.8rem;
   }
   .login__register {
     color: var(--clr-blue-2);
+  }
+  .error-p {
+    padding: 0px 0px 0px 3px;
+    margin: 0px;
+    font-size: 15px;
+    color: red;
+    height: 5px;
+  }
+  /* OverRiding Material UI styles. */
+  #email,
+  #password {
+    font-family: "Nunito Sans", sans-serif;
+    color: #2a2a2a;
+    font-size: 1.8rem;
+    padding: 12px 14px;
+    font-weight: 400;
   }
 `;
