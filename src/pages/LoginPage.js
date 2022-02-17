@@ -12,5 +12,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-const Wrapper = styled.section``;

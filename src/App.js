@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// Flow 1
 import {
   HomePage,
   ErrorPage,
@@ -12,6 +13,9 @@ import {
   SearchProjectDetailPage,
   SearchProjectGalleryPage,
 } from "./pages";
+
+// Flow 2
+import { JoinUs, Driver } from "./pages/Registration";
 
 const App = () => {
   return (
@@ -43,6 +47,12 @@ const App = () => {
         </Route>
         <Route exact path="/Gallery">
           <SearchProjectGalleryPage></SearchProjectGalleryPage>
+        </Route>
+        <Route exact path="/JoinUs">
+          <JoinUs></JoinUs>
+        </Route>
+        <Route exact path="/RegistrationPage">
+          <Driver></Driver>
         </Route>
         <Route exact path="*">
           <ErrorPage></ErrorPage>
