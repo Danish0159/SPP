@@ -9,8 +9,8 @@ const Buttons = ({ activeStep }) => {
     "Portfolio",
     "Rate",
     "Location",
-    "Profile Photo",
     "Phone Number",
+    "Profile Photo",
   ];
 
   return (
@@ -30,24 +30,28 @@ const Buttons = ({ activeStep }) => {
 export default Buttons;
 
 const Wrapper = styled.section`
-  width: 20%;
-  background-color: green;
-  margin-right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   .active {
     background-color: #424d83;
   }
 
   .nonActive {
-    background-color: #8c9efc;
+    background-color: #424d83;
+    opacity: 0.7;
   }
 
   .btn {
-    width: 120px;
-    padding: 2rem 0.2rem;
+    color: white;
+    width: 150px;
+    padding: 1.2rem 0.5rem;
     border: none;
-    margin: 0.5rem 0rem;
-    font-size: 1rem;
+    margin: 0.9rem 0rem;
+    font-size: 1.7rem;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: 600;
   }
 `;

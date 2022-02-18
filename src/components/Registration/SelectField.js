@@ -2,13 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { at } from "lodash";
 import { useField } from "formik";
-import {
-  InputLabel,
-  FormControl,
-  Select,
-  MenuItem,
-  FormHelperText,
-} from "@mui/material";
+import { FormControl, Select, MenuItem } from "@mui/material";
 
 function SelectField(props) {
   const { label, data, ...rest } = props;
@@ -18,16 +12,19 @@ function SelectField(props) {
   const isError = touched && error && true;
   function _renderHelperText() {
     if (isError) {
-      return <FormHelperText>{error}</FormHelperText>;
+      return <p className="error-p">{error}</p>;
     }
   }
 
   return (
     <FormControl {...rest} error={isError}>
-      <InputLabel>{label}</InputLabel>
-      <Select {...field} value={selectedValue ? selectedValue : ""}>
+      <Select id="Select" {...field} value={selectedValue ? selectedValue : ""}>
         {data.map((item, index) => (
-          <MenuItem key={index} value={item.value}>
+          <MenuItem
+            InputProps={{ style: { fontSize: 140 } }}
+            key={index}
+            value={item.value}
+          >
             {item.label}
           </MenuItem>
         ))}

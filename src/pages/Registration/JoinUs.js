@@ -6,7 +6,6 @@ import { Buttons } from "../../components/Registration";
 import image from "../../images/join.jpg";
 
 const JoinUs = () => {
-  // const [activeStep, setActiveStep] = useState(null);
   return (
     <main>
       <Navbar page="welcome"></Navbar>
@@ -19,15 +18,18 @@ const JoinUs = () => {
           </div>
 
           <div className="hero__content">
-            <h1>Hi Jhon</h1>
-            <p>
-              Hi Darrin, Thanks for your interest in Crowd as the world's
-              largest talent platform, we connect millions of businesses with
-              independent contractors and designers like you. To get started,
-              all you need to do is fill out a profile.
+            <p className="hero__title">Join Us</p>
+            <p className="hero__subTitle">Hi Darrin,</p>
+            <p className="hero__passage">
+              Thanks for your interest in Crowd as the world's largest talent
+              platform, we connect millions of businesses with independent
+              contractors and designers like you.
             </p>
-            <Link className="blue-btn" to="/RegistrationPage">
-              continue
+            <p className="hero__subTitle">
+              To get started, all you need to do is fill out a profile
+            </p>
+            <Link className="blue-btn join-btn" to="/RegistrationPage">
+              CONTINUE
             </Link>
           </div>
         </div>
@@ -41,26 +43,52 @@ const JoinUs = () => {
 export default JoinUs;
 
 const Wrapper = styled.section`
-  display: flex;
   max-width: 115rem;
   margin: auto;
-  background-color: skyblue;
+  padding: 5rem 2rem;
   min-height: calc(100vh - 100px);
-  padding: 2rem 2rem;
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+  align-items: flex-start;
+  grid-gap: 3rem;
+  @media only screen and (max-width: 850px) {
+    grid-template-columns: 1fr;
+  }
   .hero {
-    width: 80%;
-    background-color: brown;
+    box-shadow: 0 0 6px #888;
   }
   .hero__img > img {
     width: 100%;
-    height: 375px;
+    height: 350px;
   }
 
   .hero__content {
-    padding: 0rem 2rem;
+    padding: 3rem 2rem;
   }
-  h1,
-  p {
+
+  .hero__title,
+  .hero__subTitle,
+  .hero__passage {
+    color: var(--clr-black);
+  }
+
+  .hero__title {
+    font-size: 2.3rem;
+    font-weight: 600;
+  }
+
+  .hero__subTitle {
+    font-size: 1.7rem;
+  }
+  .hero__passage {
     font-size: 1.5rem;
+  }
+  .hero__content > * {
+    margin-bottom: 2rem;
+  }
+
+  .join-btn {
+    font-size: 1.6rem;
+    border-radius: 25px;
   }
 `;

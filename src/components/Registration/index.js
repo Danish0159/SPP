@@ -1,3 +1,5 @@
+import Success from "./Success";
+import CardTitle from "./CardTitle";
 import Buttons from "./Buttons";
 import formInitialValues from "./formInitialValues";
 import validationSchema from "./validationSchema";
@@ -12,4 +14,6 @@ export {
   registrationFormModel,
   SelectField,
   InputField,
+  CardTitle,
+  Success,
 };

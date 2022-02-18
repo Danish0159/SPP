@@ -4,23 +4,26 @@ import { useField } from "formik";
 import { TextField } from "@mui/material";
 
 export default function InputField(props) {
-  const { errorText, ...rest } = props;
+  const { errorText, type, ...rest } = props;
   const [field, meta] = useField(props);
 
   function _renderHelperText() {
     const [touched, error] = at(meta, "touched", "error");
     if (touched && error) {
-      return error;
+      return <p className="error-p">{error}</p>;
     }
   }
 
   return (
-    <TextField
-      type="number"
-      error={meta.touched && meta.error && true}
-      helperText={_renderHelperText()}
-      {...field}
-      {...rest}
-    />
+    <>
+      <TextField
+        id="Input"
+        type={type}
+        error={meta.touched && meta.error && true}
+        {...field}
+        {...rest}
+      />
+      {_renderHelperText()}
+    </>
   );
 }

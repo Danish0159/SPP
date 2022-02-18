@@ -3,20 +3,16 @@ import { SelectField } from "../../components/Registration";
 
 const categories = [
   {
-    value: undefined,
-    label: "None",
-  },
-  {
     value: "1",
-    label: "New York",
+    label: "Category 1",
   },
   {
     value: "2",
-    label: "Chicago",
+    label: "Category 2",
   },
   {
     value: "3",
-    label: "Saigon",
+    label: "Category 3",
   },
 ];
 
@@ -25,11 +21,14 @@ export default function AddressForm(props) {
     formField: { category },
   } = props;
   return (
-    <SelectField
-      name={category.name}
-      label={category.label}
-      data={categories}
-      fullWidth
-    />
+    <>
+      <p className="card__subtitle">What are the main services you offer</p>
+      <SelectField
+        name={category.name}
+        // label={category.label}
+        data={categories}
+        fullWidth
+      />
+    </>
   );
 }
