@@ -84,6 +84,7 @@ const Login = () => {
           >
             LOGIN
           </button>
+
           <p className="login__dont">
             Don’t have an account?{" "}
             <span className="login__register">
@@ -171,6 +172,7 @@ const Wrapper = styled.section`
   .submit-button {
     display: block;
     width: 200px;
+    font-weight: 500;
   }
 
   .login__dont {

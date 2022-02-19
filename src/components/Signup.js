@@ -297,6 +297,7 @@ const Wrapper = styled.section`
   .submit-button {
     display: block;
     width: 200px;
+    font-weight: 500;
   }
   .signup__dont {
     text-align: center;

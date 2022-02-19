@@ -54,7 +54,7 @@ const Navbar = ({ page }) => {
       <Navigation>
         <div className="nav__container">
           <a className="navbar__link" href="#">
-            <h1 className="navbar__logo">4M</h1>
+            <img className="navbar__logo" src={logo} alt="Logo" />
           </a>
           <Link to="#" className="btn-small btn-nav">
             User Avatar
