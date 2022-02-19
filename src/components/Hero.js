@@ -31,7 +31,7 @@ export default Hero;
 
 const Wrapper = styled.section`
   background-color: #424d83;
-  padding: 3rem 3rem 5rem 3rem;
+  padding: 5rem 3rem 5rem 3rem;
   color: #ffffff;
   min-height: 50vh;
   display: flex;
