@@ -6,6 +6,7 @@ import validationSchema from "./validationSchema";
 import registrationFormModel from "./registrationFormModel";
 import SelectField from "./SelectField";
 import InputField from "./InputField";
+import UploadField from "./UploadField";
 
 export {
   Buttons,
@@ -16,4 +17,5 @@ export {
   InputField,
   CardTitle,
   Success,
+  UploadField,
 };

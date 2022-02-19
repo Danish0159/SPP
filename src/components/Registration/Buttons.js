@@ -18,6 +18,7 @@ const Buttons = ({ activeStep }) => {
       {steps.map((label, index) => (
         <button
           key={label}
+          id={activeStep === null ? "hide-on-mobile" : ""}
           className={index === activeStep ? "btn active" : "btn nonActive"}
         >
           {label}
@@ -53,5 +54,10 @@ const Wrapper = styled.section`
     cursor: pointer;
     border-radius: 5px;
     font-weight: 600;
+  }
+  #hide-on-mobile {
+    @media only screen and (max-width: 850px) {
+      display: none;
+    }
   }
 `;

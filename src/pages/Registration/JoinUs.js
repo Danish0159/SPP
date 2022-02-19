@@ -60,6 +60,9 @@ const Wrapper = styled.section`
   .hero__img > img {
     width: 100%;
     height: 350px;
+    @media only screen and (max-width: 850px) {
+      height: 240px;
+    }
   }
 
   .hero__content {

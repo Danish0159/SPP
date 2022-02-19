@@ -20,8 +20,8 @@ import {
   Portfolio,
   Rate,
   Location,
-  ProfilePhoto,
   PhoneNumber,
+  ProfilePhoto,
 } from "../Registration";
 
 const { formId, formField } = registrationFormModel;
@@ -54,7 +54,7 @@ function _renderStepContent(step) {
     case 6:
       return <PhoneNumber formField={formField} />;
     case 7:
-      return <ProfilePhoto />;
+      return <ProfilePhoto formField={formField} />;
     default:
       return <div>Not Found</div>;
   }

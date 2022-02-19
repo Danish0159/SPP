@@ -67,6 +67,14 @@ export default {
       requiredErrorMsg: "Phone is required",
     },
 
+    image: {
+      name: "image",
+      label: "- Please upload an image:",
+      reviewLabel: "Your image is still here: ",
+      requiredErrorMsg: "Image is required",
+      type: "image",
+    },
+
     // lastName: {
     //   name: "lastName",
     //   label: "Last name*",

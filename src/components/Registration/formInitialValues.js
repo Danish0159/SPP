@@ -15,6 +15,7 @@ const {
     country,
     city,
     phone,
+    image,
   },
 } = registrationFormModel;
 
@@ -32,4 +33,9 @@ export default {
   [country.name]: "",
   [city.name]: "",
   [phone.name]: "",
+  [image.name]: {
+    file: null,
+    src: null,
+    name: "",
+  },
 };
