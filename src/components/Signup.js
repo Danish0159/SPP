@@ -4,16 +4,22 @@ import { Link } from "react-router-dom";
 import signupImage from "../images/signup.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { TextField } from "@mui/material";
-// import axios from "axios";
+import { FormControl, MenuItem, Select, TextField } from "@mui/material";
+import axios from "axios";
 
 const Signup = () => {
+  const [role, setRole] = React.useState("");
+
+  const handleChange = (event) => {
+    setRole(event.target.value);
+  };
+
   // initial values
   const initialValues = {
     name: "",
     email: "",
     password: "",
-    passwordConfirmation: "",
+    // role: "",
   };
 
   // validation schema
@@ -30,85 +36,53 @@ const Signup = () => {
     password: yup
       .string("Enter your password")
       .required("Password is required"),
-    passwordConfirmation: yup
-      .string()
-      .required("Confirm Password is required")
-      .oneOf([yup.ref("password"), null], "Passwords must match"),
+
+    // role: yup.string().nullable().required("Category is Required"),
   });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
-      try {
-        resetForm();
-        // Api Call Started
-        console.log("Before Hitting");
-        const responce = await fetch(
-          "http://df2b-103-125-176-197.ngrok.io/user/signup/",
-          {
-            method: "POST",
-            body: JSON.stringify(values),
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods":
-                "GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH",
-            },
-          }
-        );
-        const data = await responce.json();
-        console.log("After hitting");
-        console.log(data);
-        // Api Call Ended.
+      setRole("");
+      resetForm();
+      // Api Call Started
+      alert(
+        JSON.stringify({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+          role,
+        })
+      );
+      console.log("Before Hitting");
 
-        // For output etc.
-        console.log(JSON.stringify(values));
-        console.log(values);
-        alert(JSON.stringify(values, null, 2));
-        // setSubmitting(false);
-      } catch (error) {
-        alert(error);
-        console.log(error);
-        // setSubmitting(false);
-        // setErrors(error);
-      }
+      const body = JSON.stringify({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        role,
+      });
+
+      axios
+        .post("http://cbda-103-125-176-195.ngrok.io/user/signup", body, {
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+        .then(async (res) => {
+          console.log(res);
+          //AnyThing You wanna Do with responce you get
+        })
+        .catch((err) => {
+          console.log(err);
+          //AnyThing You wanna Do with Error you get
+        });
+
+      // Api Call Ended.
+      // For output etc.
     },
   });
-
-  // const collectData = () => {
-  //   console.log("Before hitting");
-  //   console.log(name, email, password);
-
-  //   try {
-  //     const payloadData = { name, email, password };
-  //     const headers = {
-  //       "Content-Type": "application/json",
-  //       "Access-Control-Allow-Origin": "*",
-  //       "Access-Control-Allow-Methods":
-  //         "GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH",
-  //     };
-
-  //     axios
-  //       .post(
-  //         "http://df2b-103-125-176-197.ngrok.io/user/signup/",
-  //         payloadData,
-  //         {
-  //           headers,
-  //         }
-  //       )
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-
-  //     console.log("After hitting");
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
 
   return (
     <Wrapper>
@@ -139,7 +113,7 @@ const Signup = () => {
             <label for="email">Email Address</label>
             <TextField
               fullWidth
-              type="email"
+              // type="email"
               name="email"
               id="email"
               value={formik.values.email}
@@ -169,24 +143,28 @@ const Signup = () => {
           </div>
 
           <div class="form-group">
-            <label for="password">Confirm Password</label>
-            <TextField
-              fullWidth
-              type="password"
-              name="passwordConfirmation"
-              type="password"
-              id="passwordConfirmation"
-              value={formik.values.passwordConfirmation}
-              onChange={formik.handleChange}
-              error={
-                formik.touched.passwordConfirmation &&
-                Boolean(formik.errors.passwordConfirmation)
-              }
-            />
-            <p className="error-p">
-              {formik.touched.passwordConfirmation &&
-                formik.errors.passwordConfirmation}
-            </p>
+            <label for="password">Register As</label>
+            <FormControl fullWidth>
+              <Select
+                id="mui-component-select-Category"
+                value={role}
+                onChange={handleChange}
+                required
+              >
+                <MenuItem id="Select" value="User">
+                  User
+                </MenuItem>
+                <MenuItem id="Select" value="Contractor">
+                  Contractor
+                </MenuItem>
+                <MenuItem id="Select" value="Designer">
+                  Designer
+                </MenuItem>
+                <MenuItem id="Select" value="Company">
+                  Company
+                </MenuItem>
+              </Select>
+            </FormControl>
           </div>
 
           <button
@@ -325,3 +303,6 @@ const Wrapper = styled.section`
     height: 5px;
   }
 `;
+
+// Todo
+// Handle The Select Component with formik

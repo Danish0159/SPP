@@ -18,13 +18,13 @@ function SelectField(props) {
 
   return (
     <FormControl {...rest} error={isError}>
-      <Select id="Select" {...field} value={selectedValue ? selectedValue : ""}>
+      <Select
+        id="mui-component-select-Category"
+        {...field}
+        value={selectedValue ? selectedValue : ""}
+      >
         {data.map((item, index) => (
-          <MenuItem
-            InputProps={{ style: { fontSize: 140 } }}
-            key={index}
-            value={item.value}
-          >
+          <MenuItem id="Select" key={index} value={item.value}>
             {item.label}
           </MenuItem>
         ))}
