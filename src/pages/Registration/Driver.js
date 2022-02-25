@@ -11,7 +11,6 @@ import {
   validationSchema,
   registrationFormModel,
   CardTitle,
-  Success,
 } from "../../components/Registration";
 
 import {

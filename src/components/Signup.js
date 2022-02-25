@@ -1,22 +1,35 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Alertify } from "../components";
-import { Link, Redirect } from "react-router-dom";
+import Spinner from "./Spinner";
+import { toast } from "react-toastify";
+import { Link, useHistory } from "react-router-dom";
 import signupImage from "../images/signup.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../slices/auth";
-import { clearMessage } from "../slices/message";
+import { register, reset } from "../slices/auth";
+
 const Signup = () => {
-  const [successful, setSuccessful] = useState(false);
-  const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      toast.success("Your Account Has Been Created! Please Login");
+      history.push("/Login");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, dispatch]);
 
   // Role
   const [role, setRole] = React.useState("");
@@ -66,7 +79,6 @@ const Signup = () => {
         })
       );
       console.log("Before Hitting");
-      setSuccessful(false);
 
       dispatch(
         register({
@@ -75,17 +87,13 @@ const Signup = () => {
           password: values.password,
           role,
         })
-      )
-        .unwrap()
-        .then(() => {
-          console.log("hehe");
-          setSuccessful(true);
-        })
-        .catch(() => {
-          setSuccessful(false);
-        });
+      );
     },
   });
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Wrapper>
@@ -187,14 +195,6 @@ const Signup = () => {
           </p>
         </form>
       </div>
-      {message && (
-        <Alertify
-          message={message}
-          type={successful ? "success" : "error"}
-          // open={open}
-          // handleClose={handleClose}
-        />
-      )}
     </Wrapper>
   );
 };

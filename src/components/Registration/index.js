@@ -1,4 +1,3 @@
-import Success from "./Success";
 import CardTitle from "./CardTitle";
 import Buttons from "./Buttons";
 import formInitialValues from "./formInitialValues";
@@ -16,6 +15,5 @@ export {
   SelectField,
   InputField,
   CardTitle,
-  Success,
   UploadField,
 };

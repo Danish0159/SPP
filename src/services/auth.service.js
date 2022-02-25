@@ -1,7 +1,7 @@
 // Authentication service
 import axios from "axios";
 
-const API_URL = "Something/user/";
+const API_URL = "http://cbda-103-125-176-195.ngrok.io/user/";
 
 // async can be used.
 const register = (name, email, password, role) => {
