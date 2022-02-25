@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, CircularProgress } from "@mui/material";
 import { Formik, Form } from "formik";
+import { Redirect } from "react-router-dom";
 
 import { Navbar, Footer } from "../../components";
 import {
@@ -100,7 +101,8 @@ const Driver = () => {
 
         <div className="card">
           {activeStep === steps.length ? (
-            <Success></Success>
+            // Redirect to the community after the successful registration.
+            <Redirect to="/" />
           ) : (
             <Formik
               initialValues={formInitialValues}

@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Alertify } from "../components";
+import { Link, Redirect } from "react-router-dom";
 import signupImage from "../images/signup.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { FormControl, MenuItem, Select, TextField } from "@mui/material";
-import axios from "axios";
-
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../slices/auth";
+import { clearMessage } from "../slices/message";
 const Signup = () => {
-  const [role, setRole] = React.useState("");
+  const [successful, setSuccessful] = useState(false);
+  const { message } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
+  // Role
+  const [role, setRole] = React.useState("");
   const handleChange = (event) => {
     setRole(event.target.value);
   };
@@ -19,7 +29,6 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    // role: "",
   };
 
   // validation schema
@@ -36,16 +45,17 @@ const Signup = () => {
     password: yup
       .string("Enter your password")
       .required("Password is required"),
-
-    // role: yup.string().nullable().required("Category is Required"),
   });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: async (values, { resetForm }) => {
+    // async keyword can be removed from here.
+    onSubmit: (values, { resetForm }) => {
+      // Reset form
       setRole("");
       resetForm();
+
       // Api Call Started
       alert(
         JSON.stringify({
@@ -56,31 +66,24 @@ const Signup = () => {
         })
       );
       console.log("Before Hitting");
+      setSuccessful(false);
 
-      const body = JSON.stringify({
-        name: values.name,
-        email: values.email,
-        password: values.password,
-        role,
-      });
-
-      axios
-        .post("http://cbda-103-125-176-195.ngrok.io/user/signup", body, {
-          headers: {
-            "content-type": "application/json",
-          },
+      dispatch(
+        register({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+          role,
         })
-        .then(async (res) => {
-          console.log(res);
-          //AnyThing You wanna Do with responce you get
+      )
+        .unwrap()
+        .then(() => {
+          console.log("hehe");
+          setSuccessful(true);
         })
-        .catch((err) => {
-          console.log(err);
-          //AnyThing You wanna Do with Error you get
+        .catch(() => {
+          setSuccessful(false);
         });
-
-      // Api Call Ended.
-      // For output etc.
     },
   });
 
@@ -184,6 +187,14 @@ const Signup = () => {
           </p>
         </form>
       </div>
+      {message && (
+        <Alertify
+          message={message}
+          type={successful ? "success" : "error"}
+          // open={open}
+          // handleClose={handleClose}
+        />
+      )}
     </Wrapper>
   );
 };
