@@ -1,37 +1,81 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import Spinner from "./Spinner";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { login, reset } from "../slices/auth";
 import loginImage from "../images/Login.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { TextField } from "@mui/material";
 
-// initial values
-const initialValues = {
-  email: "",
-  password: "",
-};
-
-// validation schema
-const validationSchema = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup.string("Enter your password").required("Password is required"),
-});
-
 const Login = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      history.push("/Welcome");
+      // toast.success("Your Account Has Been Created! Please Login");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, dispatch]);
+
+  // initial values
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  // validation schema
+  const validationSchema = yup.object({
+    email: yup
+      .string("Enter your email")
+      .email("Enter a valid email")
+      .required("Email is required"),
+    password: yup
+      .string("Enter your password")
+      .required("Password is required"),
+  });
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      console.log(JSON.stringify(values));
-      alert(JSON.stringify(values, null, 2));
+      // Reset form
       resetForm();
+
+      // Api Call Started
+      alert(
+        JSON.stringify({
+          email: values.email,
+          password: values.password,
+        })
+      );
+      console.log("Before Hitting");
+
+      dispatch(
+        login({
+          email: values.email,
+          password: values.password,
+        })
+      );
     },
   });
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Wrapper>

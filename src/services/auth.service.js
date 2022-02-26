@@ -21,13 +21,23 @@ const register = (name, email, password, role) => {
   );
 };
 
-const login = (username, password) => {
+const login = (email, password) => {
   return axios
-    .post(API_URL + "signin", {
-      username,
-      password,
-    })
+    .post(
+      API_URL + "login",
+      {
+        email,
+        password,
+      },
+      {
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    )
     .then((response) => {
+      //Or
+      // if (response.data) {
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }

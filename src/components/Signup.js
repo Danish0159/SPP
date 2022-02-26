@@ -24,7 +24,7 @@ const Signup = () => {
     }
 
     if (isSuccess) {
-      toast.success("Your Account Has Been Created! Please Login");
+      toast.success(message.message);
       history.push("/Login");
     }
 
@@ -103,7 +103,6 @@ const Signup = () => {
         </figure>
         <form onSubmit={formik.handleSubmit} class="signup__form">
           <h2 className="signup__title">Register</h2>
-
           <div class="form-group">
             <label for="name">Name</label>
             <TextField
