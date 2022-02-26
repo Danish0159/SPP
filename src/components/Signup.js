@@ -24,7 +24,7 @@ const Signup = () => {
     }
 
     if (isSuccess) {
-      toast.success(message.message);
+      toast.success(message);
       history.push("/Login");
     }
 

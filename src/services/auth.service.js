@@ -1,11 +1,11 @@
-// Authentication service
+// Authentication service.
 import axios from "axios";
 
 const API_URL = "http://cbda-103-125-176-195.ngrok.io/user/";
 
 // async can be used.
-const register = (name, email, password, role) => {
-  return axios.post(
+const register = async (name, email, password, role) => {
+  const response = await axios.post(
     API_URL + "signup",
     {
       name,
@@ -19,31 +19,29 @@ const register = (name, email, password, role) => {
       },
     }
   );
+
+  return response.data;
 };
 
-const login = (email, password) => {
-  return axios
-    .post(
-      API_URL + "login",
-      {
-        email,
-        password,
+const login = async (email, password) => {
+  const response = await axios.post(
+    API_URL + "login",
+    {
+      email,
+      password,
+    },
+    {
+      headers: {
+        "content-type": "application/json",
       },
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
-    .then((response) => {
-      //Or
-      // if (response.data) {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
+    }
+  );
 
-      return response.data;
-    });
+  if (response.data) {
+    localStorage.setItem("user", JSON.stringify(response.data));
+  }
+
+  return response.data;
 };
 
 const logout = () => {

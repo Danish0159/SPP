@@ -25,7 +25,6 @@ const Login = () => {
 
     if (isSuccess) {
       history.push("/Welcome");
-      // toast.success("Your Account Has Been Created! Please Login");
     }
 
     dispatch(reset());
