@@ -8,9 +8,9 @@ const Navbar = ({ page }) => {
     return (
       <Navigation>
         <div className="nav__container">
-          {/* <a className="navbar__link" href="#"> */}
-          <img className="navbar__logo" src={logo} alt="Logo" />
-          {/* </a> */}
+          <Link className="navbar__link" to="/">
+            <img className="navbar__logo" src={logo} alt="Logo" />
+          </Link>
           <Link to="/Login" className="btn-small btn-nav">
             Login
           </Link>
@@ -23,9 +23,9 @@ const Navbar = ({ page }) => {
     return (
       <Navigation>
         <div className="nav__container">
-          <a className="navbar__link" href="#">
+          <Link className="navbar__link" to="/">
             <img className="navbar__logo" src={logo} alt="Logo" />
-          </a>
+          </Link>
           <Link to="/Signup" className="btn-small btn-nav">
             Register Now
           </Link>
@@ -38,9 +38,9 @@ const Navbar = ({ page }) => {
     return (
       <Navigation>
         <div className="nav__container">
-          <a className="navbar__link" href="#">
+          <Link className="navbar__link" to="/">
             <img className="navbar__logo" src={logo} alt="Logo" />
-          </a>
+          </Link>
           {/* <Link to="/Login" className="btn-small btn-nav">
             Login
           </Link> */}
@@ -53,9 +53,9 @@ const Navbar = ({ page }) => {
     return (
       <Navigation>
         <div className="nav__container">
-          <a className="navbar__link" href="#">
+          <Link className="navbar__link" to="/">
             <img className="navbar__logo" src={logo} alt="Logo" />
-          </a>
+          </Link>
           <Link to="#" className="btn-small btn-nav">
             User Avatar
           </Link>
@@ -64,6 +64,7 @@ const Navbar = ({ page }) => {
     );
   }
 };
+
 export default Navbar;
 
 const Navigation = styled.nav`

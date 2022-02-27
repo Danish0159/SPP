@@ -57,6 +57,7 @@ const Signup = () => {
       .required("Email is required"),
     password: yup
       .string("Enter your password")
+      .min(4, "Password is too short - should be 4 chars minimum.")
       .required("Password is required"),
   });
 

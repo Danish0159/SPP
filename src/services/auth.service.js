@@ -25,7 +25,7 @@ const register = async (name, email, password, role) => {
 
 const login = async (email, password) => {
   const response = await axios.post(
-    API_URL + "login",
+    API_URL + "signin",
     {
       email,
       password,

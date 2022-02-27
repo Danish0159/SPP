@@ -6,7 +6,7 @@ export const register = createAsyncThunk(
   async ({ name, email, password, role }, thunkAPI) => {
     try {
       const data = await AuthService.register(name, email, password, role);
-      if (data.message !== "Signup Successful") {
+      if (data.status !== "SUCCESS") {
         return thunkAPI.rejectWithValue(data.message);
       }
       return data;

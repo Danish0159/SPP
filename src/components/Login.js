@@ -23,7 +23,8 @@ const Login = () => {
       toast.error(message);
     }
 
-    if (isSuccess) {
+    // if (isSuccess || user==="t") {
+    if (isSuccess || user) {
       history.push("/Welcome");
     }
 
