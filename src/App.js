@@ -68,3 +68,14 @@ const App = () => {
 };
 
 export default App;
+
+// Create Protected Routes.
+
+// import { useSelector } from "react-redux";
+// import { useHistory } from "react-router-dom";
+
+// const history = useHistory();
+// const { user } = useSelector((state) => state.auth);
+// if (!user) {
+//   history.push("/");
+// }

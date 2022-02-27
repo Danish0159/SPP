@@ -23,7 +23,6 @@ const Login = () => {
       toast.error(message);
     }
 
-    // if (isSuccess || user==="t") {
     if (isSuccess || user) {
       history.push("/Welcome");
     }
@@ -55,14 +54,14 @@ const Login = () => {
       // Reset form
       resetForm();
 
-      // Api Call Started
-      alert(
-        JSON.stringify({
-          email: values.email,
-          password: values.password,
-        })
-      );
-      console.log("Before Hitting");
+      // // Api Call Started
+      // alert(
+      //   JSON.stringify({
+      //     email: values.email,
+      //     password: values.password,
+      //   })
+      // );
+      // console.log("Before Hitting");
 
       dispatch(
         login({

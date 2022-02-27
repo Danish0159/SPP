@@ -1,67 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import logo from "../images/logo3.png";
+import {
+  NavbarHome,
+  NavbarLogin,
+  NavbarSignUp,
+  NavbarWelcome,
+} from "./Navigations";
 
 const Navbar = ({ page }) => {
-  if (page === "home") {
-    return (
-      <Navigation>
-        <div className="nav__container">
-          <Link className="navbar__link" to="/">
-            <img className="navbar__logo" src={logo} alt="Logo" />
-          </Link>
-          <Link to="/Login" className="btn-small btn-nav">
-            Login
-          </Link>
-        </div>
-      </Navigation>
-    );
-  }
-
-  if (page === "login") {
-    return (
-      <Navigation>
-        <div className="nav__container">
-          <Link className="navbar__link" to="/">
-            <img className="navbar__logo" src={logo} alt="Logo" />
-          </Link>
-          <Link to="/Signup" className="btn-small btn-nav">
-            Register Now
-          </Link>
-        </div>
-      </Navigation>
-    );
-  }
-
-  if (page === "signup") {
-    return (
-      <Navigation>
-        <div className="nav__container">
-          <Link className="navbar__link" to="/">
-            <img className="navbar__logo" src={logo} alt="Logo" />
-          </Link>
-          {/* <Link to="/Login" className="btn-small btn-nav">
-            Login
-          </Link> */}
-        </div>
-      </Navigation>
-    );
-  }
-
-  if (page === "welcome") {
-    return (
-      <Navigation>
-        <div className="nav__container">
-          <Link className="navbar__link" to="/">
-            <img className="navbar__logo" src={logo} alt="Logo" />
-          </Link>
-          <Link to="#" className="btn-small btn-nav">
-            User Avatar
-          </Link>
-        </div>
-      </Navigation>
-    );
+  switch (page) {
+    case "home":
+      return (
+        <Navigation>
+          <NavbarHome></NavbarHome>
+        </Navigation>
+      );
+    case "login":
+      return (
+        <Navigation>
+          <NavbarLogin></NavbarLogin>
+        </Navigation>
+      );
+    case "signup":
+      return (
+        <Navigation>
+          <NavbarSignUp></NavbarSignUp>
+        </Navigation>
+      );
+    case "welcome":
+      return (
+        <Navigation>
+          <NavbarWelcome></NavbarWelcome>
+        </Navigation>
+      );
   }
 };
 
@@ -89,3 +60,9 @@ const Navigation = styled.nav`
     }
   }
 `;
+
+// Reference for dropdown.
+// https://codesandbox.io/s/ys5wjr?file=/demo.js
+
+// Reference for code
+// https://github.com/bradtraversy/mern-tutorial/blob/main/frontend/src/components/Header.jsx

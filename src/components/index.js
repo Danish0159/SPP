@@ -14,7 +14,6 @@ import Reviews from "./Reviews";
 import Gallery from "./Gallery";
 import BackToProfile from "./BackToProfile";
 import Table from "./Table";
-import Alertify from "./Alertify";
 
 export {
   Navbar,
@@ -33,5 +32,4 @@ export {
   Gallery,
   BackToProfile,
   Table,
-  Alertify,
 };
