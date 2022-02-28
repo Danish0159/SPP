@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@mui/material": "^5.4.1",
+    "@mui/icons-material": "latest",
     "@mui/styled-engine-sc": "^5.4.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.16.1",

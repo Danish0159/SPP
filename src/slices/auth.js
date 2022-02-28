@@ -29,10 +29,11 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }, thunkAPI) => {
     try {
-      // Set some flag for validations.
       const data = await AuthService.login(email, password);
+      if (data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(data.message);
+      }
       return data;
-      // return { user: data };
     } catch (error) {
       const message =
         (error.response &&
