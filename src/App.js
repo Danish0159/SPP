@@ -2,22 +2,19 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// Flow 1
 import {
-  HomePage,
-  ErrorPage,
-  LoginPage,
-  SignupPage,
   WelcomePage,
   SearchResultPage,
   SearchProfilePage,
   SearchProjectPage,
   SearchProjectDetailPage,
   SearchProjectGalleryPage,
-} from "./pages";
+} from "./pages/GuestFlow";
+
+import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
 
 // Flow 2
-import { JoinUs, Driver } from "./pages/Registration";
+import { JoinUs, Driver } from "./pages/ProfileCreation";
 
 const App = () => {
   return (

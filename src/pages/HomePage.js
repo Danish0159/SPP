@@ -1,6 +1,7 @@
 import React from "react";
 import { cardsData } from "../utils/constants";
-import { Navbar, Hero, Cards, Footer } from "../components";
+import { Navbar, Hero, Footer } from "../components";
+import { Cards } from "../components/GuestFlow";
 
 const HomePage = () => {
   return (
