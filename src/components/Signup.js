@@ -142,7 +142,6 @@ const Signup = () => {
               fullWidth
               type="password"
               name="password"
-              type="password"
               id="password"
               value={formik.values.password}
               onChange={formik.handleChange}

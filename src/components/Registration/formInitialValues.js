@@ -16,6 +16,7 @@ const {
     city,
     phone,
     image,
+    multiFiles,
   },
 } = registrationFormModel;
 
@@ -29,6 +30,9 @@ export default {
   [description.name]: "",
   [projectName.name]: "",
   [projectLocation.name]: "",
+  [multiFiles.name]: {
+    src: [],
+  },
   [rate.name]: "",
   [country.name]: "",
   [city.name]: "",
