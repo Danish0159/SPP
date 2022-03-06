@@ -11,12 +11,14 @@ const {
     description,
     projectName,
     projectLocation,
+    images,
+    previews,
     rate,
     country,
     city,
     phone,
     image,
-    multiFiles,
+    portfolio,
   },
 } = registrationFormModel;
 
@@ -28,10 +30,11 @@ export default {
   [company.name]: "",
   [location.name]: "",
   [description.name]: "",
-  [projectName.name]: "",
-  [projectLocation.name]: "",
-  [multiFiles.name]: {
-    src: [],
+  [portfolio.name]: {
+    projectName: "",
+    projectLocation: "",
+    images: [],
+    previews: [],
   },
   [rate.name]: "",
   [country.name]: "",

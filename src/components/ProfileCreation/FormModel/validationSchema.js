@@ -11,7 +11,6 @@
 //     description,
 //     projectName,
 //     projectLocation,
-//     multiFiles,
 //     rate,
 //     country,
 //     city,
@@ -66,8 +65,6 @@
 //     [projectLocation.name]: Yup.string("Enter projectLocation").required(
 //       `${projectLocation.requiredErrorMsg}`
 //     ),
-
-//     // [multiFiles]: Yup.array().required("required"),
 //   }),
 
 //   Yup.object().shape({

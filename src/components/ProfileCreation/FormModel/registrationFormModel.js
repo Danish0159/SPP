@@ -29,17 +29,28 @@ export default {
       name: "description",
       requiredErrorMsg: "Description is required",
     },
-    projectName: {
-      name: "projectName",
-      requiredErrorMsg: "ProjectName is required",
+
+    portfolio: {
+      name: "portfolio",
+      projectName: "projectName",
+      projectNameError: "ProjectName is required",
+      projectLocation: "projectLocation",
+      projectLocationError: "ProjectLocation is required",
+      images: "images",
+      imagesError: "Images are required",
+      previews: "previews",
     },
-    projectLocation: {
-      name: "projectLocation",
-      requiredErrorMsg: "ProjectLocation is required",
-    },
-    multiFiles: {
-      name: "images",
-    },
+    // projectName: {
+    // },
+    // projectLocation: {
+    // },
+    // images: {
+    //   name: "images",
+    // },
+    // previews: {
+    //   name: "previews",
+    // },
+
     rate: {
       name: "Rate",
       requiredErrorMsg: "Rate is required",

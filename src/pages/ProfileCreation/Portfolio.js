@@ -4,18 +4,23 @@ import React, { useEffect, useState } from "react";
 import { InputField } from "../../components/ProfileCreation/FormFields";
 import { useDropzone } from "react-dropzone";
 import { Field, useField } from "formik";
+import Dropzone from "react-dropzone";
 
 export default function Portfolio(props) {
   const {
-    formField: { projectName, projectLocation, multiFiles },
+    formField: { portfolio },
   } = props;
 
   // State Variables.
   const [files, setFiles] = useState([]);
   const [src, setSrc] = useState([]);
 
+  const [heroFiles1, setHeroFiles1] = useState([]);
+  const [heroFiles2, setHeroFiles2] = useState([]);
+  const [thumbnailFiles, setThumbnailFiles] = useState([]);
+
   // Formik helpers
-  const [field, meta, helper] = useField(multiFiles.name);
+  const [field, meta, helper] = useField(portfolio.name.images);
   const { touched, error } = meta;
   const { setValue } = helper;
   const isError = touched && error && true;
@@ -67,7 +72,14 @@ export default function Portfolio(props) {
     [isDragActive, isDragReject, isDragAccept]
   );
 
-  const thumbs = files.map((file) => (
+  const thumbs1 = heroFiles1.map((file) => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img alt="selected" src={file.preview} style={img} />
+      </div>
+    </div>
+  ));
+  const thumbs2 = heroFiles2.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
         <img alt="selected" src={file.preview} style={img} />
@@ -78,7 +90,12 @@ export default function Portfolio(props) {
   // Update the initial state.
   useEffect(() => {
     if (src) {
-      setValue({ src: src });
+      setValue({
+        projectName: portfolio.projectName,
+        projectLocation: portfolio.projectLocation,
+        images: src,
+        previews: files,
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
@@ -96,22 +113,22 @@ export default function Portfolio(props) {
       <>
         <p className="card__subtitle">Project Name</p>
         <InputField
-          name={projectName.name}
+          // portfolio[0].projectName
+          name={portfolio.projectName}
           type="text"
-          // label={experience.label}
           fullWidth
         />
         <p className="card__subtitle">Location</p>
         <InputField
-          name={projectLocation.name}
+          // portfolio[0].ProjectLocatoin
+          name={portfolio.projectLocation}
           type="text"
-          // label={projects.label}
           fullWidth
         />
 
         <p className="card__subtitle">Project Files</p>
         <div className="form-group">
-          <section className="container">
+          {/* <section className="container">
             <div {...getRootProps({ className: "dropzone", style })}>
               <input {...getInputProps()} />
               {isDragActive ? (
@@ -123,7 +140,80 @@ export default function Portfolio(props) {
               )}
             </div>
             <aside style={thumbsContainer}>{thumbs}</aside>
-          </section>
+          </section> */}
+          <Dropzone
+            onDrop={(acceptedFiles) => {
+              setHeroFiles1(
+                acceptedFiles.map((file) =>
+                  Object.assign(file, {
+                    preview: URL.createObjectURL(file),
+                  })
+                )
+              );
+
+              // Read files and update src state.
+              acceptedFiles.map((file) => {
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                reader.onload = () => {
+                  setSrc((src) => [...src, reader.result]);
+                };
+
+                reader.onerror = function () {
+                  alert(reader.error);
+                };
+              });
+            }}
+            accept="image/*"
+            name="heroImage"
+            multiple={true}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div {...getRootProps({ className: "dropzone", style })}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <p className="drop">Drop the files here ...</p>
+                ) : (
+                  <p className="drop">
+                    Drag 'n' drop only image files here, or click to select
+                    files
+                  </p>
+                )}
+              </div>
+            )}
+          </Dropzone>
+          <aside style={thumbsContainer}>{thumbs1}</aside>
+          {/* This would be the dropzone for the Thumbnail image */}
+          <Dropzone
+            onDrop={(acceptedFiles) => {
+              setHeroFiles2(
+                acceptedFiles.map((file) =>
+                  Object.assign(file, {
+                    preview: URL.createObjectURL(file),
+                  })
+                )
+              );
+            }}
+            accept="image/*"
+            name="heroImage"
+            multiple={true}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div {...getRootProps({ className: "dropzone", style })}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <p className="drop">Drop the files here ...</p>
+                ) : (
+                  <p className="drop">
+                    Drag 'n' drop only image files here, or click to select
+                    files
+                  </p>
+                )}
+              </div>
+            )}
+          </Dropzone>
+          <aside style={thumbsContainer}>{thumbs2}</aside>
         </div>
       </>
     </>
