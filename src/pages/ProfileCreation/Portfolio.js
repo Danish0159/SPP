@@ -1,67 +1,86 @@
-// Reference.
-// https://codesandbox.io/s/dropzone-sample-forked-7387vw?file=/src/App.js
 import React, { useEffect, useState } from "react";
 import { InputField } from "../../components/ProfileCreation/FormFields";
-import { useDropzone } from "react-dropzone";
 import { Field, useField } from "formik";
-import Dropzone from "react-dropzone";
+import Dropzone, { useDropzone } from "react-dropzone";
+import { toast } from "react-toastify";
 
 export default function Portfolio(props) {
   const {
-    formField: { portfolio },
+    // (Field Array) for projectName1, prjectName2.
+    formField: {
+      projectName1,
+      projectLocation1,
+      multiFiles,
+      projectName2,
+      projectLocation2,
+      projectName3,
+      projectLocation3,
+      projectName4,
+      projectLocation4,
+      projectName5,
+      projectLocation5,
+    },
   } = props;
 
   // State Variables.
-  const [files, setFiles] = useState([]);
-  const [src, setSrc] = useState([]);
-
+  // For Thumbs.
+  // const [files, setFiles] = useState([]);
+  // For updating initial state.
+  const [src1, setSrc1] = useState([]);
+  const [src2, setSrc2] = useState([]);
+  const [src3, setSrc3] = useState([]);
+  const [src4, setSrc4] = useState([]);
+  const [src5, setSrc5] = useState([]);
   const [heroFiles1, setHeroFiles1] = useState([]);
   const [heroFiles2, setHeroFiles2] = useState([]);
-  const [thumbnailFiles, setThumbnailFiles] = useState([]);
+  const [heroFiles3, setHeroFiles3] = useState([]);
+  const [heroFiles4, setHeroFiles4] = useState([]);
+  const [heroFiles5, setHeroFiles5] = useState([]);
 
-  // Formik helpers
-  const [field, meta, helper] = useField(portfolio.name.images);
+  // Testing State.
+  const [state, setState] = useState([
+    {
+      projectName: projectName1,
+      projectLocation: projectLocation1,
+      setHeroFiles: setHeroFiles1,
+      setSrc: setSrc1,
+    },
+    {
+      projectName: projectName2,
+      projectLocation: projectLocation2,
+      setHeroFiles: setHeroFiles2,
+      setSrc: setSrc2,
+    },
+    {
+      projectName: projectName3,
+      projectLocation: projectLocation3,
+      setHeroFiles: setHeroFiles3,
+      setSrc: setSrc3,
+    },
+    {
+      projectName: projectName4,
+      projectLocation: projectLocation4,
+      setHeroFiles: setHeroFiles4,
+      setSrc: setSrc4,
+    },
+    {
+      projectName: projectName5,
+      projectLocation: projectLocation5,
+      setHeroFiles: setHeroFiles5,
+      setSrc: setSrc5,
+    },
+  ]);
+
+  // Formik helpers.
+  const [field, meta, helper] = useField(multiFiles.name);
   const { touched, error } = meta;
   const { setValue } = helper;
   const isError = touched && error && true;
   const { value } = field;
-
   // Use Dropzone Hook.
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      console.log("accepted", acceptedFiles);
-      // For Blob. (For displaying images on UI. (Using Blob))
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
+  const { isDragActive, isDragAccept, isDragReject } = useDropzone();
 
-      // Read files and update src state.
-      acceptedFiles.map((file) => {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = () => {
-          setSrc((src) => [...src, reader.result]);
-        };
-
-        reader.onerror = function () {
-          alert(reader.error);
-        };
-      });
-    },
-  });
-
+  // Styles
   const style = React.useMemo(
     () => ({
       ...baseStyle,
@@ -72,6 +91,7 @@ export default function Portfolio(props) {
     [isDragActive, isDragReject, isDragAccept]
   );
 
+  // Thumbs.
   const thumbs1 = heroFiles1.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
@@ -86,136 +106,141 @@ export default function Portfolio(props) {
       </div>
     </div>
   ));
+  const thumbs3 = heroFiles3.map((file) => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img alt="selected" src={file.preview} style={img} />
+      </div>
+    </div>
+  ));
+  const thumbs4 = heroFiles4.map((file) => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img alt="selected" src={file.preview} style={img} />
+      </div>
+    </div>
+  ));
+  const thumbs5 = heroFiles5.map((file) => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img alt="selected" src={file.preview} style={img} />
+      </div>
+    </div>
+  ));
+
+  // Toast.
+  // useEffect(() => {
+  //   toast.info("Upload Your Top 5 Projects.!", {
+  //     position: "top-right",
+  //     autoClose: 7000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // }, []);
 
   // Update the initial state.
   useEffect(() => {
-    if (src) {
-      setValue({
-        projectName: portfolio.projectName,
-        projectLocation: portfolio.projectLocation,
-        images: src,
-        previews: files,
-      });
+    if (src1 || src2 || src3 || src4 || src5) {
+      setValue({ src1: src1, src2: src2, src3: src3, src4: src4, src5: src5 });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [src]);
 
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
+    // setSrc1([]);
+    // setSrc2([]);
+    // if (src1) {
+    //   setValue({ src1: src1 });
+    // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src1, src2, src3, src4, src5]);
+
+  // useEffect(
+  //   () => () => {
+  //     // Make sure to revoke the data uris to avoid memory leaks
+  //     files.forEach((file) => URL.revokeObjectURL(file.preview));
+  //   },
+  //   [files]
+  // );
 
   return (
     <>
-      <>
-        <p className="card__subtitle">Project Name</p>
-        <InputField
-          // portfolio[0].projectName
-          name={portfolio.projectName}
-          type="text"
-          fullWidth
-        />
-        <p className="card__subtitle">Location</p>
-        <InputField
-          // portfolio[0].ProjectLocatoin
-          name={portfolio.projectLocation}
-          type="text"
-          fullWidth
-        />
+      {state.map((step, index) => {
+        return (
+          <>
+            <div key={index}>
+              <p className="card__subtitle">Project Name</p>
+              <InputField
+                // name={step.projectName`${index + 1}`.name}
+                // name={step`.${index}`.name}
+                name={step.projectName.name}
+                type="text"
+                fullWidth
+              />
+              <p className="card__subtitle">Location</p>
+              <InputField
+                // name={projectLocation1.name}
+                name={step.projectLocation.name}
+                type="text"
+                fullWidth
+              />
 
-        <p className="card__subtitle">Project Files</p>
-        <div className="form-group">
-          {/* <section className="container">
-            <div {...getRootProps({ className: "dropzone", style })}>
-              <input {...getInputProps()} />
-              {isDragActive ? (
-                <p className="drop">Drop the files here ...</p>
-              ) : (
-                <p className="drop">
-                  Drag 'n' drop only image files here, or click to select files
-                </p>
-              )}
+              <p className="card__subtitle">Project Files</p>
+              <div className="form-group">
+                <Dropzone
+                  onDrop={(acceptedFiles) => {
+                    step.setHeroFiles(
+                      acceptedFiles.map((file) =>
+                        Object.assign(file, {
+                          preview: URL.createObjectURL(file),
+                        })
+                      )
+                    );
+
+                    // Read files and update src state.
+                    acceptedFiles.map((file) => {
+                      let reader = new FileReader();
+                      reader.readAsDataURL(file);
+
+                      reader.onload = () => {
+                        step.setSrc((src) => [...src, reader.result]);
+                      };
+
+                      reader.onerror = function () {
+                        alert(reader.error);
+                      };
+                    });
+                  }}
+                  accept="image/*"
+                  name="heroImage"
+                  multiple={true}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div {...getRootProps({ className: "dropzone", style })}>
+                      <input {...getInputProps()} />
+                      {isDragActive ? (
+                        <p className="drop">Drop the files here ...</p>
+                      ) : (
+                        <p className="drop">
+                          Drag 'n' drop only image files here, or click to
+                          select files
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+                <aside style={thumbsContainer}>
+                  {index === 0 ? thumbs1 : null}
+                  {index === 1 ? thumbs2 : null}
+                  {index === 2 ? thumbs3 : null}
+                  {index === 3 ? thumbs4 : null}
+                  {index === 4 ? thumbs5 : null}
+                </aside>
+              </div>
             </div>
-            <aside style={thumbsContainer}>{thumbs}</aside>
-          </section> */}
-          <Dropzone
-            onDrop={(acceptedFiles) => {
-              setHeroFiles1(
-                acceptedFiles.map((file) =>
-                  Object.assign(file, {
-                    preview: URL.createObjectURL(file),
-                  })
-                )
-              );
-
-              // Read files and update src state.
-              acceptedFiles.map((file) => {
-                let reader = new FileReader();
-                reader.readAsDataURL(file);
-
-                reader.onload = () => {
-                  setSrc((src) => [...src, reader.result]);
-                };
-
-                reader.onerror = function () {
-                  alert(reader.error);
-                };
-              });
-            }}
-            accept="image/*"
-            name="heroImage"
-            multiple={true}
-          >
-            {({ getRootProps, getInputProps }) => (
-              <div {...getRootProps({ className: "dropzone", style })}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                  <p className="drop">Drop the files here ...</p>
-                ) : (
-                  <p className="drop">
-                    Drag 'n' drop only image files here, or click to select
-                    files
-                  </p>
-                )}
-              </div>
-            )}
-          </Dropzone>
-          <aside style={thumbsContainer}>{thumbs1}</aside>
-          {/* This would be the dropzone for the Thumbnail image */}
-          <Dropzone
-            onDrop={(acceptedFiles) => {
-              setHeroFiles2(
-                acceptedFiles.map((file) =>
-                  Object.assign(file, {
-                    preview: URL.createObjectURL(file),
-                  })
-                )
-              );
-            }}
-            accept="image/*"
-            name="heroImage"
-            multiple={true}
-          >
-            {({ getRootProps, getInputProps }) => (
-              <div {...getRootProps({ className: "dropzone", style })}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                  <p className="drop">Drop the files here ...</p>
-                ) : (
-                  <p className="drop">
-                    Drag 'n' drop only image files here, or click to select
-                    files
-                  </p>
-                )}
-              </div>
-            )}
-          </Dropzone>
-          <aside style={thumbsContainer}>{thumbs2}</aside>
-        </div>
-      </>
+          </>
+        );
+      })}
     </>
   );
 }

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button, CircularProgress } from "@mui/material";
 import { Formik, Form } from "formik";
-import { Redirect } from "react-router-dom";
 
-import { Navbar, Footer } from "../../components";
+import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons, CardTitle } from "../../components/ProfileCreation";
+import { toast } from "react-toastify";
 
+// Form Model
 import {
   formInitialValues,
   validationSchema,
@@ -24,6 +24,12 @@ import {
   PhoneNumber,
   ProfilePhoto,
 } from "../ProfileCreation";
+
+// redux/state
+import { useDispatch, useSelector } from "react-redux";
+import { profileCreation, reset } from "../../slices/auth";
+import { Redirect, useHistory } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const { formId, formField } = registrationFormModel;
 
@@ -66,17 +72,88 @@ const Driver = () => {
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
-  function _sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // Redux State.
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      toast.success(message);
+      history.push("/Welcome");
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, message, dispatch]);
+
+  // function _sleep(ms) {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }
 
   async function _submitForm(values, actions) {
     // simulate an api call.
-    await _sleep(1000);
-    alert(JSON.stringify(values, null, 2));
-    actions.setSubmitting(false);
+    // await _sleep(1000);
+    // console.log(JSON.stringify(values, null, 2));
 
+    const payload = {
+      category: values.Category,
+      expertiseLevel: {
+        yearsOfExperience: values.experience,
+        noOfProjects: values.projects,
+        noOfEmployees: values.employees,
+      },
+      employmentHistory: [
+        {
+          companyName: values.company,
+          location: values.location,
+          description: values.description,
+        },
+      ],
+      portfolio: [
+        {
+          projectName1: values.projectName1,
+          location1: values.projectLocation1,
+          images1: values.images.src1,
+        },
+        {
+          projectName2: values.projectName2,
+          location2: values.projectLocation2,
+          images2: values.images.src2,
+        },
+        {
+          projectName3: values.projectName3,
+          location3: values.projectLocation3,
+          images3: values.images.src3,
+        },
+        {
+          projectName4: values.projectName4,
+          location4: values.projectLocation4,
+          images4: values.images.src4,
+        },
+        {
+          projectName5: values.projectName5,
+          location5: values.projectLocation5,
+          images5: values.images.src5,
+        },
+      ],
+      rate: values.Rate,
+      location: {
+        country: values.Country,
+        city: values.City,
+      },
+      profilePhoto: values.image.src,
+    };
+
+    console.log(payload);
+    // dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
+    actions.setSubmitting(false);
   }
 
   function _handleSubmit(values, actions) {
@@ -91,6 +168,10 @@ const Driver = () => {
 
   function _handleBack() {
     setActiveStep(activeStep - 1);
+  }
+
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
@@ -130,7 +211,7 @@ const Driver = () => {
                         >
                           {isLastStep ? "COMPLETE" : "NEXT"}
                         </button>
-                        {isSubmitting && <CircularProgress size={24} />}
+                        {/* {isSubmitting && <CircularProgress size={24} />} */}
                       </div>
                     </div>
                   </div>

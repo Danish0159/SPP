@@ -29,28 +29,49 @@ export default {
       name: "description",
       requiredErrorMsg: "Description is required",
     },
-
-    portfolio: {
-      name: "portfolio",
-      projectName: "projectName",
-      projectNameError: "ProjectName is required",
-      projectLocation: "projectLocation",
-      projectLocationError: "ProjectLocation is required",
-      images: "images",
-      imagesError: "Images are required",
-      previews: "previews",
+    projectName1: {
+      name: "projectName1",
+      requiredErrorMsg: "ProjectName is required",
     },
-    // projectName: {
-    // },
-    // projectLocation: {
-    // },
-    // images: {
-    //   name: "images",
-    // },
-    // previews: {
-    //   name: "previews",
-    // },
-
+    projectLocation1: {
+      name: "projectLocation1",
+      requiredErrorMsg: "ProjectLocation is required",
+    },
+    projectName2: {
+      name: "projectName2",
+      requiredErrorMsg: "ProjectName is required",
+    },
+    projectLocation2: {
+      name: "projectLocation2",
+      requiredErrorMsg: "ProjectLocation is required",
+    },
+    projectName3: {
+      name: "projectName3",
+      requiredErrorMsg: "ProjectName is required",
+    },
+    projectLocation3: {
+      name: "projectLocation3",
+      requiredErrorMsg: "ProjectLocation is required",
+    },
+    projectName4: {
+      name: "projectName4",
+      requiredErrorMsg: "ProjectName is required",
+    },
+    projectLocation4: {
+      name: "projectLocation4",
+      requiredErrorMsg: "ProjectLocation is required",
+    },
+    projectName5: {
+      name: "projectName5",
+      requiredErrorMsg: "ProjectName is required",
+    },
+    projectLocation5: {
+      name: "projectLocation5",
+      requiredErrorMsg: "ProjectLocation is required",
+    },
+    multiFiles: {
+      name: "images",
+    },
     rate: {
       name: "Rate",
       requiredErrorMsg: "Rate is required",

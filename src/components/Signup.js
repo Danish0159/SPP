@@ -70,17 +70,6 @@ const Signup = () => {
       setRole("");
       resetForm();
 
-      // // Api Call Started
-      // alert(
-      //   JSON.stringify({
-      //     name: values.name,
-      //     email: values.email,
-      //     password: values.password,
-      //     role,
-      //   })
-      // );
-      // console.log("Before Hitting");
-
       dispatch(
         register({
           name: values.name,

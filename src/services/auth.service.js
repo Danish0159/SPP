@@ -1,9 +1,10 @@
 // Authentication service.
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "http://cbda-103-125-176-195.ngrok.io/user/";
 
-// async can be used.
+// Register Service.
 const register = async (name, email, password, role) => {
   const response = await axios.post(
     API_URL + "signup",
@@ -23,6 +24,7 @@ const register = async (name, email, password, role) => {
   return response.data;
 };
 
+// Login Service.
 const login = async (email, password) => {
   const response = await axios.post(
     API_URL + "signin",
@@ -44,14 +46,30 @@ const login = async (email, password) => {
   return response.data;
 };
 
+// Logout Service.
 const logout = () => {
   localStorage.removeItem("user");
+};
+
+// ProfileCreation Service.
+// Register Service.
+const profileCreation = async (profilePayload) => {
+  const response = await axios.post(
+    API_URL + "profile/createProfile",
+    profilePayload,
+    {
+      headers: authHeader(),
+    }
+  );
+
+  return response.data;
 };
 
 const authService = {
   register,
   login,
   logout,
+  profileCreation,
 };
 
 export default authService;
