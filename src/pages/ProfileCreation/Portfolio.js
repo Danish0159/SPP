@@ -129,17 +129,17 @@ export default function Portfolio(props) {
   ));
 
   // Toast.
-  // useEffect(() => {
-  //   toast.info("Upload Your Top 5 Projects.!", {
-  //     position: "top-right",
-  //     autoClose: 7000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //   });
-  // }, []);
+  useEffect(() => {
+    toast.info("Upload Your Top 5 Projects.!", {
+      position: "top-right",
+      autoClose: 7000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, []);
 
   // Update the initial state.
   useEffect(() => {
