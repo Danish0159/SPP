@@ -292,4 +292,10 @@ const Wrapper = styled.section`
     color: var(--clr-blue-2);
     font-size: 1.6rem;
   }
+  #remove-img-btn {
+    color: var(--clr-blue-2);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+  }
 `;

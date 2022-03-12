@@ -3,6 +3,7 @@ import { InputField } from "../../components/ProfileCreation/FormFields";
 import { Field, useField } from "formik";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
+import { Button } from "@mui/material";
 
 export default function Portfolio(props) {
   const {
@@ -37,6 +38,32 @@ export default function Portfolio(props) {
   const [heroFiles4, setHeroFiles4] = useState([]);
   const [heroFiles5, setHeroFiles5] = useState([]);
 
+  // Use Some Efficient Solution for removing.
+  const remove1 = () => {
+    setHeroFiles1([]);
+    setSrc1([]);
+  };
+
+  const remove2 = () => {
+    setHeroFiles2([]);
+    setSrc2([]);
+  };
+
+  const remove3 = () => {
+    setHeroFiles3([]);
+    setSrc3([]);
+  };
+
+  const remove4 = () => {
+    setHeroFiles4([]);
+    setSrc4([]);
+  };
+
+  const remove5 = () => {
+    setHeroFiles5([]);
+    setSrc5([]);
+  };
+
   // Testing State.
   const [state, setState] = useState([
     {
@@ -44,30 +71,35 @@ export default function Portfolio(props) {
       projectLocation: projectLocation1,
       setHeroFiles: setHeroFiles1,
       setSrc: setSrc1,
+      remove: remove1,
     },
     {
       projectName: projectName2,
       projectLocation: projectLocation2,
       setHeroFiles: setHeroFiles2,
       setSrc: setSrc2,
+      remove: remove2,
     },
     {
       projectName: projectName3,
       projectLocation: projectLocation3,
       setHeroFiles: setHeroFiles3,
       setSrc: setSrc3,
+      remove: remove3,
     },
     {
       projectName: projectName4,
       projectLocation: projectLocation4,
       setHeroFiles: setHeroFiles4,
       setSrc: setSrc4,
+      remove: remove4,
     },
     {
       projectName: projectName5,
       projectLocation: projectLocation5,
       setHeroFiles: setHeroFiles5,
       setSrc: setSrc5,
+      remove: remove5,
     },
   ]);
 
@@ -146,21 +178,20 @@ export default function Portfolio(props) {
     if (src1 || src2 || src3 || src4 || src5) {
       setValue({ src1: src1, src2: src2, src3: src3, src4: src4, src5: src5 });
     }
-
-    // setSrc1([]);
-    // setSrc2([]);
-    // if (src1) {
-    //   setValue({ src1: src1 });
-    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src1, src2, src3, src4, src5]);
 
+  // Memory Leaks.
   // useEffect(
   //   () => () => {
   //     // Make sure to revoke the data uris to avoid memory leaks
-  //     files.forEach((file) => URL.revokeObjectURL(file.preview));
+  //     heroFiles1.forEach((file) => URL.revokeObjectURL(file.preview));
+  //     heroFiles2.forEach((file) => URL.revokeObjectURL(file.preview));
+  //     heroFiles3.forEach((file) => URL.revokeObjectURL(file.preview));
+  //     heroFiles4.forEach((file) => URL.revokeObjectURL(file.preview));
+  //     heroFiles5.forEach((file) => URL.revokeObjectURL(file.preview));
   //   },
-  //   [files]
+  //   [heroFiles1, heroFiles2, heroFiles3, heroFiles4, heroFiles5]
   // );
 
   return (
@@ -236,6 +267,14 @@ export default function Portfolio(props) {
                   {index === 3 ? thumbs4 : null}
                   {index === 4 ? thumbs5 : null}
                 </aside>
+                <Button
+                  // className="blue-btn card-btn imgRemove-btn"
+                  id="remove-img-btn"
+                  type="button"
+                  onClick={step.remove}
+                >
+                  Remove Images
+                </Button>
               </div>
             </div>
           </>
