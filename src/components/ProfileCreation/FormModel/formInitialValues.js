@@ -9,6 +9,9 @@ const {
     company,
     location,
     description,
+    // FOr Testing
+    projectName,
+
     projectName1,
     projectLocation1,
     multiFiles,
@@ -52,6 +55,13 @@ export default {
     src3: [],
     src4: [],
     src5: [],
+  },
+  [projectName.name]: {
+    p1: "",
+    p2: "",
+    p3: "",
+    p4: "",
+    p5: "",
   },
   [rate.name]: "",
   [country.name]: "",

@@ -25,6 +25,16 @@ const Login = () => {
 
     if (isSuccess || user) {
       history.push("/Welcome");
+      // toast.success(message);
+      // if (user.role === "user") {
+      //   history.push("/Welcome");
+      // } else if (
+      //   user.role === "Contractor" ||
+      //   user.role === "Designer" ||
+      //   user.role === ""
+      // ) {
+      //   history.push("/JoinUs");
+      // }
     }
 
     dispatch(reset());
@@ -53,15 +63,6 @@ const Login = () => {
     onSubmit: (values, { resetForm }) => {
       // Reset form
       resetForm();
-
-      // // Api Call Started
-      // alert(
-      //   JSON.stringify({
-      //     email: values.email,
-      //     password: values.password,
-      //   })
-      // );
-      // console.log("Before Hitting");
 
       dispatch(
         login({
@@ -109,7 +110,6 @@ const Login = () => {
               fullWidth
               type="password"
               name="password"
-              type="password"
               id="password"
               value={formik.values.password}
               onChange={formik.handleChange}

@@ -29,6 +29,15 @@ export default {
       name: "description",
       requiredErrorMsg: "Description is required",
     },
+    /////////////////////////////
+    /////////////////////////////
+    // For Testing.
+    /////////////////////////////
+    /////////////////////////////
+    projectName: {
+      name: "projectName",
+      requiredErrorMsg: "ProjectName is required",
+    },
     projectName1: {
       name: "projectName1",
       requiredErrorMsg: "ProjectName is required",
@@ -88,7 +97,6 @@ export default {
       name: "Phone",
       requiredErrorMsg: "Phone is required",
     },
-
     image: {
       name: "image",
       label:

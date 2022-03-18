@@ -7,14 +7,14 @@ const ProfilePhoto = (props) => {
     formField: { image },
   } = props;
 
-  // Formik Helpers
+  // Formik Helpers.
   const [field, meta, helper] = useField(image.name);
   const { touched, error } = meta;
   const { setValue } = helper;
   const isError = touched && error && true;
   const { value } = field;
 
-  // State variables
+  // State variables.
   const [fileName, setFileName] = useState(value.name);
   const [file, setFile] = useState(value.file);
   const [src, setSrc] = useState(value.src);

@@ -26,13 +26,13 @@ export const register = createAsyncThunk(
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
 
-// User Login
+// User Login.
 export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }, thunkAPI) => {
     try {
       const data = await AuthService.login(email, password);
-      if (data.status !== "SUCCESS") {
+      if (data.status !== "Success") {
         return thunkAPI.rejectWithValue(data.message);
       }
       return data;
@@ -48,7 +48,7 @@ export const login = createAsyncThunk(
   }
 );
 
-// User Logout
+// User Logout.
 export const logout = createAsyncThunk("auth/logout", async () => {
   await AuthService.logout();
 });

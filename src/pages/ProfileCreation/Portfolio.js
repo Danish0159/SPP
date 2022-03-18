@@ -9,6 +9,7 @@ export default function Portfolio(props) {
   const {
     // (Field Array) for projectName1, prjectName2.
     formField: {
+      projectName,
       projectName1,
       projectLocation1,
       multiFiles,
@@ -131,6 +132,7 @@ export default function Portfolio(props) {
       </div>
     </div>
   ));
+
   const thumbs2 = heroFiles2.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
@@ -138,6 +140,7 @@ export default function Portfolio(props) {
       </div>
     </div>
   ));
+
   const thumbs3 = heroFiles3.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
@@ -145,6 +148,7 @@ export default function Portfolio(props) {
       </div>
     </div>
   ));
+
   const thumbs4 = heroFiles4.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
@@ -152,6 +156,7 @@ export default function Portfolio(props) {
       </div>
     </div>
   ));
+
   const thumbs5 = heroFiles5.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
@@ -161,17 +166,17 @@ export default function Portfolio(props) {
   ));
 
   // Toast.
-  useEffect(() => {
-    toast.info("Upload Your Top 5 Projects.!", {
-      position: "top-right",
-      autoClose: 7000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }, []);
+  // useEffect(() => {
+  //   toast.info("Upload Your Top 5 Projects.!", {
+  //     position: "top-right",
+  //     autoClose: 7000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // }, []);
 
   // Update the initial state.
   useEffect(() => {

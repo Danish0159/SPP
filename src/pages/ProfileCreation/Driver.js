@@ -92,17 +92,10 @@ const Driver = () => {
     dispatch(reset());
   }, [isError, isSuccess, message, dispatch]);
 
-  // function _sleep(ms) {
-  //   return new Promise((resolve) => setTimeout(resolve, ms));
-  // }
-
   async function _submitForm(values, actions) {
-    // simulate an api call.
-    // await _sleep(1000);
-    // console.log(JSON.stringify(values, null, 2));
-
     const payload = {
       category: values.Category,
+      phoneNumber: values.Phone,
       expertiseLevel: {
         yearsOfExperience: values.experience,
         noOfProjects: values.projects,
@@ -117,29 +110,29 @@ const Driver = () => {
       ],
       portfolio: [
         {
-          projectName1: values.projectName1,
-          location1: values.projectLocation1,
-          images1: values.images.src1,
+          projectName: values.projectName1,
+          location: values.projectLocation1,
+          images: values.images.src1,
         },
         {
-          projectName2: values.projectName2,
-          location2: values.projectLocation2,
-          images2: values.images.src2,
+          projectName: values.projectName2,
+          location: values.projectLocation2,
+          images: values.images.src2,
         },
         {
-          projectName3: values.projectName3,
-          location3: values.projectLocation3,
-          images3: values.images.src3,
+          projectName: values.projectName3,
+          location: values.projectLocation3,
+          images: values.images.src3,
         },
         {
-          projectName4: values.projectName4,
-          location4: values.projectLocation4,
-          images4: values.images.src4,
+          projectName: values.projectName4,
+          location: values.projectLocation4,
+          images: values.images.src4,
         },
         {
-          projectName5: values.projectName5,
-          location5: values.projectLocation5,
-          images5: values.images.src5,
+          projectName: values.projectName5,
+          location: values.projectLocation5,
+          images: values.images.src5,
         },
       ],
       rate: values.Rate,
@@ -151,7 +144,7 @@ const Driver = () => {
     };
 
     console.log(payload);
-    // dispatch(profileCreation(payload));
+    dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);
   }
