@@ -1,8 +1,7 @@
 // Authentication service.
 import axios from "axios";
 import authHeader from "./auth-header";
-
-const API_URL = "https://warm-cove-25020.herokuapp.com/user/";
+const API_URL = "https://warm-cove-25020.herokuapp.com/api/user/";
 // Register Service.
 const register = async (name, email, password, role) => {
   const response = await axios.post(
@@ -54,7 +53,7 @@ const logout = () => {
 // Register Service.
 const profileCreation = async (profilePayload) => {
   const response = await axios.post(
-    "https://warm-cove-25020.herokuapp.com/profile/createprofile",
+    "https://warm-cove-25020.herokuapp.com/api/profile/createprofile",
     profilePayload,
     {
       headers: authHeader(),
