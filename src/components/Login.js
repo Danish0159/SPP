@@ -24,19 +24,19 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
-      history.push("/Welcome");
-      // toast.success(message);
-      // if (user.role === "user") {
-      //   history.push("/Welcome");
-      // } else if (
-      //   user.role === "Contractor" ||
-      //   user.role === "Designer" ||
-      //   user.role === ""
-      // ) {
-      //   history.push("/JoinUs");
-      // }
+      if (
+        user.role === "Contractor" ||
+        user.role === "Designer" ||
+        user.role === "Company"
+      ) {
+        history.push("/joinus");
+      } else if (user.role === "User") {
+        history.push("/Welcome");
+        // } else {
+        //   history.push("/Welcome");
+        // }
+      }
     }
-
     dispatch(reset());
   }, [user, isError, isSuccess, message, dispatch]);
 

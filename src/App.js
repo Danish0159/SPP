@@ -2,6 +2,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// Flow 1
 import {
   WelcomePage,
   SearchResultPage,
@@ -19,6 +20,9 @@ import { JoinUs, Driver } from "./pages/ProfileCreation";
 // Flow 3
 import TestCommunity from "./pages/Community/TestCommunity";
 
+// Private Route.
+import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
+import PrivateRouteCDC from "./pages/ProtectedRoutes/PrivateRouteCDC";
 const App = () => {
   return (
     <>
@@ -33,30 +37,57 @@ const App = () => {
           <Route exact path="/Signup">
             <SignupPage></SignupPage>
           </Route>
-          <Route exact path="/Welcome">
-            <WelcomePage></WelcomePage>
-          </Route>
-          <Route exact path="/Results">
-            <SearchResultPage></SearchResultPage>
-          </Route>
-          <Route exact path="/Profiles">
-            <SearchProfilePage></SearchProfilePage>
-          </Route>
-          <Route exact path="/Projects">
-            <SearchProjectPage></SearchProjectPage>
-          </Route>
-          <Route exact path="/Details">
-            <SearchProjectDetailPage></SearchProjectDetailPage>
-          </Route>
-          <Route exact path="/Gallery">
-            <SearchProjectGalleryPage></SearchProjectGalleryPage>
-          </Route>
-          <Route exact path="/JoinUs">
-            <JoinUs></JoinUs>
-          </Route>
-          <Route exact path="/RegistrationPage">
-            <Driver></Driver>
-          </Route>
+          {/* ----------------------------------------------- */}
+          {/* ----------------------------------------------- */}
+          {/* Box1 (User Protection) */}
+          <PrivateRouteUser
+            exact
+            path="/Welcome"
+            component={WelcomePage}
+          ></PrivateRouteUser>
+          <PrivateRouteUser
+            exact
+            path="/Results"
+            component={SearchResultPage}
+          ></PrivateRouteUser>
+          <PrivateRouteUser
+            exact
+            path="/Profiles"
+            component={SearchProfilePage}
+          ></PrivateRouteUser>
+          <PrivateRouteUser
+            exact
+            path="/Projects"
+            component={SearchProjectPage}
+          ></PrivateRouteUser>
+          <PrivateRouteUser
+            exact
+            path="/Details"
+            component={SearchProjectDetailPage}
+          ></PrivateRouteUser>
+          <PrivateRouteUser
+            exact
+            path="/Gallery"
+            component={SearchProjectGalleryPage}
+          ></PrivateRouteUser>
+          {/* Box1 END */}
+          {/* ----------------------------------------------- */}
+          {/* ----------------------------------------------- */}
+          {/* Box2 (Desinger||Contractor||Company Protection) */}
+          <PrivateRouteCDC
+            exact
+            path="/JoinUs"
+            component={JoinUs}
+          ></PrivateRouteCDC>
+
+          <PrivateRouteCDC
+            exact
+            path="/RegistrationPage"
+            component={Driver}
+          ></PrivateRouteCDC>
+          {/* Box2 END  */}
+          {/* ----------------------------------------------- */}
+          {/* ----------------------------------------------- */}
           <Route exact path="/TestCommunity">
             <TestCommunity></TestCommunity>
           </Route>
@@ -71,14 +102,3 @@ const App = () => {
 };
 
 export default App;
-
-// Create Protected Routes.
-
-// import { useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
-
-// const history = useHistory();
-// const { user } = useSelector((state) => state.auth);
-// if (!user) {
-//   history.push("/");
-// }
