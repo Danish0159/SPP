@@ -16,6 +16,9 @@ import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
 // Flow 2
 import { JoinUs, Driver } from "./pages/ProfileCreation";
 
+// Flow 3
+import TestCommunity from "./pages/Community/TestCommunity";
+
 const App = () => {
   return (
     <>
@@ -53,6 +56,9 @@ const App = () => {
           </Route>
           <Route exact path="/RegistrationPage">
             <Driver></Driver>
+          </Route>
+          <Route exact path="/TestCommunity">
+            <TestCommunity></TestCommunity>
           </Route>
           <Route exact path="*">
             <ErrorPage></ErrorPage>

@@ -5,6 +5,7 @@ import { Formik, Form } from "formik";
 import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons, CardTitle } from "../../components/ProfileCreation";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 // Form Model
 import {
@@ -86,13 +87,33 @@ const Driver = () => {
 
     if (isSuccess) {
       toast.success(message);
-      history.push("/Welcome");
+      history.push("/TestCommunity");
     }
 
     dispatch(reset());
   }, [isError, isSuccess, message, dispatch]);
 
   async function _submitForm(values, actions) {
+    // Uploading Images on Cloudinary.
+    // const uploaders = values.images.src1.forEach(async (file) => {
+    //   // Initial FormData.
+    //   const url = `https://api.cloudinary.com/v1_1/dm1mlee94/upload`;
+    //   const formData = new FormData();
+    //   formData.append("file", file);
+    //   // formData.append("tags", `codeinfuse, medium, gist`);
+    //   formData.append("upload_preset", "huarluoc"); // Replace the preset name with your own
+    //   formData.append("api_key", "642495779825247"); // Replace API key with your own Cloudinary key
+    //   formData.append("timestamp", Date.now() / 1000 || 0);
+
+    //   // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+    //   const response = await fetch(url, {
+    //     method: "post",
+    //     body: formData,
+    //   });
+    //   const data = await response.json();
+    //   console.log(data);
+    // });
+
     const payload = {
       category: values.Category,
       phoneNumber: values.Phone,

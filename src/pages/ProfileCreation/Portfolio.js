@@ -250,6 +250,8 @@ export default function Portfolio(props) {
                   accept="image/*"
                   name="heroImage"
                   multiple={true}
+                  maxFiles={6}
+                  maxSize={10 * 1024 * 1024}
                 >
                   {({ getRootProps, getInputProps }) => (
                     <div {...getRootProps({ className: "dropzone", style })}>
@@ -259,7 +261,12 @@ export default function Portfolio(props) {
                       ) : (
                         <p className="drop">
                           Drag 'n' drop only image files here, or click to
-                          select files
+                          select files <br />{" "}
+                          <p style={padding}>
+                            {" "}
+                            (6 files each of 10MB are the maximum number of
+                            files you can drop here)
+                          </p>
                         </p>
                       )}
                     </div>
@@ -336,6 +343,7 @@ const baseStyle = {
   color: "#bdbdbd",
   outline: "none",
   transition: "border .24s ease-in-out",
+  textAlign: "center",
 };
 
 const activeStyle = {
@@ -348,4 +356,8 @@ const acceptStyle = {
 
 const rejectStyle = {
   borderColor: "#ff1744",
+};
+
+const padding = {
+  padding: "10px 0px",
 };
