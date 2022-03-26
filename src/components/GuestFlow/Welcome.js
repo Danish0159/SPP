@@ -1,38 +1,113 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import image from "../../images/13.jpg";
+import { FormControl, MenuItem, Select } from "@mui/material";
+import { users, categories, countries } from "../../utils/constants";
 
 const Welcome = () => {
+  const [user, SetUser] = React.useState("");
+  const [category, SetCategory] = React.useState("");
+  const [location, SetLocation] = React.useState("");
+  const handleUser = (event) => {
+    SetUser(event.target.value);
+  };
+  const handleCategory = (event) => {
+    SetCategory(event.target.value);
+  };
+  const handleLocation = (event) => {
+    SetLocation(event.target.value);
+  };
+  function handleSubmit(e) {
+    // e.preventDefault();
+    console.log(user);
+    console.log(category);
+    console.log(location);
+
+    // Reset Form values.
+    SetUser("");
+    SetCategory("");
+    SetLocation("");
+  }
+
   return (
     <Wrapper>
-      <div className="hero">
-        <h2 className="hero__title">Welcome on Board</h2>
-        <p className="hero__subtitle">
-          Find Best Contractor Or Designer In <br /> Your Area
-        </p>
+      <h2 className="hero__title">Welcome on Board</h2>
+      <p className="hero__subtitle">
+        Find Best Contractor Or Designer In <br /> Your Area
+      </p>
+      <form onSubmit={handleSubmit}>
         <div className="hero__inputs">
-          <form>
-            <select className="form-control">
-              <option className="option">Looking For</option>
-              <option className="option">Car</option>
-              <option className="option">Bike</option>
-              <option className="option">Scooter</option>
-              <option className="option">Cycle</option>
-              <option className="option">Horse</option>{" "}
-            </select>
-          </form>
-          <div>
-            <input type="text" class="form-control" placeholder="Category" />
+          {/* /////////////////////// */}
+          {/* Looking For */}
+          {/* /////////////////////// */}
+          <div class="form-group">
+            <label className="label" for="name">
+              Looking For
+            </label>
+            <FormControl>
+              <Select
+                id="welcome__input"
+                value={user}
+                onChange={handleUser}
+                required
+              >
+                {users.map((user, index) => (
+                  <MenuItem id="Select" key={index} value={user.value}>
+                    {user.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
-          <div>
-            <input type="text" class="form-control" placeholder="Location" />
+          {/* /////////////////////// */}
+          {/* Category */}
+          {/* /////////////////////// */}
+          <div class="form-group">
+            <label className="label" for="name">
+              Category
+            </label>
+            <FormControl>
+              <Select
+                id="welcome__input"
+                value={category}
+                onChange={handleCategory}
+                required
+              >
+                {categories.map((item, index) => (
+                  <MenuItem id="Select" key={index} value={item.value}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+          {/* /////////////////////// */}
+          {/* Location */}
+          {/* /////////////////////// */}
+          <div class="form-group">
+            <label className="label" for="name">
+              Location
+            </label>
+            <FormControl>
+              <Select
+                id="welcome__input"
+                value={location}
+                onChange={handleLocation}
+                required
+              >
+                {countries.map((item, index) => (
+                  <MenuItem id="Select" key={index} value={item.label}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
         </div>
-        <Link to="/Results" type="submit" className="blue-btn hero-btn">
+        <button type="submit" className="blue-btn submit-button">
           Search
-        </Link>
-      </div>
+        </button>
+      </form>
     </Wrapper>
   );
 };
@@ -83,31 +158,38 @@ const Wrapper = styled.header`
   .hero__inputs {
     display: flex;
     align-items: center;
+    justify-content: center;
     @media only screen and (max-width: 850px) {
       flex-direction: column;
     }
   }
 
-  .form-control {
-    width: 170px;
-    padding: 1rem 1rem;
-    margin: 0rem 0.8rem;
-    border: none;
-    border-radius: 5px;
-    @media only screen and (max-width: 850px) {
-      margin: 0.6rem 0rem;
-      padding: 0.7rem 0.7rem;
-    }
-  }
-  .form-control:focus {
-    outline: none;
-  }
-  .hero-btn {
-    font-size: 2rem;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 2rem;
   }
 
-  .option {
-    font-size: 1.4rem;
-    font-family: inherit;
+  #welcome__input {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: "Nunito Sans", sans-serif;
+    min-height: auto;
+    width: 170px;
+    text-align: left;
+    padding: 1.4rem 2rem;
+    color: black;
+    background-color: white;
+  }
+
+  .submit-button {
+    display: block;
+    width: 160px;
+    font-weight: 500;
+  }
+  .label {
+    font-size: 1.5rem;
+    text-align: left;
+    padding: 0.6rem 0.6rem;
   }
 `;

@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../slices/auth";
+import { users } from "../utils/constants";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const Signup = () => {
     setRole(event.target.value);
   };
 
-  // initial values
+  // initial values.
   const initialValues = {
     name: "",
     email: "",
@@ -150,18 +151,11 @@ const Signup = () => {
                 onChange={handleChange}
                 required
               >
-                <MenuItem id="Select" value="User">
-                  User
-                </MenuItem>
-                <MenuItem id="Select" value="Contractor">
-                  Contractor
-                </MenuItem>
-                <MenuItem id="Select" value="Designer">
-                  Designer
-                </MenuItem>
-                <MenuItem id="Select" value="Company">
-                  Company
-                </MenuItem>
+                {users.map((user, index) => (
+                  <MenuItem id="Select" key={index} value={user.value}>
+                    {user.label}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
