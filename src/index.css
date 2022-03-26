@@ -178,3 +178,8 @@ Button Styles
   font-size: 1.5rem;
   color: var(--clr-black);
 }
+
+.section-100vh {
+  min-height: 100vh;
+  background-color: #fff;
+}

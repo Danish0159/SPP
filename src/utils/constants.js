@@ -584,3 +584,8 @@ export const countries = [
   { code: "ZM", label: "Zambia", phone: "260" },
   { code: "ZW", label: "Zimbabwe", phone: "263" },
 ];
+
+// API Testing URL's.
+export const products_url = "https://course-api.com/react-store-products";
+
+export const single_product_url = `https://course-api.com/react-store-single-product?id=`;

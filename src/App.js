@@ -52,7 +52,7 @@ const App = () => {
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
-            path="/Profiles"
+            path="/Results/:id"
             component={SearchProfilePage}
           ></PrivateRouteUser>
           <PrivateRouteUser

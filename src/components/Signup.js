@@ -95,7 +95,7 @@ const Signup = () => {
         <form onSubmit={formik.handleSubmit} class="signup__form">
           <h2 className="signup__title">Register</h2>
           <div class="form-group">
-            <label for="name">Name</label>
+            <label Htmlfor="name">Name</label>
             <TextField
               fullWidth
               type="text"
@@ -111,7 +111,7 @@ const Signup = () => {
           </div>
 
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label Htmlfor="email">Email Address</label>
             <TextField
               fullWidth
               // type="email"
@@ -126,8 +126,8 @@ const Signup = () => {
             </p>
           </div>
 
-          <div class="form-group">
-            <label for="password">Password</label>
+          <div className="form-group">
+            <label Htmlfor="password">Password</label>
             <TextField
               fullWidth
               type="password"
@@ -142,8 +142,8 @@ const Signup = () => {
             </p>
           </div>
 
-          <div class="form-group">
-            <label for="password">Register As</label>
+          <div className="form-group">
+            <label Htmlfor="password">Register As</label>
             <FormControl fullWidth>
               <Select
                 id="mui-component-select-Category"

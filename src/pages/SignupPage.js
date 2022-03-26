@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Navbar, Signup } from "../components";
 
 const SignupPage = () => {
@@ -12,5 +11,3 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
-
-const Wrapper = styled.section``;

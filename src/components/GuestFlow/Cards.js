@@ -10,10 +10,10 @@ const Cards = ({ title, cardsData, bgColor, id }) => {
       <Wrapper>
         <h3 className="section__title">{title}</h3>
         <div className="cards__grid">
-          {cardsData.map((card) => {
+          {cardsData.map((card, index) => {
             const { id, photo, line } = card;
             return (
-              <div className="cards__div--parent" id={id}>
+              <div key={index} className="cards__div--parent" id={id}>
                 <div className="cards__div">
                   <img src={photo} alt="fields" />
                 </div>

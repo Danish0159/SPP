@@ -1,10 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Reviews, Gallery } from "../GuestFlow";
 import avatar from "../../images/avatar.png";
 
 const SearchProfile = () => {
+  const { id } = useParams();
+
+  // useEffect(() => {
+  //   if (isError) {
+  //     toast.error(message);
+  //   }
+
+  //   if (isSuccess) {
+  //     history.push("/Results");
+  //   }
+
+  //   dispatch(reset());
+  // }, [id]);
+
   return (
     <Wrapper>
       <div className="profile">

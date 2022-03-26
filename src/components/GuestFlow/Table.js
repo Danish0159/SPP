@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 // Reference Video to integrate react-paginate
 // https://www.youtube.com/watch?v=HANSMtDy508&ab_channel=PedroTech
 
-const Table = ({ jsonData, title, link }) => {
-  // Displaying only 50 users.
-  const [users, setUsers] = useState(jsonData.slice(0, 50));
+const Table = ({ jsonData, title }) => {
+  // Displaying only 5 users.
+  const [users, setUsers] = useState(jsonData.slice(0, 5));
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
@@ -27,17 +27,22 @@ const Table = ({ jsonData, title, link }) => {
           <p className="subtitle g3">Rating</p>
         </div>
 
-        {users.slice(pagesVisited, pagesVisited + usersPerPage).map((user) => {
-          return (
-            <Link to={link}>
-              <div className="search__results">
-                <p className="cell g1">{user.firstName}</p>
-                <p className="cell g2">{user.lastName}</p>
-                <p className="cell g3">{user.email}</p>
-              </div>
-            </Link>
-          );
-        })}
+        {users
+          .slice(pagesVisited, pagesVisited + usersPerPage)
+          .map((user, index) => {
+            return (
+              <Link to={`/Results/${user.id}`}>
+                <div key={index} className="search__results">
+                  <p className="cell g1">{user.name}</p>
+                  <p className="cell g2">{user.price}</p>
+                  {/* <p className="cell g3">{user.image}</p> */}
+                  <img src={user.image} className="cell g3 test">
+                    {/* {user.image} */}
+                  </img>
+                </div>
+              </Link>
+            );
+          })}
 
         <ReactPaginate
           previousLabel={"Previous"}
@@ -165,5 +170,8 @@ const Wrapper = styled.section`
 
   .paginationDisabled a:hover {
     background-color: #dddddd;
+  }
+  .test {
+    width: 70px;
   }
 `;

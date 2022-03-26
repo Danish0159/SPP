@@ -1,11 +1,11 @@
 import React from "react";
 import { Table } from "../GuestFlow";
-import jsonData from "../../MOCK_DATA.json";
+// import jsonData from "../../MOCK_DATA.json";
+import { useSelector } from "react-redux";
 
 const SearchResult = () => {
-  return (
-    <Table jsonData={jsonData} title="Search Results" link="/Profiles"></Table>
-  );
+  const { users } = useSelector((state) => state.users);
+  return <Table jsonData={users} title="Search Results"></Table>;
 };
 
 export default SearchResult;

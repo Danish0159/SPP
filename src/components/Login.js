@@ -79,17 +79,17 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <div class="login__grid">
-        <figure class="login__div">
-          <img class="login__img" src={loginImage} alt="login Image" />
+      <div className="login__grid">
+        <figure className="login__div">
+          <img className="login__img" src={loginImage} alt="login Image" />
         </figure>
 
-        <form noValidate onSubmit={formik.handleSubmit} class="login__form">
+        <form noValidate onSubmit={formik.handleSubmit} className="login__form">
           <h2 className="login__title">Welcome</h2>
           <p className="login__subTitle">Please login to your account.</p>
 
-          <div class="form-group">
-            <label for="email">Email Address</label>
+          <div className="form-group">
+            <label Htmlfor="email">Email Address</label>
             <TextField
               fullWidth
               type="email"
@@ -104,8 +104,8 @@ const Login = () => {
             </p>
           </div>
 
-          <div class="form-group">
-            <label for="password">Password</label>
+          <div className="form-group">
+            <label Htmlfor="password">Password</label>
             <TextField
               fullWidth
               type="password"

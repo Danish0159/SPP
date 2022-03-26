@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import image from "../../images/13.jpg";
 import { FormControl, MenuItem, Select } from "@mui/material";
 import { users, categories, countries } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { fetchUsers, reset } from "../../slices/users";
+import { toast } from "react-toastify";
+import Spinner from "../Spinner";
 
 const Welcome = () => {
   const [user, SetUser] = React.useState("");
@@ -17,16 +22,43 @@ const Welcome = () => {
   const handleLocation = (event) => {
     SetLocation(event.target.value);
   };
-  function handleSubmit(e) {
-    // e.preventDefault();
-    console.log(user);
-    console.log(category);
-    console.log(location);
 
+  // State
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.users
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      // toast.success(message);
+      history.push("/Results");
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, message, dispatch]);
+
+  function handleSubmit() {
     // Reset Form values.
     SetUser("");
     SetCategory("");
     SetLocation("");
+
+    dispatch(fetchUsers());
+  }
+
+  if (isLoading) {
+    return (
+      <div className="section-100vh">
+        <Spinner />;
+      </div>
+    );
   }
 
   return (
@@ -49,7 +81,7 @@ const Welcome = () => {
                 id="welcome__input"
                 value={user}
                 onChange={handleUser}
-                required
+                // required
               >
                 {users.map((user, index) => (
                   <MenuItem id="Select" key={index} value={user.value}>
@@ -71,7 +103,7 @@ const Welcome = () => {
                 id="welcome__input"
                 value={category}
                 onChange={handleCategory}
-                required
+                // required
               >
                 {categories.map((item, index) => (
                   <MenuItem id="Select" key={index} value={item.value}>
@@ -93,7 +125,7 @@ const Welcome = () => {
                 id="welcome__input"
                 value={location}
                 onChange={handleLocation}
-                required
+                // required
               >
                 {countries.map((item, index) => (
                   <MenuItem id="Select" key={index} value={item.label}>
