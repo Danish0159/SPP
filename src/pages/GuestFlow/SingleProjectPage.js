@@ -1,15 +1,15 @@
 import React from "react";
 import { Navbar, Footer } from "../../components";
-import { SearchProfile } from "../../components/GuestFlow";
+import { SingleProject } from "../../components/GuestFlow";
 
-const SearchProfilePage = () => {
+const SearchProjectDetailPage = () => {
   return (
     <main>
       <Navbar page="welcome"></Navbar>
-      <SearchProfile></SearchProfile>
+      <SingleProject></SingleProject>
       <Footer></Footer>
     </main>
   );
 };
 
-export default SearchProfilePage;
+export default SearchProjectDetailPage;

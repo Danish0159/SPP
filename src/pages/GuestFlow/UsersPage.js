@@ -1,12 +1,12 @@
 import React from "react";
 import { Navbar, Footer } from "../../components";
-import { SearchResult } from "../../components/GuestFlow";
+import { Users } from "../../components/GuestFlow";
 
 const SearchResultPage = () => {
   return (
     <main>
       <Navbar page="welcome"></Navbar>
-      <SearchResult></SearchResult>
+      <Users></Users>
       <Footer></Footer>
     </main>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Navbar, Footer } from "../../components";
@@ -14,7 +14,7 @@ const JoinUs = () => {
 
         <div className="hero">
           <div className="hero__img">
-            <img src={image} alt="Hero Image" />
+            <img src={image} alt="Hero" />
           </div>
 
           <div className="hero__content">

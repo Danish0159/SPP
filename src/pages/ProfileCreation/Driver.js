@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
-// import { logout } from "../../slices/auth";
 
 import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons, CardTitle } from "../../components/ProfileCreation";
@@ -28,7 +27,7 @@ import {
 
 // redux/state
 import { useDispatch, useSelector } from "react-redux";
-import { profileCreation, reset } from "../../slices/auth";
+import { logout, profileCreation, reset } from "../../slices/auth";
 import { Redirect, useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 
@@ -87,11 +86,12 @@ const Driver = () => {
 
     if (isSuccess) {
       toast.success(message);
-      // dispatch(logout());
+      dispatch(logout());
       history.push("/");
     }
 
     dispatch(reset());
+    // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
   async function _submitForm(values, actions) {

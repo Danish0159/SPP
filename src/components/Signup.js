@@ -30,6 +30,7 @@ const Signup = () => {
     }
 
     dispatch(reset());
+    // eslint-disable-next-line
   }, [user, isError, isSuccess, message, dispatch]);
 
   // Role
@@ -90,7 +91,7 @@ const Signup = () => {
     <Wrapper>
       <div class="signup__grid">
         <figure class="signup__div">
-          <img class="signup__img" src={signupImage} alt="SignUp Image" />
+          <img class="signup__img" src={signupImage} alt="SignUp" />
         </figure>
         <form onSubmit={formik.handleSubmit} class="signup__form">
           <h2 className="signup__title">Register</h2>

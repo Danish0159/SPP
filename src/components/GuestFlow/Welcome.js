@@ -42,6 +42,7 @@ const Welcome = () => {
     }
 
     dispatch(reset());
+    // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
   function handleSubmit() {

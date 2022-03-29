@@ -38,6 +38,7 @@ const Login = () => {
       }
     }
     dispatch(reset());
+    // eslint-disable-next-line
   }, [user, isError, isSuccess, message, dispatch]);
 
   // initial values
@@ -81,7 +82,7 @@ const Login = () => {
     <Wrapper>
       <div className="login__grid">
         <figure className="login__div">
-          <img className="login__img" src={loginImage} alt="login Image" />
+          <img className="login__img" src={loginImage} alt="login-img" />
         </figure>
 
         <form noValidate onSubmit={formik.handleSubmit} className="login__form">

@@ -1,6 +1,5 @@
 import React from "react";
 import { Field } from "formik";
-import { FormHelperText } from "@mui/material";
 
 const UploadField = ({
   field,

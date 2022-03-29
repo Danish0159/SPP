@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Reviews, Gallery } from "../GuestFlow";
-import avatar from "../../images/avatar.png";
+import { Reviews, Gallery } from ".";
+// import avatar from "../../images/avatar.png";
 import { fetchSingleUser, reset } from "../../slices/users";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
+import { Avatar, Rating } from "@mui/material";
 
 const SearchProfile = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,14 @@ const SearchProfile = () => {
     }
 
     dispatch(reset());
+    // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(fetchSingleUser(id));
+    // eslint-disable-next-line
   }, [id]);
 
   if (isLoading) {
@@ -37,73 +40,75 @@ const SearchProfile = () => {
     );
   }
 
-  return (
-    <Wrapper>
-      <div className="profile">
-        <div className="profile__grid">
-          {/* Name */}
-          <div className="profile__name">
-            {single_user.data && (
-              <img
-                className="profile__avatar"
-                src={single_user.data.profilePhoto}
-                alt="Avatar"
-              />
-            )}
-
-            {single_user.data && (
+  if (single_user.data) {
+    return (
+      <Wrapper>
+        <div className="profile">
+          <div className="profile__grid">
+            {/* Name */}
+            <div className="profile__name">
+              <div className="profile__name--avatar">
+                <Avatar
+                  src={single_user.data.profilePhoto}
+                  sx={{ width: 130, height: 130 }}
+                  alt="Avatar"
+                />
+              </div>
               <h1 className="profile__name--title">
                 {single_user.data.user.name}
               </h1>
-            )}
-            {single_user.data && (
               <p className="profile__name-subtitle">
                 {" "}
                 {single_user.data.user.role}
               </p>
-            )}
-            <Link to="#" type="submit" className="blue-btn profile-btn">
-              Message Now
-            </Link>
-          </div>
-          {/* Content */}
-          <div className="profile__content">
-            <h2 className="profile__content--title">Location</h2>
-            <p className="profile__content--location">
-              2901 Hanover Street New York, NY 10007
-            </p>
-            <h2 className="profile__content--title">Contact Number</h2>
-            <p className="profile__content--number">+92232233323232</p>
-            <h2 className="profile__content--title mb">
-              Number of Projects Completed: 26
-            </h2>
-            <Link
-              to={`/Projects/${id}`}
-              type="submit"
-              className="blue-btn profile-btn"
-            >
-              View Projects Details
-            </Link>
-          </div>
-          {/* Rating */}
-          <div className="profile__rating">
-            <h2 className="profile__content--title">Rating</h2>
-            <p>********</p>
+              <Link to="#" type="submit" className="blue-btn profile-btn">
+                Message Now
+              </Link>
+            </div>
+
+            {/* Content */}
+            <div className="profile__content">
+              <h2 className="profile__content--title">Location</h2>
+              <p className="profile__content--location">
+                {single_user.data.location.country},{" "}
+                {single_user.data.location.city}
+              </p>
+              <h2 className="profile__content--title">Contact Number</h2>
+              <p className="profile__content--number">
+                {single_user.data.phoneNumber}
+              </p>
+              <h2 className="profile__content--title mb">
+                Number of Projects Completed: 26
+              </h2>
+              <Link
+                to={`/Projects/${id}`}
+                type="submit"
+                className="blue-btn profile-btn"
+              >
+                View Projects Details
+              </Link>
+            </div>
+            {/* Rating */}
+            <div className="profile__rating">
+              <h2 className="profile__content--title">Rating</h2>
+              <Rating name="read-only" value={4} readOnly />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="section__blue">
-        <h3 className="section__title">Client Reviews</h3>
-        <Reviews></Reviews>
-      </div>
+        <div className="section__blue">
+          <h3 className="section__title">Client Reviews</h3>
+          <Reviews></Reviews>
+        </div>
 
-      <div className="section__white">
-        <h3 className="section__title">Projects Gallery</h3>
-        <Gallery></Gallery>
-      </div>
-    </Wrapper>
-  );
+        <div className="section__white">
+          <h3 className="section__title">Projects Gallery</h3>
+          <Gallery></Gallery>
+        </div>
+      </Wrapper>
+    );
+  }
+  return null;
 };
 
 export default SearchProfile;
@@ -137,22 +142,25 @@ const Wrapper = styled.section`
       border-right: none;
     }
   }
-  .profile__avatar {
-    width: 35%;
+
+  .profile__name--avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 2rem;
   }
 
   .profile__name--title {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     color: var(--clr-black);
     margin-bottom: 1.2rem;
   }
 
   .profile__name-subtitle {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--clr-black);
-    margin-bottom: 6.2rem;
+    margin-bottom: 3.2rem;
     @media only screen and (max-width: 800px) {
       margin-bottom: 4rem;
     }
@@ -191,7 +199,7 @@ const Wrapper = styled.section`
     font-size: 1.7rem;
     font-weight: 600;
     color: var(--clr-black);
-    margin-bottom: 6.2rem;
+    margin-bottom: 5.2rem;
   }
   .mb {
     margin-bottom: 2rem;

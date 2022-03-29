@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { InputField } from "../../components/ProfileCreation/FormFields";
-import { Field, useField } from "formik";
+import { useField } from "formik";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
@@ -9,7 +9,7 @@ export default function Portfolio(props) {
   const {
     // (Field Array) for projectName1, prjectName2.
     formField: {
-      projectName,
+      // projectName,
       projectName1,
       projectLocation1,
       multiFiles,

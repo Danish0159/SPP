@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { BackToProfile, Table } from "../GuestFlow";
-import users from "../../MOCK_DATA.json";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,12 +19,14 @@ const SearchProject = () => {
     }
 
     dispatch(reset());
+    // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(fetchProjects(id));
+    // eslint-disable-next-line
   }, [id]);
 
   if (isLoading) {
@@ -56,16 +57,16 @@ const SearchProject = () => {
 
 export default SearchProject;
 
-const Wrapper = styled.section`
-  /* min-height: calc(100vh - 100px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  max-width: 110rem;
-  width: 100%;
-  margin: auto;
-  h2 {
-    font-size: 2rem;
-  }
-`;
+// const Wrapper = styled.section`
+//   /* min-height: calc(100vh - 100px);
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center; */
+//   max-width: 110rem;
+//   width: 100%;
+//   margin: auto;
+//   h2 {
+//     font-size: 2rem;
+//   }
+// `;

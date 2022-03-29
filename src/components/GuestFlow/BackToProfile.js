@@ -1,52 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import avatar from "../../images/avatar.png";
+// import avatar from "../../images/avatar.png";
 import { useSelector } from "react-redux";
+import { Avatar } from "@mui/material";
 
 const BackToProfile = () => {
   const { single_user } = useSelector((state) => state.users);
-  return (
-    <Wrapper>
-      <div className="backToProfile">
-        <div className="backToProfile__grid">
-          <div className="backToProfile__profile">
-            {/* <img className="avatar" src={avatar} alt="Avatar" /> */}
-            {single_user.data && (
-              <img
-                className="avatar"
+
+  if (single_user.data) {
+    return (
+      <Wrapper>
+        <div className="backToProfile">
+          <div className="backToProfile__grid">
+            <div className="backToProfile__profile">
+              <Avatar
                 src={single_user.data.profilePhoto}
+                sx={{ width: 130, height: 130 }}
                 alt="Avatar"
               />
-            )}
-            <div className="BackToProfile__content">
-              {single_user.data && (
+              <div className="BackToProfile__content">
                 <h1 className="BackToProfile--title">
                   {" "}
                   {single_user.data.user.name}
                 </h1>
-              )}
 
-              {single_user.data && (
                 <p className="BackToProfile-subtitle">
                   {" "}
                   {single_user.data.user.role}
                 </p>
-              )}
+              </div>
+            </div>
+            <div className="backToProfile__btns">
+              <Link to="#" type="submit" className="blue-btn backToProfile-btn">
+                Message Now
+              </Link>
+              <Link to="#" type="submit" className="blue-btn backToProfile-btn">
+                Back To Profile
+              </Link>
             </div>
           </div>
-          <div className="backToProfile__btns">
-            <Link to="#" type="submit" className="blue-btn backToProfile-btn">
-              Message Now
-            </Link>
-            <Link to="#" type="submit" className="blue-btn backToProfile-btn">
-              Back To Profile
-            </Link>
-          </div>
         </div>
-      </div>
-    </Wrapper>
-  );
+      </Wrapper>
+    );
+  }
+  return null;
 };
 
 export default BackToProfile;
@@ -77,10 +75,10 @@ const Wrapper = styled.section`
       text-align: center;
     }
   }
-  .avatar {
+  /* .avatar {
     display: inline-block;
     width: 130px;
-  }
+  } */
 
   .backToProfile-btn {
     display: block;

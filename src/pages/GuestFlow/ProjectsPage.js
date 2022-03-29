@@ -1,12 +1,12 @@
 import React from "react";
 import { Navbar, Footer } from "../../components";
-import { SearchProject } from "../../components/GuestFlow";
+import { Projects } from "../../components/GuestFlow";
 
 const SearchProjectPage = () => {
   return (
     <main>
       <Navbar page="welcome"></Navbar>
-      <SearchProject></SearchProject>
+      <Projects></Projects>
       <Footer></Footer>
     </main>
   );

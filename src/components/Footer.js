@@ -15,9 +15,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="footer__right">
-          <a href="#">About Us</a>
-          <a href="#">Contact Us</a>
-          <a href="#">Our Policies</a>
+          <a href="/">About Us</a>
+          <a href="/">Contact Us</a>
+          <a href="/">Our Policies</a>
           <br />
         </div>
       </div>

@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
+import { Avatar, Rating } from "@mui/material";
+
 // Reference Video to integrate react-paginate
 // https://www.youtube.com/watch?v=HANSMtDy508&ab_channel=PedroTech
 
 const Table = ({ users = [], title, flag, userId }) => {
   // Displaying only 5 users.
-  const [renderedUsers, setRenderedUsers] = useState(users);
+  const [renderedData] = useState(users);
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(renderedUsers.length / usersPerPage);
+  const pageCount = Math.ceil(renderedData.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
@@ -22,41 +24,51 @@ const Table = ({ users = [], title, flag, userId }) => {
         <h2 className="search__title">{title}</h2>
 
         <div className="search__columns">
-          <p className="subtitle g1">Name</p>
-          <p className="subtitle g2">Location</p>
-          <p className="subtitle g3">Rating</p>
+          <p className="subtitle">Name</p>
+          <p className="subtitle">Location</p>
+          <p className="subtitle">Rating</p>
         </div>
 
-        {/* Render Data for Users and for Projects. */}
+        {/* Render Data for Users and else for Projects. */}
         {flag === "users"
-          ? renderedUsers
+          ? renderedData
               .slice(pagesVisited, pagesVisited + usersPerPage)
               .map((user, index) => {
                 return (
                   <Link to={`/Users/${user._id}`}>
                     <div key={index} className="search__results">
-                      {/* <p className="cell g1">{user.name}</p> */}
-                      {/* <p className="cell g2">{user.price}</p> */}
-                      {/* <p className="cell g3">{user.image}</p> */}
-                      <img src={user.profilePhoto} className="cell g3 test">
-                        {/* {user.image} */}
-                      </img>
+                      {/* Cell1 */}
+                      <div className="search_profile">
+                        <Avatar
+                          src={user.profilePhoto}
+                          sx={{ width: 56, height: 56 }}
+                          alt="profile"
+                        />
+                        <p className="search_name cell">{user.user.name}</p>
+                      </div>
+                      {/* Cell2 */}
+                      <p className="cell">
+                        {user.location.country}, {user.location.city}
+                      </p>
+                      {/* Cell3 */}
+                      <p className="cell">
+                        <Rating name="read-only" value={4} readOnly />
+                      </p>
                     </div>
                   </Link>
                 );
               })
-          : renderedUsers
+          : renderedData
               .slice(pagesVisited, pagesVisited + usersPerPage)
-              .map((user, index) => {
+              .map((project, index) => {
                 return (
-                  <Link to={`/Projects/${userId}/${user._id}`}>
+                  <Link to={`/Projects/${userId}/${project._id}`}>
                     <div key={index} className="search__results">
-                      <p className="cell g1">{user.projectName}</p>
-                      <p className="cell g2">{user.location}</p>
-                      {/* <p className="cell g3">{user.image}</p> */}
-                      <img src={user.images[0]} className="cell g3 test">
-                        {/* {user.image} */}
-                      </img>
+                      <p className="cell">{project.projectName}</p>
+                      <p className="cell">{project.location}</p>
+                      <p className="cell">
+                        <Rating name="read-only" value={4} readOnly />
+                      </p>
                     </div>
                   </Link>
                 );
@@ -107,7 +119,8 @@ const Wrapper = styled.section`
   }
 
   .cell {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
+    font-weight: 600;
     @media only screen and (max-width: 800px) {
       margin-bottom: 0.2rem;
     }
@@ -145,6 +158,14 @@ const Wrapper = styled.section`
     .search__columns {
       /* display: none; */
     }
+  }
+  .search_profile {
+    display: flex;
+    align-items: center;
+  }
+
+  .search_name {
+    margin-left: 1.4rem;
   }
 
   .paginationBttns {

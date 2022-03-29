@@ -1,15 +1,13 @@
 import WelcomePage from "./WelcomePage";
-import SearchProfilePage from "./SearchProfilePage";
-import SearchProjectDetailPage from "./SearchProjectDetailPage";
-import SearchProjectGalleryPage from "./SearchProjectGalleryPage";
-import SearchProjectPage from "./SearchProjectPage";
-import SearchResultPage from "./SearchResultPage";
+import SingleUserPage from "./SingleUserPage";
+import SingleProjectPage from "./SingleProjectPage";
+import ProjectsPage from "./ProjectsPage";
+import UsersPage from "./UsersPage";
 
 export {
   WelcomePage,
-  SearchProfilePage,
-  SearchProjectDetailPage,
-  SearchProjectGalleryPage,
-  SearchProjectPage,
-  SearchResultPage,
+  SingleUserPage,
+  SingleProjectPage,
+  ProjectsPage,
+  UsersPage,
 };

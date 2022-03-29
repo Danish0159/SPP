@@ -5,11 +5,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Flow 1
 import {
   WelcomePage,
-  SearchResultPage,
-  SearchProfilePage,
-  SearchProjectPage,
-  SearchProjectDetailPage,
-  SearchProjectGalleryPage,
+  UsersPage,
+  SingleUserPage,
+  ProjectsPage,
+  SingleProjectPage,
 } from "./pages/GuestFlow";
 
 import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
@@ -48,28 +47,23 @@ const App = () => {
           <PrivateRouteUser
             exact
             path="/Users"
-            component={SearchResultPage}
+            component={UsersPage}
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
             path="/Users/:id"
-            component={SearchProfilePage}
+            component={SingleUserPage}
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
             path="/Projects/:id"
-            component={SearchProjectPage}
+            component={ProjectsPage}
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
             path="/Projects/:userId/:id"
-            component={SearchProjectDetailPage}
+            component={SingleProjectPage}
           ></PrivateRouteUser>
-          {/* <PrivateRouteUser
-            exact
-            path="/Gallery"
-            component={SearchProjectGalleryPage}
-          ></PrivateRouteUser> */}
           {/* Box1 END */}
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}
