@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 // Reference Video to integrate react-paginate
 // https://www.youtube.com/watch?v=HANSMtDy508&ab_channel=PedroTech
 
-const Table = ({ jsonData, title }) => {
+const Table = ({ users = [], title, flag, userId }) => {
   // Displaying only 5 users.
-  const [users, setUsers] = useState(jsonData.slice(0, 5));
+  const [renderedUsers, setRenderedUsers] = useState(users);
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(users.length / usersPerPage);
+  const pageCount = Math.ceil(renderedUsers.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
@@ -27,22 +27,40 @@ const Table = ({ jsonData, title }) => {
           <p className="subtitle g3">Rating</p>
         </div>
 
-        {users
-          .slice(pagesVisited, pagesVisited + usersPerPage)
-          .map((user, index) => {
-            return (
-              <Link to={`/Results/${user.id}`}>
-                <div key={index} className="search__results">
-                  <p className="cell g1">{user.name}</p>
-                  <p className="cell g2">{user.price}</p>
-                  {/* <p className="cell g3">{user.image}</p> */}
-                  <img src={user.image} className="cell g3 test">
-                    {/* {user.image} */}
-                  </img>
-                </div>
-              </Link>
-            );
-          })}
+        {/* Render Data for Users and for Projects. */}
+        {flag === "users"
+          ? renderedUsers
+              .slice(pagesVisited, pagesVisited + usersPerPage)
+              .map((user, index) => {
+                return (
+                  <Link to={`/Users/${user._id}`}>
+                    <div key={index} className="search__results">
+                      {/* <p className="cell g1">{user.name}</p> */}
+                      {/* <p className="cell g2">{user.price}</p> */}
+                      {/* <p className="cell g3">{user.image}</p> */}
+                      <img src={user.profilePhoto} className="cell g3 test">
+                        {/* {user.image} */}
+                      </img>
+                    </div>
+                  </Link>
+                );
+              })
+          : renderedUsers
+              .slice(pagesVisited, pagesVisited + usersPerPage)
+              .map((user, index) => {
+                return (
+                  <Link to={`/Projects/${userId}/${user._id}`}>
+                    <div key={index} className="search__results">
+                      <p className="cell g1">{user.projectName}</p>
+                      <p className="cell g2">{user.location}</p>
+                      {/* <p className="cell g3">{user.image}</p> */}
+                      <img src={user.images[0]} className="cell g3 test">
+                        {/* {user.image} */}
+                      </img>
+                    </div>
+                  </Link>
+                );
+              })}
 
         <ReactPaginate
           previousLabel={"Previous"}

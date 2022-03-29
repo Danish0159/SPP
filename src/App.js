@@ -47,29 +47,29 @@ const App = () => {
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
-            path="/Results"
+            path="/Users"
             component={SearchResultPage}
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
-            path="/Results/:id"
+            path="/Users/:id"
             component={SearchProfilePage}
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
-            path="/Projects"
+            path="/Projects/:id"
             component={SearchProjectPage}
           ></PrivateRouteUser>
           <PrivateRouteUser
             exact
-            path="/Details"
+            path="/Projects/:userId/:id"
             component={SearchProjectDetailPage}
           ></PrivateRouteUser>
-          <PrivateRouteUser
+          {/* <PrivateRouteUser
             exact
             path="/Gallery"
             component={SearchProjectGalleryPage}
-          ></PrivateRouteUser>
+          ></PrivateRouteUser> */}
           {/* Box1 END */}
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}

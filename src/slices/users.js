@@ -3,6 +3,9 @@ import axios from "axios";
 // Initial State.
 const initialState = {
   users: [],
+  single_user: {},
+  projects: [],
+  single_project: {},
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -12,10 +15,82 @@ const initialState = {
 // export const fetchUsers = createAsyncThunk("userSlice/fetchUsers", async ({for,category,location}) => {
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
-  async (thunkAPI) => {
+  async ({ user, category, location }, thunkAPI) => {
     try {
       const response = await axios.get(
-        "https://course-api.com/react-store-products"
+        `https://warm-cove-25020.herokuapp.com/api/public/search?role=${user}&category=${category}&location=${location}`
+      );
+      //   if (response.data.status !== "SUCCESS") {
+      //     return thunkAPI.rejectWithValue(response.data.message);
+      //   }
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const fetchSingleUser = createAsyncThunk(
+  "users/fetchSingleUser",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `https://warm-cove-25020.herokuapp.com/api/public/search/${id}`
+      );
+      //   if (response.data.status !== "SUCCESS") {
+      //     return thunkAPI.rejectWithValue(response.data.message);
+      //   }
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const fetchProjects = createAsyncThunk(
+  "users/fetchProjects",
+  async (id, thunkAPI) => {
+    // async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        // `https://course-api.com/react-store-single-product?id=${id}`
+        `https://warm-cove-25020.herokuapp.com/api/public/search/project/${id}`
+      );
+      //   if (response.data.status !== "SUCCESS") {
+      //     return thunkAPI.rejectWithValue(response.data.message);
+      //   }
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const fetchSingleProject = createAsyncThunk(
+  "users/fetchSingleProject",
+  async ({ userId, id }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `https://warm-cove-25020.herokuapp.com/api/public/search/project/${userId}/${id}`
+        // https://warm-cove-25020.herokuapp.com/api/public/search/project/6241becef18a4a28cd871296/6241becef18a4a28cd87129b
       );
       //   if (response.data.status !== "SUCCESS") {
       //     return thunkAPI.rejectWithValue(response.data.message);
@@ -38,7 +113,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      // state.users = [];
       state.isLoading = false;
       state.isSuccess = false;
       state.isError = false;
@@ -54,9 +128,47 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.users = action.payload;
-        // state.users = action.payload.users;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(fetchSingleUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchSingleUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.single_user = action.payload;
+      })
+      .addCase(fetchSingleUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(fetchProjects.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchProjects.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.projects = action.payload;
+      })
+      .addCase(fetchProjects.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(fetchSingleProject.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchSingleProject.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.single_project = action.payload;
+      })
+      .addCase(fetchSingleProject.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

@@ -1,24 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Reviews, Gallery } from "../GuestFlow";
 import avatar from "../../images/avatar.png";
+import { fetchSingleUser, reset } from "../../slices/users";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Spinner from "../Spinner";
 
 const SearchProfile = () => {
+  const dispatch = useDispatch();
+  const { single_user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.users
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, message, dispatch]);
+
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   if (isError) {
-  //     toast.error(message);
-  //   }
+  useEffect(() => {
+    dispatch(fetchSingleUser(id));
+  }, [id]);
 
-  //   if (isSuccess) {
-  //     history.push("/Results");
-  //   }
-
-  //   dispatch(reset());
-  // }, [id]);
+  if (isLoading) {
+    return (
+      <div className="section-100vh">
+        <Spinner />;
+      </div>
+    );
+  }
 
   return (
     <Wrapper>
@@ -26,9 +43,25 @@ const SearchProfile = () => {
         <div className="profile__grid">
           {/* Name */}
           <div className="profile__name">
-            <img className="profile__avatar" src={avatar} alt="Avatar" />
-            <h1 className="profile__name--title">James E. Roger</h1>
-            <p className="profile__name-subtitle">Designer</p>
+            {single_user.data && (
+              <img
+                className="profile__avatar"
+                src={single_user.data.profilePhoto}
+                alt="Avatar"
+              />
+            )}
+
+            {single_user.data && (
+              <h1 className="profile__name--title">
+                {single_user.data.user.name}
+              </h1>
+            )}
+            {single_user.data && (
+              <p className="profile__name-subtitle">
+                {" "}
+                {single_user.data.user.role}
+              </p>
+            )}
             <Link to="#" type="submit" className="blue-btn profile-btn">
               Message Now
             </Link>
@@ -41,11 +74,14 @@ const SearchProfile = () => {
             </p>
             <h2 className="profile__content--title">Contact Number</h2>
             <p className="profile__content--number">+92232233323232</p>
-
             <h2 className="profile__content--title mb">
               Number of Projects Completed: 26
             </h2>
-            <Link to="/Projects" type="submit" className="blue-btn profile-btn">
+            <Link
+              to={`/Projects/${id}`}
+              type="submit"
+              className="blue-btn profile-btn"
+            >
               View Projects Details
             </Link>
           </div>
@@ -124,9 +160,10 @@ const Wrapper = styled.section`
 
   .profile-btn {
     padding: 0.9rem 2.5rem;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     margin: 0;
   }
+
   /* /////////////// */
   /* Profie Content */
   .profile__content {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
+// import { logout } from "../../slices/auth";
 
 import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons, CardTitle } from "../../components/ProfileCreation";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 // Form Model
 import {
@@ -87,7 +87,8 @@ const Driver = () => {
 
     if (isSuccess) {
       toast.success(message);
-      history.push("/TestCommunity");
+      // dispatch(logout());
+      history.push("/");
     }
 
     dispatch(reset());

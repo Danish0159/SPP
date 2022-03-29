@@ -38,7 +38,7 @@ const Welcome = () => {
 
     if (isSuccess) {
       // toast.success(message);
-      history.push("/Results");
+      history.push("/Users");
     }
 
     dispatch(reset());
@@ -50,7 +50,7 @@ const Welcome = () => {
     SetCategory("");
     SetLocation("");
 
-    dispatch(fetchUsers());
+    dispatch(fetchUsers({ user, category, location }));
   }
 
   if (isLoading) {
@@ -81,7 +81,7 @@ const Welcome = () => {
                 id="welcome__input"
                 value={user}
                 onChange={handleUser}
-                // required
+                required
               >
                 {users.map((user, index) => (
                   <MenuItem id="Select" key={index} value={user.value}>
@@ -103,7 +103,7 @@ const Welcome = () => {
                 id="welcome__input"
                 value={category}
                 onChange={handleCategory}
-                // required
+                required
               >
                 {categories.map((item, index) => (
                   <MenuItem id="Select" key={index} value={item.value}>
@@ -125,7 +125,7 @@ const Welcome = () => {
                 id="welcome__input"
                 value={location}
                 onChange={handleLocation}
-                // required
+                required
               >
                 {countries.map((item, index) => (
                   <MenuItem id="Select" key={index} value={item.label}>
@@ -219,6 +219,7 @@ const Wrapper = styled.header`
     width: 160px;
     font-weight: 500;
   }
+
   .label {
     font-size: 1.5rem;
     text-align: left;

@@ -2,17 +2,37 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import avatar from "../../images/avatar.png";
+import { useSelector } from "react-redux";
 
 const BackToProfile = () => {
+  const { single_user } = useSelector((state) => state.users);
   return (
     <Wrapper>
       <div className="backToProfile">
         <div className="backToProfile__grid">
           <div className="backToProfile__profile">
-            <img className="avatar" src={avatar} alt="Avatar" />
+            {/* <img className="avatar" src={avatar} alt="Avatar" /> */}
+            {single_user.data && (
+              <img
+                className="avatar"
+                src={single_user.data.profilePhoto}
+                alt="Avatar"
+              />
+            )}
             <div className="BackToProfile__content">
-              <h1 className="BackToProfile--title">James E. Roger</h1>
-              <p className="BackToProfile-subtitle">Designer</p>
+              {single_user.data && (
+                <h1 className="BackToProfile--title">
+                  {" "}
+                  {single_user.data.user.name}
+                </h1>
+              )}
+
+              {single_user.data && (
+                <p className="BackToProfile-subtitle">
+                  {" "}
+                  {single_user.data.user.role}
+                </p>
+              )}
             </div>
           </div>
           <div className="backToProfile__btns">

@@ -33,7 +33,7 @@ const Signup = () => {
   }, [user, isError, isSuccess, message, dispatch]);
 
   // Role
-  const [role, setRole] = React.useState("");
+  const [role, setRole] = useState("");
   const handleChange = (event) => {
     setRole(event.target.value);
   };
