@@ -96,3 +96,5 @@ const App = () => {
 };
 
 export default App;
+
+// The app has SignUp+login athuentication for simple user.
