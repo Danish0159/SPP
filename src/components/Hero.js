@@ -14,7 +14,7 @@ const Hero = () => {
             more. Google has many special features to help you find exactly what
             you use and pay for.
           </p>
-          <Link to="/SignUp" class="btn-small">
+          <Link to="/Welcome" class="btn-small">
             Get Started
           </Link>
         </div>

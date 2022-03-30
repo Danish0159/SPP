@@ -13,7 +13,7 @@ function PrivateRouteCDC({ component: Component, ...restOfProps }) {
         (user && user.role === "Contractor") ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/Signup" />
         )
       }
     />

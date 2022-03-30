@@ -5,6 +5,7 @@ import {
   NavbarLogin,
   NavbarSignUp,
   NavbarWelcome,
+  NavbarProfileCreation,
 } from "./Navigations";
 
 const Navbar = ({ page }) => {
@@ -25,6 +26,12 @@ const Navbar = ({ page }) => {
       return (
         <Navigation>
           <NavbarSignUp></NavbarSignUp>
+        </Navigation>
+      );
+    case "profileCreation":
+      return (
+        <Navigation>
+          <NavbarProfileCreation></NavbarProfileCreation>
         </Navigation>
       );
     case "welcome":

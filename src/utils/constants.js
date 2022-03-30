@@ -144,10 +144,6 @@ export const categories = [
 
 export const users = [
   {
-    label: "User",
-    value: "User",
-  },
-  {
     label: "Contractor",
     value: "Contractor",
   },

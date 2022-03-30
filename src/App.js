@@ -39,31 +39,21 @@ const App = () => {
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}
           {/* Box1 (User Protection) */}
-          <PrivateRouteUser
-            exact
-            path="/Welcome"
-            component={WelcomePage}
-          ></PrivateRouteUser>
-          <PrivateRouteUser
-            exact
-            path="/Users"
-            component={UsersPage}
-          ></PrivateRouteUser>
-          <PrivateRouteUser
-            exact
-            path="/Users/:id"
-            component={SingleUserPage}
-          ></PrivateRouteUser>
-          <PrivateRouteUser
-            exact
-            path="/Projects/:id"
-            component={ProjectsPage}
-          ></PrivateRouteUser>
-          <PrivateRouteUser
-            exact
-            path="/Projects/:userId/:id"
-            component={SingleProjectPage}
-          ></PrivateRouteUser>
+          <Route exact path="/Welcome">
+            <WelcomePage></WelcomePage>
+          </Route>
+          <Route exact path="/Users">
+            <UsersPage></UsersPage>
+          </Route>
+          <Route exact path="/Users/:id">
+            <SingleUserPage></SingleUserPage>
+          </Route>
+          <Route exact path="/Projects/:id">
+            <ProjectsPage></ProjectsPage>
+          </Route>
+          <Route exact path="/Projects/:userId/:id">
+            <SingleProjectPage></SingleProjectPage>
+          </Route>
           {/* Box1 END */}
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}

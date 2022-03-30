@@ -24,18 +24,16 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
-      if (
-        user.role === "Contractor" ||
-        user.role === "Designer" ||
-        user.role === "Company"
-      ) {
-        history.push("/joinus");
-      } else if (user.role === "User") {
-        history.push("/Welcome");
-        // } else {
-        //   history.push("/Welcome");
-        // }
-      }
+      history.push("/joinus");
+      // if (
+      //   user.role === "Contractor" ||
+      //   user.role === "Designer" ||
+      //   user.role === "Company"
+      // history.push("/joinus");
+      // ) {
+      // } else if (user.role === "User") {
+      //   history.push("/Welcome");
+      // }
     }
     dispatch(reset());
     // eslint-disable-next-line

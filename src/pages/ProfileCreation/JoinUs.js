@@ -8,7 +8,7 @@ import image from "../../images/join.jpg";
 const JoinUs = () => {
   return (
     <main>
-      <Navbar page="welcome"></Navbar>
+      <Navbar page="profileCreation"></Navbar>
       <Wrapper>
         <Buttons activeStep={null}></Buttons>
 
