@@ -103,7 +103,7 @@ const SearchProfile = () => {
 
         <div className="section__white">
           <h3 className="section__title">Projects Gallery</h3>
-          <Gallery></Gallery>
+          <Gallery></Gallery>;
         </div>
       </Wrapper>
     );

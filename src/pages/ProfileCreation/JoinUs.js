@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Navbar, Footer } from "../../components";
@@ -6,6 +7,7 @@ import { Buttons } from "../../components/ProfileCreation";
 import image from "../../images/join.jpg";
 
 const JoinUs = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <main>
       <Navbar page="profileCreation"></Navbar>
@@ -19,7 +21,7 @@ const JoinUs = () => {
 
           <div className="hero__content">
             <p className="hero__title">Join Us</p>
-            <p className="hero__subTitle">Hi Darrin,</p>
+            {user && <p className="hero__subTitle">Hi {user.name},</p>}
             <p className="hero__passage">
               Thanks for your interest in Crowd as the world's largest talent
               platform, we connect millions of businesses with independent

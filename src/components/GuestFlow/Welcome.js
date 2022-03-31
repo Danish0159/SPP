@@ -37,7 +37,6 @@ const Welcome = () => {
     }
 
     if (isSuccess) {
-      // toast.success(message);
       history.push("/Users");
     }
 

@@ -4,7 +4,7 @@ import Spinner from "./Spinner";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { login, reset } from "../slices/auth";
+import { login, logout, reset } from "../slices/auth";
 import loginImage from "../images/Login.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -24,16 +24,13 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
-      history.push("/joinus");
-      // if (
-      //   user.role === "Contractor" ||
-      //   user.role === "Designer" ||
-      //   user.role === "Company"
-      // history.push("/joinus");
-      // ) {
-      // } else if (user.role === "User") {
-      //   history.push("/Welcome");
-      // }
+      if (user.profile) {
+        toast.success("The Profile is Already Created for this User");
+        dispatch(logout());
+        history.push("/");
+      } else {
+        history.push("/joinus");
+      }
     }
     dispatch(reset());
     // eslint-disable-next-line

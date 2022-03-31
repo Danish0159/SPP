@@ -155,8 +155,11 @@ const Wrapper = styled.section`
       grid-template-columns: 1fr;
     }
 
+    .search__results > * {
+      margin-bottom: 0.7rem;
+    }
     .search__columns {
-      /* display: none; */
+      display: none;
     }
   }
   .search_profile {

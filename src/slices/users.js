@@ -12,7 +12,6 @@ const initialState = {
   message: "",
 };
 
-// export const fetchUsers = createAsyncThunk("userSlice/fetchUsers", async ({for,category,location}) => {
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async ({ user, category, location }, thunkAPI) => {
@@ -20,9 +19,9 @@ export const fetchUsers = createAsyncThunk(
       const response = await axios.get(
         `https://warm-cove-25020.herokuapp.com/api/public/search?role=${user}&category=${category}&location=${location}`
       );
-      //   if (response.data.status !== "SUCCESS") {
-      //     return thunkAPI.rejectWithValue(response.data.message);
-      //   }
+      if (response.data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(response.data.message);
+      }
       return response.data;
     } catch (error) {
       const message =
@@ -43,9 +42,9 @@ export const fetchSingleUser = createAsyncThunk(
       const response = await axios.get(
         `https://warm-cove-25020.herokuapp.com/api/public/search/${id}`
       );
-      //   if (response.data.status !== "SUCCESS") {
-      //     return thunkAPI.rejectWithValue(response.data.message);
-      //   }
+      if (response.data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(response.data.message);
+      }
       return response.data;
     } catch (error) {
       const message =
@@ -62,15 +61,13 @@ export const fetchSingleUser = createAsyncThunk(
 export const fetchProjects = createAsyncThunk(
   "users/fetchProjects",
   async (id, thunkAPI) => {
-    // async (id, thunkAPI) => {
     try {
       const response = await axios.get(
-        // `https://course-api.com/react-store-single-product?id=${id}`
         `https://warm-cove-25020.herokuapp.com/api/public/search/project/${id}`
       );
-      //   if (response.data.status !== "SUCCESS") {
-      //     return thunkAPI.rejectWithValue(response.data.message);
-      //   }
+      if (response.data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(response.data.message);
+      }
       return response.data;
     } catch (error) {
       const message =
@@ -90,11 +87,10 @@ export const fetchSingleProject = createAsyncThunk(
     try {
       const response = await axios.get(
         `https://warm-cove-25020.herokuapp.com/api/public/search/project/${userId}/${id}`
-        // https://warm-cove-25020.herokuapp.com/api/public/search/project/6241becef18a4a28cd871296/6241becef18a4a28cd87129b
       );
-      //   if (response.data.status !== "SUCCESS") {
-      //     return thunkAPI.rejectWithValue(response.data.message);
-      //   }
+      if (response.data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(response.data.message);
+      }
       return response.data;
     } catch (error) {
       const message =

@@ -38,7 +38,6 @@ const SearchProject = () => {
   }
 
   return (
-    // <Wrapper>
     <>
       <BackToProfile></BackToProfile>
       {projects.data && (
@@ -51,22 +50,7 @@ const SearchProject = () => {
       )}
       ;
     </>
-    // </Wrapper>
   );
 };
 
 export default SearchProject;
-
-// const Wrapper = styled.section`
-//   /* min-height: calc(100vh - 100px);
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center; */
-//   max-width: 110rem;
-//   width: 100%;
-//   margin: auto;
-//   h2 {
-//     font-size: 2rem;
-//   }
-// `;
