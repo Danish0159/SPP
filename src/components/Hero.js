@@ -2,18 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HeroImage from "../images/HeroImage.jpg";
-
-const Hero = () => {
+import { useTranslation } from "react-i18next";
+function Hero() {
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <div class="hero__grid">
         <div class="hero__content">
           <h2 class="hero__title">Everything Is In Your Hands</h2>
-          <p class="hero__paragraph">
-            Search the world information including webpages, images, videos and
-            more. Google has many special features to help you find exactly what
-            you use and pay for.
-          </p>
+          <p class="hero__paragraph">{t("this_is_an_example")}</p>
           <Link to="/Welcome" class="btn-small">
             Get Started
           </Link>
@@ -25,7 +22,7 @@ const Hero = () => {
       </div>
     </Wrapper>
   );
-};
+}
 
 export default Hero;
 

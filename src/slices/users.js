@@ -113,6 +113,10 @@ const userSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
+      // state.users = [];
+      // state.single_user = {};
+      // state.projects = [];
+      // state.single_project = {};
     },
   },
   extraReducers(builder) {

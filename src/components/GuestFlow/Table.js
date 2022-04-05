@@ -35,8 +35,8 @@ const Table = ({ users = [], title, flag, userId }) => {
               .slice(pagesVisited, pagesVisited + usersPerPage)
               .map((user, index) => {
                 return (
-                  <Link to={`/Users/${user._id}`}>
-                    <div key={index} className="search__results">
+                  <Link key={index} to={`/Users/${user._id}`}>
+                    <div className="search__results">
                       {/* Cell1 */}
                       <div className="search_profile">
                         <Avatar
@@ -62,8 +62,8 @@ const Table = ({ users = [], title, flag, userId }) => {
               .slice(pagesVisited, pagesVisited + usersPerPage)
               .map((project, index) => {
                 return (
-                  <Link to={`/Projects/${userId}/${project._id}`}>
-                    <div key={index} className="search__results">
+                  <Link key={index} to={`/Projects/${userId}/${project._id}`}>
+                    <div className="search__results">
                       <p className="cell">{project.projectName}</p>
                       <p className="cell">{project.location}</p>
                       <p className="cell">

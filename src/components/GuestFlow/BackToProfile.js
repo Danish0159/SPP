@@ -75,10 +75,6 @@ const Wrapper = styled.section`
       text-align: center;
     }
   }
-  /* .avatar {
-    display: inline-block;
-    width: 130px;
-  } */
 
   .backToProfile-btn {
     display: block;
