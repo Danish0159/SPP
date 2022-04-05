@@ -5,4 +5,4 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Spinner from "./Spinner";
 
-export { Navbar, Hero, Footer, Login, Signup ,Spinner};
+export { Navbar, Hero, Footer, Login, Signup, Spinner };

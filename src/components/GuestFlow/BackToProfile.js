@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import avatar from "../../images/avatar.png";
 import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
 

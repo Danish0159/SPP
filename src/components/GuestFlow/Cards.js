@@ -1,12 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Cards = ({ title, cardsData, bgColor, id }) => {
+const Cards = ({ title, cardsData, bgColor }) => {
   return (
-    <div
-      id={id}
-      className={bgColor === "true" ? "section__blue" : "section__white"}
-    >
+    <div className={bgColor === "true" ? "section__blue" : "section__white"}>
       <Wrapper>
         <h3 className="section__title">{title}</h3>
         <div className="cards__grid">

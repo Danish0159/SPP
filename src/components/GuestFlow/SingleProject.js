@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Reviews, Gallery, BackToProfile } from ".";
+import { Reviews, Gallery, BackToProfile } from "../GuestFlow";
 import { useParams } from "react-router-dom";
 import { fetchSingleProject, reset } from "../../slices/users";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 
-const SearchProjectDetail = () => {
+const SingleProject = () => {
   const dispatch = useDispatch();
   const { single_project, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.users);
@@ -67,7 +67,7 @@ const SearchProjectDetail = () => {
   return null;
 };
 
-export default SearchProjectDetail;
+export default SingleProject;
 const Wrapper = styled.section`
   .project {
     max-width: 105rem;

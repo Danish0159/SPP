@@ -4,12 +4,9 @@ import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { Avatar, Rating } from "@mui/material";
 
-// Reference Video to integrate react-paginate
-// https://www.youtube.com/watch?v=HANSMtDy508&ab_channel=PedroTech
-
-const Table = ({ users = [], title, flag, userId }) => {
+const Table = ({ data = [], title, flag, userId }) => {
   // Displaying only 5 users.
-  const [renderedData] = useState(users);
+  const [renderedData] = useState(data);
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
@@ -22,7 +19,6 @@ const Table = ({ users = [], title, flag, userId }) => {
     <Wrapper>
       <div className="search">
         <h2 className="search__title">{title}</h2>
-
         <div className="search__columns">
           <p className="subtitle">Name</p>
           <p className="subtitle">Location</p>
@@ -73,7 +69,6 @@ const Table = ({ users = [], title, flag, userId }) => {
                   </Link>
                 );
               })}
-
         <ReactPaginate
           previousLabel={"Previous"}
           nextLabel={"Next"}
@@ -217,3 +212,6 @@ const Wrapper = styled.section`
     width: 70px;
   }
 `;
+
+// Reference Video to integrate react-paginate
+// https://www.youtube.com/watch?v=HANSMtDy508&ab_channel=PedroTech

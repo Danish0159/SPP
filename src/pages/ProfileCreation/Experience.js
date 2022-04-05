@@ -8,26 +8,11 @@ export default function Experience(props) {
   return (
     <>
       <p className="card__subtitle">Years of experience</p>
-      <InputField
-        name={experience.name}
-        type="number"
-        // label={experience.label}
-        fullWidth
-      />
+      <InputField name={experience.name} type="number" fullWidth />
       <p className="card__subtitle">Number of Projects you have done</p>
-      <InputField
-        name={projects.name}
-        type="number"
-        // label={projects.label}
-        fullWidth
-      />
+      <InputField name={projects.name} type="number" fullWidth />
       <p className="card__subtitle">Number of Employees</p>
-      <InputField
-        name={employees.name}
-        type="number"
-        // label={employees.label}
-        fullWidth
-      />
+      <InputField name={employees.name} type="number" fullWidth />
     </>
   );
 }

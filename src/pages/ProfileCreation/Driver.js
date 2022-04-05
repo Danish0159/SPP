@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
-
 import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons, CardTitle } from "../../components/ProfileCreation";
-import { toast } from "react-toastify";
-
 // Form Model
 import {
   formInitialValues,
   validationSchema,
   registrationFormModel,
 } from "../../components/ProfileCreation/FormModel";
-
 // Pages
 import {
   Category,
@@ -24,13 +21,11 @@ import {
   PhoneNumber,
   ProfilePhoto,
 } from "../ProfileCreation";
-
 // redux/state
 import { useDispatch, useSelector } from "react-redux";
 import { logout, profileCreation, reset } from "../../slices/auth";
 import { Redirect, useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
-
 const { formId, formField } = registrationFormModel;
 
 const steps = [

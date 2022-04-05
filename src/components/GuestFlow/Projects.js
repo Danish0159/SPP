@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import styled from "styled-components";
 import { BackToProfile, Table } from "../GuestFlow";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
 import { fetchProjects, reset } from "../../slices/users";
 
-const SearchProject = () => {
+const Projects = () => {
   const dispatch = useDispatch();
   const { projects, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.users
@@ -38,19 +37,18 @@ const SearchProject = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <BackToProfile></BackToProfile>
       {projects.data && (
         <Table
-          users={projects.data.portfolio}
+          data={projects.data.portfolio}
           title="Projects Completed"
           flag="projects"
           userId={projects.data._id}
         ></Table>
       )}
-      ;
-    </>
+    </React.Fragment>
   );
 };
 
-export default SearchProject;
+export default Projects;

@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Footer } from "../../components";
 import { Users } from "../../components/GuestFlow";
 
-const SearchResultPage = () => {
+const UsersPage = () => {
   return (
     <main>
       <Navbar page="welcome"></Navbar>
@@ -12,4 +12,4 @@ const SearchResultPage = () => {
   );
 };
 
-export default SearchResultPage;
+export default UsersPage;

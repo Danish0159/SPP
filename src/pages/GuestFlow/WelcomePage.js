@@ -9,7 +9,6 @@ const WelcomePage = () => {
       <Navbar page="welcome"></Navbar>
       <Welcome></Welcome>
       <Cards
-        id="1"
         title="Easy way to find the best Contractor in your Area"
         cardsData={cardsData.slice(3, 6)}
         bgColor="true"

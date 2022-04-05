@@ -13,7 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 
-const NavbarWelcome = () => {
+const NavbarProfileCreation = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -70,4 +70,4 @@ const NavbarWelcome = () => {
   );
 };
 
-export default NavbarWelcome;
+export default NavbarProfileCreation;

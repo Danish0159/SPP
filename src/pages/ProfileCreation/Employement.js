@@ -8,26 +8,11 @@ export default function Employement(props) {
   return (
     <>
       <p className="card__subtitle">Company/Employeer Name</p>
-      <InputField
-        name={company.name}
-        type="text"
-        // label={experience.label}
-        fullWidth
-      />
+      <InputField name={company.name} type="text" fullWidth />
       <p className="card__subtitle">Location</p>
-      <InputField
-        name={location.name}
-        type="text"
-        // label={projects.label}
-        fullWidth
-      />
+      <InputField name={location.name} type="text" fullWidth />
       <p className="card__subtitle">Description</p>
-      <InputField
-        name={description.name}
-        type="text"
-        // label={employees.label}
-        fullWidth
-      />
+      <InputField name={description.name} type="text" fullWidth />
     </>
   );
 }

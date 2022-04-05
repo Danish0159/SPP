@@ -2,7 +2,7 @@ import React from "react";
 import { SelectField } from "../../components/ProfileCreation/FormFields";
 import { categories } from "../../utils/constants";
 
-export default function AddressForm(props) {
+export default function Category(props) {
   const {
     formField: { category },
   } = props;

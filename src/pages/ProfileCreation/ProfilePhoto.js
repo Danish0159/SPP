@@ -37,8 +37,6 @@ const ProfilePhoto = (props) => {
   useEffect(() => {
     if (file && fileName && src) {
       setValue({ file: file, src: src.result, name: fileName });
-      // console.log(file);
-      // console.log(fileName);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src, fileName, file]);

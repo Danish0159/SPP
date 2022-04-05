@@ -13,15 +13,6 @@ const Welcome = () => {
   const [user, SetUser] = React.useState("");
   const [category, SetCategory] = React.useState("");
   const [location, SetLocation] = React.useState("");
-  const handleUser = (event) => {
-    SetUser(event.target.value);
-  };
-  const handleCategory = (event) => {
-    SetCategory(event.target.value);
-  };
-  const handleLocation = (event) => {
-    SetLocation(event.target.value);
-  };
 
   // State
   const dispatch = useDispatch();
@@ -80,7 +71,7 @@ const Welcome = () => {
               <Select
                 id="welcome__input"
                 value={user}
-                onChange={handleUser}
+                onChange={(e) => SetUser(e.target.value)}
                 required
               >
                 {users.map((user, index) => (
@@ -102,7 +93,7 @@ const Welcome = () => {
               <Select
                 id="welcome__input"
                 value={category}
-                onChange={handleCategory}
+                onChange={(e) => SetCategory(e.target.value)}
                 required
               >
                 {categories.map((item, index) => (
@@ -124,7 +115,7 @@ const Welcome = () => {
               <Select
                 id="welcome__input"
                 value={location}
-                onChange={handleLocation}
+                onChange={(e) => SetLocation(e.target.value)}
                 required
               >
                 {countries.map((item, index) => (

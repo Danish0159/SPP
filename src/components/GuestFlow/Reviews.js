@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 const Reviews = () => {
   return (
-    // Not Confirmed Yet
-    // Will dynamically add data using API and JS(.map etc).
     <Wrapper>
       <div class="reviews__grid">
         <div class="reviews__item">

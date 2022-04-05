@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Reviews, Gallery } from ".";
-// import avatar from "../../images/avatar.png";
 import { fetchSingleUser, reset } from "../../slices/users";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
 
-const SearchProfile = () => {
+const SingleUser = () => {
   const dispatch = useDispatch();
   const { single_user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.users
@@ -111,7 +110,7 @@ const SearchProfile = () => {
   return null;
 };
 
-export default SearchProfile;
+export default SingleUser;
 
 const Wrapper = styled.section`
   .profile {
