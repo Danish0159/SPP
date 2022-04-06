@@ -4,23 +4,23 @@ import styled from "styled-components";
 const Reviews = () => {
   return (
     <Wrapper>
-      <div class="reviews__grid">
-        <div class="reviews__item">
-          <p class="reviews__paragraph">
+      <div className="reviews__grid">
+        <div className="reviews__item">
+          <p className="reviews__paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem
             ipsum dolor sit amet consectetur, adipisicing elit. Distinctio,
             blanditiis obcaecati, neque sint sequi accusamus minima
           </p>
         </div>
-        <div class="reviews__item">
-          <p class="reviews__paragraph">
+        <div className="reviews__item">
+          <p className="reviews__paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem
             ipsum dolor sit amet consectetur, adipisicing elit. Distinctio,
             blanditiis obcaecati, neque sint sequi accusamus minima
           </p>
         </div>
-        <div class="reviews__item">
-          <p class="reviews__paragraph">
+        <div className="reviews__item">
+          <p className="reviews__paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
             deserunt, dolor ut veniam minus illo iusto ea totam veritatis.

@@ -8,7 +8,7 @@ const Gallery = ({ data }) => {
         <div className="portfolio__grid">
           {data.map((img, index) => {
             return (
-              <div key={index} class="portfolio__div">
+              <div key={index} className="portfolio__div">
                 <img src={img} alt="fields" />
               </div>
             );

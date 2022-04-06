@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <Wrapper>
-      <div class="footer__container">
+      <div className="footer__container">
         <div className="footer__left">
           <h1 className="footer__title">4M</h1>
           <p className="footer__paragraph">

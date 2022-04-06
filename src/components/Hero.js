@@ -7,17 +7,17 @@ function Hero() {
   const { t } = useTranslation();
   return (
     <Wrapper>
-      <div class="hero__grid">
-        <div class="hero__content">
-          <h2 class="hero__title">Everything Is In Your Hands</h2>
-          <p class="hero__paragraph">{t("this_is_an_example")}</p>
-          <Link to="/Welcome" class="btn-small">
+      <div className="hero__grid">
+        <div className="hero__content">
+          <h2 className="hero__title">Everything Is In Your Hands</h2>
+          <p className="hero__paragraph">{t("this_is_an_example")}</p>
+          <Link to="/Welcome" className="btn-small">
             Get Started
           </Link>
         </div>
 
-        <figure class="hero__div">
-          <img class="hero__img" src={HeroImage} alt="Hero" />
+        <figure className="hero__div">
+          <img className="hero__img" src={HeroImage} alt="Hero" />
         </figure>
       </div>
     </Wrapper>

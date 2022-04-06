@@ -63,7 +63,7 @@ const Welcome = () => {
           {/* /////////////////////// */}
           {/* Looking For */}
           {/* /////////////////////// */}
-          <div class="form-group">
+          <div className="form-group">
             <label className="label" for="name">
               Looking For
             </label>
@@ -85,7 +85,7 @@ const Welcome = () => {
           {/* /////////////////////// */}
           {/* Category */}
           {/* /////////////////////// */}
-          <div class="form-group">
+          <div className="form-group">
             <label className="label" for="name">
               Category
             </label>
@@ -107,7 +107,7 @@ const Welcome = () => {
           {/* /////////////////////// */}
           {/* Location */}
           {/* /////////////////////// */}
-          <div class="form-group">
+          <div className="form-group">
             <label className="label" for="name">
               Location
             </label>
