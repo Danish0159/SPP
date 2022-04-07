@@ -115,7 +115,7 @@ const Signup = () => {
             <label Htmlfor="email">Email Address</label>
             <TextField
               fullWidth
-              // type="email"
+              type="email"
               name="email"
               id="email"
               value={formik.values.email}
