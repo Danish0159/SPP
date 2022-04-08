@@ -5,7 +5,7 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 import { users, categories, countries } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchUsers, reset } from "../../slices/users";
+import { fetchUsers, reset, resetData } from "../../slices/users";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 
@@ -34,6 +34,13 @@ const Welcome = () => {
     dispatch(reset());
     // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
+
+
+  // Reset Everthing.
+  useEffect(() => {
+    dispatch(resetData());
+  }, []);
+
 
   function handleSubmit() {
     // Reset Form values.

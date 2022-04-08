@@ -113,10 +113,12 @@ const userSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
-      // state.users = [];
-      // state.single_user = {};
-      // state.projects = [];
-      // state.single_project = {};
+    },
+    resetData: (state) => {
+      state.users = [];
+      state.single_user = {};
+      state.projects = [];
+      state.single_project = {};
     },
   },
   extraReducers(builder) {
@@ -181,7 +183,7 @@ const userSlice = createSlice({
 // export const selectPostById = (state, postId) =>
 //   state.posts.posts.find((post) => post.id === postId);
 
-export const { reset } = userSlice.actions;
+export const { reset, resetData } = userSlice.actions;
 const { reducer } = userSlice;
 export default reducer;
 
