@@ -48,17 +48,17 @@ const SingleUser = () => {
             <div className="profile__name">
               <div className="profile__name--avatar">
                 <Avatar
-                  src={single_user.data.profilePhoto}
+                  src={single_user.data.user.profilePhoto}
                   sx={{ width: 130, height: 130 }}
                   alt="Avatar"
                 />
               </div>
               <h1 className="profile__name--title">
-                {single_user.data.user.name}
+                {single_user.data.user.user.name}
               </h1>
               <p className="profile__name-subtitle">
                 {" "}
-                {single_user.data.user.role}
+                {single_user.data.user.user.role}
               </p>
               <Link to="#" type="submit" className="blue-btn profile-btn">
                 Message Now
@@ -69,15 +69,15 @@ const SingleUser = () => {
             <div className="profile__content">
               <h2 className="profile__content--title">Location</h2>
               <p className="profile__content--location">
-                {single_user.data.location.country},{" "}
-                {single_user.data.location.city}
+                {single_user.data.user.location.country},{" "}
+                {single_user.data.user.location.city}
               </p>
               <h2 className="profile__content--title">Contact Number</h2>
               <p className="profile__content--number">
-                {single_user.data.phoneNumber}
+                {single_user.data.user.phoneNumber}
               </p>
               <h2 className="profile__content--title mb">
-                Number of Projects Completed: 26
+                Number of Projects Completed: {single_user.data.noOfProjects}
               </h2>
               <Link
                 to={`/Projects/${id}`}
@@ -102,7 +102,13 @@ const SingleUser = () => {
 
         <div className="section__white">
           <h3 className="section__title">Projects Gallery</h3>
-          <Gallery></Gallery>;
+          <Gallery data={[
+            ...single_user.data.user.portfolio[0]?.images,
+            ...single_user.data.user.portfolio[1]?.images,
+            ...single_user.data.user.portfolio[2]?.images,
+            ...single_user.data.user.portfolio[3]?.images,
+            ...single_user.data.user.portfolio[4]?.images,
+          ]}></Gallery>
         </div>
       </Wrapper>
     );

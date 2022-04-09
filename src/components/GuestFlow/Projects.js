@@ -41,10 +41,10 @@ const Projects = () => {
       <BackToProfile></BackToProfile>
       {projects.data && (
         <Table
-          data={projects.data.portfolio}
+          data={projects.data.projects.portfolio}
           title="Projects Completed"
           flag="projects"
-          userId={projects.data._id}
+          userId={projects.data.projects._id}
         ></Table>
       )}
     </React.Fragment>

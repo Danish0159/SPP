@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { cardsData } from "../utils/constants";
 import { Navbar, Hero, Footer } from "../components";
 import { Cards } from "../components/GuestFlow";
+import { resetData } from "../slices/users";
+import { useDispatch } from "react-redux";
 
 const HomePage = () => {
+
+  // Reset ALl the data for welcome flow.
+  const dispatch = useDispatch();
+  // Reset Everthing.
+  useEffect(() => {
+    dispatch(resetData());
+  }, []);
+
+
   return (
     <main>
       <Navbar page="home"></Navbar>

@@ -115,6 +115,10 @@ const userSlice = createSlice({
       state.message = "";
     },
     resetData: (state) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.message = "";
       state.users = [];
       state.single_user = {};
       state.projects = [];

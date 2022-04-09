@@ -14,19 +14,19 @@ const BackToProfile = () => {
           <div className="backToProfile__grid">
             <div className="backToProfile__profile">
               <Avatar
-                src={single_user.data.profilePhoto}
+                src={single_user.data.user.profilePhoto}
                 sx={{ width: 130, height: 130 }}
                 alt="Avatar"
               />
               <div className="BackToProfile__content">
                 <h1 className="BackToProfile--title">
                   {" "}
-                  {single_user.data.user.name}
+                  {single_user.data.user.user.name}
                 </h1>
 
                 <p className="BackToProfile-subtitle">
                   {" "}
-                  {single_user.data.user.role}
+                  {single_user.data.user.user.role}
                 </p>
               </div>
             </div>
