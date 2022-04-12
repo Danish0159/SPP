@@ -28,47 +28,47 @@ const Table = ({ data = [], title, flag, userId }) => {
         {/* Render Data for Users and else for Projects. */}
         {flag === "users"
           ? renderedData
-              .slice(pagesVisited, pagesVisited + usersPerPage)
-              .map((user, index) => {
-                return (
-                  <Link key={index} to={`/Users/${user._id}`}>
-                    <div className="search__results">
-                      {/* Cell1 */}
-                      <div className="search_profile">
-                        <Avatar
-                          src={user.profilePhoto}
-                          sx={{ width: 56, height: 56 }}
-                          alt="profile"
-                        />
-                        <p className="search_name cell">{user.user.name}</p>
-                      </div>
-                      {/* Cell2 */}
-                      <p className="cell">
-                        {user.location.country}, {user.location.city}
-                      </p>
-                      {/* Cell3 */}
-                      <p className="cell">
-                        <Rating name="read-only" value={4} readOnly />
-                      </p>
+            .slice(pagesVisited, pagesVisited + usersPerPage)
+            .map((user, index) => {
+              return (
+                <Link key={index} to={`/Users/${user._id}`}>
+                  <div className="search__results">
+                    {/* Cell1 */}
+                    <div className="search_profile">
+                      <Avatar
+                        src={user.profilePhoto}
+                        sx={{ width: 56, height: 56 }}
+                        alt="profile"
+                      />
+                      <p className="search_name cell">{user.user.name}</p>
                     </div>
-                  </Link>
-                );
-              })
+                    {/* Cell2 */}
+                    <p className="cell">
+                      {user.location.country}, {user.location.city}
+                    </p>
+                    {/* Cell3 */}
+                    <p className="cell">
+                      <Rating name="read-only" value={4} readOnly />
+                    </p>
+                  </div>
+                </Link>
+              );
+            })
           : renderedData
-              .slice(pagesVisited, pagesVisited + usersPerPage)
-              .map((project, index) => {
-                return (
-                  <Link key={index} to={`/Projects/${userId}/${project._id}`}>
-                    <div className="search__results">
-                      <p className="cell">{project.projectName}</p>
-                      <p className="cell">{project.location}</p>
-                      <p className="cell">
-                        <Rating name="read-only" value={4} readOnly />
-                      </p>
-                    </div>
-                  </Link>
-                );
-              })}
+            .slice(pagesVisited, pagesVisited + usersPerPage)
+            .map((project, index) => {
+              return (
+                <Link key={index} to={`/Projects/${userId}/${project._id}`}>
+                  <div className="search__results">
+                    <p className="cell">{project.projectName}</p>
+                    <p className="cell">{project.location}</p>
+                    <p className="cell">
+                      <Rating name="read-only" value={4} readOnly />
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
         <ReactPaginate
           previousLabel={"Previous"}
           nextLabel={"Next"}

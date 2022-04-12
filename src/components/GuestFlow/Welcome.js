@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import image from "../../images/13.jpg";
 import { FormControl, MenuItem, Select } from "@mui/material";
-import { users, categories, countries } from "../../utils/constants";
+import { users, categories, countries, pakCities, saudiCities } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { fetchUsers, reset } from "../../slices/users";
@@ -12,7 +12,9 @@ import Spinner from "../Spinner";
 const Welcome = () => {
   const [user, SetUser] = React.useState("");
   const [category, SetCategory] = React.useState("");
-  const [location, SetLocation] = React.useState("");
+  const [country, SetCountry] = React.useState("");
+  const [city, SetCity] = React.useState("");
+
 
   // State
   const dispatch = useDispatch();
@@ -37,12 +39,16 @@ const Welcome = () => {
 
 
   function handleSubmit() {
+    console.log(user);
+    console.log(category);
+    console.log(country);
+    console.log(city);
+    dispatch(fetchUsers({ user, category, country, city }));
     // Reset Form values.
     SetUser("");
     SetCategory("");
-    SetLocation("");
-
-    dispatch(fetchUsers({ user, category, location }));
+    SetCountry("");
+    SetCity("");
   }
 
   if (isLoading) {
@@ -65,7 +71,7 @@ const Welcome = () => {
           {/* Looking For */}
           {/* /////////////////////// */}
           <div className="form-group">
-            <label className="label" for="name">
+            <label className="label" htmlFor="name">
               Looking For
             </label>
             <FormControl>
@@ -87,7 +93,7 @@ const Welcome = () => {
           {/* Category */}
           {/* /////////////////////// */}
           <div className="form-group">
-            <label className="label" for="name">
+            <label className="label" htmlFor="name">
               Category
             </label>
             <FormControl>
@@ -106,17 +112,17 @@ const Welcome = () => {
             </FormControl>
           </div>
           {/* /////////////////////// */}
-          {/* Location */}
+          {/* Country */}
           {/* /////////////////////// */}
           <div className="form-group">
-            <label className="label" for="name">
-              Location
+            <label className="label" htmlFor="name">
+              Country
             </label>
             <FormControl>
               <Select
                 id="welcome__input"
-                value={location}
-                onChange={(e) => SetLocation(e.target.value)}
+                value={country}
+                onChange={(e) => SetCountry(e.target.value)}
                 required
               >
                 {countries.map((item, index) => (
@@ -127,6 +133,38 @@ const Welcome = () => {
               </Select>
             </FormControl>
           </div>
+
+          {/* /////////////////////// */}
+          {/* City */}
+          {/* /////////////////////// */}
+          {country &&
+            <div className="form-group">
+              <label className="label" htmlFor="name">
+                City
+              </label>
+              <FormControl>
+                <Select
+                  defaultValue=""
+                  id="welcome__input"
+                  value={city}
+                  onChange={(e) => SetCity(e.target.value)}
+                  required
+                >
+                  {country === "Pakistan"
+                    ? pakCities.map((item, index) => (
+                      <MenuItem id="Select" key={index} value={item.label}>
+                        {item.label}
+                      </MenuItem>
+                    ))
+                    : country === "Saudi Arabia" ? saudiCities.map((item, index) => (
+                      <MenuItem id="Select" key={index} value={item.label}>
+                        {item.label}
+                      </MenuItem>
+                    )) : null}
+                </Select>
+              </FormControl>
+            </div>
+          }
         </div>
         <button type="submit" className="blue-btn submit-button">
           Search
@@ -155,13 +193,17 @@ const Wrapper = styled.header`
   align-items: center;
   justify-content: center;
   text-align: center;
+  @media only screen and (max-width: 1056px) {
+    height: min-content;
+    padding: 1rem 0rem;
+    }
   .hero__title {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 3.5rem;
     margin-top: -80px;
     margin-bottom: 1.6rem;
-    @media only screen and (max-width: 850px) {
+    @media only screen and (max-width: 1056px) {
       margin-top: 10px;
       margin-bottom: 1rem;
       font-size: 3rem;
@@ -173,7 +215,7 @@ const Wrapper = styled.header`
     text-align: center;
     font-size: 2rem;
     margin-bottom: 5rem;
-    @media only screen and (max-width: 850px) {
+    @media only screen and (max-width: 1056px) {
       font-size: 1.7rem;
       margin-bottom: 2rem;
     }
@@ -183,7 +225,7 @@ const Wrapper = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
-    @media only screen and (max-width: 850px) {
+    @media only screen and (max-width: 1056px) {
       flex-direction: column;
     }
   }
@@ -199,9 +241,9 @@ const Wrapper = styled.header`
     font-weight: 600;
     font-family: "Nunito Sans", sans-serif;
     min-height: auto;
-    width: 170px;
+    width: 140px;
     text-align: left;
-    padding: 1.4rem 2rem;
+    padding: 1.2rem 2rem;
     color: black;
     background-color: white;
   }

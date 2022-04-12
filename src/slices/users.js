@@ -14,10 +14,10 @@ const initialState = {
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
-  async ({ user, category, location }, thunkAPI) => {
+  async ({ user, category, country, city }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `https://warm-cove-25020.herokuapp.com/api/public/search?role=${user}&category=${category}&location=${location}`
+        `https://warm-cove-25020.herokuapp.com/api/public/search?role=${user}&category=${category}&country=${country}&city=${city}`
       );
       if (response.data.status !== "SUCCESS") {
         return thunkAPI.rejectWithValue(response.data.message);

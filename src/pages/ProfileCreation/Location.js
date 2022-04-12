@@ -1,24 +1,31 @@
 import React from "react";
-import { InputField } from "../../components/ProfileCreation/FormFields";
+import { useSelector } from "react-redux";
+import { SelectFieldLocation } from "../../components/ProfileCreation/FormFields";
+import { countries, pakCities, saudiCities } from "../../utils/constants";
 
 export default function Location(props) {
+
+  const { countryFlag } = useSelector(
+    (state) => state.auth
+  );
+
   const {
     formField: { country, city },
   } = props;
   return (
     <>
       <p className="card__subtitle">Country</p>
-      <InputField
+      <SelectFieldLocation
         name={country.name}
-        type="text"
-        // label={experience.label}
+        data={countries}
         fullWidth
       />
       <p className="card__subtitle">City</p>
-      <InputField
+      <SelectFieldLocation
         name={city.name}
-        type="text"
-        // label={projects.label}
+        data={
+          countryFlag === "Pakistan" ? pakCities :
+            countryFlag === "Saudi Arabia" ? saudiCities : null}
         fullWidth
       />
     </>

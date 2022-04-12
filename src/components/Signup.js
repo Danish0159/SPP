@@ -68,10 +68,6 @@ const Signup = () => {
     validationSchema: validationSchema,
     // async keyword can be removed from here.
     onSubmit: (values, { resetForm }) => {
-      // Reset form
-      setRole("");
-      resetForm();
-
       dispatch(
         register({
           name: values.name,
@@ -80,6 +76,9 @@ const Signup = () => {
           role,
         })
       );
+      // Reset form.
+      setRole("");
+      resetForm();
     },
   });
 

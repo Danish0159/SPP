@@ -57,15 +57,14 @@ const Login = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
-      // Reset form
-      resetForm();
-
       dispatch(
         login({
           email: values.email,
           password: values.password,
         })
       );
+      // Reset form
+      resetForm();
     },
   });
 
