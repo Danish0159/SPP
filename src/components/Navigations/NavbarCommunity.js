@@ -85,7 +85,7 @@ const NavbarCommunity = () => {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-                <Link to="/">
+                <Link to="/Profile">
                     <MenuItem>
                         <Avatar /> <span style={{ color: '#121212' }}> Profile</span>
                     </MenuItem>

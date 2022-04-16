@@ -19,7 +19,9 @@ import {
 import { JoinUs, Driver } from "./pages/ProfileCreation";
 
 // Flow 3
-import HomeFeed from "./pages/Community/HomeFeed";
+import { HomeFeed } from "./pages/Community";
+import { ProfileDriver } from "./pages/Community/Profile";
+
 
 // Private Route.
 import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
@@ -76,6 +78,9 @@ const App = () => {
           {/* ----------------------------------------------- */}
           <Route exact path="/HomeFeed">
             <HomeFeed></HomeFeed>
+          </Route>
+          <Route exact path="/Profile">
+            <ProfileDriver></ProfileDriver>
           </Route>
           <Route exact path="*">
             <ErrorPage></ErrorPage>
