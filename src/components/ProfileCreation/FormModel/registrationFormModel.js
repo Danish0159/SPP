@@ -81,10 +81,6 @@ export default {
     multiFiles: {
       name: "images",
     },
-    rate: {
-      name: "Rate",
-      requiredErrorMsg: "Rate is required",
-    },
     country: {
       name: "Country",
       requiredErrorMsg: "Country is required",

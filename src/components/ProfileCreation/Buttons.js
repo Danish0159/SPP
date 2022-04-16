@@ -7,7 +7,6 @@ const Buttons = ({ activeStep }) => {
     "Expertise Level",
     "Employment History",
     "Portfolio",
-    "Rate",
     "Location",
     "Phone Number",
     "Profile Photo",

@@ -19,7 +19,6 @@ const {
         projectLocation4,
         projectName5,
         projectLocation5,
-        rate,
         country,
         city,
         phone,
@@ -97,10 +96,6 @@ export default [
         [projectLocation5.name]: Yup.string("Enter projectLocation").required(
             `${projectLocation5.requiredErrorMsg}`
         ),
-    }),
-
-    Yup.object().shape({
-        [rate.name]: Yup.string("Enter Rate").required(`${rate.requiredErrorMsg}`),
     }),
 
     Yup.object().shape({
