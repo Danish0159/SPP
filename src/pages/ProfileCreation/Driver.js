@@ -16,7 +16,6 @@ import {
   Experience,
   Employement,
   Portfolio,
-  Rate,
   Location,
   PhoneNumber,
   ProfilePhoto,
@@ -33,7 +32,6 @@ const steps = [
   "Expertise Level",
   "Employment History",
   "Portfolio",
-  "Rate",
   "Location",
   "Phone Number",
   "Profile Photo",
@@ -50,12 +48,10 @@ function _renderStepContent(step) {
     case 3:
       return <Portfolio formField={formField} />;
     case 4:
-      return <Rate formField={formField} />;
-    case 5:
       return <Location formField={formField} />;
-    case 6:
+    case 5:
       return <PhoneNumber formField={formField} />;
-    case 7:
+    case 6:
       return <ProfilePhoto formField={formField} />;
     default:
       return <div>Not Found</div>;
@@ -90,26 +86,6 @@ const Driver = () => {
   }, [isError, isSuccess, message, dispatch]);
 
   async function _submitForm(values, actions) {
-    // Uploading Images on Cloudinary.
-    // const uploaders = values.images.src1.forEach(async (file) => {
-    //   // Initial FormData.
-    //   const url = `https://api.cloudinary.com/v1_1/dm1mlee94/upload`;
-    //   const formData = new FormData();
-    //   formData.append("file", file);
-    //   // formData.append("tags", `codeinfuse, medium, gist`);
-    //   formData.append("upload_preset", "huarluoc"); // Replace the preset name with your own
-    //   formData.append("api_key", "642495779825247"); // Replace API key with your own Cloudinary key
-    //   formData.append("timestamp", Date.now() / 1000 || 0);
-
-    //   // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
-    //   const response = await fetch(url, {
-    //     method: "post",
-    //     body: formData,
-    //   });
-    //   const data = await response.json();
-    //   console.log(data);
-    // });
-
     const payload = {
       category: values.Category,
       phoneNumber: values.Phone,
@@ -152,7 +128,6 @@ const Driver = () => {
           images: values.images.src5,
         },
       ],
-      rate: values.Rate,
       location: {
         country: values.Country,
         city: values.City,

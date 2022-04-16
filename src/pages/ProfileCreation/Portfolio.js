@@ -222,7 +222,7 @@ export default function Portfolio(props) {
               />
 
               <p className="card__subtitle">Project Files</p>
-              <div className="form-group">
+              <div key={index} className="form-group">
                 <Dropzone
                   onDrop={(acceptedFiles) => {
                     step.setHeroFiles(
