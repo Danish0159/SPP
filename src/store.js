@@ -1,8 +1,10 @@
+// https://bionicjulia.com/blog/clear-redux-toolkit-state-with-redux-persist-and-typescript
+// (Blog to reset redux-persist.)
+
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./slices/auth";
 import userReducer from "./slices/users";
 // Redux Persist.
-// import { persistStore, persistReducer } from "redux-persist";
 import {
   persistStore,
   persistReducer,
@@ -42,3 +44,5 @@ let persistor = persistStore(store);
 
 export { persistor };
 export default store;
+
+// Added Using official doc

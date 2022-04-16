@@ -2,6 +2,10 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// Public Pages. 
+import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
+
 // Flow 1
 import {
   WelcomePage,
@@ -11,13 +15,11 @@ import {
   SingleProjectPage,
 } from "./pages/GuestFlow";
 
-import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
-
 // Flow 2
 import { JoinUs, Driver } from "./pages/ProfileCreation";
 
 // Flow 3
-import TestCommunity from "./pages/Community/TestCommunity";
+import HomeFeed from "./pages/Community/HomeFeed";
 
 // Private Route.
 import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
@@ -72,8 +74,8 @@ const App = () => {
           {/* Box2 END  */}
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}
-          <Route exact path="/TestCommunity">
-            <TestCommunity></TestCommunity>
+          <Route exact path="/HomeFeed">
+            <HomeFeed></HomeFeed>
           </Route>
           <Route exact path="*">
             <ErrorPage></ErrorPage>

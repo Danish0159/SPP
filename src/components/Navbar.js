@@ -6,6 +6,7 @@ import {
   NavbarSignUp,
   NavbarWelcome,
   NavbarProfileCreation,
+  NavbarCommunity,
 } from "./Navigations";
 
 const Navbar = ({ page }) => {
@@ -38,6 +39,12 @@ const Navbar = ({ page }) => {
       return (
         <Navigation>
           <NavbarWelcome></NavbarWelcome>
+        </Navigation>
+      );
+    case "community":
+      return (
+        <Navigation>
+          <NavbarCommunity></NavbarCommunity>
         </Navigation>
       );
   }

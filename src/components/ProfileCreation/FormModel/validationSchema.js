@@ -43,11 +43,11 @@ export default [
             .required(`${experience.requiredErrorMsg}`),
 
         [projects.name]: Yup.number()
-            .min(0, "Min value 0.")
+            .min(5, "Min value 5.").max(5, "Max value 5.")
             .required(`${projects.requiredErrorMsg}`),
 
         [employees.name]: Yup.number()
-            .min(0, "Min value 0.")
+            .min(1, "Min value 1.")
             .required(`${employees.requiredErrorMsg}`),
     }),
 

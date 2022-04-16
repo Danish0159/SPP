@@ -23,7 +23,7 @@ const JoinUs = () => {
             <p className="hero__title">Join Us</p>
             {user && <p className="hero__subTitle">Hi {user.name},</p>}
             <p className="hero__passage">
-              Thanks for your interest in Crowd as the world's largest talent
+              Thanks for your interest in Maqawal as the world's largest talent
               platform, we connect millions of businesses with independent
               contractors and designers like you.
             </p>

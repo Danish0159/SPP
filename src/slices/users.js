@@ -182,11 +182,6 @@ const userSlice = createSlice({
   },
 });
 
-// export const selectAllPosts = (state) => state.posts.posts;
-
-// export const selectPostById = (state, postId) =>
-//   state.posts.posts.find((post) => post.id === postId);
-
 export const { reset, resetData } = userSlice.actions;
 const { reducer } = userSlice;
 export default reducer;

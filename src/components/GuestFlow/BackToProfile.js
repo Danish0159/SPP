@@ -34,7 +34,8 @@ const BackToProfile = () => {
               <Link to="#" type="submit" className="blue-btn backToProfile-btn">
                 Message Now
               </Link>
-              <Link to="#" type="submit" className="blue-btn backToProfile-btn">
+
+              <Link to={`/Users/${single_user.data.user._id}`} type="submit" className="blue-btn backToProfile-btn">
                 Back To Profile
               </Link>
             </div>

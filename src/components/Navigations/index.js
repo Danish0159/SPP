@@ -3,6 +3,7 @@ import NavbarLogin from "./NavbarLogin";
 import NavbarSignUp from "./NavbarSignUp";
 import NavbarProfileCreation from "./NavbarProfileCreation";
 import NavbarWelcome from "./NavbarWelcome";
+import NavbarCommunity from "./NavbarCommunity";
 
 export {
   NavbarHome,
@@ -10,4 +11,5 @@ export {
   NavbarSignUp,
   NavbarProfileCreation,
   NavbarWelcome,
+  NavbarCommunity,
 };

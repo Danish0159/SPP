@@ -1,17 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import logo from "../images/logo3.png";
 
 const Footer = () => {
   return (
     <Wrapper>
       <div className="footer__container">
         <div className="footer__left">
-          <h1 className="footer__title">4M</h1>
+          <Link to="/">
+            <img className="navbar__logo" src={logo} alt="Logo" />
+          </Link>
           <p className="footer__paragraph">
-            Search the world information including webpages,
+            {/* Search the world information including webpages,
             <br /> images, videos and more. Google has many special
             <br /> features to help you find exactly what you use <br />
-            and pay for.
+            and pay for. */}
+
+            Maqawal is connecting the contractor and designers
+            <br /> worldwide while helping people to find the best contractor
+            <br /> and designers they are looking for.
           </p>
         </div>
         <div className="footer__right">
@@ -61,4 +69,12 @@ const Wrapper = styled.footer`
     font-size: 1.6rem;
     padding: 0.5rem 0rem;
   }
+  .navbar__logo {
+    height: 6rem;
+    margin-bottom: 1.7rem;
+    @media only screen and (max-width: 850px) {
+      height: 4.2rem;
+    }
+  }
+
 `;
