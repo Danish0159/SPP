@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
 import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons, CardTitle } from "../../components/ProfileCreation";
+import { CardLayout } from '../../components/styled'
 // Form Model
 import {
   formInitialValues,
@@ -162,51 +163,51 @@ const Driver = () => {
   return (
     <main>
       <Navbar page="welcome"></Navbar>
-      <Wrapper>
+      <CardLayout>
         <Buttons activeStep={activeStep}></Buttons>
 
-        <div className="card">
-          {activeStep === steps.length ? (
-            // Redirect to the community after the successful registration.
-            <Redirect to="/" />
-          ) : (
-            <Formik
-              initialValues={formInitialValues}
-              validationSchema={currentValidationSchema}
-              onSubmit={_handleSubmit}
-            >
-              {({ isSubmitting }) => (
-                <Form id={formId}>
-                  <CardTitle activeStep={activeStep}></CardTitle>
-                  <div className="card__content">
-                    {_renderStepContent(activeStep)}
-                    <div className="btn-container">
-                      {activeStep !== 0 && (
-                        <Button id="mu-btn" onClick={_handleBack}>
-                          BACK
-                        </Button>
-                      )}
-                      <div>
-                        <button
-                          className="blue-btn card-btn"
-                          disabled={isSubmitting}
-                          type="submit"
-                          variant="contained"
-                          color="primary"
-                        >
-                          {isLastStep ? "COMPLETE" : "NEXT"}
-                        </button>
-                        {/* {isSubmitting && <CircularProgress size={24} />} */}
+        <Wrapper>
+          <div className="card">
+            {activeStep === steps.length ? (
+              <Redirect to="/" />
+            ) : (
+              <Formik
+                initialValues={formInitialValues}
+                validationSchema={currentValidationSchema}
+                onSubmit={_handleSubmit}
+              >
+                {({ isSubmitting }) => (
+                  <Form id={formId}>
+                    <CardTitle activeStep={activeStep}></CardTitle>
+                    <div className="card__content">
+                      {_renderStepContent(activeStep)}
+                      <div className="btn-container">
+                        {activeStep !== 0 && (
+                          <Button id="mu-btn" onClick={_handleBack}>
+                            BACK
+                          </Button>
+                        )}
+                        <div>
+                          <button
+                            className="blue-btn card-btn"
+                            disabled={isSubmitting}
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                          >
+                            {isLastStep ? "COMPLETE" : "NEXT"}
+                          </button>
+                          {/* {isSubmitting && <CircularProgress size={24} />} */}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-          )}
-        </div>
-      </Wrapper>
-
+                  </Form>
+                )}
+              </Formik>
+            )}
+          </div>
+        </Wrapper>
+      </CardLayout>
       <Footer></Footer>
     </main>
   );
@@ -215,34 +216,6 @@ const Driver = () => {
 export default Driver;
 
 const Wrapper = styled.section`
-  max-width: 100rem;
-  margin: auto;
-  min-height: calc(100vh - 100px);
-  padding: 5rem 2rem;
-  display: grid;
-  grid-template-columns: 2fr 8fr;
-  align-items: center;
-  grid-gap: 3rem;
-  @media only screen and (max-width: 850px) {
-    grid-template-columns: 1fr;
-  }
-  .card {
-    box-shadow: 0 0 6px #888;
-    min-height: 50vh;
-  }
-  .card__content {
-    padding: 2rem 4rem;
-  }
-  .card__title {
-    background-color: var(--clr-blue-2);
-    color: #ffffff;
-    padding: 1.2rem 0rem 1.2rem 2rem;
-    font-size: 2rem;
-  }
-  .card__subtitle {
-    font-size: 1.8rem;
-    margin: 2rem 0rem;
-  }
   .btn-container {
     display: flex;
     align-items: center;
@@ -258,7 +231,7 @@ const Wrapper = styled.section`
     font-weight: 500;
   }
 
-  /* For all the subPages */
+  /* Styling For All the ProfileCreation Pages that are coming  */
   .error-p {
     font-size: 1.3rem;
     color: red;

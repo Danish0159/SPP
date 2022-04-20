@@ -1,19 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Navbar, Footer } from "../../../components";
-import { Buttons, CardTitle } from "../../../components/Community";
+import { Buttons, CardTitle } from "../../../components/Community/Profile";
+import { CardLayout } from '../../../components/styled'
 
 const ProfileDriver = () => {
   const [step, setStep] = useState(0);
 
   const handleStep = (id) => {
-    setStep(id);
+    if (id === 0) {
+      console.log("First Call");
+    }
+    if (id === 1) {
+      console.log("Second Call");
+    }
+    if (id === 2) {
+      console.log("Third Call");
+    }
+    if (id === 3) {
+      console.log("Fourth Call");
+    }
   }
+
+  useEffect(() => {
+    console.log("Default First API Call");
+  }, [])
+
 
   function _renderStepContent(step) {
     switch (step) {
       case 0:
-        return <h1>Step1</h1>;
+        return <div>
+          <p className="personel__title">Name</p>
+          <p className="personel__subtitle">Jhon Doe</p>
+          <p className="personel__title">Email</p>
+          <p className="personel__subtitle">JhonDoe@gmail.com</p>
+          <p className="personel__title">Role</p>
+          <p className="personel__subtitle">Contractor</p>
+          <p className="personel__title">Number</p>
+          <p className="personel__subtitle">123423232324</p>
+        </div>;
       case 1:
         return <h1>Step2</h1>;
       case 2:
@@ -26,16 +52,18 @@ const ProfileDriver = () => {
   return (
     <main>
       <Navbar page="community"></Navbar>
-      <Wrapper>
+      <CardLayout>
         <Buttons handleStep={handleStep} step={step}></Buttons>
-        <div className="card">
-          <CardTitle activeStep={step}>
-          </CardTitle>
-          <div className="card__content">
-            {_renderStepContent(step)}
+        <Wrapper>
+          <div className="card">
+            <CardTitle activeStep={step}>
+            </CardTitle>
+            <div className="card__content">
+              {_renderStepContent(step)}
+            </div>
           </div>
-        </div>
-      </Wrapper >
+        </Wrapper>
+      </CardLayout>
       <Footer></Footer>
     </main >
   );
@@ -43,33 +71,14 @@ const ProfileDriver = () => {
 
 export default ProfileDriver;
 
-const Wrapper = styled.section`
-  max-width: 100rem;
-  margin: auto;
-  min-height: calc(100vh - 100px);
-  padding: 5rem 2rem;
-  display: grid;
-  grid-template-columns: 2fr 8fr;
-  align-items: center;
-  grid-gap: 3rem;
-  @media only screen and (max-width: 850px) {
-    grid-template-columns: 1fr;
-  }
-  .card {
-    box-shadow: 0 0 6px #888;
-    min-height: 50vh;
-  }
-  .card__content {
-    padding: 2rem 4rem;
-  }
-  .card__title {
-    background-color: var(--clr-blue-2);
-    color: #ffffff;
-    padding: 1.2rem 0rem 1.2rem 2rem;
-    font-size: 2rem;
-  }
-  .card__subtitle {
-    font-size: 1.8rem;
-    margin: 2rem 0rem;
-  }
+const Wrapper = styled.div`
+.personel__title{
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+.personel__subtitle{
+  font-size: 1.5rem;
+   margin-bottom: 2.5rem;
+}
 `;
