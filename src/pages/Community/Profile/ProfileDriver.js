@@ -3,49 +3,37 @@ import styled from "styled-components";
 import { Navbar, Footer } from "../../../components";
 import { Buttons, CardTitle } from "../../../components/Community/Profile";
 import { CardLayout } from '../../../components/styled'
+import { AddProject, PreviewProfile, PersonelInfo, PersonelProjects } from '../Profile'
 
 const ProfileDriver = () => {
   const [step, setStep] = useState(0);
 
   const handleStep = (id) => {
-    if (id === 0) {
-      console.log("First Call");
-    }
-    if (id === 1) {
-      console.log("Second Call");
-    }
-    if (id === 2) {
-      console.log("Third Call");
-    }
-    if (id === 3) {
-      console.log("Fourth Call");
-    }
+    setStep(id);
+    // if (id === 0) {
+    //   console.log("First Call");
+    // }
+    // if (id === 1) {
+    //   console.log("Second Call");
+    // }
+    // if (id === 2) {
+    //   console.log("Third Call");
+    // }
+    // if (id === 3) {
+    //   console.log("Fourth Call");
+    // }
   }
 
   useEffect(() => {
     console.log("Default First API Call");
   }, [])
 
-
   function _renderStepContent(step) {
     switch (step) {
-      case 0:
-        return <div>
-          <p className="personel__title">Name</p>
-          <p className="personel__subtitle">Jhon Doe</p>
-          <p className="personel__title">Email</p>
-          <p className="personel__subtitle">JhonDoe@gmail.com</p>
-          <p className="personel__title">Role</p>
-          <p className="personel__subtitle">Contractor</p>
-          <p className="personel__title">Number</p>
-          <p className="personel__subtitle">123423232324</p>
-        </div>;
-      case 1:
-        return <h1>Step2</h1>;
-      case 2:
-        return <h1>Step3</h1>;
-      case 3:
-        return <h1>Step4</h1>;
+      case 0: return <PersonelInfo></PersonelInfo>
+      case 1: return <PersonelProjects></PersonelProjects>;
+      case 2: return <PreviewProfile></PreviewProfile>;
+      case 3: return <AddProject></AddProject>
     }
   }
 
@@ -72,13 +60,19 @@ const ProfileDriver = () => {
 export default ProfileDriver;
 
 const Wrapper = styled.div`
-.personel__title{
-  font-size: 1.7rem;
-  font-weight: 600;
-  margin-bottom: 0.9rem;
+ .personel__title {
+ font-size: 1.7rem;
+ font-weight: 600;
+ margin-bottom: 0.9rem; 
 }
-.personel__subtitle{
-  font-size: 1.5rem;
-   margin-bottom: 2.5rem;
+ .personel__subtitle {
+ font-size: 1.5rem;
+ margin-bottom: 2.5rem;
+}
+ .preview__title {
+   font-size: 2.3rem;
+   font-weight:700;
+   margin: 2.5rem 0rem;
+   color: #424d83;
 }
 `;

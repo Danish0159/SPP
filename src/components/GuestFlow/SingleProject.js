@@ -37,6 +37,7 @@ const SingleProject = () => {
       </div>
     );
   }
+
   if (single_project.data) {
     return (
       <Wrapper>

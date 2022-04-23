@@ -126,41 +126,41 @@ export default function Portfolio(props) {
 
   // Thumbs.
   const thumbs1 = heroFiles1.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img alt="selected" src={file.preview} style={img} />
+    <div className="thumb" key={file.name}>
+      <div className="thumbInner">
+        <img alt="selected" src={file.preview} className="img" />
       </div>
     </div>
   ));
 
   const thumbs2 = heroFiles2.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img alt="selected" src={file.preview} style={img} />
+    <div className="thumb" key={file.name}>
+      <div className="thumbInner">
+        <img alt="selected" src={file.preview} className="img" />
       </div>
     </div>
   ));
 
   const thumbs3 = heroFiles3.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img alt="selected" src={file.preview} style={img} />
+    <div className="thumb" key={file.name}>
+      <div className="thumbInner">
+        <img alt="selected" src={file.preview} className="img" />
       </div>
     </div>
   ));
 
   const thumbs4 = heroFiles4.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img alt="selected" src={file.preview} style={img} />
+    <div className="thumb" key={file.name}>
+      <div className="thumbInner">
+        <img alt="selected" src={file.preview} className="img" />
       </div>
     </div>
   ));
 
   const thumbs5 = heroFiles5.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img alt="selected" src={file.preview} style={img} />
+    <div className="thumb" key={file.name}>
+      <div className="thumbInner">
+        <img alt="selected" src={file.preview} className="img" />
       </div>
     </div>
   ));
@@ -187,17 +187,17 @@ export default function Portfolio(props) {
   }, [src1, src2, src3, src4, src5]);
 
   // Memory Leaks.
-  // useEffect(
-  //   () => () => {
-  //     // Make sure to revoke the data uris to avoid memory leaks
-  //     heroFiles1.forEach((file) => URL.revokeObjectURL(file.preview));
-  //     heroFiles2.forEach((file) => URL.revokeObjectURL(file.preview));
-  //     heroFiles3.forEach((file) => URL.revokeObjectURL(file.preview));
-  //     heroFiles4.forEach((file) => URL.revokeObjectURL(file.preview));
-  //     heroFiles5.forEach((file) => URL.revokeObjectURL(file.preview));
-  //   },
-  //   [heroFiles1, heroFiles2, heroFiles3, heroFiles4, heroFiles5]
-  // );
+  useEffect(
+    () => () => {
+      // Make sure to revoke the data uris to avoid memory leaks
+      heroFiles1.forEach((file) => URL.revokeObjectURL(file.preview));
+      heroFiles2.forEach((file) => URL.revokeObjectURL(file.preview));
+      heroFiles3.forEach((file) => URL.revokeObjectURL(file.preview));
+      heroFiles4.forEach((file) => URL.revokeObjectURL(file.preview));
+      heroFiles5.forEach((file) => URL.revokeObjectURL(file.preview));
+    },
+    [heroFiles1, heroFiles2, heroFiles3, heroFiles4, heroFiles5]
+  );
 
   return (
     <>
@@ -272,7 +272,7 @@ export default function Portfolio(props) {
                     </div>
                   )}
                 </Dropzone>
-                <aside style={thumbsContainer}>
+                <aside className="thumbsContainer">
                   {index === 0 ? thumbs1 : null}
                   {index === 1 ? thumbs2 : null}
                   {index === 2 ? thumbs3 : null}
@@ -295,39 +295,6 @@ export default function Portfolio(props) {
     </>
   );
 }
-
-///////////////////////////
-// Css Styling.
-const thumbsContainer = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  marginTop: 16,
-};
-
-const thumb = {
-  display: "inline-flex",
-  borderRadius: 2,
-  border: "1px solid #eaeaea",
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
-  display: "block",
-  width: "auto",
-  height: "100%",
-};
 
 const baseStyle = {
   flex: 1,

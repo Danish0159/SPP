@@ -50,7 +50,7 @@ const Login = () => {
       .required("Email is required"),
     password: yup
       .string("Enter your password")
-      // .min(8, "Password is too short - should be 8 chars minimum.")
+      .min(8, "Password is too short - Enter 8 chars minimum.")
       .required("Password is required"),
   });
 

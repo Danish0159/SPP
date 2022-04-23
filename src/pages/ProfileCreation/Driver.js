@@ -216,44 +216,10 @@ const Driver = () => {
 export default Driver;
 
 const Wrapper = styled.section`
-  .btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 0rem;
-    margin-top: 2rem;
-  }
-  .card-btn {
-    font-size: 1.6rem;
-    border-radius: 25px;
-    /* OverRiding index.css styling */
-    margin: 0.1rem;
-    font-weight: 500;
-  }
-
-  /* Styling For All the ProfileCreation Pages that are coming  */
   .error-p {
     font-size: 1.3rem;
     color: red;
     font-family: "Nunito Sans", sans-serif;
     height: 5px;
-  }
-
-  #Select,
-  #Input {
-    font-size: 1.3rem;
-    font-family: "Nunito Sans", sans-serif;
-    font-weight: 700;
-  }
-
-  #mu-btn {
-    color: var(--clr-blue-2);
-    font-size: 1.6rem;
-  }
-  #remove-img-btn {
-    color: var(--clr-blue-2);
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
   }
 `;

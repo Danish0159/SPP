@@ -29,4 +29,63 @@ export const CardLayout = styled.div`
     font-size: 1.8rem;
     margin: 2rem 0rem;
   }
+ .btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0rem;
+    margin-top: 2rem;
+  }
+  .card-btn {
+    font-size: 1.6rem;
+    border-radius: 25px;
+    /* OverRiding index.css styling */
+    margin: 0.1rem;
+    font-weight: 500;
+  }
+  /* Material Ui override. */
+  #remove-img-btn {
+    color: var(--clr-blue-2);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+  }
+  #Select,
+  #Input {
+    font-size: 1.3rem;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 700;
+  }
+  #mu-btn {
+    color: var(--clr-blue-2);
+    font-size: 1.6rem;
+  }
+  /* Thumbs */
+  .thumbsContainer{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .thumb{
+    display: inline-flex;
+    border-radius:2px;
+    border : 1px solid #eaeaea;
+    margin-bottom: 8px;
+    margin-right:8px;
+    width: 100px;
+    height: 100px;
+    padding: 4px;
+    box-sizing:border-box;
+  }
+  .thumbInner{
+    display:flex;
+    min-width:0px;
+    overflow:hidden ;
+  }
+  .img{
+    display: block;
+    width: auto;
+    height: 100%;
+  }
 `;

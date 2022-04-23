@@ -278,6 +278,8 @@ const Wrapper = styled.section`
   .signup__register {
     color: var(--clr-blue-2);
   }
+  
+  /* Overriding materia ui styling */
   #name,
   #email,
   #password,
