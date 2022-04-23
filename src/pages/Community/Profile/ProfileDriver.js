@@ -5,28 +5,52 @@ import { Buttons, CardTitle } from "../../../components/Community/Profile";
 import { CardLayout } from '../../../components/styled'
 import { AddProject, PreviewProfile, PersonelInfo, PersonelProjects } from '../Profile'
 
+// State.
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSingleUser, reset } from "../../../slices/users";
+import { toast } from "react-toastify";
+import Spinner from "../../../components/Spinner";
+
+
+
 const ProfileDriver = () => {
   const [step, setStep] = useState(0);
+  // State.
+  const dispatch = useDispatch();
+  const { isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.users
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    dispatch(reset());
+    // eslint-disable-next-line
+  }, [isError, isSuccess, message, dispatch]);
+
+  // state end.
 
   const handleStep = (id) => {
     setStep(id);
-    // if (id === 0) {
-    //   console.log("First Call");
-    // }
-    // if (id === 1) {
-    //   console.log("Second Call");
-    // }
-    // if (id === 2) {
-    //   console.log("Third Call");
-    // }
-    // if (id === 3) {
-    //   console.log("Fourth Call");
-    // }
   }
 
   useEffect(() => {
-    console.log("Default First API Call");
-  }, [])
+    if (step === 0) {
+      dispatch(fetchSingleUser("625a8f8722fb3474856dac47"));
+    }
+    if (step === 1) {
+      dispatch(fetchSingleUser("625a8f8722fb3474856dac47"));
+      console.log("Second API Call");
+    }
+    if (step === 2) {
+      console.log("Third API Call");
+    }
+    if (step === 3) {
+      console.log("Fourth API Call");
+    }
+  }, [step])
 
   function _renderStepContent(step) {
     switch (step) {
@@ -35,6 +59,14 @@ const ProfileDriver = () => {
       case 2: return <PreviewProfile></PreviewProfile>;
       case 3: return <AddProject></AddProject>
     }
+  }
+
+  if (isLoading) {
+    return (
+      <div className="section-100vh">
+        <Spinner />;
+      </div>
+    );
   }
 
   return (

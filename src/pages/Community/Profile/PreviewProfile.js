@@ -30,7 +30,7 @@ const PreviewProfile = () => {
             <h2 className='preview__title'>Portfolio</h2>
             {counter.map((one) => {
                 return (
-                    <Accordion>
+                    <Accordion key={one}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
