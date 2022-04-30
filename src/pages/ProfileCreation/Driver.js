@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
 import { Navbar, Footer, Spinner } from "../../components";
-import { Buttons, CardTitle } from "../../components/ProfileCreation";
-import { CardLayout } from '../../components/styled'
+import { Buttons } from "../../components/ProfileCreation";
+import { CardLayout } from '../../components/Common/styled'
+import { CardTitle } from "../../components/Common"
 // Form Model
 import {
   formInitialValues,
@@ -78,8 +79,7 @@ const Driver = () => {
 
     if (isSuccess) {
       toast.success(message);
-      dispatch(logout());
-      history.push("/");
+      history.push("/HomeFeed");
     }
 
     dispatch(reset());
@@ -178,7 +178,7 @@ const Driver = () => {
               >
                 {({ isSubmitting }) => (
                   <Form id={formId}>
-                    <CardTitle activeStep={activeStep}></CardTitle>
+                    <CardTitle steps={steps} activeStep={activeStep}></CardTitle>
                     <div className="card__content">
                       {_renderStepContent(activeStep)}
                       <div className="btn-container">

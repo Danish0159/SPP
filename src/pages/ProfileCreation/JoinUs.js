@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Navbar, Footer } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
 import image from "../../images/join.jpg";
-import { CardLayout } from '../../components/styled'
+import { CardLayout } from '../../components/Common/styled'
 
 const JoinUs = () => {
   const { user } = useSelector((state) => state.auth);

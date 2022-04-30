@@ -24,10 +24,9 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
+      // The Profile Is Already Created For the User.
       if (user.profile) {
-        toast.success("The Profile is Already Created for this User");
-        dispatch(logout());
-        history.push("/");
+        history.push("/HomeFeed");
       } else {
         history.push("/joinus");
       }

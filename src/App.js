@@ -22,9 +22,8 @@ import { JoinUs, Driver } from "./pages/ProfileCreation";
 import { HomeFeed } from "./pages/Community";
 import { ProfileDriver } from "./pages/Community/Profile";
 
-
 // Private Route.
-import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
+// import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
 import PrivateRouteCDC from "./pages/ProtectedRoutes/PrivateRouteCDC";
 const App = () => {
   return (

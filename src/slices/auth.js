@@ -32,7 +32,7 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const data = await AuthService.login(email, password);
-      if (data.status !== "Success") {
+      if (data.status !== "SUCCESS") {
         return thunkAPI.rejectWithValue(data.message);
       }
       return data;
@@ -55,7 +55,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 
 //  Register User.
 export const profileCreation = createAsyncThunk(
-  "users/profileCreation",
+  "auth/profileCreation",
   async (profilePayload, thunkAPI) => {
     try {
       const data = await AuthService.profileCreation(profilePayload);
@@ -138,6 +138,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.message = action.payload.message;
+        state.user = action.payload;
       })
       .addCase(profileCreation.rejected, (state, action) => {
         state.isLoading = false;
