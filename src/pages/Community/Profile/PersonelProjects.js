@@ -12,7 +12,7 @@ const PersonelProjects = () => {
     return (
         <main>
             <h2 className='preview__title'>Portfolio</h2>
-            {user.userProfile.portfolio.map((project, index) => {
+            {user.profile.portfolio.map((project, index) => {
                 return (
                     <Accordion key={index}>
                         <AccordionSummary

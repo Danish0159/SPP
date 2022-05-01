@@ -25,7 +25,7 @@ const Login = () => {
 
     if (isSuccess || user) {
       // The Profile Is Already Created For the User.
-      if (user.profile) {
+      if (user.user.profile) {
         history.push("/HomeFeed");
       } else {
         history.push("/joinus");

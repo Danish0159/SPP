@@ -8,9 +8,9 @@ function PrivateRouteCDC({ component: Component, ...restOfProps }) {
     <Route
       {...restOfProps}
       render={(props) =>
-        (user && user.role === "Company") ||
-          (user && user.role === "Designer") ||
-          (user && user.role === "Contractor") ? (
+        (user && user.user.role === "Company") ||
+          (user && user.user.role === "Designer") ||
+          (user && user.user.role === "Contractor") ? (
           <Component {...props} />
         ) : (
           <Redirect to="/Signup" />

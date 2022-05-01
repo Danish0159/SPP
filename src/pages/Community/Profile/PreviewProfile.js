@@ -20,18 +20,18 @@ const PreviewProfile = () => {
             />
             <div className="preview__info">
                 <p className="personel__title">Name</p>
-                <p className="personel__subtitle">{user.name}</p>
+                <p className="personel__subtitle">{user.user.name}</p>
                 <p className="personel__title">Email</p>
-                <p className="personel__subtitle">JhonDoe@gmail.com</p>
+                <p className="personel__subtitle">{user.user.email}</p>
                 <p className="personel__title">Role</p>
-                <p className="personel__subtitle">{user.role}</p>
+                <p className="personel__subtitle">{user.user.role}</p>
                 <p className="personel__title">Number</p>
-                <p className="personel__subtitle">{user.userProfile.phoneNumber}</p>
+                <p className="personel__subtitle">{user.profile.phoneNumber}</p>
                 <p className="personel__title">Location</p>
-                <p className="personel__subtitle">{user.userProfile.location.country} , {user.userProfile.location.city}</p>
+                <p className="personel__subtitle">{user.profile.location.country} , {user.profile.location.city}</p>
             </div>
             <h2 className='preview__title'>Portfolio</h2>
-            {user.userProfile.portfolio.map((project, index) => {
+            {user.profile.portfolio.map((project, index) => {
                 return (
                     <Accordion key={index}>
                         <AccordionSummary

@@ -21,7 +21,7 @@ const JoinUs = () => {
             </div>
             <div className="join__content">
               <p className="join__title">Join Us</p>
-              {user && <p className="join__subTitle">Hi {user.name},</p>}
+              {user && <p className="join__subTitle">Hi {user.user.name},</p>}
               <p className="join__passage">
                 Thanks for your interest in Maqawal as the world's largest talent
                 platform, we connect millions of businesses with independent
