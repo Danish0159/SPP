@@ -5,17 +5,16 @@ import { Buttons } from "../../../components/Community/Profile";
 import { CardLayout } from '../../../components/Common/styled'
 import { AddProject, PreviewProfile, PersonelInfo, PersonelProjects } from '../Profile'
 import { CardTitle } from '../../../components/Common'
-import Spinner from "../../../components/Spinner";
 
 const ProfileDriver = () => {
+  const [step, setStep] = useState(0);
+
   const steps = [
     "Personel Info",
     "Your Projects",
     "Preview Profile",
     "Add Project",
   ];
-
-  const [step, setStep] = useState(0);
 
   const handleStep = (id) => {
     setStep(id);

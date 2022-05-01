@@ -8,8 +8,8 @@ const PersonelInfo = () => {
     );
     return (
         <div>
-            <div style={{ display: "flex", alignItems: "center", marginBottom: "22px", justifyContent: "flex-end", borderBottom: "1px solid #dce1e8", paddingBottom: "12px", cursor: "pointer" }}>
-                <ModeEditOutlineOutlinedIcon style={{ color: "656565", fontSize: 35, border: "1px solid #656565", borderRadius: 50, padding: "6px" }}></ModeEditOutlineOutlinedIcon>
+            <div style={{ display: "flex", alignItems: "center", marginBottom: "7px", justifyContent: "flex-end", paddingBottom: "0px", cursor: "pointer" }}>
+                <ModeEditOutlineOutlinedIcon style={{ color: "656565", fontSize: 35, border: "1px solid #656565", borderRadius: 50, margin: ".4rem 0rem", padding: "6px" }}></ModeEditOutlineOutlinedIcon>
             </div>
             <p className="personel__title">Name</p>
             <p className="personel__subtitle">{user.user.name}</p>

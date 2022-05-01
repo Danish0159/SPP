@@ -1,19 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 
 function PrivateRouteCDC({ component: Component, ...restOfProps }) {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { user } = useSelector(
+    (state) => state.auth
+  );
 
   return (
     <Route
       {...restOfProps}
       render={(props) =>
-        (user && user.user.role === "Company") ||
-          (user && user.user.role === "Designer") ||
-          (user && user.user.role === "Contractor") ? (
+        (user && user.user.profile === "false") ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/Signup" />
+          <Redirect to="/" />
         )
       }
     />

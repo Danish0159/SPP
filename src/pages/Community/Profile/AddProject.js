@@ -1,27 +1,67 @@
 import React, { useEffect, useState } from "react";
 import Dropzone, { useDropzone } from "react-dropzone";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import { Button, TextField } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { addProject, reset } from "../../../slices/auth";
+import Spinner from "../../../components/Spinner";
+import { useHistory } from "react-router-dom";
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
     const [location, setLocation] = useState("");
-    const [src, setSrc] = useState([]);
+    const [images, setImages] = useState([]);
     const [files, setFiles] = useState([]);
 
     const removeImages = () => {
-        setSrc([]);
+        setImages([]);
         setFiles([]);
     };
 
+    // state.
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.auth
+    );
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+        if (isSuccess) {
+            toast.success(message);
+            // history.push("/Login");
+        }
+        dispatch(reset());
+        // eslint-disable-next-line
+    }, [user, isError, isSuccess, message, dispatch]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log({
+            projectName,
+            location,
+            images,
+            id: user.profile._id,
+        })
+
         //  API CALL.
-
-
+        dispatch(
+            addProject({
+                projectName,
+                location,
+                images,
+                id: user.profile._id,
+            })
+        );
         // Reset form.
         setProjectName("");
         setLocation("");
+        setFiles([]);
+        setImages([]);
     };
 
     const { isDragActive, isDragAccept, isDragReject } = useDropzone();
@@ -51,6 +91,11 @@ const AddProject = () => {
         },
         [files]
     );
+
+    if (isLoading) {
+        return <Spinner />;
+    }
+
     return (
         <Wrapper>
             <form onSubmit={handleSubmit}>
@@ -92,7 +137,7 @@ const AddProject = () => {
                                 reader.readAsDataURL(file);
 
                                 reader.onload = () => {
-                                    setSrc((src) => [...src, reader.result]);
+                                    setImages((images) => [...images, reader.result]);
                                 };
 
                                 reader.onerror = function () {
@@ -128,7 +173,7 @@ const AddProject = () => {
                     <aside style={thumbsContainer}>
                         {thumbs}
                     </aside>
-                    {src.length > 0 &&
+                    {images.length > 0 &&
                         <Button
                             id="remove-img-btn"
                             type="button"

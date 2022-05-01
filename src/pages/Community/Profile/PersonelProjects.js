@@ -4,11 +4,21 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
 const PersonelProjects = () => {
     const { user } = useSelector(
         (state) => state.auth
     );
+
+    function deleteP() {
+        alert("I will delete the project");
+    }
+    function updateP() {
+        alert("I will update the project");
+    }
+
     return (
         <main>
             <h2 className='preview__title'>Portfolio</h2>
@@ -16,7 +26,11 @@ const PersonelProjects = () => {
                 return (
                     <Accordion key={index}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<>
+                                <ExpandMoreIcon style={{ fontSize: 20, marginRight: "8px" }} />
+                                <DeleteIcon onClick={deleteP} style={{ fontSize: 20, marginRight: "8px" }} />
+                                <ModeEditOutlineOutlinedIcon onClick={updateP} style={{ fontSize: 20, marginRight: "8px" }} />
+                            </>}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
@@ -31,11 +45,13 @@ const PersonelProjects = () => {
                                 <aside className='thumbsContainer'>
                                     {
                                         project.images.map((img, index) => {
-                                            <div key={index} className='thumb'>
-                                                <div className='thumbInner'>
-                                                    <img alt="selected" src={img} className='img' />
+                                            return (
+                                                <div key={index} className='thumb'>
+                                                    <div className='thumbInner'>
+                                                        <img alt="selected" src={img} className='img' />
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )
                                         })
                                     }
                                 </aside>

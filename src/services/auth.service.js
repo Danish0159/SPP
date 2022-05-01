@@ -63,11 +63,29 @@ const profileCreation = async (profilePayload) => {
   return response.data;
 };
 
+// /////////////////////////////////
+// Flow3 API's (Community Flow API).
+// /////////////////////////////////
+const addProject = async (projectName, location, images, id) => {
+  const response = await axios.patch(
+    `https://warm-cove-25020.herokuapp.com/api/profile/addproject/${id}`,
+    {
+      projectName, location, images
+    },
+    {
+      headers: authHeader(),
+    }
+  );
+
+  return response.data;
+};
+
 const authService = {
   register,
   login,
   logout,
   profileCreation,
+  addProject,
 };
 
 export default authService;

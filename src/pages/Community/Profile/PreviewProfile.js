@@ -50,11 +50,13 @@ const PreviewProfile = () => {
                                 <aside className='thumbsContainer'>
                                     {
                                         project.images.map((img, index) => {
-                                            <div key={index} className='thumb'>
-                                                <div className='thumbInner'>
-                                                    <img alt="selected" src={img} className='img' />
+                                            return (
+                                                <div key={index} className='thumb'>
+                                                    <div className='thumbInner'>
+                                                        <img alt="selected" src={img} className='img' />
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )
                                         })
                                     }
                                 </aside>
