@@ -6,7 +6,6 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProject, reset } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
-import { useHistory } from "react-router-dom";
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
@@ -21,7 +20,6 @@ const AddProject = () => {
 
     // state.
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const { user, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.auth

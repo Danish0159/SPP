@@ -99,6 +99,27 @@ export const addProject = createAsyncThunk(
   }
 );
 
+export const updateProfile = createAsyncThunk(
+  "auth/updateProfile",
+  async ({ name, email, role, phoneNumber, id }, thunkAPI) => {
+    try {
+      const data = await AuthService.updateProfile(name, email, role, phoneNumber, id);
+      if (data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(data.message);
+      }
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Initial State.
 const initialState = {
   user: user ? user : null,
@@ -179,6 +200,20 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(addProject.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        state.user = action.payload;
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

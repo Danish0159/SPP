@@ -80,12 +80,27 @@ const addProject = async (projectName, location, images, id) => {
   return response.data;
 };
 
+const updateProfile = async (name, email, role, phoneNumber, id) => {
+  const response = await axios.patch(
+    `https://warm-cove-25020.herokuapp.com/api/profile/updateprofile/${id}`,
+    {
+      name, email, role, phoneNumber
+    },
+    {
+      headers: authHeader(),
+    }
+  );
+
+  return response.data;
+};
+
 const authService = {
   register,
   login,
   logout,
   profileCreation,
   addProject,
+  updateProfile,
 };
 
 export default authService;
