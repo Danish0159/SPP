@@ -94,6 +94,16 @@ const updateProfile = async (name, email, role, phoneNumber, id) => {
   return response.data;
 };
 
+const deleteProject = async (profileId, projectId) => {
+  const response = await axios.delete(
+    `https://warm-cove-25020.herokuapp.com/api/profile/deleteproject/${profileId}/${projectId}`,
+    {
+      headers: authHeader(),
+    }
+  );
+  return response.data;
+};
+
 const authService = {
   register,
   login,
@@ -101,6 +111,7 @@ const authService = {
   profileCreation,
   addProject,
   updateProfile,
+  deleteProject,
 };
 
 export default authService;

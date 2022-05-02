@@ -4,7 +4,7 @@ import Spinner from "./Spinner";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { login, logout, reset } from "../slices/auth";
+import { login, reset } from "../slices/auth";
 import loginImage from "../images/Login.png";
 import { useFormik } from "formik";
 import * as yup from "yup";

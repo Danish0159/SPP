@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -7,16 +6,44 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProject, reset } from "../../../slices/auth";
+import Spinner from "../../../components/Spinner";
+
+
 const PersonelProjects = () => {
-    const { user } = useSelector(
+    const { user, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.auth
     );
 
-    function deleteP(name) {
-        alert(name);
+    // state.
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+        if (isSuccess) {
+            toast.success(message);
+        }
+        dispatch(reset());
+        // eslint-disable-next-line
+    }, [user, isError, isSuccess, message, dispatch]);
+
+
+    function handleDelete(projectId) {
+        //  API CALL.
+        dispatch(
+            deleteProject({
+                profileId: user.profile._id,
+                projectId,
+            })
+        );
     }
-    function updateP(name) {
-        alert(name);
+
+    if (isLoading) {
+        return <Spinner />;
     }
 
     return (
@@ -29,8 +56,8 @@ const PersonelProjects = () => {
                             expandIcon={
                                 <>
                                     <ExpandMoreIcon style={{ fontSize: 20, marginRight: "8px" }} />
-                                    <DeleteIcon onClick={() => { deleteP(project._id) }} style={{ fontSize: 20, marginRight: "8px" }} />
-                                    <ModeEditOutlineOutlinedIcon onClick={() => { updateP(project._id) }} style={{ fontSize: 20, marginRight: "8px" }} />
+                                    <DeleteIcon onClick={() => { handleDelete(project._id) }} style={{ fontSize: 20, marginRight: "8px" }} />
+                                    <ModeEditOutlineOutlinedIcon style={{ fontSize: 20, marginRight: "8px" }} />
                                 </>
                             }
                             aria-controls="panel1a-content"

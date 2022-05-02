@@ -5,7 +5,6 @@ import { FormControl, Select, TextField, MenuItem } from '@mui/material';
 import { users } from "../../../utils/constants";
 import CancelIcon from '@mui/icons-material/Cancel';
 
-
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile, reset } from "../../../slices/auth";
