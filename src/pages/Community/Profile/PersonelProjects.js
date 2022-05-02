@@ -12,11 +12,11 @@ const PersonelProjects = () => {
         (state) => state.auth
     );
 
-    function deleteP() {
-        alert("I will delete the project");
+    function deleteP(name) {
+        alert(name);
     }
-    function updateP() {
-        alert("I will update the project");
+    function updateP(name) {
+        alert(name);
     }
 
     return (
@@ -26,11 +26,13 @@ const PersonelProjects = () => {
                 return (
                     <Accordion key={index}>
                         <AccordionSummary
-                            expandIcon={<>
-                                <ExpandMoreIcon style={{ fontSize: 20, marginRight: "8px" }} />
-                                <DeleteIcon onClick={deleteP} style={{ fontSize: 20, marginRight: "8px" }} />
-                                <ModeEditOutlineOutlinedIcon onClick={updateP} style={{ fontSize: 20, marginRight: "8px" }} />
-                            </>}
+                            expandIcon={
+                                <>
+                                    <ExpandMoreIcon style={{ fontSize: 20, marginRight: "8px" }} />
+                                    <DeleteIcon onClick={() => { deleteP(project._id) }} style={{ fontSize: 20, marginRight: "8px" }} />
+                                    <ModeEditOutlineOutlinedIcon onClick={() => { updateP(project._id) }} style={{ fontSize: 20, marginRight: "8px" }} />
+                                </>
+                            }
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
