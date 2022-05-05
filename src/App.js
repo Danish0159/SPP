@@ -23,8 +23,8 @@ import { HomeFeed } from "./pages/Community";
 import { ProfileDriver } from "./pages/Community/Profile";
 
 // Private Route.
+// import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
 import PrivateRouteCDC from "./pages/ProtectedRoutes/PrivateRouteCDC";
-import PrivateWithOutProfile from "./pages/ProtectedRoutes/PrivateWithOutProfile";
 const App = () => {
   return (
     <>
@@ -39,6 +39,9 @@ const App = () => {
           <Route exact path="/Signup">
             <SignupPage></SignupPage>
           </Route>
+          {/* ----------------------------------------------- */}
+          {/* ----------------------------------------------- */}
+          {/* Box1 (User Protection) */}
           <Route exact path="/Welcome">
             <WelcomePage></WelcomePage>
           </Route>
@@ -54,9 +57,10 @@ const App = () => {
           <Route exact path="/Projects/:userId/:id">
             <SingleProjectPage></SingleProjectPage>
           </Route>
-          {/* Box1 Start (Private Routes).  */}
+          {/* Box1 END */}
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}
+          {/* Box2 (Desinger||Contractor||Company Protection) */}
           <PrivateRouteCDC
             exact
             path="/JoinUs"
@@ -71,23 +75,12 @@ const App = () => {
           {/* Box2 END  */}
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}
-          {/* Box2 Start (Private Routes.)  */}
-          {/* ----------------------------------------------- */}
-          {/* ----------------------------------------------- */}
-          <PrivateWithOutProfile
-            exact
-            path="/HomeFeed"
-            component={HomeFeed}
-          ></PrivateWithOutProfile>
-          <PrivateWithOutProfile
-            exact
-            path="/Profile"
-            component={ProfileDriver}
-          ></PrivateWithOutProfile>
-          {/* ----------------------------------------------- */}
-          {/* Box2 End (Private Routes.)  */}
-          {/* ----------------------------------------------- */}
-          {/* ----------------------------------------------- */}
+          <Route exact path="/HomeFeed">
+            <HomeFeed></HomeFeed>
+          </Route>
+          <Route exact path="/Profile">
+            <ProfileDriver></ProfileDriver>
+          </Route>
           <Route exact path="*">
             <ErrorPage></ErrorPage>
           </Route>
@@ -99,3 +92,5 @@ const App = () => {
 };
 
 export default App;
+
+// The app has SignUp+login athuentication for simple user.
