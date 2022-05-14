@@ -14,7 +14,7 @@ const PreviewProfile = () => {
     return (
         <Wrapper>
             <Avatar
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDJzEaxLN-jGRYYUO65pWu7Q9GXoNt4LUSSA&usqp=CAU"
+                src={user.profile.profilePhoto}
                 sx={{ width: 130, height: 130 }}
                 alt="Avatar"
             />
@@ -53,7 +53,7 @@ const PreviewProfile = () => {
                                             return (
                                                 <div key={index} className='thumb'>
                                                     <div className='thumbInner'>
-                                                        <img alt="selected" src={img} className='img' />
+                                                        <img alt="img" src={img} className='img' />
                                                     </div>
                                                 </div>
                                             )

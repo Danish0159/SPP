@@ -11,11 +11,9 @@ const AddProject = () => {
     const [projectName, setProjectName] = useState("");
     const [location, setLocation] = useState("");
     const [images, setImages] = useState([]);
-    const [files, setFiles] = useState([]);
 
     const removeImages = () => {
         setImages([]);
-        setFiles([]);
     };
 
     // state.
@@ -39,12 +37,6 @@ const AddProject = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({
-            projectName,
-            location,
-            images,
-            id: user.profile._id,
-        })
 
         //  API CALL.
         dispatch(
@@ -58,7 +50,6 @@ const AddProject = () => {
         // Reset form.
         setProjectName("");
         setLocation("");
-        setFiles([]);
         setImages([]);
     };
 
@@ -74,28 +65,19 @@ const AddProject = () => {
         [isDragActive, isDragReject, isDragAccept]
     );
     // thumbs.
-    const thumbs = files.map((file) => (
-        <div style={thumb} key={file.name}>
+    const thumbs = images.map((image, index) => (
+        <div style={thumb} key={index}>
             <div style={thumbInner}>
-                <img alt="selected" src={file.preview} style={img} />
+                <img alt="selected" src={image} style={img} />
             </div>
         </div>
     ));
-    // Memory Leaks.
-    useEffect(
-        () => () => {
-            // Make sure to revoke the data uris to avoid memory leaks
-            files.forEach((file) => URL.revokeObjectURL(file.preview));
-        },
-        [files]
-    );
-
+    // loading.
     if (isLoading) {
         return <Spinner />;
     }
-
     return (
-        <Wrapper>
+        <>
             <form onSubmit={handleSubmit}>
                 <p className="card__subtitle">Project Name</p>
                 <TextField
@@ -121,15 +103,6 @@ const AddProject = () => {
                 <div className="form-group">
                     <Dropzone
                         onDrop={(acceptedFiles) => {
-                            setFiles(
-                                acceptedFiles.map((file) =>
-                                    Object.assign(file, {
-                                        preview: URL.createObjectURL(file),
-                                    })
-                                )
-                            );
-
-                            // Read files and update src state.
                             acceptedFiles.map((file) => {
                                 let reader = new FileReader();
                                 reader.readAsDataURL(file);
@@ -185,22 +158,15 @@ const AddProject = () => {
                         className="blue-btn card-btn"
                         type="submit"
                     >
-                        UPDATE
+                        ADD PROJECT
                     </button>
                 </div>
             </form>
-        </Wrapper>
+        </>
     )
 }
 
 export default AddProject
-
-
-
-const Wrapper = styled.section`
-
-`;
-
 
 
 ///////////////////////////

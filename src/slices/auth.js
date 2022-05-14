@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
   }
 );
 
-// Get user from localStorage
+// Get user from localStorage.
 const user = JSON.parse(localStorage.getItem("user"));
 
 // User Login.
@@ -125,6 +125,27 @@ export const deleteProject = createAsyncThunk(
   async ({ profileId, projectId }, thunkAPI) => {
     try {
       const data = await AuthService.deleteProject(profileId, projectId);
+      if (data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(data.message);
+      }
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const updateProject = createAsyncThunk(
+  "auth/updateProject",
+  async ({ projectName, location, images, profileId, projectId }, thunkAPI) => {
+    try {
+      const data = await AuthService.updateProject(projectName, location, images, profileId, projectId);
       if (data.status !== "SUCCESS") {
         return thunkAPI.rejectWithValue(data.message);
       }
@@ -249,6 +270,20 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(deleteProject.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateProject.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProject.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        state.user = action.payload;
+      })
+      .addCase(updateProject.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

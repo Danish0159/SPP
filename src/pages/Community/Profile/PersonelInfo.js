@@ -40,7 +40,6 @@ const PersonelInfo = () => {
         // eslint-disable-next-line
     }, [user, isError, isSuccess, message, dispatch]);
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
