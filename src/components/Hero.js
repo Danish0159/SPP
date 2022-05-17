@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HeroImage from "../images/HeroImage.jpg";
 import { useTranslation } from "react-i18next";
+
 function Hero() {
   const { t } = useTranslation();
   return (
     <Wrapper>
       <div className="hero__grid">
         <div className="hero__content">
-          <h2 className="hero__title">Everything Is In Your Hands</h2>
-          <p className="hero__paragraph">{t("this_is_an_example")}</p>
+          <h2 className="hero__title">{t("home_title")}</h2>
+          <p className="hero__paragraph">{t("home_subtitle")}</p>
           <Link to="/Welcome" className="btn-small">
             Get Started
           </Link>

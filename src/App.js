@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import LanguageSelect from "./components/languageSelect";
 // Public Pages. 
 import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
 
@@ -29,6 +30,7 @@ const App = () => {
   return (
     <>
       <Router>
+        <LanguageSelect></LanguageSelect>
         <Switch>
           <Route exact path="/">
             <HomePage></HomePage>

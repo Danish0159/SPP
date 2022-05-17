@@ -1,6 +1,16 @@
 {
-  "select_language": "اختار اللغة",
-  "hello_welcome_to_react": "مرحبًا بك في رد الفعل",
-  "this_is_an_example": "هذا مثال",
-  "please_enter_name": "من فضلك ادخل الاسم"
+  "_comment": "Home Page",
+  "home_title": "كل شيء تحت سيطرتك",
+  "home_subtitle": "ابحث عن أفضل المقاولين والمصممين وشركات المقاولات في المكان الذي تريده. يتمتع مكوال بميزات خاصة لمساعدتك على الملاءمة الدقيقة لاحتياجات البناء الخاصة بك",
+  "home_login": "تسجيل الدخول",
+  
+  
+  "_comment2": "Login Page",
+  "login_welcome": "أهلا بك",
+  "login_please": "الرجاء تسجيل الدخول.",
+  "login_email": "بريد الكتروني",
+  "login_password": "كلمه السر",
+  "login_login": "تسجيل الدخول",
+  "login_don't": "ليس لديك حساب تسجيل الدخول؟",
+  "login_register": "سجل الان"
 }

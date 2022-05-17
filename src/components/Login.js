@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import Spinner from "./Spinner";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +12,7 @@ import * as yup from "yup";
 import { TextField } from "@mui/material";
 
 const Login = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -80,11 +82,11 @@ const Login = () => {
         </figure>
 
         <form noValidate onSubmit={formik.handleSubmit} className="login__form">
-          <h2 className="login__title">Welcome</h2>
-          <p className="login__subTitle">Please login to your account.</p>
+          <h2 className="login__title">{t("login_welcome")}</h2>
+          <p className="login__subTitle">{t("login_please")}</p>
 
           <div className="form-group">
-            <label Htmlfor="email">Email Address</label>
+            <label Htmlfor="email">{t("login_email")}</label>
             <TextField
               fullWidth
               type="email"
@@ -100,7 +102,7 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">Password</label>
+            <label Htmlfor="password">{t("login_password")}</label>
             <TextField
               fullWidth
               type="password"
@@ -120,14 +122,13 @@ const Login = () => {
             variant="contained"
             className="blue-btn submit-button"
           >
-            LOGIN
+            {t("login_login")}
           </button>
-
           <p className="login__dont">
-            Don’t have an account?{" "}
+            {t("login_don't")}
             <span className="login__register">
               {" "}
-              <Link to="/Signup">Register Now</Link>{" "}
+              <Link to="/Signup"> {t("login_register")}</Link>{" "}
             </span>
           </p>
         </form>

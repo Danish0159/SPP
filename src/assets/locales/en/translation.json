@@ -1,6 +1,16 @@
 {
-  "select_language": "Select Language",
-  "hello_welcome_to_react": "Hello, Welcome to React",
-  "this_is_an_example": "Search the world information including webpages, images, videos and more. Google has many special features to help you find exactly what you use and pay for.",
-  "please_enter_name": "Please enter your name"
+  "_comment": "Home Page",
+  "home_title": "Everything Is In Your Hands",
+  "home_subtitle": "Search the world information including webpages, images, videos and more. Google has many special features to help you find exactly what you use and pay for.",
+  "home_login": "Login",
+
+
+  "_comment2": "Login Page",
+  "login_welcome": "Welcome",
+  "login_please": "Please login to your account.",
+  "login_email": "Email Address",
+  "login_password": "Password",
+  "login_login": "LOGIN",
+  "login_don't": "Don’t have an account?",
+  "login_register": "Register Now"
 }

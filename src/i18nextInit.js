@@ -4,10 +4,9 @@ import Backend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 import translationEN from "./assets/locales/en/translation.json";
 import translationAR from "./assets/locales/ar/translation.json";
-import translationFR from "./assets/locales/fr/translation.json";
 
 const fallbackLng = ["en"];
-const availableLanguages = ["en", "ar", "fr"];
+const availableLanguages = ["en", "ar"];
 
 const resources = {
   en: {
@@ -15,9 +14,6 @@ const resources = {
   },
   ar: {
     translation: translationAR,
-  },
-  fr: {
-    translation: translationFR,
   },
 };
 
