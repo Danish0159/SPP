@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../images/logo3.png";
-
+import { useTranslation } from "react-i18next";
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <Wrapper>
       <div className="footer__container">
@@ -12,20 +14,15 @@ const Footer = () => {
             <img className="navbar__logo" src={logo} alt="Logo" />
           </Link>
           <p className="footer__paragraph">
-            {/* Search the world information including webpages,
-            <br /> images, videos and more. Google has many special
-            <br /> features to help you find exactly what you use <br />
-            and pay for. */}
-
-            Maqawal is connecting the contractor and designers
-            <br /> worldwide while helping people to find the best contractor
-            <br /> and designers they are looking for.
+            {t("home_footer-text.first")}
+            <br /> {t("home_footer-text.second")}
+            <br /> {t("home_footer-text.third")}
           </p>
         </div>
         <div className="footer__right">
-          <a href="/">About Us</a>
-          <a href="/">Contact Us</a>
-          <a href="/">Our Policies</a>
+          <a href="/">{t("home_about")}</a>
+          <a href="/">{t("home_contact")}</a>
+          <a href="/">{t("home_policies")}</a>
           <br />
         </div>
       </div>

@@ -1,16 +1,56 @@
 {
-  "_comment": "Home Page",
+  "_________comment1": "Home Page",
   "home_title": "كل شيء تحت سيطرتك",
   "home_subtitle": "ابحث عن أفضل المقاولين والمصممين وشركات المقاولات في المكان الذي تريده. يتمتع مكوال بميزات خاصة لمساعدتك على الملاءمة الدقيقة لاحتياجات البناء الخاصة بك",
   "home_login": "تسجيل الدخول",
+  "home_started": "الشروع في العمل",
+  "home_about": "معلومات عنا",
+  "home_contact": "اتصل بنا",
+  "home_policies": "قوانيننا",
+  "home_footer": "قوانيننا",
+  "home_footer-text": {
+  "first": "مقاول دوت كوم يربط المقاول والمصممين",
+  "second":"في جميع أنحاء العالم مع مساعدة الناس في العثور على أفضل مقاول",
+  "third": "والمصممين الذين يبحثون عنهم"
+ },
+
+
   
-  
-  "_comment2": "Login Page",
+  "_________comment2": "Login Page",
   "login_welcome": "أهلا بك",
   "login_please": "الرجاء تسجيل الدخول.",
   "login_email": "بريد الكتروني",
   "login_password": "كلمه السر",
   "login_login": "تسجيل الدخول",
   "login_don't": "ليس لديك حساب تسجيل الدخول؟",
-  "login_register": "سجل الان"
+  "login_register": "سجل الان",
+
+
+"_________comment3": "Register Page",
+  "register_title": "تسجيل",
+  "register_name": "اسم",
+  "register_email": "بريد الكتروني",
+  "register_password": "كلمه السر",
+  "register_as": "سجل باسم",
+  "register_register": "تسجيل",
+  "register_already": "هل لديك حساب؟ ",
+  "register_login": "تسجيل الدخول الآن",
+
+
+  "_________comment4": "Welcome Page",
+  "welcome_title": "مرحبًا بك في منصتنا",
+  "welcome_subtitle": {
+  "first": "ابحث عن أفضل مقاول أو مصمم في",
+  "second": "منطقتك"
+ },
+
+
+  "welcome_looking": "البحث عن",
+  "welcome_contractor": "مقاول",
+  "welcome_designer": "مصمم",
+  "welcome_company": "شركات",
+  "welcome_category": "فئة",
+  "welcome_country": "دولة",
+  "welcome_city": "مدينة",
+  "welcome_search": "بحث"
 }

@@ -13,7 +13,7 @@ function Hero() {
           <h2 className="hero__title">{t("home_title")}</h2>
           <p className="hero__paragraph">{t("home_subtitle")}</p>
           <Link to="/Welcome" className="btn-small">
-            Get Started
+            {t("home_started")}
           </Link>
         </div>
 

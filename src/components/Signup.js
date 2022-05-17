@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Spinner from "./Spinner";
 import { toast } from "react-toastify";
@@ -12,6 +13,7 @@ import { register, reset } from "../slices/auth";
 import { users } from "../utils/constants";
 
 const Signup = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -93,9 +95,9 @@ const Signup = () => {
           <img class="signup__img" src={signupImage} alt="SignUp" />
         </figure>
         <form onSubmit={formik.handleSubmit} class="signup__form">
-          <h2 className="signup__title">Register</h2>
+          <h2 className="signup__title">{t("register_title")}</h2>
           <div class="form-group">
-            <label Htmlfor="name">Name</label>
+            <label Htmlfor="name">{t("register_name")}</label>
             <TextField
               fullWidth
               type="text"
@@ -111,7 +113,7 @@ const Signup = () => {
           </div>
 
           <div class="form-group">
-            <label Htmlfor="email">Email Address</label>
+            <label Htmlfor="email">{t("register_email")}</label>
             <TextField
               fullWidth
               type="email"
@@ -127,7 +129,7 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">Password</label>
+            <label Htmlfor="password">{t("register_password")}</label>
             <TextField
               fullWidth
               type="password"
@@ -143,7 +145,7 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">Register As</label>
+            <label Htmlfor="password">{t("register_as")}</label>
             <FormControl fullWidth>
               <Select
                 id="mui-component-select-Category"
@@ -165,14 +167,16 @@ const Signup = () => {
             variant="contained"
             className="blue-btn submit-button"
           >
-            REGISTER
+            {t("register_register")}
           </button>
 
           <p className="signup__dont">
-            Already have an account?{" "}
+            {t("register_already")}
             <span className="signup__register">
               {" "}
-              <Link to="/Login">Log In Now</Link>{" "}
+              <Link to="/Login">
+                {t("register_login")}
+              </Link>{" "}
             </span>
           </p>
         </form>

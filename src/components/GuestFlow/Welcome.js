@@ -8,8 +8,10 @@ import { useHistory } from "react-router-dom";
 import { fetchUsers, reset } from "../../slices/users";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
+import { useTranslation } from "react-i18next";
 
 const Welcome = () => {
+  const { t } = useTranslation();
   const [user, SetUser] = React.useState("");
   const [category, SetCategory] = React.useState("");
   const [country, SetCountry] = React.useState("");
@@ -61,10 +63,9 @@ const Welcome = () => {
 
   return (
     <Wrapper>
-      <h2 className="hero__title">Welcome on Board</h2>
+      <h2 className="hero__title">{t("welcome_title")}</h2>
       <p className="hero__subtitle">
-        Find Best Contractor Or Designer In <br /> Your Area
-      </p>
+        {t("welcome_subtitle.first")} <br></br> {t("welcome_subtitle.second")}</p>
       <form onSubmit={handleSubmit}>
         <div className="hero__inputs">
           {/* /////////////////////// */}
@@ -72,7 +73,7 @@ const Welcome = () => {
           {/* /////////////////////// */}
           <div className="form-group">
             <label className="label" htmlFor="name">
-              Looking For
+              {t("welcome_looking")}
             </label>
             <FormControl>
               <Select
@@ -94,7 +95,7 @@ const Welcome = () => {
           {/* /////////////////////// */}
           <div className="form-group">
             <label className="label" htmlFor="name">
-              Category
+              {t("welcome_category")}
             </label>
             <FormControl>
               <Select
@@ -116,7 +117,7 @@ const Welcome = () => {
           {/* /////////////////////// */}
           <div className="form-group">
             <label className="label" htmlFor="name">
-              Country
+              {t("welcome_country")}
             </label>
             <FormControl>
               <Select
@@ -140,7 +141,7 @@ const Welcome = () => {
           {country &&
             <div className="form-group">
               <label className="label" htmlFor="name">
-                City
+                {t("welcome_city")}
               </label>
               <FormControl>
                 <Select
@@ -167,7 +168,7 @@ const Welcome = () => {
           }
         </div>
         <button type="submit" className="blue-btn submit-button">
-          Search
+          {t("welcome_search")}
         </button>
       </form>
     </Wrapper>
