@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProject, updateProject, reset } from "../../../slices/auth";
 import CancelIcon from '@mui/icons-material/Cancel';
+import RateReviewIcon from '@mui/icons-material/RateReview';
 import Spinner from "../../../components/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
@@ -221,11 +222,12 @@ const PersonelProjects = () => {
                             <AccordionSummary
                                 expandIcon={
                                     <>
-                                        <ExpandMoreIcon style={{ fontSize: 20, marginRight: "8px" }} />
-                                        <DeleteIcon onClick={() => { handleDelete(project._id) }} style={{ fontSize: 20, marginRight: "8px" }} />
+                                        {/* <ExpandMoreIcon style={{ fontSize: 20, marginRight: "8px" }} /> */}
+                                        <RateReviewIcon style={{ fontSize: 20, marginRight: "8px", }}></RateReviewIcon>
                                         <ModeEditOutlineOutlinedIcon onClick={() => {
                                             handleProjectUpdate(project._id);
-                                        }} style={{ fontSize: 20, marginRight: "8px" }} />
+                                        }} style={{ fontSize: 20, marginRight: "8px", }} />
+                                        <DeleteIcon onClick={() => { handleDelete(project._id) }} style={{ fontSize: 20, marginRight: "8px", color: "#ff8080" }} />
                                     </>
                                 }
                                 aria-controls="panel1a-content"
@@ -282,6 +284,11 @@ const Wrapper = styled.div`
     cursor: pointer;
 }
 `;
+// const Wrapper1 = styled.div`
+//  >*{
+//      border: 2px solid blue;
+//  }
+//  `;
 
 ///////////////////////////
 // Css Styling.
