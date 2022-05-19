@@ -21,11 +21,12 @@ import { JoinUs, Driver } from "./pages/ProfileCreation";
 
 // Flow 3
 import { HomeFeed } from "./pages/Community";
-import { ProfileDriver } from "./pages/Community/Profile";
+import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
 
 // Private Route.
 // import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
 import PrivateRouteCDC from "./pages/ProtectedRoutes/PrivateRouteCDC";
+
 const App = () => {
   return (
     <>
@@ -82,6 +83,9 @@ const App = () => {
           </Route>
           <Route exact path="/Profile">
             <ProfileDriver></ProfileDriver>
+          </Route>
+          <Route exact path="/Review">
+            <ClientReview></ClientReview>
           </Route>
           <Route exact path="*">
             <ErrorPage></ErrorPage>

@@ -3,7 +3,6 @@ import Accordion from '@mui/material/Accordion';
 import styled from "styled-components";
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { toast } from "react-toastify";
@@ -51,11 +50,18 @@ const PersonelProjects = () => {
     /////////////////////////////
     /////////////////////////////
 
+    /////////////////////////////
+    // Take Review. 
+    const [review, setReview] = useState(false);
+    const [clientName, setClientName] = useState("");
+    const [clientEmail, setClientEmail] = useState("");
+    const [clientTitle, setClientTitle] = useState("");
+    const [clientMessage, setClientMessage] = useState("");
+
+    // state.
     const { user, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.auth
     );
-
-    // state.
     const dispatch = useDispatch();
     useEffect(() => {
         if (isError) {
@@ -68,6 +74,8 @@ const PersonelProjects = () => {
         // eslint-disable-next-line
     }, [user, isError, isSuccess, message, dispatch]);
 
+    /////////////////////////////
+    // Delete Project 
     function handleDelete(projectId) {
         //  API CALL.
         dispatch(
@@ -77,7 +85,8 @@ const PersonelProjects = () => {
             })
         );
     }
-
+    /////////////////////////////
+    // Necessary Updates
     function handleProjectUpdate(projectId) {
         const project = user.profile.portfolio.find((project) => project._id === projectId);
         setProjectName(project.projectName);
@@ -86,16 +95,11 @@ const PersonelProjects = () => {
         setUpdateId(projectId);
     }
 
+    /////////////////////////////
+    // Update Project
     function handleProjectSubmit(e) {
         e.preventDefault();
         //  API CALL.
-        console.log({
-            projectName,
-            location,
-            images,
-            profileId: user.profile._id,
-            projectId: updateId,
-        })
         dispatch(
             updateProject({
                 projectName,
@@ -116,6 +120,72 @@ const PersonelProjects = () => {
     if (isLoading) {
         return <Spinner />;
     }
+
+    // Take Reveiw
+    if (review) {
+        return (
+            <Wrapper>
+                <div className='edit__div'>
+                    <CancelIcon onClick={() => { setReview(false) }} className="edit__icon"></CancelIcon>
+                </div>
+                <h1 className='request__title'>Request a client testimonial</h1>
+
+                <form onSubmit={handleProjectSubmit}>
+                    <p className="card__subtitle">Name</p>
+                    <TextField
+                        fullWidth
+                        type="text"
+                        name="text"
+                        id="Input"
+                        value={clientName}
+                        onChange={(e) => setClientName(e.target.value)}
+                        required
+                    />
+                    <p className="card__subtitle">Business Email Address</p>
+                    <TextField
+                        fullWidth
+                        type="email"
+                        name="email"
+                        id="Input"
+                        value={clientEmail}
+                        onChange={(e) => setClientEmail(e.target.value)}
+                        required
+                    />
+                    <p className="card__subtitle">Client's title</p>
+                    <TextField
+                        fullWidth
+                        type="text"
+                        name="text"
+                        id="Input"
+                        value={clientTitle}
+                        onChange={(e) => setClientTitle(e.target.value)}
+                        required
+                    />
+                    <p className="card__subtitle">Message to Client</p>
+                    <TextField
+                        fullWidth
+                        type="text"
+                        name="text"
+                        id="Input"
+                        rows={6}
+                        multiline
+                        value={clientMessage}
+                        onChange={(e) => setClientMessage(e.target.value)}
+                        required
+                    />
+                    <button
+                        style={{ marginTop: '2rem' }}
+                        className="blue-btn card-btn"
+                        type="submit"
+                    >
+                        REQUEST
+                    </button>
+                </form>
+
+            </Wrapper>
+        )
+    }
+
     // Update Project
     if (updateId) {
         return (
@@ -212,9 +282,10 @@ const PersonelProjects = () => {
             </Wrapper>
         )
     }
+    // Render All the projects.
     else {
         return (
-            <main>
+            <Wrapper>
                 <h2 className='preview__title'>Portfolio</h2>
                 {user.profile.portfolio.map((project, index) => {
                     return (
@@ -222,12 +293,9 @@ const PersonelProjects = () => {
                             <AccordionSummary
                                 expandIcon={
                                     <>
-                                        {/* <ExpandMoreIcon style={{ fontSize: 20, marginRight: "8px" }} /> */}
-                                        <RateReviewIcon style={{ fontSize: 20, marginRight: "8px", }}></RateReviewIcon>
-                                        <ModeEditOutlineOutlinedIcon onClick={() => {
-                                            handleProjectUpdate(project._id);
-                                        }} style={{ fontSize: 20, marginRight: "8px", }} />
-                                        <DeleteIcon onClick={() => { handleDelete(project._id) }} style={{ fontSize: 20, marginRight: "8px", color: "#ff8080" }} />
+                                        <RateReviewIcon onClick={() => { setReview(true); }} className="icons"></RateReviewIcon>
+                                        <ModeEditOutlineOutlinedIcon onClick={() => handleProjectUpdate(project._id)} className="icons" />
+                                        <DeleteIcon onClick={() => { handleDelete(project._id) }} className="icons" />
                                     </>
                                 }
                                 aria-controls="panel1a-content"
@@ -259,7 +327,7 @@ const PersonelProjects = () => {
                         </Accordion>
                     )
                 })}
-            </main >
+            </Wrapper>
         )
     }
 }
@@ -283,12 +351,15 @@ const Wrapper = styled.div`
     padding: 6px;
     cursor: pointer;
 }
+.icons{
+    font-size: 20px;
+    margin-right: 8px;
+}
+.request__title{
+    font-size: 2.7rem;
+}
 `;
-// const Wrapper1 = styled.div`
-//  >*{
-//      border: 2px solid blue;
-//  }
-//  `;
+
 
 ///////////////////////////
 // Css Styling.
