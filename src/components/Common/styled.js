@@ -52,10 +52,12 @@ export const CardLayout = styled.div`
   }
   #Select,
   #Input {
-    font-size: 1.3rem;
     font-family: "Nunito Sans", sans-serif;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
   }
+
   #mu-btn {
     color: var(--clr-blue-2);
     font-size: 1.6rem;
@@ -87,5 +89,27 @@ export const CardLayout = styled.div`
     display: block;
     width: auto;
     height: 100%;
+  }
+`;
+
+
+export const Review = styled.div`
+  .card__subtitle {
+    font-size: 1.8rem;
+    margin: 2rem 0rem;
+  }
+  .card-btn {
+    font-size: 1.6rem;
+    border-radius: 25px;
+    /* OverRiding index.css styling */
+    margin: 0.1rem;
+    font-weight: 500;
+  }
+  #Select,
+  #Input {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
   }
 `;

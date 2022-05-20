@@ -1,26 +1,52 @@
+import { TextField } from '@mui/material';
 import React from 'react'
 import styled from "styled-components";
-import logo from '../../../images/logo.png'
+import logo from '../../../images/logo3.png'
+import { Review } from '../../../components/Common/styled'
 
-
+// EXAMPLE: I hired jhon to help with our company's rebranding effort. They were reliable, flexible, and very responsive. Highly recommended! 
 const ClientReview = () => {
     return (
-        <Wrapper>
-            <div className="review">
-                <div className="review__left">
-                    <img className="review__left--logo" src={logo} alt="Logo" />
-                    <div className="review__left--content">
-                        <p className='text'>Search the world information including webpages, images, videos and more. Google has many special features to help you find exactly what you use and pay for.
-                        </p>
+        <Review>
+            <Wrapper>
+                <div className="review">
+                    <div className="review__left">
+                        <img className="review__left--logo" src={logo} alt="Logo" />
+                        <div className="review__left--content">
+                            <p className='review__left--text'>A community of where you can find contractors, designers and companies. A way to Learn and Excel your Skills.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="review__right">
+                        <div className="form">
+                            <h1 className='form__title'>Help Jhon with a testimonial</h1>
+                            <form>
+                                <p className="card__subtitle">Enter your testimonial</p>
+                                <TextField
+                                    fullWidth
+                                    type="text"
+                                    name="text"
+                                    id="Input"
+                                    rows={6}
+                                    multiline
+                                    value="SomeContent"
+                                    // value={clientMessage}
+                                    // onChange={(e) => setClientMessage(e.target.value)}
+                                    required
+                                />
+                                <button
+                                    style={{ marginTop: '2rem' }}
+                                    className="blue-btn card-btn"
+                                    type="submit"
+                                >
+                                    SUBMIT
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div className="review__right">
-                    <div className="form">
-                        Help Jhon with a testimonial
-                    </div>
-                </div>
-            </div>
-        </Wrapper>
+            </Wrapper>
+        </Review>
     )
 }
 
@@ -32,44 +58,31 @@ const Wrapper = styled.div`
             min-height: 100vh;
         }
 
-        @media only screen and (max-width: 56.25em) {
+        @media only screen and (max-width:850px) {
             .review {
                 flex-direction: column;
             }
         }
 
         .review__left {
-            background-color: #FAFAFA;
+            background-color: #424d83;
             flex: 0 0 32%;
-            padding: 1.7rem 3rem;
+            padding: 2.2rem 4rem;
+            @media only screen and (max-width: 850px) {
+                padding: 2rem;
+         }
         }
-
-        @media only screen and (max-width: 56.25em) {
-            .review__left {
-                /* display: none; */
-            }
-        }
-
         .review__left--logo {
-            width: 30rem;
+           height: 6rem;
+           @media only screen and (max-width: 850px) {
+           height: 4.2rem;
         }
-
-        .review__left--content {
-            padding: 0rem 1rem;
         }
-
-
-        @media only screen and (max-width: 56.25em) {
-            .review__left--content {
-                display: none;
-            }
+        .review__left--text{
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: white;
         }
-
-
-        .review__left--content>* {
-            margin: 1.5rem 0rem;
-        }
-
         .review__right {
             background: url(https://res.cloudinary.com/dm1mlee94/image/upload/v1652984141/Img_megrmd.png);
             opacity: 1;
@@ -79,12 +92,22 @@ const Wrapper = styled.div`
             justify-content: center;
             padding: 3rem 0rem;
         }
-        .text{
-            font-size: 1.5rem;
-        }
         .form{
-            background-color:yellow;
-            padding: 12rem 12rem;
+            background-color:white;
             font-size: 2rem;
+            padding: 2rem 2rem;
+            border-radius:.5rem;
+            max-width: 60%;
+            width:100%;
+            @media only screen and (max-width: 1200px) {
+                max-width: 90%;
+                padding: 2rem;
+         }
+        }
+        .form__title{
+            font-size: 2.7rem;
+            @media only screen and (max-width: 1200px) {
+             font-size: 2.2rem;
+         }
         }
 `;

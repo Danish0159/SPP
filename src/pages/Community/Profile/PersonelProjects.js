@@ -55,8 +55,8 @@ const PersonelProjects = () => {
     const [review, setReview] = useState(false);
     const [clientName, setClientName] = useState("");
     const [clientEmail, setClientEmail] = useState("");
-    const [clientTitle, setClientTitle] = useState("");
-    const [clientMessage, setClientMessage] = useState("");
+    const [clientTitle, setClientTitle] = useState("Ex. Director of Marketting");
+    const [clientMessage, setClientMessage] = useState("Hi, It was great working together on your recent project! Would you mind sharing a brief testimonial about my work with you? It will help build my business on Maqawal and show my value to other potential clients. Thanks in advance for your help! ");
 
     // state.
     const { user, isLoading, isError, isSuccess, message } = useSelector(
