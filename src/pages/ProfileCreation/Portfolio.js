@@ -7,9 +7,7 @@ import { Button } from "@mui/material";
 
 export default function Portfolio(props) {
   const {
-    // (Field Array) for projectName1, prjectName2.
     formField: {
-      // projectName,
       projectName1,
       projectLocation1,
       multiFiles,

@@ -1,3 +1,2 @@
-
 import Buttons from "./Buttons";
-export { Buttons};
+export { Buttons };

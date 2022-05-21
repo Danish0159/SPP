@@ -62,6 +62,7 @@ export const CardLayout = styled.div`
     color: var(--clr-blue-2);
     font-size: 1.6rem;
   }
+  /////////////
   /* Thumbs */
   .thumbsContainer{
     display: flex;

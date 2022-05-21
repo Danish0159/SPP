@@ -4,7 +4,6 @@ import styled from "styled-components";
 import logo from '../../../images/logo3.png'
 import { Review } from '../../../components/Common/styled'
 
-// EXAMPLE: I hired jhon to help with our company's rebranding effort. They were reliable, flexible, and very responsive. Highly recommended! 
 const ClientReview = () => {
     return (
         <Review>
@@ -53,61 +52,59 @@ const ClientReview = () => {
 export default ClientReview
 
 const Wrapper = styled.div`
-        .review {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        @media only screen and (max-width:850px) {
-            .review {
-                flex-direction: column;
-            }
-        }
-
-        .review__left {
-            background-color: #424d83;
-            flex: 0 0 32%;
-            padding: 2.2rem 4rem;
-            @media only screen and (max-width: 850px) {
-                padding: 2rem;
-         }
-        }
-        .review__left--logo {
-           height: 6rem;
-           @media only screen and (max-width: 850px) {
-           height: 4.2rem;
-        }
-        }
-        .review__left--text{
-            margin-top: 2rem;
-            font-size: 1.5rem;
-            color: white;
-        }
-        .review__right {
-            background: url(https://res.cloudinary.com/dm1mlee94/image/upload/v1652984141/Img_megrmd.png);
-            opacity: 1;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem 0rem;
-        }
-        .form{
-            background-color:white;
-            font-size: 2rem;
-            padding: 2rem 2rem;
-            border-radius:.5rem;
-            max-width: 60%;
-            width:100%;
-            @media only screen and (max-width: 1200px) {
-                max-width: 90%;
-                padding: 2rem;
-         }
-        }
-        .form__title{
-            font-size: 2.7rem;
-            @media only screen and (max-width: 1200px) {
-             font-size: 2.2rem;
-         }
-        }
+    .review {
+      display: flex;
+      min-height: 100vh;
+    }
+    @media only screen and (max-width:850px) {
+    .review {
+        flex-direction: column;
+    }
+    }
+    .review__left {
+     background-color: #424d83;
+     flex: 0 0 32%;
+     padding: 2.2rem 4rem;
+     @media only screen and (max-width: 850px) {
+         padding: 2rem;
+     }
+    }
+    .review__left--logo {
+       height: 6rem;
+       @media only screen and (max-width: 850px) {
+       height: 4.2rem;
+    }
+    }
+    .review__left--text{
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        color: white;
+    }
+    .review__right {
+        background: url(https://res.cloudinary.com/dm1mlee94/image/upload/v1652984141/Img_megrmd.png);
+        opacity: 1;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 0rem;
+    }
+    .form{
+        background-color:white;
+        font-size: 2rem;
+        padding: 2rem 2rem;
+        border-radius:.5rem;
+        max-width: 60%;
+        width:100%;
+        @media only screen and (max-width: 1200px) {
+            max-width: 90%;
+            padding: 2rem;
+     }
+    }
+    .form__title{
+        font-size: 2.7rem;
+        @media only screen and (max-width: 1200px) {
+         font-size: 2.2rem;
+     }
+    }
 `;

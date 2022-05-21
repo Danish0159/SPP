@@ -136,7 +136,7 @@ const Driver = () => {
       profilePhoto: values.image.src,
     };
 
-    console.log(payload);
+    // console.log(payload);
     dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);

@@ -29,15 +29,6 @@ export default {
       name: "description",
       requiredErrorMsg: "Description is required",
     },
-    /////////////////////////////
-    /////////////////////////////
-    // For Testing.
-    /////////////////////////////
-    /////////////////////////////
-    projectName: {
-      name: "projectName",
-      requiredErrorMsg: "ProjectName is required",
-    },
     projectName1: {
       name: "projectName1",
       requiredErrorMsg: "ProjectName is required",
