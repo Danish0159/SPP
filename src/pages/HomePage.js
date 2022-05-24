@@ -3,7 +3,8 @@ import { cardsData } from "../utils/constants";
 import { Navbar, Hero, Footer } from "../components";
 import { Cards } from "../components/GuestFlow";
 import { resetData } from "../slices/users";
-import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
 
@@ -14,6 +15,16 @@ const HomePage = () => {
     dispatch(resetData());
   }, []);
 
+  // State.
+  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem("user"));
+  // If user is already logedIN and trying to access the homePage, Redirect him to HomeFeed Page.
+  if (user) {
+    history.push("/HomeFeed");
+  }
+  else {
+    history.push("/");
+  }
 
   return (
     <main>
@@ -37,6 +48,5 @@ const HomePage = () => {
       <Footer></Footer>
     </main>
   );
-};
-
+}
 export default HomePage;
