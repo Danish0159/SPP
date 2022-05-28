@@ -45,7 +45,7 @@ const ProfileDriver = () => {
         </Wrapper>
       </CardLayout>
       <Footer></Footer>
-    </main >
+    </main>
   );
 };
 

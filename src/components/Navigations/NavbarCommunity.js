@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 // Logout Drop Down.
 import Avatar from "@mui/material/Avatar";
+import HomeIcon from '@mui/icons-material/Home';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -85,9 +86,16 @@ const NavbarCommunity = () => {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
+                <Link to="/HomeFeed">
+                    <MenuItem>
+                        <HomeIcon sx={{
+                            width: 30, height: 30, ml: -0.5, mr: 1, color: "rgba(0, 0, 0, 0.39)",
+                        }} /> <span style={{ color: '#121212' }}>Feed</span>
+                    </MenuItem>
+                </Link>
                 <Link to="/Profile">
                     <MenuItem>
-                        <Avatar /> <span style={{ color: '#121212' }}> Profile</span>
+                        <Avatar /> <span style={{ color: '#121212' }}>Profile</span>
                     </MenuItem>
                 </Link>
                 <MenuItem onClick={onLogout}>

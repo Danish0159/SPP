@@ -20,7 +20,9 @@ import {
 import { JoinUs, Driver } from "./pages/ProfileCreation";
 
 // Flow 3
-import { HomeFeed } from "./pages/Community";
+// import { HomeFeed } from "./pages/Community/Feed";
+import { FeedDriver } from "./pages/Community/Feed";
+
 import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
 
 // Private Route.
@@ -79,7 +81,7 @@ const App = () => {
           {/* ----------------------------------------------- */}
           {/* ----------------------------------------------- */}
           <Route exact path="/HomeFeed">
-            <HomeFeed></HomeFeed>
+            <FeedDriver></FeedDriver>
           </Route>
           <Route exact path="/Profile">
             <ProfileDriver></ProfileDriver>
