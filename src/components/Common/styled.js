@@ -22,7 +22,7 @@ export const CardLayout = styled.div`
   .card__title {
     background-color: var(--clr-blue-2);
     color: #ffffff;
-    padding: 1.2rem 0rem 1.2rem 2rem;
+    padding: 1.2rem 2rem 1.2rem 2rem;
     font-size: 2rem;
   }
   .card__subtitle {
@@ -93,7 +93,7 @@ export const CardLayout = styled.div`
   }
 `;
 
-
+// Seperate styling for Review Page.
 export const Review = styled.div`
   .card__subtitle {
     font-size: 1.8rem;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 const Buttons = ({ activeStep }) => {
   const steps = [
@@ -11,7 +12,7 @@ const Buttons = ({ activeStep }) => {
     "Phone Number",
     "Profile Photo",
   ];
-
+  const { t } = useTranslation();
   return (
     <Wrapper>
       {steps.map((label, index) => (
@@ -20,7 +21,7 @@ const Buttons = ({ activeStep }) => {
           id={activeStep === null ? "hide-on-mobile" : ""}
           className={index === activeStep ? "btn active" : "btn nonActive"}
         >
-          {label}
+          {t(label)}
         </button>
       ))}
     </Wrapper>

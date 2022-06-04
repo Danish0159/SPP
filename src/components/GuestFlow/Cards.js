@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 const Cards = ({ title, cardsData, bgColor }) => {
+  const { t } = useTranslation();
+
+
   return (
     <div className={bgColor === "true" ? "section__blue" : "section__white"}>
       <Wrapper>
@@ -14,7 +18,7 @@ const Cards = ({ title, cardsData, bgColor }) => {
                 <div className="cards__div">
                   <img src={photo} alt="fields" />
                 </div>
-                <h4 className="cards__div-text">{line}</h4>
+                <h4 className="cards__div-text">{t(line)}</h4>
               </div>
             );
           })}

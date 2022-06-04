@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const BackToProfile = () => {
+  const { t } = useTranslation();
   const { single_user } = useSelector((state) => state.users);
 
   if (single_user.data) {
@@ -32,11 +34,11 @@ const BackToProfile = () => {
             </div>
             <div className="backToProfile__btns">
               <Link to="#" type="submit" className="blue-btn backToProfile-btn">
-                Message Now
+                {t("ProjectsMessage")}
               </Link>
 
               <Link to={`/Users/${single_user.data.user._id}`} type="submit" className="blue-btn backToProfile-btn">
-                Back To Profile
+                {t("Back To Profile")}
               </Link>
             </div>
           </div>
@@ -85,8 +87,10 @@ const Wrapper = styled.section`
 
   .BackToProfile__content {
     margin-left: 3rem;
+    margin-right: 3rem;
     @media only screen and (max-width: 800px) {
       margin-left: 0rem;
+      margin-right: 0rem;
       margin-top: 1.5rem;
     }
   }

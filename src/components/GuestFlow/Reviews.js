@@ -1,7 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-const Reviews = () => {
+const Reviews = ({ single }) => {
+  // Single Review For Single Project.
+  if (single) {
+    return (
+      <Wrapper>
+        <div className="reviews__grid max-restrict">
+          <div className="reviews__item">
+            <p className="reviews__paragraph">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
+              deserunt, dolor ut veniam minus illo iusto ea totam veritatis.
+            </p>
+            <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Maqawal</h1>
+          </div>
+        </div>
+      </Wrapper >
+    );
+  }
+  // Multiple Review For Single User.
   return (
     <Wrapper>
       <div className="reviews__grid">
@@ -11,6 +29,7 @@ const Reviews = () => {
             ipsum dolor sit amet consectetur, adipisicing elit. Distinctio,
             blanditiis obcaecati, neque sint sequi accusamus minima
           </p>
+          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Maqawal</h1>
         </div>
         <div className="reviews__item">
           <p className="reviews__paragraph">
@@ -18,6 +37,7 @@ const Reviews = () => {
             ipsum dolor sit amet consectetur, adipisicing elit. Distinctio,
             blanditiis obcaecati, neque sint sequi accusamus minima
           </p>
+          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Orange</h1>
         </div>
         <div className="reviews__item">
           <p className="reviews__paragraph">
@@ -25,6 +45,7 @@ const Reviews = () => {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
             deserunt, dolor ut veniam minus illo iusto ea totam veritatis.
           </p>
+          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Speedo</h1>
         </div>
       </div>
     </Wrapper>
@@ -51,16 +72,18 @@ const Wrapper = styled.section`
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
   }
-
   .reviews__item {
     border-radius: 10px 10px 10px 10px;
     background-color: #ffffff;
     padding: 3rem 3rem;
     box-shadow: 0px 10px 24px 6px rgb(0 0 0 / 6%);
   }
-
   .reviews__paragraph {
     font-size: 1.6rem;
     color: #2a2a2a;
+  }
+  /* For Single Review. */
+  .max-restrict{
+    max-width:40rem;
   }
 `;

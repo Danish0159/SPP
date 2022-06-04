@@ -11,14 +11,19 @@ const {
         description,
         projectName1,
         projectLocation1,
+        projectDescription1,
         projectName2,
         projectLocation2,
+        projectDescription2,
         projectName3,
         projectLocation3,
+        projectDescription3,
         projectName4,
         projectLocation4,
+        projectDescription4,
         projectName5,
         projectLocation5,
+        projectDescription5,
         country,
         city,
         phone,
@@ -96,6 +101,13 @@ export default [
         [projectLocation5.name]: Yup.string("Enter projectLocation").required(
             `${projectLocation5.requiredErrorMsg}`
         ),
+        // Optional Description.
+        [projectDescription1.name]: Yup.string("Enter projectLocation"),
+        [projectDescription2.name]: Yup.string("Enter projectLocation"),
+        [projectDescription3.name]: Yup.string("Enter projectLocation"),
+        [projectDescription4.name]: Yup.string("Enter projectLocation"),
+        [projectDescription5.name]: Yup.string("Enter projectLocation"),
+
     }),
 
     Yup.object().shape({

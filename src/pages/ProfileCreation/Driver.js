@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
+import { useTranslation } from "react-i18next";
 import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
 import { CardLayout } from '../../components/Common/styled'
@@ -66,6 +67,7 @@ const Driver = () => {
   const isLastStep = activeStep === steps.length - 1;
 
   // Redux State.
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
   const { isLoading, isError, isSuccess, message } = useSelector(
@@ -106,26 +108,31 @@ const Driver = () => {
         {
           projectName: values.projectName1,
           location: values.projectLocation1,
+          description: values.projectDescription1,
           images: values.images.src1,
         },
         {
           projectName: values.projectName2,
           location: values.projectLocation2,
+          description: values.projectDescription2,
           images: values.images.src2,
         },
         {
           projectName: values.projectName3,
           location: values.projectLocation3,
+          description: values.projectDescription3,
           images: values.images.src3,
         },
         {
           projectName: values.projectName4,
           location: values.projectLocation4,
+          description: values.projectDescription4,
           images: values.images.src4,
         },
         {
           projectName: values.projectName5,
           location: values.projectLocation5,
+          description: values.projectDescription5,
           images: values.images.src5,
         },
       ],
@@ -136,8 +143,8 @@ const Driver = () => {
       profilePhoto: values.image.src,
     };
 
-    // console.log(payload);
-    dispatch(profileCreation(payload));
+    console.log(payload);
+    // dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);
   }
@@ -184,7 +191,7 @@ const Driver = () => {
                       <div className="btn-container">
                         {activeStep !== 0 && (
                           <Button id="mu-btn" onClick={_handleBack}>
-                            BACK
+                            {t("BACK")}
                           </Button>
                         )}
                         <div>
@@ -195,7 +202,7 @@ const Driver = () => {
                             variant="contained"
                             color="primary"
                           >
-                            {isLastStep ? "COMPLETE" : "NEXT"}
+                            {isLastStep ? t("COMPLETE") : t("NEXT")}
                           </button>
                           {/* {isSubmitting && <CircularProgress size={24} />} */}
                         </div>

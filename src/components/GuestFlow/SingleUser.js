@@ -8,8 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const SingleUser = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { single_user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.users
@@ -61,47 +63,49 @@ const SingleUser = () => {
                 {single_user.data.user.user.role}
               </p>
               <Link to="#" type="submit" className="blue-btn profile-btn">
-                Message Now
+                {t("UserMessage")}
               </Link>
             </div>
 
             {/* Content */}
             <div className="profile__content">
-              <h2 className="profile__content--title">Location</h2>
+              <h2 className="profile__content--title">{t("UserLocation")}</h2>
               <p className="profile__content--location">
                 {single_user.data.user.location.country},{" "}
                 {single_user.data.user.location.city}
               </p>
-              <h2 className="profile__content--title">Contact Number</h2>
+              <h2 className="profile__content--title">{t("UserNumber")}</h2>
               <p className="profile__content--number">
-                {single_user.data.user.phoneNumber}
+                <a href={"tel:" + single_user.data.user.phoneNumber}>
+                  {single_user.data.user.phoneNumber}
+                </a>
               </p>
               <h2 className="profile__content--title mb">
-                Number of Projects Completed: {single_user.data.noOfProjects}
+                {t("UserTotalProjects")} {single_user.data.noOfProjects}
               </h2>
               <Link
                 to={`/Projects/${id}`}
                 type="submit"
                 className="blue-btn profile-btn"
               >
-                View Projects Details
+                {t("UserViewDetails")}
               </Link>
             </div>
             {/* Rating */}
             <div className="profile__rating">
-              <h2 className="profile__content--title">Rating</h2>
+              <h2 className="profile__content--title">{t("UserRating")}</h2>
               <Rating name="read-only" value={4} readOnly />
             </div>
           </div>
         </div>
 
         <div className="section__blue">
-          <h3 className="section__title">Client Reviews</h3>
-          <Reviews></Reviews>
+          <h3 className="section__title">{t("UserReviews")}</h3>
+          <Reviews single={false}></Reviews>
         </div>
 
         <div className="section__white">
-          <h3 className="section__title">Projects Gallery</h3>
+          <h3 className="section__title">{t("UserGallery")}</h3>
           <Gallery data={[
             ...single_user.data.user.portfolio[0]?.images,
             ...single_user.data.user.portfolio[1]?.images,
@@ -142,7 +146,7 @@ const Wrapper = styled.section`
   /* Profie Name */
   /* /////////////// */
   .profile__name {
-    border-right: 1px solid #424d83;
+    /* border-right: 1px solid #424d83; */
     @media only screen and (max-width: 800px) {
       border-right: none;
     }

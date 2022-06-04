@@ -1,13 +1,16 @@
 import React from "react";
 import { InputField } from "../../components/ProfileCreation/FormFields";
+import { useTranslation } from "react-i18next";
 
 export default function PhoneNumber(props) {
+  const { t } = useTranslation();
   const {
     formField: { phone },
   } = props;
+
   return (
     <>
-      <p className="card__subtitle">Add your phone number</p>
+      <p className="card__subtitle"> {t("PhoneQuestion1")}</p>
       <InputField
         name={phone.name}
         type="number"
@@ -15,7 +18,7 @@ export default function PhoneNumber(props) {
         fullWidth
       />
       <p className="card__subtitle">
-        Your phone number will be shared with clients
+        {t("PhoneSubtitle")}
       </p>
     </>
   );

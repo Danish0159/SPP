@@ -6,9 +6,13 @@ import { Navbar, Footer } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
 import image from "../../images/join.jpg";
 import { CardLayout } from '../../components/Common/styled'
+import { useTranslation } from "react-i18next";
 
 const JoinUs = () => {
   const { user } = useSelector((state) => state.auth);
+  const { t } = useTranslation();
+
+
   return (
     <main>
       <Navbar page="profileCreation"></Navbar>
@@ -20,18 +24,16 @@ const JoinUs = () => {
               <img src={image} alt="join" />
             </div>
             <div className="join__content">
-              <p className="join__title">Join Us</p>
-              {user && <p className="join__subTitle">Hi {user.user.name},</p>}
+              <p className="join__title">{t("join__title")}</p>
+              {user && <p className="join__subTitle">{t("join__Hi")} {user.user.name},</p>}
               <p className="join__passage">
-                Thanks for your interest in Maqawal as the world's largest talent
-                platform, we connect millions of businesses with independent
-                contractors and designers like you.
+                {t("join__description")}
               </p>
               <p className="join__subTitle">
-                To get started, all you need to do is fill out a profile
+                {t("join__started")}
               </p>
               <Link className="blue-btn join__btn" to="/RegistrationPage">
-                CONTINUE
+                {t("join__continue")}
               </Link>
             </div>
           </div>

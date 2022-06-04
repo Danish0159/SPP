@@ -37,6 +37,9 @@ export default {
       name: "projectLocation1",
       requiredErrorMsg: "ProjectLocation is required",
     },
+    projectDescription1: {
+      name: "projectDescription1",
+    },
     projectName2: {
       name: "projectName2",
       requiredErrorMsg: "ProjectName is required",
@@ -44,6 +47,9 @@ export default {
     projectLocation2: {
       name: "projectLocation2",
       requiredErrorMsg: "ProjectLocation is required",
+    },
+    projectDescription2: {
+      name: "projectDescription2",
     },
     projectName3: {
       name: "projectName3",
@@ -53,6 +59,9 @@ export default {
       name: "projectLocation3",
       requiredErrorMsg: "ProjectLocation is required",
     },
+    projectDescription3: {
+      name: "projectDescription3",
+    },
     projectName4: {
       name: "projectName4",
       requiredErrorMsg: "ProjectName is required",
@@ -61,6 +70,9 @@ export default {
       name: "projectLocation4",
       requiredErrorMsg: "ProjectLocation is required",
     },
+    projectDescription4: {
+      name: "projectDescription4",
+    },
     projectName5: {
       name: "projectName5",
       requiredErrorMsg: "ProjectName is required",
@@ -68,6 +80,9 @@ export default {
     projectLocation5: {
       name: "projectLocation5",
       requiredErrorMsg: "ProjectLocation is required",
+    },
+    projectDescription5: {
+      name: "projectDescription5",
     },
     multiFiles: {
       name: "images",

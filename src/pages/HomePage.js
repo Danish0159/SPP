@@ -5,8 +5,10 @@ import { Cards } from "../components/GuestFlow";
 import { resetData } from "../slices/users";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
+  const { t } = useTranslation();
 
   // Reset ALl the data for welcome flow.
   const dispatch = useDispatch();
@@ -19,8 +21,11 @@ const HomePage = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
   // If user is already logedIN and trying to access the homePage, Redirect him to HomeFeed Page.
-  if (user) {
+  if (user && user.user.profile) {
     history.push("/HomeFeed");
+  }
+  else if (user && !user.user.profile) {
+    history.push("/joinus");
   }
   else {
     history.push("/");
@@ -31,17 +36,17 @@ const HomePage = () => {
       <Navbar page="home"></Navbar>
       <Hero></Hero>
       <Cards
-        title="A community of where you can find contractors, designers and companies"
+        title={t("card_h1")}
         cardsData={cardsData.slice(0, 3)}
         bgColor="null"
       ></Cards>
       <Cards
-        title="Easy way to find the best Contractor in your Area"
+        title={t("card_h2")}
         cardsData={cardsData.slice(3, 6)}
         bgColor="true"
       ></Cards>
       <Cards
-        title="A way to Learn and Excel your Skills"
+        title={t("card_h3")}
         cardsData={cardsData.slice(6, 9)}
         bgColor="null"
       ></Cards>

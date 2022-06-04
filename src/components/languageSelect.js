@@ -35,7 +35,7 @@ const LanguageSelect = () => {
 
     return (
         <div className="d-flex justify-content-end align-items-center language-select-root">
-            <Button onClick={({ currentTarget }) => setMenuAnchor(currentTarget)}>
+            <Button sx={{ fontSize: "1.3rem", fontWeight: "bold", }} onClick={({ currentTarget }) => setMenuAnchor(currentTarget)}>
                 {languageMap[selected].label}
                 <ArrowDropDown fontSize="small" />
             </Button>
@@ -54,11 +54,12 @@ const LanguageSelect = () => {
             >
                 <div>
                     <List>
-                        <ListSubheader>{t("Select Language")}</ListSubheader>
+                        <ListSubheader sx={{ fontSize: "1.1rem" }}>{t("Select Language")}</ListSubheader>
                         {Object.keys(languageMap)?.map(item => (
                             <ListItem
                                 button
                                 key={item}
+                                sx={{ fontSize: "1.1rem" }}
                                 onClick={() => {
                                     i18next.changeLanguage(item);
                                     setMenuAnchor(null);
@@ -70,7 +71,7 @@ const LanguageSelect = () => {
                     </List>
                 </div>
             </Popover>
-        </div>
+        </div >
     );
 };
 

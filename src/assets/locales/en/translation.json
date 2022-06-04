@@ -4,6 +4,18 @@
   "home_subtitle": "Search the world information including webpages, images, videos and more. Google has many special features to help you find exactly what you use and pay for.",
   "home_login": "Login",
   "home_started": "Get Started",
+  "card_h1": "A community of where you can find contractors, designers and companies",
+  "card_h2": "Easy way to find the best Contractor in your Area",
+  "card_h3": "A way to Learn and Excel your Skills",
+  "card_p1": "LEARNING IN THE COMMUNITY",
+  "card_p2": "JOIN THE COMMUNITY",
+  "card_p3": "BUILD A COMMUNITY",
+  "card_p4": "CONTACT AND HIRE",
+  "card_p5": "CHOOSE THE FINEST CONTRACTOR",
+  "card_p6": "SEARCH CONTRACTORS",
+  "card_p7": "EARN BADGES",
+  "card_p8": "COURSES",
+  "card_p9": "PROFICIENCY TESTS",
   "home_about": "About Us",
   "home_contact": "Contact Us",
   "home_policies": "Our Policies",
@@ -13,7 +25,6 @@
   "third": "and designers they are looking for."
  },
   
-
   "_________comment2": "Login Page",
   "login_welcome": "Welcome",
   "login_please": "Please login to your account.",
@@ -35,14 +46,15 @@
   "register_login": "Log In Now",
 
 
+
+  "___________________________________________________": "_________",
+  "_________commentFlow1": "GuestFlow",
   "_________comment4": "Welcome Page",
   "welcome_title": "Welcome on Board",
   "welcome_subtitle": {
-  "first": "Find Best Contractor Or Designer In",
-  "second": "Your Area"
- },
-
-
+    "first": "Find Best Contractor Or Designer In",
+    "second": "Your Area"
+  },
   "welcome_looking": "Looking For",
   "welcome_contractor": "Contractor",
   "welcome_designer": "Designer",
@@ -50,5 +62,70 @@
   "welcome_category": "Category",
   "welcome_country": "Country",
   "welcome_city": "City",
-  "welcome_search": "Search"
+  "welcome_search": "Search",
+
+   "_________commentNext1": "Users Page",
+  "Search Results": "Search Results",
+  "UsersName": "Name",
+  "UsersLocation": "Location",
+  "UsersRating": "Rating",
+  
+  "_________commentNext2": "SingleUser Page",
+  "UserMessage": "Message Now",
+  "UserRating": "Rating",
+  "UserLocation": "Location",
+  "UserNumber": "Contact Number",
+  "UserTotalProjects": "Number of Projects Completed:",
+  "UserViewDetails": "View Projects Details",
+  "UserReviews": "Client Reviews",
+  "UserGallery": "Projects Gallery",
+  
+  "_________commentNext3": "Projects Page",
+  "Projects Completed": "Projects Completed",
+  "ProjectsMessage": "Message Now",
+  "Back To Profile": "Back To Profile",
+  
+  "_________commentNext4": "SingleProject Page",
+  "Project Detail": "Project Detail",
+  "Project Gallery": "Project Gallery",
+  "Client Review": "Client Review",
+  
+  "______________________________________________________": "_________",
+  "_________commentFlow2": "ProfilCreationFlow",
+  "_________comment5": "JoinUs Page",
+  "join__title": "Join Us",  
+  "join__Hi": "Hi",
+  "join__description": "Thanks for your interest in Maqawal as the world's largest talent platform, we connect millions of businesses with independent contractors and designers like you.",
+  "join__started": "To get started, all you need to do is fill out a profile",
+  "join__continue": "CONTINUE",
+
+  "_________comment6": "ProfileDriver Page",
+  "BACK": "BACK",
+  "NEXT": "NEXT",
+  "COMPLETE": "COMPLETE",
+
+  "Category": "Category",
+  "Expertise Level": "Expertise Level",
+  "Employment History": "Employment History",
+  "Portfolio": "Portfolio",
+  "Location": "Location",
+  "Phone Number": "Phone Number",
+  "Profile Photo": "Profile Photo",
+  
+  "CategoryQuestion1": "What are the main services you offer",
+  "ExpertiseQuestion1": "Years of experience",
+  "ExpertiseQuestion2": "Number of Projects you have done",
+  "ExpertiseQuestion3": "Number of Employees",
+  "EmploymentQuestion1": "Company/Employeer Name",
+  "EmploymentQuestion2": "Location",
+  "EmploymentQuestion3": "Description",
+  "PortfolioQuestion1": "Project Name",
+  "PortfolioQuestion2": "Location",
+  "PortfolioQuestion3": "Description (optional)",
+  "PortfolioQuestion4": "Project Files",
+  "LocationQuestion1": "Country",
+  "LocationQuestion2": "City",
+  "PhoneQuestion1": "Add your phone number",
+  "PhoneSubtitle": "Your phone number will be shared with clients",
+  "ProfilePhoto": "Please upload a professional portrait that clearly shows your face."
 }

@@ -3,8 +3,10 @@ import styled from "styled-components";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { Avatar, Rating } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const Table = ({ data = [], title, flag, userId }) => {
+  const { t } = useTranslation();
   // Displaying only 5 users.
   const [renderedData] = useState(data);
   const [pageNumber, setPageNumber] = useState(0);
@@ -18,11 +20,11 @@ const Table = ({ data = [], title, flag, userId }) => {
   return (
     <Wrapper>
       <div className="search">
-        <h2 className="search__title">{title}</h2>
+        <h2 className="search__title">{t(title)}</h2>
         <div className="search__columns">
-          <p className="subtitle">Name</p>
-          <p className="subtitle">Location</p>
-          <p className="subtitle">Rating</p>
+          <p className="subtitle">{t("UsersName")}</p>
+          <p className="subtitle">{t("UsersLocation")}</p>
+          <p className="subtitle">{t("UsersRating")}</p>
         </div>
 
         {/* Render Data for Users and else for Projects. */}
@@ -164,6 +166,7 @@ const Wrapper = styled.section`
 
   .search_name {
     margin-left: 1.4rem;
+    margin-right: 1.4rem;
   }
 
   .paginationBttns {

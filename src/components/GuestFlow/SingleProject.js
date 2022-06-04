@@ -6,8 +6,11 @@ import { fetchSingleProject, reset } from "../../slices/users";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
+import { useTranslation } from "react-i18next";
 
 const SingleProject = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const { single_project, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.users);
@@ -43,7 +46,7 @@ const SingleProject = () => {
       <Wrapper>
         <BackToProfile></BackToProfile>
         <div className="project">
-          <h1 className="project__title">Project Detail</h1>
+          <h1 className="project__title">{t("Project Detail")}</h1>
 
           <h1 className="project__name">
             {single_project.data.portfolio[0].projectName}
@@ -54,13 +57,13 @@ const SingleProject = () => {
         </div>
 
         <div className="section__blue">
-          <h3 className="section__title">Project Gallery</h3>
+          <h3 className="section__title">{t("Project Gallery")}</h3>
           <Gallery data={single_project.data.portfolio[0].images}></Gallery>
         </div>
 
         <div className="section__white">
-          <h3 className="section__title">Client Review</h3>
-          <Reviews></Reviews>
+          <h3 className="section__title">{t("Client Review")}</h3>
+          <Reviews single={true}></Reviews>
         </div>
       </Wrapper>
     );

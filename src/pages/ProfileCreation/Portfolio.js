@@ -4,21 +4,29 @@ import { useField } from "formik";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
 
 export default function Portfolio(props) {
+  const { t } = useTranslation();
   const {
     formField: {
       projectName1,
       projectLocation1,
+      projectDescription1,
       multiFiles,
       projectName2,
       projectLocation2,
+      projectDescription2,
       projectName3,
       projectLocation3,
+      projectDescription3,
       projectName4,
       projectLocation4,
+      projectDescription4,
       projectName5,
       projectLocation5,
+      projectDescription5,
     },
   } = props;
 
@@ -68,6 +76,7 @@ export default function Portfolio(props) {
     {
       projectName: projectName1,
       projectLocation: projectLocation1,
+      projectDescription: projectDescription1,
       setHeroFiles: setHeroFiles1,
       setSrc: setSrc1,
       remove: remove1,
@@ -75,6 +84,7 @@ export default function Portfolio(props) {
     {
       projectName: projectName2,
       projectLocation: projectLocation2,
+      projectDescription: projectDescription2,
       setHeroFiles: setHeroFiles2,
       setSrc: setSrc2,
       remove: remove2,
@@ -82,6 +92,7 @@ export default function Portfolio(props) {
     {
       projectName: projectName3,
       projectLocation: projectLocation3,
+      projectDescription: projectDescription3,
       setHeroFiles: setHeroFiles3,
       setSrc: setSrc3,
       remove: remove3,
@@ -89,6 +100,7 @@ export default function Portfolio(props) {
     {
       projectName: projectName4,
       projectLocation: projectLocation4,
+      projectDescription: projectDescription4,
       setHeroFiles: setHeroFiles4,
       setSrc: setSrc4,
       remove: remove4,
@@ -96,6 +108,7 @@ export default function Portfolio(props) {
     {
       projectName: projectName5,
       projectLocation: projectLocation5,
+      projectDescription: projectDescription5,
       setHeroFiles: setHeroFiles5,
       setSrc: setSrc5,
       remove: remove5,
@@ -196,14 +209,13 @@ export default function Portfolio(props) {
     },
     [heroFiles1, heroFiles2, heroFiles3, heroFiles4, heroFiles5]
   );
-
   return (
     <>
       {state.map((step, index) => {
         return (
           <>
             <div key={index}>
-              <p className="card__subtitle">Project Name</p>
+              <p className="card__subtitle"> {t("PortfolioQuestion1")}</p>
               <InputField
                 // name={step.projectName`${index + 1}`.name}
                 // name={step`.${index}`.name}
@@ -211,15 +223,23 @@ export default function Portfolio(props) {
                 type="text"
                 fullWidth
               />
-              <p className="card__subtitle">Location</p>
+              <p className="card__subtitle"> {t("PortfolioQuestion2")}</p>
               <InputField
-                // name={projectLocation1.name}
                 name={step.projectLocation.name}
                 type="text"
                 fullWidth
               />
 
-              <p className="card__subtitle">Project Files</p>
+              <p className="card__subtitle"> {t("PortfolioQuestion3")}</p>
+              <InputField
+                name={step.projectDescription.name}
+                type="text"
+                rows={3.5}
+                multiline
+                fullWidth
+              />
+
+              <p className="card__subtitle"> {t("PortfolioQuestion4")}</p>
               <div key={index} className="form-group">
                 <Dropzone
                   onDrop={(acceptedFiles) => {
