@@ -2,6 +2,7 @@ import React from "react";
 import { at } from "lodash";
 import { useField } from "formik";
 import { TextField } from "@mui/material";
+import { styles } from '../../../styles';
 
 export default function InputField(props) {
   const { errorText, type, ...rest } = props;
@@ -17,7 +18,7 @@ export default function InputField(props) {
   return (
     <>
       <TextField
-        id="Input"
+        inputProps={{ style: styles.textField, }}
         type={type}
         error={meta.touched && meta.error && true}
         {...field}

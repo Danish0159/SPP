@@ -14,7 +14,6 @@ export default function PhoneNumber(props) {
       <InputField
         name={phone.name}
         type="number"
-        // label={experience.label}
         fullWidth
       />
       <p className="card__subtitle">

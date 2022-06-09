@@ -63,7 +63,7 @@ export default {
     src5: [],
   },
   [country.name]: "",
-  [city.name]: "",
+  [city.name]: [],
   [phone.name]: "",
   [image.name]: {
     file: null,

@@ -9,6 +9,7 @@ import { fetchUsers, reset } from "../../slices/users";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 import { useTranslation } from "react-i18next";
+import { styles } from '../../styles'
 
 const Welcome = () => {
   const { t } = useTranslation();
@@ -83,7 +84,7 @@ const Welcome = () => {
                 required
               >
                 {users.map((user, index) => (
-                  <MenuItem id="Select" key={index} value={user.value}>
+                  <MenuItem sx={styles.menu} key={index} value={user.value}>
                     {user.label}
                   </MenuItem>
                 ))}
@@ -105,7 +106,7 @@ const Welcome = () => {
                 required
               >
                 {categories.map((item, index) => (
-                  <MenuItem id="Select" key={index} value={item.value}>
+                  <MenuItem sx={styles.menu} key={index} value={item.value}>
                     {item.label}
                   </MenuItem>
                 ))}
@@ -127,7 +128,7 @@ const Welcome = () => {
                 required
               >
                 {countries.map((item, index) => (
-                  <MenuItem id="Select" key={index} value={item.label}>
+                  <MenuItem sx={styles.menu} key={index} value={item.label}>
                     {item.label}
                   </MenuItem>
                 ))}
@@ -153,12 +154,12 @@ const Welcome = () => {
                 >
                   {country === "Pakistan"
                     ? pakCities.map((item, index) => (
-                      <MenuItem id="Select" key={index} value={item.label}>
+                      <MenuItem sx={styles.menu} key={index} value={item.label}>
                         {item.label}
                       </MenuItem>
                     ))
                     : country === "Saudi Arabia" ? saudiCities.map((item, index) => (
-                      <MenuItem id="Select" key={index} value={item.label}>
+                      <MenuItem sx={styles.menu} key={index} value={item.label}>
                         {item.label}
                       </MenuItem>
                     )) : null}

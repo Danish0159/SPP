@@ -29,6 +29,7 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2rem;
+    margin-bottom: 2rem;
   }
   @media only screen and (max-width: 900px) {
     .portfolio__grid {

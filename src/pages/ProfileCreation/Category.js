@@ -9,13 +9,11 @@ export default function Category(props) {
     formField: { category },
   } = props;
 
-
   return (
     <>
       <p className="card__subtitle">{t("CategoryQuestion1")}</p>
       <SelectField
         name={category.name}
-        // label={category.label}
         data={categories}
         fullWidth
       />

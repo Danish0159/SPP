@@ -2,8 +2,10 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import { ThemeProvider } from "@mui/material";
+import { theme } from './styles';
 import LanguageSelect from "./components/languageSelect";
+
 // Public Pages. 
 import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
 
@@ -20,79 +22,78 @@ import {
 import { JoinUs, Driver } from "./pages/ProfileCreation";
 
 // Flow 3
-// import { HomeFeed } from "./pages/Community/Feed";
 import { FeedDriver } from "./pages/Community/Feed";
-
 import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
 
 // Private Route.
-// import PrivateRouteUser from "./pages/ProtectedRoutes/PrivateRouteUser";
 import PrivateRouteCDC from "./pages/ProtectedRoutes/PrivateRouteCDC";
-
 const App = () => {
+
   return (
     <>
       <Router>
         <LanguageSelect></LanguageSelect>
-        <Switch>
-          <Route exact path="/">
-            <HomePage></HomePage>
-          </Route>
-          <Route exact path="/Login">
-            <LoginPage></LoginPage>
-          </Route>
-          <Route exact path="/Signup">
-            <SignupPage></SignupPage>
-          </Route>
-          {/* ----------------------------------------------- */}
-          {/* ----------------------------------------------- */}
-          {/* Box1 (User Protection) */}
-          <Route exact path="/Welcome">
-            <WelcomePage></WelcomePage>
-          </Route>
-          <Route exact path="/Users">
-            <UsersPage></UsersPage>
-          </Route>
-          <Route exact path="/Users/:id">
-            <SingleUserPage></SingleUserPage>
-          </Route>
-          <Route exact path="/Projects/:id">
-            <ProjectsPage></ProjectsPage>
-          </Route>
-          <Route exact path="/Projects/:userId/:id">
-            <SingleProjectPage></SingleProjectPage>
-          </Route>
-          {/* Box1 END */}
-          {/* ----------------------------------------------- */}
-          {/* ----------------------------------------------- */}
-          {/* Box2 (Desinger||Contractor||Company Protection) */}
-          <PrivateRouteCDC
-            exact
-            path="/JoinUs"
-            component={JoinUs}
-          ></PrivateRouteCDC>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route exact path="/">
+              <HomePage></HomePage>
+            </Route>
+            <Route exact path="/Login">
+              <LoginPage></LoginPage>
+            </Route>
+            <Route exact path="/Signup">
+              <SignupPage></SignupPage>
+            </Route>
+            {/* ----------------------------------------------- */}
+            {/* ----------------------------------------------- */}
+            {/* Box1 (User Protection) */}
+            <Route exact path="/Welcome">
+              <WelcomePage></WelcomePage>
+            </Route>
+            <Route exact path="/Users">
+              <UsersPage></UsersPage>
+            </Route>
+            <Route exact path="/Users/:id">
+              <SingleUserPage></SingleUserPage>
+            </Route>
+            <Route exact path="/Projects/:id">
+              <ProjectsPage></ProjectsPage>
+            </Route>
+            <Route exact path="/Projects/:userId/:id">
+              <SingleProjectPage></SingleProjectPage>
+            </Route>
+            {/* Box1 END */}
+            {/* ----------------------------------------------- */}
+            {/* ----------------------------------------------- */}
+            {/* Box2 (Desinger||Contractor||Company Protection) */}
+            <PrivateRouteCDC
+              exact
+              path="/JoinUs"
+              component={JoinUs}
+            ></PrivateRouteCDC>
 
-          <PrivateRouteCDC
-            exact
-            path="/RegistrationPage"
-            component={Driver}
-          ></PrivateRouteCDC>
-          {/* Box2 END  */}
-          {/* ----------------------------------------------- */}
-          {/* ----------------------------------------------- */}
-          <Route exact path="/HomeFeed">
-            <FeedDriver></FeedDriver>
-          </Route>
-          <Route exact path="/Profile">
-            <ProfileDriver></ProfileDriver>
-          </Route>
-          <Route exact path="/Review">
-            <ClientReview></ClientReview>
-          </Route>
-          <Route exact path="*">
-            <ErrorPage></ErrorPage>
-          </Route>
-        </Switch>
+            <PrivateRouteCDC
+              exact
+              path="/RegistrationPage"
+              component={Driver}
+            ></PrivateRouteCDC>
+            {/* Box2 END  */}
+            {/* ----------------------------------------------- */}
+            {/* ----------------------------------------------- */}
+            <Route exact path="/HomeFeed">
+              <FeedDriver></FeedDriver>
+            </Route>
+            <Route exact path="/Profile">
+              <ProfileDriver></ProfileDriver>
+            </Route>
+            <Route exact path="/Review">
+              <ClientReview></ClientReview>
+            </Route>
+            <Route exact path="*">
+              <ErrorPage></ErrorPage>
+            </Route>
+          </Switch>
+        </ThemeProvider>
       </Router>
       <ToastContainer></ToastContainer>
     </>

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile, reset } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
-
+import { styles } from '../../../styles';
 
 const PersonelInfo = () => {
     const [update, setUpdate] = useState(false);
@@ -83,7 +83,9 @@ const PersonelInfo = () => {
                     fullWidth
                     type="text"
                     name="text"
-                    id="Input"
+                    inputProps={{
+                        style: styles.textField,
+                    }}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -93,7 +95,9 @@ const PersonelInfo = () => {
                     fullWidth
                     type="email"
                     name="email"
-                    id="Input"
+                    inputProps={{
+                        style: styles.textField,
+                    }}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -101,13 +105,13 @@ const PersonelInfo = () => {
                 <p className="card__subtitle">Role</p>
                 <FormControl fullWidth>
                     <Select
-                        id="mui-component-select-Category"
+                        sx={styles.select}
                         value={role}
                         onChange={handleChange}
                         required
                     >
                         {users.map((user, index) => (
-                            <MenuItem id="Select" key={index} value={user.value}>
+                            <MenuItem sx={styles.menu} key={index} value={user.value}>
                                 {user.label}
                             </MenuItem>
                         ))}
@@ -118,7 +122,9 @@ const PersonelInfo = () => {
                     fullWidth
                     type="number"
                     name="number"
-                    id="Input"
+                    inputProps={{
+                        style: styles.textField,
+                    }}
                     value={phoneNumber}
                     onChange={(e) => setNumber(e.target.value)}
                     required

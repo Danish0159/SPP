@@ -10,11 +10,14 @@ import loginImage from "../images/Login.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { TextField } from "@mui/material";
+import { styles } from '../styles';
+
 
 const Login = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
+
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -95,6 +98,9 @@ const Login = () => {
               value={formik.values.email}
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
+              inputProps={{
+                style: styles.textField,
+              }}
             />
             <p className="error-p">
               {formik.touched.email && formik.errors.email}
@@ -111,6 +117,9 @@ const Login = () => {
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
+              inputProps={{
+                style: styles.textField,
+              }}
             />
             <p className="error-p">
               {formik.touched.password && formik.errors.password}
@@ -232,10 +241,10 @@ const Wrapper = styled.section`
   /* OverRiding Material UI styles. */
   #email,
   #password {
-    font-family: "Nunito Sans", sans-serif;
-    color: #2a2a2a;
+    /* font-family: "Nunito Sans", sans-serif; */
+    /* color: #2a2a2a;
     font-size: 1.8rem;
     padding: 12px 14px;
-    font-weight: 400;
+    font-weight: 400; */
   }
 `;

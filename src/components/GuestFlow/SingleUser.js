@@ -106,13 +106,30 @@ const SingleUser = () => {
 
         <div className="section__white">
           <h3 className="section__title">{t("UserGallery")}</h3>
+
+          {single_user.data.user.portfolio.map((project, index) => {
+            return (
+              <>
+                <div key={index} className="parent">
+                  {/* project.name */}
+                  <h1 className="project-name">Orange</h1>
+                </div>
+                <Gallery data={[
+                  ...project.images,
+                ]}></Gallery>
+              </>
+            )
+          })}
+
+          {/* <h1 className="project-name">Name</h1>
           <Gallery data={[
-            ...single_user.data.user.portfolio[0]?.images,
+            // ...single_user.data.user.portfolio[0]?.images,
             ...single_user.data.user.portfolio[1]?.images,
-            ...single_user.data.user.portfolio[2]?.images,
-            ...single_user.data.user.portfolio[3]?.images,
-            ...single_user.data.user.portfolio[4]?.images,
+            // ...single_user.data.user.portfolio[2]?.images,
+            // ...single_user.data.user.portfolio[3]?.images,
+            // ...single_user.data.user.portfolio[4]?.images,
           ]}></Gallery>
+          */}
         </div>
       </Wrapper>
     );
@@ -225,4 +242,13 @@ const Wrapper = styled.section`
       padding: 0rem 3rem;
     }
   }
-`;
+  .parent{
+    width: 100%;
+    max-width: 110rem;
+    margin: auto;
+  }
+  .project-name{
+    font-size: 2.5rem;
+    margin: 3rem 0rem; 
+  }
+  `;

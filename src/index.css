@@ -150,40 +150,29 @@ Button Styles
   }
 }
 
-/* /////////////////////////// */
-/* /////////////////////////// */
-/* /////////////////////////// */
-/* OverRiding Material-Ui Styling  */
-/* Drop downs */
-#Select {
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: "Nunito Sans", sans-serif;
-}
-/* dropdown categories */
-#mui-component-select-Category {
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: "Nunito Sans", sans-serif;
-  min-height: auto;
-  padding: 1.8rem 2rem;
+.section-100vh {
+  min-height: 100vh;
+  background-color: #fff;
 }
 
+/* OverRdign */
 /* avatar font size */
-.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+/* .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
   font-family: "Nunito Sans", sans-serif !important;
   font-size: 1.5rem !important;
   font-weight: 600 !important;
-}
+} */
 
-/* Drop Zone */
+/* Drop Zone Text */
 .drop {
   font-family: "Nunito Sans", sans-serif;
   font-size: 1.5rem;
   color: var(--clr-black);
 }
 
-.section-100vh {
-  min-height: 100vh;
-  background-color: #fff;
+#CityField{
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 7px 14px;
+  color: #2a2a2a;
 }

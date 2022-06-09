@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, profileCreation, reset } from "../../slices/auth";
 import { Redirect, useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
+import { styles } from "../../styles";
 const { formId, formField } = registrationFormModel;
 
 const steps = [
@@ -190,7 +191,7 @@ const Driver = () => {
                       {_renderStepContent(activeStep)}
                       <div className="btn-container">
                         {activeStep !== 0 && (
-                          <Button id="mu-btn" onClick={_handleBack}>
+                          <Button sx={styles.backBtn} onClick={_handleBack}>
                             {t("BACK")}
                           </Button>
                         )}

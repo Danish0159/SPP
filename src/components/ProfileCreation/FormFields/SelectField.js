@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { at } from "lodash";
 import { useField } from "formik";
 import { FormControl, Select, MenuItem } from "@mui/material";
+import { styles } from '../../../styles';
 
 function SelectField(props) {
   const { label, data, ...rest } = props;
@@ -18,13 +19,12 @@ function SelectField(props) {
 
   return (
     <FormControl {...rest} error={isError}>
-      <Select
-        id="mui-component-select-Category"
+      <Select sx={styles.select}
         {...field}
         value={selectedValue ? selectedValue : ""}
       >
         {data.map((item, index) => (
-          <MenuItem id="Select" key={index} value={item.value}>
+          <MenuItem sx={styles.menu} key={index} value={item.value}>
             {item.label}
           </MenuItem>
         ))}

@@ -11,6 +11,7 @@ import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../slices/auth";
 import { users } from "../utils/constants";
+import { styles } from '../styles';
 
 const Signup = () => {
   const { t } = useTranslation();
@@ -102,10 +103,12 @@ const Signup = () => {
               fullWidth
               type="text"
               name="name"
-              id="name"
               value={formik.values.name}
               onChange={formik.handleChange}
               error={formik.touched.name && Boolean(formik.errors.name)}
+              inputProps={{
+                style: styles.textField,
+              }}
             />
             <p className="error-p">
               {formik.touched.name && formik.errors.name}
@@ -118,10 +121,12 @@ const Signup = () => {
               fullWidth
               type="email"
               name="email"
-              id="email"
               value={formik.values.email}
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
+              inputProps={{
+                style: styles.textField,
+              }}
             />
             <p className="error-p">
               {formik.touched.email && formik.errors.email}
@@ -134,10 +139,12 @@ const Signup = () => {
               fullWidth
               type="password"
               name="password"
-              id="password"
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
+              inputProps={{
+                style: styles.textField,
+              }}
             />
             <p className="error-p">
               {formik.touched.password && formik.errors.password}
@@ -148,13 +155,15 @@ const Signup = () => {
             <label Htmlfor="password">{t("register_as")}</label>
             <FormControl fullWidth>
               <Select
-                id="mui-component-select-Category"
+                sx={styles.select}
                 value={role}
                 onChange={handleChange}
                 required
               >
                 {users.map((user, index) => (
-                  <MenuItem id="Select" key={index} value={user.value}>
+                  <MenuItem
+                    sx={styles.menu}
+                    key={index} value={user.value}>
                     {user.label}
                   </MenuItem>
                 ))}
@@ -283,17 +292,6 @@ const Wrapper = styled.section`
     color: var(--clr-blue-2);
   }
   
-  /* Overriding materia ui styling */
-  #name,
-  #email,
-  #password,
-  #passwordConfirmation {
-    font-family: "Nunito Sans", sans-serif;
-    color: #2a2a2a;
-    font-size: 1.8rem;
-    padding: 12px 14px;
-    font-weight: 400;
-  }
   .error-p {
     padding: 0px 0px 0px 3px;
     margin: 0px;
@@ -302,6 +300,3 @@ const Wrapper = styled.section`
     height: 5px;
   }
 `;
-
-// Todo
-// Handle The Select Component with formik.

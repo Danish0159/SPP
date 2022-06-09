@@ -43,25 +43,6 @@ export const CardLayout = styled.div`
     margin: 0.1rem;
     font-weight: 500;
   }
-  /* Material Ui override. */
-  #remove-img-btn {
-    color: var(--clr-blue-2);
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-  }
-  #Select,
-  #Input {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-
-  #mu-btn {
-    color: var(--clr-blue-2);
-    font-size: 1.6rem;
-  }
   /////////////
   /* Thumbs */
   .thumbsContainer{
@@ -105,12 +86,5 @@ export const Review = styled.div`
     /* OverRiding index.css styling */
     margin: 0.1rem;
     font-weight: 500;
-  }
-  #Select,
-  #Input {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
   }
 `;

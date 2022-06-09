@@ -5,7 +5,7 @@ import Dropzone, { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
-
+import { styles } from '../../styles';
 
 export default function Portfolio(props) {
   const { t } = useTranslation();
@@ -232,9 +232,10 @@ export default function Portfolio(props) {
 
               <p className="card__subtitle"> {t("PortfolioQuestion3")}</p>
               <InputField
+                inputProps={{ style: styles.desciption, }}
                 name={step.projectDescription.name}
                 type="text"
-                rows={3.5}
+                rows={3}
                 multiline
                 fullWidth
               />
@@ -298,8 +299,7 @@ export default function Portfolio(props) {
                   {index === 4 ? thumbs5 : null}
                 </aside>
                 <Button
-                  // className="blue-btn card-btn imgRemove-btn"
-                  id="remove-img-btn"
+                  sx={styles.removeBtn}
                   type="button"
                   onClick={step.remove}
                 >

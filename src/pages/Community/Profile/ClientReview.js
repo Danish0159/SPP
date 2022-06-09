@@ -3,6 +3,7 @@ import React from 'react'
 import styled from "styled-components";
 import logo from '../../../images/logo3.png'
 import { Review } from '../../../components/Common/styled'
+import { styles } from '../../../styles'
 
 const ClientReview = () => {
     return (
@@ -25,8 +26,10 @@ const ClientReview = () => {
                                     fullWidth
                                     type="text"
                                     name="text"
-                                    id="Input"
-                                    rows={6}
+                                    inputProps={{
+                                        style: styles.desciption,
+                                    }}
+                                    rows={4}
                                     multiline
                                     value="SomeContent"
                                     // value={clientMessage}

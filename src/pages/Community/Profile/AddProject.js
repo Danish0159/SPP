@@ -6,6 +6,7 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProject, reset } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
+import { styles } from '../../../styles';
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
@@ -84,7 +85,9 @@ const AddProject = () => {
                     fullWidth
                     type="text"
                     name="text"
-                    id="Input"
+                    inputProps={{
+                        style: styles.textField,
+                    }}
                     value={projectName}
                     onChange={(e) => setProjectName(e.target.value)}
                     required
@@ -94,7 +97,9 @@ const AddProject = () => {
                     fullWidth
                     type="text"
                     name="text"
-                    id="Input"
+                    inputProps={{
+                        style: styles.textField,
+                    }}
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     required
@@ -146,7 +151,7 @@ const AddProject = () => {
                     </aside>
                     {images.length > 0 &&
                         <Button
-                            id="remove-img-btn"
+                            sx={styles.removeBtn}
                             type="button"
                             onClick={removeImages}
                         >

@@ -13,6 +13,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 import Spinner from "../../../components/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
+import { styles } from '../../../styles';
 
 const PersonelProjects = () => {
     /////////////////////////////
@@ -138,7 +139,9 @@ const PersonelProjects = () => {
                         fullWidth
                         type="text"
                         name="text"
-                        id="Input"
+                        inputProps={{
+                            style: styles.textField,
+                        }}
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
                         required
@@ -148,7 +151,9 @@ const PersonelProjects = () => {
                         fullWidth
                         type="email"
                         name="email"
-                        id="Input"
+                        inputProps={{
+                            style: styles.textField,
+                        }}
                         value={clientEmail}
                         onChange={(e) => setClientEmail(e.target.value)}
                         required
@@ -158,7 +163,9 @@ const PersonelProjects = () => {
                         fullWidth
                         type="text"
                         name="text"
-                        id="Input"
+                        inputProps={{
+                            style: styles.textField,
+                        }}
                         value={clientTitle}
                         onChange={(e) => setClientTitle(e.target.value)}
                         required
@@ -168,8 +175,10 @@ const PersonelProjects = () => {
                         fullWidth
                         type="text"
                         name="text"
-                        id="Input"
-                        rows={6}
+                        inputProps={{
+                            style: styles.desciption,
+                        }}
+                        rows={5}
                         multiline
                         value={clientMessage}
                         onChange={(e) => setClientMessage(e.target.value)}
@@ -202,7 +211,9 @@ const PersonelProjects = () => {
                         fullWidth
                         type="text"
                         name="text"
-                        id="Input"
+                        inputProps={{
+                            style: styles.textField,
+                        }}
                         value={projectName}
                         onChange={(e) => setProjectName(e.target.value)}
                         required
@@ -212,7 +223,9 @@ const PersonelProjects = () => {
                         fullWidth
                         type="text"
                         name="text"
-                        id="Input"
+                        inputProps={{
+                            style: styles.textField,
+                        }}
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         required
@@ -265,7 +278,7 @@ const PersonelProjects = () => {
                         </aside>
                         {images.length > 0 &&
                             <Button
-                                id="remove-img-btn"
+                                sx={styles.removeBtn}
                                 type="button"
                                 onClick={removeImages}
                             >

@@ -5,6 +5,7 @@ import { useField } from "formik";
 import { useDispatch } from "react-redux";
 import { updateCountryFlag } from "../../../slices/auth";
 import { FormControl, Select, MenuItem } from "@mui/material";
+import { styles } from '../../../styles';
 
 function SelectFieldLocation(props) {
     const { label, data, ...rest } = props;
@@ -17,7 +18,6 @@ function SelectFieldLocation(props) {
             return <p className="error-p">{error}</p>;
         }
     }
-
     function updateState() {
         dispatch(updateCountryFlag(selectedValue));
     }
@@ -31,13 +31,12 @@ function SelectFieldLocation(props) {
 
     return (
         <FormControl {...rest} error={isError}>
-            <Select
-                id="mui-component-select-Category"
+            <Select sx={styles.select}
                 {...field}
                 value={selectedValue ? selectedValue : ""}
             >
                 {data && data?.map((item, index) => (
-                    <MenuItem id="Select" key={index} value={item.value}>
+                    <MenuItem sx={styles.menu} key={index} value={item.value}>
                         {item.label}
                     </MenuItem>
                 ))}
