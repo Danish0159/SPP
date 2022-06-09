@@ -112,7 +112,7 @@ const SingleUser = () => {
               <>
                 <div key={index} className="parent">
                   {/* project.name */}
-                  <h1 className="project-name">Orange</h1>
+                  <h1 className="project-name">{project.projectName}</h1>
                 </div>
                 <Gallery data={[
                   ...project.images,
