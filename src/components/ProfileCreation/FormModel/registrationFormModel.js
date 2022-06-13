@@ -5,6 +5,10 @@ export default {
       name: "Category",
       requiredErrorMsg: "Category is required",
     },
+    subCategory: {
+      name: "subCategory",
+      requiredErrorMsg: "Sub-Category is required",
+    },
     experience: {
       name: "experience",
       requiredErrorMsg: "Experience is required",

@@ -1,7 +1,7 @@
 import SelectField from "./SelectField";
-import SelectFieldLocation from "./SelectFieldLocation";
+import SelectFieldSetConditional from "./SelectFieldSetConditional";
 import SelectMultiple from "./SelectMultiple";
 import InputField from "./InputField";
 import UploadField from "./UploadField";
 
-export { SelectField, InputField, UploadField, SelectFieldLocation, SelectMultiple };
+export { SelectField, InputField, UploadField, SelectFieldSetConditional, SelectMultiple };

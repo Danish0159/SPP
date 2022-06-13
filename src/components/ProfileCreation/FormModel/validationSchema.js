@@ -3,6 +3,7 @@ import registrationFormModel from "./registrationFormModel";
 const {
     formField: {
         category,
+        subCategory,
         experience,
         projects,
         employees,
@@ -39,6 +40,9 @@ export default [
         [category.name]: Yup.string()
             .nullable()
             .required(`${category.requiredErrorMsg}`),
+        [subCategory.name]: Yup.string()
+            .nullable()
+            .required(`${subCategory.requiredErrorMsg}`),
     }),
 
     Yup.object().shape({

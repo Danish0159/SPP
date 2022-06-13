@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { at } from "lodash";
 import { useField } from "formik";
 import { useDispatch } from "react-redux";
-import { updateCountryFlag } from "../../../slices/auth";
+import { updateConditionalFlag } from "../../../slices/auth";
 import { FormControl, Select, MenuItem } from "@mui/material";
 import { styles } from '../../../styles';
 
-function SelectFieldLocation(props) {
+function SelectFieldSetConditional(props) {
     const { label, data, ...rest } = props;
     const [field, meta] = useField(props);
     const { value: selectedValue } = field;
@@ -19,12 +19,12 @@ function SelectFieldLocation(props) {
         }
     }
     function updateState() {
-        dispatch(updateCountryFlag(selectedValue));
+        dispatch(updateConditionalFlag(selectedValue));
     }
     // State.
     const dispatch = useDispatch();
     useEffect(() => {
-        if (selectedValue === "Pakistan" || selectedValue === "Saudi Arabia") {
+        if (selectedValue) {
             updateState();
         }
     }, [selectedValue]);
@@ -37,7 +37,7 @@ function SelectFieldLocation(props) {
             >
                 {data && data?.map((item, index) => (
                     <MenuItem sx={styles.menu} key={index} value={item.value}>
-                        {item.label}
+                        {item.value}
                     </MenuItem>
                 ))}
             </Select>
@@ -46,12 +46,12 @@ function SelectFieldLocation(props) {
     );
 }
 
-SelectFieldLocation.defaultProps = {
+SelectFieldSetConditional.defaultProps = {
     data: [],
 };
 
-SelectFieldLocation.propTypes = {
+SelectFieldSetConditional.propTypes = {
     data: PropTypes.array.isRequired,
 };
 
-export default SelectFieldLocation;
+export default SelectFieldSetConditional;

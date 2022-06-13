@@ -56,92 +56,258 @@ export const cardsData = [
   },
 ];
 
-export const categories = [
-  {
-    value: "Air Conditioning",
-    label: "Air Conditioning",
+export const categories = {
+  Contractor: [
+    {
+      // img: electricalc,
+      value: "Electrical",
+      subCategories: [
+        "Electrical (Medium Voltage) Contractors",
+        "Low Current (Telephone, date, TV)  Contractors",
+        "Camera and CCTV  Contractors",
+        "Fire Alarm  Contractors",
+        "Electrical (High Voltage)  Contractors",
+        "Complete Electrical Contractors  Contractors"
+      ]
+    },
+    {
+      // img: hvacc,
+      value: "HVAC",
+      subCategories: [
+        "Split AC Installation",
+        "Concealled and Package AC installation",
+        "VRV and VRF Installation",
+        "Chiller Instalation",
+        "Complete HVAC contracting company"
+
+      ]
+    },
+    {
+      // img: plumbingc,
+      value: "Plumbing",
+      subCategories: [
+        "Plumbing contractors inside building works",
+        "Main sever line works",
+        "Swimming Pool, Jacouzi and Suana works",
+        "Garden Sprinkler works",
+        "Irrigation piping works"
+
+      ]
+    },
+    {
+      // img: civilworks,
+      value: "Civil Works",
+      subCategories: [
+        "Steel Work",
+        "Shutttering wood Work",
+        "Scafolding works",
+        "Concrete works",
+        "Plaster Works",
+        "Block Works",
+        "Plaster Works",
+        "All Civil Works Contractors"
+
+      ]
+    },
+    {
+      // img: finishworks,
+      value: "Finish Works",
+      subCategories: [
+        "Steel doors and Decoration",
+        "Wood works Doors etc",
+        "Windows Aluminium",
+        "Glass works",
+        "Paint Work",
+        "Gyps and Gypsumboards",
+        "Ceiling works",
+        "Wallpaper works"
+
+      ]
+    },
+    {
+      // img: firefighting,
+      value: "Fire Fighting",
+      subCategories: [
+        "Firefighting Piping",
+        "Firealarm works",
+        "Complete Firefighting Contractors"
+
+      ]
+    },
+    {
+      // img: cphc,
+      value: "Complete Project",
+      subCategories: [
+        "Complete Project Handover Companies"
+      ]
+    }
+  ],
+  HandymenAndMaintenance: [
+    {
+      // img: electricalm,
+      value: "Electrical",
+      subCategories: [
+        "Electrical (Medium Voltage) handymen",
+        "Low Current (Telephone, date, TV)  handymen",
+        "Camera and CCTV  handymen",
+        "Fire Alarm  handymen",
+        "Electrical (High Voltage)  handymen",
+        "Complete Electrical maintenance company"
+      ]
+    },
+    {
+      // img: plumbingm,
+      value: "Plumbing",
+      subCategories: [
+        "Plumbing Technician",
+        "Swimming Pool, Jacouzi and Suana works",
+        "Garden Sprinkler and Irrigation Technician"
+      ]
+    },
+    {
+      // img: hvacm,
+      value: "HVAC",
+      subCategories: [
+        "Split and Cassete technician",
+        "Concealled and Package technician",
+        "VRV and VRF technician",
+        "Chiller system technician",
+        "Complete HVAC Maintenance Company"
+
+      ]
+    }
+  ],
+  Designer: [
+    {
+      // img: buildingdesignersd,
+      value: "Building Designers",
+      subCategories: [
+        "Civil Structure Designers",
+        "Archetect/Finishing  Designers",
+        "Mechanical System Designers",
+        "Electrical System Designers",
+        "Plumbing Designers",
+        "HVAC Designers",
+        "Firefighting System Designers",
+        "All System Design Companies"
+      ]
+    }
+  ],
+  ConsultantFirms: [
+    {
+      // img: buildingdesignerscf,
+      value: "Building Designers",
+      subCategories: [
+        "Civil & Archetect Consultants",
+        "Mechanical System Consultants",
+        "Electrical System Consultants",
+        "Firefighting System Designers",
+        "All System Consultant Companies"
+      ]
+    }
+  ]
+};
+
+export const subCategories = {
+  Contractor: {
+    "Electrical": [
+      { value: "Electrical (Medium Voltage) Contractors" },
+      { value: "Low Current (Telephone, date, TV)  Contractors" },
+      { value: "Camera and CCTV  Contractors" },
+      { value: "Fire Alarm  Contractors" },
+      { value: "Electrical (High Voltage)  Contractors" },
+      { value: "Complete Electrical Contractors  Contractors" }
+    ],
+    "HVAC": [
+      { value: "Split AC Installation" },
+      { value: "Concealled and Package AC installation" },
+      { value: "VRV and VRF Installation" },
+      { value: "Chiller Instalation" },
+      { value: "Complete HVAC contracting company" }
+    ],
+    "Plumbing": [
+      { value: "Plumbing contractors inside building works" },
+      { value: "Main sever line works" },
+      { value: "Swimming Pool, Jacouzi and Suana works" },
+      { value: "Garden Sprinkler works" },
+      { value: "Irrigation piping works" },
+    ],
+    "Civil Works": [
+      { value: "Steel Work" },
+      { value: "Shutttering wood Work" },
+      { value: "Scafolding works" },
+      { value: "Concrete works" },
+      { value: "Plaster Works" },
+      { value: "Block Works" },
+      { value: "Plaster Works" },
+      { value: "All Civil Works Contractors" },
+    ],
+    "Finish Works": [
+      { value: "Steel doors and Decoration" },
+      { value: "Wood works Doors etc" },
+      { value: "Windows Aluminium" },
+      { value: "Glass works" },
+      { value: "Paint Work" },
+      { value: "Gyps and Gypsumboards" },
+      { value: "Ceiling works" },
+      { value: "Wallpaper works" },
+    ],
+    "Fire Fighting": [
+      { value: "Firefighting Piping" },
+      { value: "Firealarm works" },
+      { value: "Complete Firefighting Contractors" },
+    ],
+    "Complete Project": [
+      { value: "Complete Project Handover Companies" },
+    ],
   },
-  {
-    value: "Plumbing",
-    label: "Plumbing",
+  HandymenAndMaintenance: {
+    "Electrical": [
+      "Electrical (Medium Voltage) handymen",
+      "Low Current (Telephone, date, TV)  handymen",
+      "Camera and CCTV  handymen",
+      "Fire Alarm  handymen",
+      "Electrical (High Voltage)  handymen",
+      "Complete Electrical maintenance company"
+    ],
+    "Plumbing": [
+      "Plumbing Technician",
+      "Swimming Pool, Jacouzi and Suana works",
+      "Garden Sprinkler and Irrigation Technician"
+    ],
+    "HVAC": [
+      "Split and Cassete technician",
+      "Concealled and Package technician",
+      "VRV and VRF technician",
+      "Chiller system technician",
+      "Complete HVAC Maintenance Company"
+    ]
   },
-  {
-    value: "Firefighting",
-    label: "Firefighting",
+  Designer: {
+    "Building Designers":
+      [
+        { value: "Civil Structure Designers" },
+        { value: "Archetect/Finishing  Designers" },
+        { value: "Mechanical System Designers" },
+        { value: "Electrical System Designers" },
+        { value: "Plumbing Designers" },
+        { value: "HVAC Designers" },
+        { value: "Firefighting System Designers" },
+        { value: "All System Design Companies" },
+      ]
   },
-  {
-    value: "Electrical",
-    label: "Electrical",
-  },
-  {
-    value: "CCTV",
-    label: "CCTV",
-  },
-  {
-    value: "Fire alarm",
-    label: "Fire alarm",
-  },
-  {
-    value: "Sewer Lines",
-    label: "Sewer Lines",
-  },
-  {
-    value: "Glass Doors and Windows",
-    label: "Glass Doors and Windows",
-  },
-  {
-    value: "Gyps Work",
-    label: "Gyps Work",
-  },
-  {
-    value: "Gypsumboard",
-    label: "Gypsumboard",
-  },
-  {
-    label: "Plaster",
-    value: "Plaster",
-  },
-  {
-    label: "Block and Breaks",
-    value: "Block and Breaks",
-  },
-  {
-    label: "Civil",
-    value: "Civil",
-  },
-  {
-    label: "Structure",
-    value: "Structure",
-  },
-  {
-    label: "Mechanical",
-    value: "Mechanical",
-  },
-  {
-    label: "Electromechanical",
-    value: "Electromechanical",
-  },
-  {
-    value: "Complete Building",
-    label: "Complete Building",
-  },
-  {
-    label: "Cladding",
-    value: "Cladding",
-  },
-  {
-    label: "Metal steel Works",
-    value: "Metal steel Works",
-  },
-  {
-    label: "Wood Works",
-    value: "Wood Works",
-  },
-  {
-    label: "Kitchen Installation",
-    value: "Kitchen Installation",
-  },
-];
+  ConsultantFirms: {
+    "Building Designers": [
+      { value: "Civil & Archetect Consultants" },
+      { value: "Mechanical System Consultants" },
+      { value: "Electrical System Consultants" },
+      { value: "Firefighting System Designers" },
+      { value: "All System Consultant Companies" },
+    ],
+  }
+};
+
+
 
 export const users = [
   {

@@ -3,6 +3,7 @@ import registrationFormModel from "./registrationFormModel";
 const {
   formField: {
     category,
+    subCategory,
     experience,
     projects,
     employees,
@@ -34,6 +35,7 @@ const {
 
 export default {
   [category.name]: "",
+  [subCategory.name]: "",
   [experience.name]: "",
   [projects.name]: "",
   [employees.name]: "",

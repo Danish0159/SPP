@@ -23,9 +23,9 @@ function SelectField(props) {
         {...field}
         value={selectedValue ? selectedValue : ""}
       >
-        {data.map((item, index) => (
+        {data && data?.map((item, index) => (
           <MenuItem sx={styles.menu} key={index} value={item.value}>
-            {item.label}
+            {item.value}
           </MenuItem>
         ))}
       </Select>

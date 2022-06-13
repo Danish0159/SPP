@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { SelectFieldLocation, SelectMultiple } from "../../components/ProfileCreation/FormFields";
+import { SelectFieldSetConditional, SelectMultiple } from "../../components/ProfileCreation/FormFields";
 import { useTranslation } from "react-i18next";
 import { countries, pakCities, saudiCities } from "../../utils/constants";
 import { Field } from 'formik'
@@ -9,7 +9,7 @@ import { styles } from '../../styles';
 
 export default function Location(props) {
   const { t } = useTranslation();
-  const { countryFlag } = useSelector(
+  const { conditionalFlag } = useSelector(
     (state) => state.auth
   );
   const {
@@ -18,7 +18,7 @@ export default function Location(props) {
   return (
     <>
       <p className="card__subtitle">{t("LocationQuestion1")}</p>
-      <SelectFieldLocation
+      <SelectFieldSetConditional
         name={country.name}
         data={countries}
         fullWidth
@@ -33,8 +33,8 @@ export default function Location(props) {
         name={city.name}
         component={SelectMultiple}
         options={
-          countryFlag === "Pakistan" ? pakCities :
-            countryFlag === "Saudi Arabia" ? saudiCities : []}
+          conditionalFlag === "Pakistan" ? pakCities :
+            conditionalFlag === "Saudi Arabia" ? saudiCities : []}
         textFieldProps={{
           fullWidth: true,
         }}

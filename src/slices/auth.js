@@ -169,7 +169,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
-  countryFlag: "",
+  conditionalFlag: null,
 };
 
 const authSlice = createSlice({
@@ -181,10 +181,10 @@ const authSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
-      state.countryFlag = "";
+      state.conditionalFlag = "";
     },
-    updateCountryFlag: (state, action) => {
-      state.countryFlag = action.payload;
+    updateConditionalFlag: (state, action) => {
+      state.conditionalFlag = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -291,6 +291,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { reset, updateCountryFlag } = authSlice.actions;
+export const { reset, updateConditionalFlag } = authSlice.actions;
 const { reducer } = authSlice;
 export default reducer;

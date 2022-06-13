@@ -92,6 +92,7 @@ const Driver = () => {
   async function _submitForm(values, actions) {
     const payload = {
       category: values.Category,
+      subCategory: values.subCategory,
       phoneNumber: values.Phone,
       expertiseLevel: {
         yearsOfExperience: values.experience,
