@@ -1,17 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 
 function PrivateWithOutProfile({ component: Component, ...restOfProps }) {
-    const { user } = useSelector(
-        (state) => state.auth
-    );
-
+    const user = JSON.parse(localStorage.getItem("user"));
     return (
         <Route
             {...restOfProps}
             render={(props) =>
-                (user && user.user.profile === true) ? (
+                (user && user.profile) ? (
                     <Component {...props} />
                 ) : (
                     <Redirect to="/" />
@@ -20,4 +16,5 @@ function PrivateWithOutProfile({ component: Component, ...restOfProps }) {
         />
     );
 }
+
 export default PrivateWithOutProfile;

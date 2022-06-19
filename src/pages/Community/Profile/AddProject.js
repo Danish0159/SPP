@@ -11,6 +11,7 @@ import { styles } from '../../../styles';
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
     const [location, setLocation] = useState("");
+    const [description, setDescription] = useState("");
     const [images, setImages] = useState([]);
 
     const removeImages = () => {
@@ -39,11 +40,20 @@ const AddProject = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        console.log({
+            projectName,
+            location,
+            description,
+            images,
+            id: user.profile._id,
+        })
+
         //  API CALL.
         dispatch(
             addProject({
                 projectName,
                 location,
+                description,
                 images,
                 id: user.profile._id,
             })

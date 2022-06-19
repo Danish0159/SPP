@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Navbar, Footer } from "../../components";
@@ -9,9 +8,8 @@ import { CardLayout } from '../../components/Common/styled'
 import { useTranslation } from "react-i18next";
 
 const JoinUs = () => {
-  const { user } = useSelector((state) => state.auth);
+  const user = JSON.parse(localStorage.getItem("user"));
   const { t } = useTranslation();
-
 
   return (
     <main>
@@ -25,7 +23,7 @@ const JoinUs = () => {
             </div>
             <div className="join__content">
               <p className="join__title">{t("join__title")}</p>
-              {user && <p className="join__subTitle">{t("join__Hi")} {user.user.name},</p>}
+              {user && <p className="join__subTitle">{t("join__Hi")} {user.name},</p>}
               <p className="join__passage">
                 {t("join__description")}
               </p>

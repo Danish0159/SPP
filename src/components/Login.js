@@ -17,9 +17,8 @@ const Login = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
-
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const user = JSON.parse(localStorage.getItem("user"));
+  const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
 
@@ -30,9 +29,9 @@ const Login = () => {
 
     if (isSuccess || user) {
       // The Profile Is Already Created For the User.
-      if (user.user.profile) {
+      if (user && user.profile) {
         history.push("/HomeFeed");
-      } else {
+      } else if (user && !user.profile) {
         history.push("/joinus");
       }
     }

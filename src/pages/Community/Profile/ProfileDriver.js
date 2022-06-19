@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Navbar, Footer } from "../../../components";
+import { Navbar, Footer, Spinner } from "../../../components";
 import { Buttons } from "../../../components/Community/Profile";
 import { CardLayout } from '../../../components/Common/styled'
 import { AddProject, PreviewProfile, PersonelInfo, PersonelProjects } from '../Profile'

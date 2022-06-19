@@ -37,10 +37,15 @@ const login = async (email, password) => {
     }
   );
 
-  if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+  if (response.data && response.data.status === "SUCCESS") {
+    const user = {
+      name: response.data.user.name,
+      token: response.data.token,
+      profile: response.data.user.profile,
+      role: response.data.user.role,
+    }
+    localStorage.setItem("user", JSON.stringify(user));
   }
-
   return response.data;
 };
 
@@ -49,8 +54,7 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
-// ProfileCreation Service.
-// Register Service.
+// ProfileCreation.
 const profileCreation = async (profilePayload) => {
   const response = await axios.post(
     "https://warm-cove-25020.herokuapp.com/api/profile/createprofile",
@@ -59,23 +63,32 @@ const profileCreation = async (profilePayload) => {
       headers: authHeader(),
     }
   );
+  if (response.data && response.data.status === "SUCCESS") {
+    const user = JSON.parse(localStorage.getItem("user"));
+    user.profile = true;
+    localStorage.setItem("user", JSON.stringify(user));
+  }
 
   return response.data;
 };
 
 // /////////////////////////////////
-// Flow3 API's (Community Flow API).
+// (Community Flow API) (PersonelUser).
 // /////////////////////////////////
-const addProject = async (projectName, location, images, id) => {
+const addProject = async (projectName, location, description, images, id) => {
   const response = await axios.patch(
     `https://warm-cove-25020.herokuapp.com/api/profile/addproject/${id}`,
     {
-      projectName, location, images
+      projectName, location, description, images
     },
     {
       headers: authHeader(),
     }
   );
+
+  // if (response.data) {
+  //   localStorage.setItem("user", JSON.stringify(response.data));
+  // }
 
   return response.data;
 };
@@ -101,6 +114,7 @@ const deleteProject = async (profileId, projectId) => {
       headers: authHeader(),
     }
   );
+
   return response.data;
 };
 
@@ -119,6 +133,18 @@ const updateProject = async (projectName, location, images, profileId, projectId
 };
 
 
+const getCommunityUser = async () => {
+  const response = await axios.get(
+    "https://warm-cove-25020.herokuapp.com/api/user/getuser",
+    {
+      headers: authHeader(),
+    }
+  );
+
+  return response.data;
+};
+
+
 const authService = {
   register,
   login,
@@ -128,6 +154,7 @@ const authService = {
   updateProfile,
   deleteProject,
   updateProject,
+  getCommunityUser,
 };
 
 export default authService;

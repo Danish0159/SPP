@@ -8,11 +8,12 @@ export default function Category(props) {
   const {
     formField: { category, subCategory },
   } = props;
-
-  const { user, conditionalFlag } = useSelector(
+  const { conditionalFlag } = useSelector(
     (state) => state.auth
   );
-  const role = user.user.role;
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const role = user.role;
   const { t } = useTranslation();
 
   return (

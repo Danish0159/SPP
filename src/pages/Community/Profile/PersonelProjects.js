@@ -81,6 +81,13 @@ const PersonelProjects = () => {
     // Delete Project 
     function handleDelete(projectId) {
         //  API CALL.
+        console.log({
+            profileId: user.profile._id,
+            projectId,
+        });
+
+        //Before API Call.
+
         dispatch(
             deleteProject({
                 profileId: user.profile._id,
@@ -97,6 +104,7 @@ const PersonelProjects = () => {
         setImages(project.images);
         setUpdateId(projectId);
     }
+    // 
 
     /////////////////////////////
     // Update Project

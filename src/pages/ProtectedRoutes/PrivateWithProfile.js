@@ -1,16 +1,13 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-function PrivateRouteCDC({ component: Component, ...restOfProps }) {
+function PrivateWithProfile({ component: Component, ...restOfProps }) {
   const user = JSON.parse(localStorage.getItem("user"));
-
   return (
     <Route
       {...restOfProps}
       render={(props) =>
-        (user && user.user.role === "Company") ||
-          (user && user.user.role === "Designer") ||
-          (user && user.user.role === "Contractor") ? (
+        (user && !user.profile) ? (
           <Component {...props} />
         ) : (
           <Redirect to="/" />
@@ -20,4 +17,4 @@ function PrivateRouteCDC({ component: Component, ...restOfProps }) {
   );
 }
 
-export default PrivateRouteCDC;
+export default PrivateWithProfile;

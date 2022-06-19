@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import image from "../../images/13.jpg";
 import { FormControl, MenuItem, Select } from "@mui/material";
-import { users, categories, countries, pakCities, saudiCities } from "../../utils/constants";
+import { users, Tempcategories, countries, pakCities, saudiCities } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { fetchUsers, reset } from "../../slices/users";
@@ -105,7 +105,7 @@ const Welcome = () => {
                 onChange={(e) => SetCategory(e.target.value)}
                 required
               >
-                {categories.map((item, index) => (
+                {Tempcategories.map((item, index) => (
                   <MenuItem sx={styles.menu} key={index} value={item.value}>
                     {item.label}
                   </MenuItem>

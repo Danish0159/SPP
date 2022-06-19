@@ -25,7 +25,7 @@ import {
 } from "../ProfileCreation";
 // redux/state
 import { useDispatch, useSelector } from "react-redux";
-import { logout, profileCreation, reset } from "../../slices/auth";
+import { profileCreation, reset } from "../../slices/auth";
 import { Redirect, useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import { styles } from "../../styles";
@@ -105,7 +105,8 @@ const Driver = () => {
           location: values.location,
           description: values.description,
         },
-      ],
+      ]
+      ,
       portfolio: [
         {
           projectName: values.projectName1,
@@ -146,7 +147,7 @@ const Driver = () => {
     };
 
     console.log(payload);
-    // dispatch(profileCreation(payload));
+    dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);
   }

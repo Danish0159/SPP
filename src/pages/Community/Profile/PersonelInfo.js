@@ -7,7 +7,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfile, reset } from "../../../slices/auth";
+import { updateProfile, reset, getCommunityUser } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
 import { styles } from '../../../styles';
 
@@ -17,14 +17,13 @@ const PersonelInfo = () => {
         (state) => state.auth
     );
 
-    const [name, setName] = useState(user.user.name);
-    const [email, setEmail] = useState(user.user.email);
-    const [role, setRole] = useState(user.user.role);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [role, setRole] = useState("");
     const handleChange = (event) => {
         setRole(event.target.value);
     };
-    const [phoneNumber, setNumber] = useState(user.profile.phoneNumber);
-
+    const [phoneNumber, setNumber] = useState("");
 
     // state.
     const dispatch = useDispatch();
@@ -34,20 +33,37 @@ const PersonelInfo = () => {
             toast.error(message);
         }
         if (isSuccess) {
-            toast.success(message);
+            if (message === "Successful request") {
+                return;
+            }
+            else {
+                toast.success(message);
+            }
         }
+
         dispatch(reset());
-        // eslint-disable-next-line
-    }, [user, isError, isSuccess, message, dispatch]);
+    }, [isError, isSuccess, message, dispatch]);
+
+    // Get The user to display data.
+    useEffect(() => {
+        dispatch(getCommunityUser());
+    }, [])
+    // Reset after getting user.
+    useEffect(() => {
+        if (user) {
+            dispatch(reset());
+        }
+    }, [user])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(name);
-        console.log(email);
-        console.log(role);
-        console.log(phoneNumber);
-
+        console.log({
+            name,
+            email,
+            role,
+            phoneNumber,
+            id: user.profile._id,
+        })
         //  API CALL.
         dispatch(
             updateProfile({
@@ -74,7 +90,7 @@ const PersonelInfo = () => {
     if (update) {
         return <Wrapper>
             <div className='edit__div'>
-                <CancelIcon onClick={() => { setUpdate(false) }} className="edit__icon"></CancelIcon>
+                <CancelIcon onClick={() => { setUpdate(false); }} className="edit__icon"></CancelIcon>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -143,16 +159,22 @@ const PersonelInfo = () => {
         return (
             <Wrapper>
                 <div className='edit__div'>
-                    <ModeEditOutlineOutlinedIcon onClick={() => { setUpdate(true) }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
+                    <ModeEditOutlineOutlinedIcon onClick={() => {
+                        setUpdate(true)
+                        setName(user.user.name);
+                        setEmail(user.user.email);
+                        setRole(user.user.role);
+                        setNumber(user.profile.phoneNumber);
+                    }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
                 <p className="personel__title">Name</p>
-                <p className="personel__subtitle">{user.user.name}</p>
+                <p className="personel__subtitle">{user?.user.name}</p>
                 <p className="personel__title">Email</p>
-                <p className="personel__subtitle">{user.user.email}</p>
+                <p className="personel__subtitle">{user?.user.email}</p>
                 <p className="personel__title">Role</p>
-                <p className="personel__subtitle">{user.user.role}</p>
+                <p className="personel__subtitle">{user?.user.role}</p>
                 <p className="personel__title">Number</p>
-                <p className="personel__subtitle">{user.profile.phoneNumber}</p>
+                <p className="personel__subtitle">{user?.profile.phoneNumber}</p>
             </Wrapper>
         )
     }

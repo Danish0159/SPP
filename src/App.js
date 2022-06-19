@@ -7,7 +7,7 @@ import { theme } from './styles';
 import LanguageSelect from "./components/languageSelect";
 
 // Public Pages. 
-import { HomePage, ErrorPage, LoginPage, SignupPage } from "./pages";
+import { HomePage, ErrorPage, LoginPage, SignupPage, TempHomePage } from "./pages";
 
 // Flow 1
 import {
@@ -26,7 +26,10 @@ import { FeedDriver } from "./pages/Community/Feed";
 import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
 
 // Private Route.
-import PrivateRouteCDC from "./pages/ProtectedRoutes/PrivateRouteCDC";
+import { PrivateWithOutProfile, PrivateWithProfile } from "./pages/ProtectedRoutes";
+
+// NewHomePage.
+import NewHomePage from "./pages/NewHomePage/NewHomePage";
 const App = () => {
 
   return (
@@ -38,15 +41,15 @@ const App = () => {
             <Route exact path="/">
               <HomePage></HomePage>
             </Route>
+            <Route exact path="/HomePage">
+              <NewHomePage></NewHomePage>
+            </Route>
             <Route exact path="/Login">
               <LoginPage></LoginPage>
             </Route>
             <Route exact path="/Signup">
               <SignupPage></SignupPage>
             </Route>
-            {/* ----------------------------------------------- */}
-            {/* ----------------------------------------------- */}
-            {/* Box1 (User Protection) */}
             <Route exact path="/Welcome">
               <WelcomePage></WelcomePage>
             </Route>
@@ -62,30 +65,34 @@ const App = () => {
             <Route exact path="/Projects/:userId/:id">
               <SingleProjectPage></SingleProjectPage>
             </Route>
-            {/* Box1 END */}
             {/* ----------------------------------------------- */}
-            {/* ----------------------------------------------- */}
-            {/* Box2 (Desinger||Contractor||Company Protection) */}
-            <PrivateRouteCDC
+            {/* NewUser (Can Access if Profile is Not Created). */}
+            <PrivateWithProfile
               exact
               path="/JoinUs"
               component={JoinUs}
-            ></PrivateRouteCDC>
+            ></PrivateWithProfile>
 
-            <PrivateRouteCDC
+            <PrivateWithProfile
               exact
               path="/RegistrationPage"
               component={Driver}
-            ></PrivateRouteCDC>
-            {/* Box2 END  */}
+            ></PrivateWithProfile>
             {/* ----------------------------------------------- */}
+            {/* ExistingUser (Can Access if Profile is Created). */}
+            <PrivateWithOutProfile
+              exact
+              path="/HomeFeed"
+              component={FeedDriver}
+            ></PrivateWithOutProfile>
+
+            <PrivateWithOutProfile
+              exact
+              path="/Profile"
+              component={ProfileDriver}
+            ></PrivateWithOutProfile>
             {/* ----------------------------------------------- */}
-            <Route exact path="/HomeFeed">
-              <FeedDriver></FeedDriver>
-            </Route>
-            <Route exact path="/Profile">
-              <ProfileDriver></ProfileDriver>
-            </Route>
+            {/* End Of Private Routes. */}
             <Route exact path="/Review">
               <ClientReview></ClientReview>
             </Route>
@@ -101,5 +108,3 @@ const App = () => {
 };
 
 export default App;
-
-// The app has SignUp+login athuentication for simple user.

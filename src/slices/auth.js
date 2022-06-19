@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import AuthService from "../services/auth.service";
 
+// Get user from localStorage.
+// const user = JSON.parse(localStorage.getItem("user"));
+
 //  Register User.
 export const register = createAsyncThunk(
   "auth/register",
@@ -22,9 +25,6 @@ export const register = createAsyncThunk(
     }
   }
 );
-
-// Get user from localStorage.
-const user = JSON.parse(localStorage.getItem("user"));
 
 // User Login.
 export const login = createAsyncThunk(
@@ -53,7 +53,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   await AuthService.logout();
 });
 
-//  Register User.
+// Register User.
 export const profileCreation = createAsyncThunk(
   "auth/profileCreation",
   async (profilePayload, thunkAPI) => {
@@ -76,13 +76,13 @@ export const profileCreation = createAsyncThunk(
 );
 
 // /////////////////////////////////
-// Flow3 API's (Community Flow API).
+//  (Community Flow API) (PersonelUser).
 // /////////////////////////////////
 export const addProject = createAsyncThunk(
   "auth/addProject",
-  async ({ projectName, location, images, id }, thunkAPI) => {
+  async ({ projectName, location, description, images, id }, thunkAPI) => {
     try {
-      const data = await AuthService.addProject(projectName, location, images, id);
+      const data = await AuthService.addProject(projectName, location, description, images, id);
       if (data.status !== "SUCCESS") {
         return thunkAPI.rejectWithValue(data.message);
       }
@@ -162,14 +162,37 @@ export const updateProject = createAsyncThunk(
   }
 );
 
+// This is a temporary code here, this will be put in seperate slicep after.
+export const getCommunityUser = createAsyncThunk(
+  "auth/getCommunityUser",
+  async (thunkAPI) => {
+    try {
+      const data = await AuthService.getCommunityUser();
+      if (data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(data.message);
+      }
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Initial State.
 const initialState = {
-  user: user ? user : null,
+  user: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
   conditionalFlag: null,
+  // communityUser: null,
 };
 
 const authSlice = createSlice({
@@ -208,7 +231,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        // state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -225,7 +248,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.message = action.payload.message;
-        state.user = action.payload;
+        // state.user = action.payload;
       })
       .addCase(profileCreation.rejected, (state, action) => {
         state.isLoading = false;
@@ -284,6 +307,20 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(updateProject.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getCommunityUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCommunityUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+        state.message = action.payload.message;
+      })
+      .addCase(getCommunityUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
