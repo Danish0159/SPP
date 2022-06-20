@@ -30,7 +30,6 @@ const SingleUser = () => {
 
   useEffect(() => {
     dispatch(fetchSingleUser(id));
-    // eslint-disable-next-line
   }, [id]);
 
   if (isLoading) {

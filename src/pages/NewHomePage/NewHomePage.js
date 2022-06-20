@@ -20,11 +20,8 @@ import { toast } from "react-toastify";
 import Spinner from "../../components/Spinner";
 
 
-
 const NewHomePage = () => {
-
     const history = useHistory();
-
     const dispatch = useDispatch();
 
     const responsive = {
@@ -35,13 +32,9 @@ const NewHomePage = () => {
         1400: { items: 5 }
     };
 
-
     const [categoriesDataH, setCategoriesDataH] = useState(handymen); // H stands for Handymen
-
     const [categoriesDataC, setCategoriesDataC] = useState(contractors); // C stands for Contractors
-
     const [categoriesDataDCF, setCategoriesDataDCF] = useState(designersAndConsultantFirms); // DCF stands for Designers and Consultant Firms
-
 
     const [country, setCountry] = useState("Country");
     const [city, setCity] = useState("City");
@@ -63,8 +56,6 @@ const NewHomePage = () => {
         setCity("City");
         dispatch(reset());
 
-
-        // eslint-disable-next-line
     }, [isError, isSuccess, message, dispatch]);
 
 
@@ -88,7 +79,6 @@ const NewHomePage = () => {
             </div>
         );
     }
-
     return (
         <>
 
@@ -307,7 +297,8 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-
+                                            const searchValues = { user: "Handyman", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
                                             dispatch(fetchUsers({ user: "Handyman", category: val.name, country: country, city: city, subCategory: e.target.value }));
 
                                         }}
@@ -391,9 +382,9 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-
+                                            const searchValues = { user: "Contractor", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
                                             dispatch(fetchUsers({ user: "Contractor", category: val.name, country: country, city: city, subCategory: e.target.value }));
-
                                         }}
                                     >
                                         <option className='dropdown-item' hidden>Select Sub-Category</option>
@@ -474,9 +465,9 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-
+                                            const searchValues = { user: "DesignerConsultantFirm", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
                                             dispatch(fetchUsers({ user: "DesignerConsultantFirm", category: val.name, country: country, city: city, subCategory: e.target.value }));
-
                                         }}
                                     >
                                         <option className='dropdown-item' hidden>Select Sub-Category</option>

@@ -18,14 +18,12 @@ const Projects = () => {
     }
 
     dispatch(reset());
-    // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(fetchProjects(id));
-    // eslint-disable-next-line
   }, [id]);
 
   if (isLoading) {
