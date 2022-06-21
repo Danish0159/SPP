@@ -1,97 +1,8 @@
-/*----------------- Navbar.js -----------------------*/
-
-.navbar {
-    width: 100%;
-    background-color: #424d83;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 20px 0px;
-}
-
-.navbar-dropdown {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 3rem;
-    color: white;
-}
-
-.navbar-dropdown select {
-    background: none;
-    border: none;
-    font-size: 3rem;
-    color: white;
-    cursor: pointer;
-    width: 150px;
-    padding: 5px;
-    text-align: center;
-
-}
-
-.navbar-dropdown select option {
-    color: black;
-    font-size: 2.2rem;
-    text-align: center;
-}
-
-.navbar-logo {
-    height: 6rem;
-}
-
-.navbar-btn {
-    color: #424d83;
-    border: none;
-    border-radius: 25px;
-    background-color: white;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 2.5rem;
-    padding: 10px 25px;
-    cursor: pointer;
-}
-
-@media screen and (max-width:790px) {
-    .navbar-dropdown {
-        display: none;
-    }
-
-    .navbar {
-        justify-content: space-between;
-        padding: 20px 20px;
-    }
-}
-
-@media screen and (max-width:550px) {
-    .navbar-btn {
-        font-size: 2rem;
-    }
-
-    .navbar-logo {
-        height: 5.5rem;
-    }
-
-}
-
-@media screen and (max-width:650px) {
-    .navbar-btn {
-        font-size: 2.25rem;
-    }
-
-    .navbar-logo {
-        height: 5.75rem;
-    }
-
-}
-
-
-
-/*----------------- Navbar.js -----------------------*/
-
-
 /*----------------- Navbar2.js -----------------------*/
-
-
 .navbar2 {
+    max-width: 140rem;
+    width: 100%;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -116,182 +27,70 @@
 }
 
 .navbar2 input {
-    font-family: "Roboto", sans-serif;
+    font-size: 1.6rem;
+    padding: 12px 2rem;
+    padding-right: 14rem;
+    border: none;
+    color:rgb(120, 116, 116); 
+    border-radius: 25px;
+    transition: all 0.2s;
+    border: 1.4px solid #c0bdbd;
     font-weight: 600;
-    font-size: 2rem;
-    padding: 10px;
-    border: 1px solid black;
-    width: 180px;
 }
 
-@media screen and (max-width:550px) {
-    .navbar2 {
-        font-size: 1.15rem;
-    }
+.navbar2 input:focus{
+    outline:none;
 }
 
 @media screen and (max-width:650px) {
     .navbar2 {
-        font-size: 1.25rem;
-    }
-}
-
-
-@media screen and (max-width:500px) {
-    .navbar2-searchbox {
-        display: none;
-    }
-
-    .navbar2 {
+        font-size: 1.15rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0px 20px;
+        flex-direction: column;
+        
     }
+    .navbar2 input { 
+            padding-right: 2rem;
+     }
+
 }
+
+
+/* .icon{
+    position: absolute;
+    right: 10px;
+    color: #424d83;
+    transform: scale(1.8);
+} */
 
 
 /*----------------- Navbar2.js -----------------------*/
-
-
-/*----------------- Hero.js -----------------------*/
-
-
-.hero {
-    display: flex;
-    width: 100%;
-    height: 300px;
-}
-
-.hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    color: white;
-    width: 22.5%;
-
-}
-
-.hero-left .left-ulistitem {
-    background-color: rgb(117, 115, 115);
-    width: 100%;
-    height: 75px;
-    border-bottom: 1px solid white;
-    padding: 15px 25px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 2.5rem;
-    cursor: pointer;
-    text-align: center;
-}
-
-.hero-left .left-ulistitem:last-child {
-    border-bottom: none;
-}
-
-.hero-right {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: #424d83;
-    width: 77.5%;
-    height: 100%;
-
-
-}
-
-.hero-right .right-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    width: 50%;
-
-}
-
-.right-content .content-title {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 3.5rem;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-.right-content .content-paragraph {
-    font-size: 1.8rem;
-    line-height: 1.6;
-    font-weight: 400;
-    text-align: left;
-    width: 100%;
-
-}
-
-.hero-right .right-img {
-    width: 35%;
-    text-align: center;
-}
-
-.hero-right .right-img img {
-    height: 225px;
-    width: 100%;
-}
-
-
-@media screen and (max-width:790px) {
-    .hero-left {
-        display: none;
-    }
-
-    .hero-right {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width:550px) {
-    .hero-right .right-content .content-title {
-        font-size: 3rem;
-    }
-
-    .hero-right .right-content .content-paragraph {
-        font-size: 1.4rem;
-    }
-}
-
-
-@media screen and (max-width:650px) {
-    .hero-right .right-content .content-title {
-        font-size: 3.25rem;
-    }
-
-    .hero-right .right-content .content-paragraph {
-        font-size: 1.65rem;
-    }
-}
-
-
-/*----------------- Hero.js -----------------------*/
-
-
 
 /*----------------- SelectCategory.js -----------------------*/
 
 
 .selectcategory {
-    width: 100%;
     background-color: white;
     padding: 0px 25px;
     width: 100%;
+    width: 100%;
+    max-width: 150rem;
+    margin: auto;
 }
 
 .selectcategory-top {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 25px 0px;
     margin-bottom: 4rem;
+}
+
+.selectcategory-top>*{
+    margin: .5rem 0rem;
 }
 
 .selectcategory-top .top-title {
@@ -303,13 +102,27 @@
     margin-right: 1rem
 }
 
-.selectcategory-top .top-searchbox input {
-    font-family: "Roboto", sans-serif;
+/* Input. */
+.selectcategory-top .top-searchbox input{
+    font-size: 1.6rem;
+    padding: 12px 2rem;
+    padding-right: 14rem;
+    border: none;
+    color:rgb(120, 116, 116); 
+    border-radius: 25px;
+    transition: all 0.2s;
+    border: 1.4px solid #c0bdbd;
     font-weight: 600;
-    font-size: 2rem;
-    padding: 10px;
-    border: 1px solid black;
-    width: 180px;
+}
+
+.selectcategory-top .top-searchbox input:focus{
+    outline:none;
+}
+
+@media screen and (max-width:650px) {
+ .selectcategory-top .top-searchbox input { 
+            padding-right: 2rem;
+     }
 }
 
 .selectcategory-bottom {
@@ -361,6 +174,8 @@
 .alice-carousel__next-btn {
     font-size: 4rem;
 }
+
+
 
 @media screen and (max-width:650px) {
     .selectcategory-top {

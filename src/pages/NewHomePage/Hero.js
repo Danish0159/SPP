@@ -12,6 +12,7 @@ const Hero = () => {
                 <h1 className='left-ulistitem'>Company</h1>
                 <h1 className='left-ulistitem'>Individual</h1>
             </div>
+
             <div className='hero-right'>
                 <div className="right-content">
                     <h2 className="content-title">Everything Is In Your Hands</h2>
@@ -22,7 +23,7 @@ const Hero = () => {
                     </p>
                 </div>
                 <div className="right-img">
-                <img src={heroImage} alt="hero" />
+                    <img src={heroImage} alt="hero" />
                 </div>
             </div>
 

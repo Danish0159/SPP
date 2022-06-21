@@ -9,13 +9,13 @@ import {
   NavbarCommunity,
 } from "./Navigations";
 
-const Navbar = ({ page }) => {
+const Navbar = ({ page, HomeValues }) => {
   switch (page) {
     case "home":
       return (
         <Navigation>
-          <NavbarHome></NavbarHome>
-        </Navigation>
+          <NavbarHome {...HomeValues}></NavbarHome>
+        </Navigation >
       );
     case "login":
       return (

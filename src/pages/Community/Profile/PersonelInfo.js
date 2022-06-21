@@ -94,7 +94,7 @@ const PersonelInfo = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
-                <p className="card__subtitle">Name</p>
+                <p className="card__subtitle">Company Name</p>
                 <TextField
                     fullWidth
                     type="text"
@@ -133,7 +133,7 @@ const PersonelInfo = () => {
                         ))}
                     </Select>
                 </FormControl>
-                <p className="card__subtitle">Number</p>
+                <p className="card__subtitle">Contact Number</p>
                 <TextField
                     fullWidth
                     type="number"

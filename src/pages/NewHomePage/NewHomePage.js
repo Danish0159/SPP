@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './newHomePage.css';
-
-import { Link, useHistory } from "react-router-dom";
-import axios from 'axios';
-
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-
-import { pakCities, saudiCities } from '../../utils/constants';
 import { contractors, handymen, designersAndConsultantFirms } from './categoriesData';
-
-import heroImage from '../../images/HeroImage.jpg';
 import noDataFound from '../../images/ndf.jpg';
-import logo from '../../images/logo2.png';
-
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, reset } from "../../slices/users";
 import { toast } from "react-toastify";
 import Spinner from "../../components/Spinner";
+import Navbar from '../../components/Navbar';
+import { Footer, Hero } from "../../components"
+import { useHistory } from 'react-router-dom';
 
 
 const NewHomePage = () => {
@@ -38,6 +31,9 @@ const NewHomePage = () => {
 
     const [country, setCountry] = useState("Country");
     const [city, setCity] = useState("City");
+    const HomeValues = {
+        country, city, setCity, setCountry
+    }
 
     const { isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.users
@@ -59,19 +55,6 @@ const NewHomePage = () => {
     }, [isError, isSuccess, message, dispatch]);
 
 
-    useEffect(() => {
-
-        axios.get('https://api.ipify.org?format=json').then((response) => {
-
-            axios.get(`https://api.ipfind.com/?ip=${response.data.ip}`).then((response) => {
-                setCountry(response.data.country);
-                setCity(response.data.city);
-
-            })
-        })
-
-    }, [isError])
-
     if (isLoading) {
         return (
             <div className="section-100vh">
@@ -81,52 +64,9 @@ const NewHomePage = () => {
     }
     return (
         <>
+            <Navbar page="home" HomeValues={HomeValues}></Navbar>
 
-            {/* Navbar1 */}
-
-            <div className='navbar'>
-                <Link to='/'>
-                    <img className='navbar-logo' src={logo} alt='logo' />
-                </Link>
-                <div className='navbar-dropdown'>
-                    <select onChange={(e) => { setCountry(e.target.value) }}>
-                        <option hidden>{country}</option>
-                        <option>Pakistan</option>
-                        <option>Saudia</option>
-                    </select>
-                </div>
-
-                <div className='navbar-dropdown'>
-                    <select onChange={(e) => { setCity(e.target.value) }}>
-                        <option hidden>{city}</option>
-                        <option disabled>none</option>
-                        {country === "Pakistan"
-                            ? pakCities.map((item, index) => (
-                                <option key={index}>
-                                    {item.label}
-                                </option>
-                            ))
-                            : country === "Saudia" ? saudiCities.map((item, index) => (
-                                <option key={index}>
-                                    {item.label}
-                                </option>
-                            )) : null}
-
-                    </select>
-                </div>
-
-                <Link to='/Login' >
-                    <button className='navbar-btn'>
-                        Log in
-                    </button>
-                </Link>
-
-            </div>
-
-            {/* Navbar1 */}
-
-            {/* Navbar2 */}
-
+            {/* Global Search. */}
             <div className='navbar2'>
                 <h1 className='navbar2-ulistitem' onClick={() => history.push("/")}>Home</h1>
                 <input
@@ -208,42 +148,14 @@ const NewHomePage = () => {
                 />
                 <h1 className='navbar2-ulistitem'>Help</h1>
             </div>
-
-            {/* Navbar2 */}
-
-
-            {/* Hero */}
-
-            <div className="hero">
-                <div className='hero-left'>
-                    <h1 className='left-ulistitem'>Handyman</h1>
-                    <h1 className='left-ulistitem'>Contractor</h1>
-                    <h1 className='left-ulistitem'>Designer</h1>
-                    <h1 className='left-ulistitem'>Company</h1>
-                </div>
-                <div className='hero-right'>
-                    <div className="right-content">
-                        <h2 className="content-title">Everything Is In Your Hands</h2>
-                        <p className="content-paragraph">
-                            Search the world information including webpages, images,
-                            videos and more. Google has many special features to
-                            help you find exactly what you use and pay for.
-                        </p>
-                    </div>
-                    <div className="right-img">
-                        <img src={heroImage} alt="hero" />
-                    </div>
-                </div>
-
-            </div>
+            {/* Global Search. END */}
 
 
             {/* Hero */}
-
+            <Hero></Hero>
 
             {/* SelectCategory */}
-
-            <div className="selectcategory">
+            <div className="selectcategory" id="Handymen">
                 <div className='selectcategory-top'>
                     <h1 className='top-title'>Handymen</h1>
                     <div className='top-searchbox'>
@@ -320,15 +232,12 @@ const NewHomePage = () => {
 
             </div>
 
-
             <div className='separator'>
 
             </div>
 
-
             {/* ----------------- */}
-
-            <div className="selectcategory">
+            <div className="selectcategory" id="Contractors">
                 <div className='selectcategory-top'>
                     <h1 className='top-title'>Contractors</h1>
                     <div className='top-searchbox'>
@@ -405,15 +314,12 @@ const NewHomePage = () => {
             </div>
 
             <div className='separator'>
-
             </div>
 
             {/* --------------------- */}
-
-
-            <div className="selectcategory">
-                <div className='selectcategory-top' style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                    <h1 className='top-title'>Designers & Companies</h1>
+            <div className="selectcategory" id="Designers & Consultants">
+                <div className='selectcategory-top'>
+                    <h1 className='top-title'>Designers & Consultants</h1>
                     <div className='top-searchbox'>
                         <input
                             type="text"
@@ -486,10 +392,10 @@ const NewHomePage = () => {
                 />
 
             </div>
+            {/* SelectCategory END */}
 
-            {/* SelectCategory */}
-
-
+            {/* Footer. */}
+            <Footer></Footer>
         </>
     );
 };

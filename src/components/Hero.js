@@ -9,12 +9,17 @@ function Hero() {
   return (
     <Wrapper>
       <div className="hero__grid">
+
+        <div className='hero__left'>
+          <a href="#Handymen" className='hero__role'>Handymen</a>
+          <a href="#Contractors" className='hero__role'>Contractor</a>
+          <a href="#Designers & Consultants" className='hero__role'>Designer</a>
+          <a href="#Designers & Consultants" className='hero__role'>Consultant</a>
+        </div>
+
         <div className="hero__content">
           <h2 className="hero__title">{t("home_title")}</h2>
           <p className="hero__paragraph">{t("home_subtitle")}</p>
-          <Link to="/Welcome" className="btn-small">
-            {t("home_started")}
-          </Link>
         </div>
 
         <figure className="hero__div">
@@ -29,12 +34,9 @@ export default Hero;
 
 const Wrapper = styled.section`
   background-color: #424d83;
-  padding: 5rem 3rem 5rem 3rem;
   color: #ffffff;
-  min-height: 50vh;
   display: flex;
   align-items: center;
-
   .hero__title {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
@@ -42,24 +44,23 @@ const Wrapper = styled.section`
   }
 
   .hero__grid {
-    max-width: 108rem;
+    max-width: 135rem;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    grid-gap: 6rem;
-    align-items: center;
-    justify-items: center;
+    grid-template-columns:1fr 1.5fr 1fr;
+    grid-gap: 1rem;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 950px) {
     .hero__grid {
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
       max-width: 100%;
-      grid-gap: 6rem;
+      grid-gap: 2rem;
     }
   }
 
   .hero__content {
+    padding: 0rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -76,12 +77,31 @@ const Wrapper = styled.section`
   }
 
   .hero__div {
+    align-self: center;
+    justify-self:center;
     width: 80%;
     height: 100%;
   }
   .hero__img {
+    padding: 2rem 0rem;
     width: 100%;
     display: block;
     height: 100%;
+  }
+
+  .hero__role{
+    background-color: rgb(117, 115, 115);
+    border-bottom: 1px solid white;
+    min-width: 100%;
+    padding: 22px 80px;
+    display: block;
+    font-weight: 700;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #ffffff;
+    text-align: center;
+  }
+  .hero__role:last-child{
+       border-bottom: none;
   }
 `;
