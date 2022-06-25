@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Avatar, Rating } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-const Table = ({ data = [], title, flag, userId }) => {
+const Table = ({ data = [], title, flag, userId, message }) => {
   const { t } = useTranslation();
   // Displaying only 5 users.
   const [renderedData] = useState(data);
@@ -19,7 +19,7 @@ const Table = ({ data = [], title, flag, userId }) => {
 
   return (
     <Wrapper>
-      <div className="search">
+      <div className={flag === "projects" ? "search" : ""}>
         <h2 className="search__title">{t(title)}</h2>
         <div className="search__columns">
           <p className="subtitle">{t("UsersName")}</p>
@@ -27,8 +27,11 @@ const Table = ({ data = [], title, flag, userId }) => {
           <p className="subtitle">{t("UsersRating")}</p>
         </div>
 
+        {/* Return message on Users page if no user exists. */}
+        {message && <p className="subtitle" style={{ color: "#000000", padding: "1.2rem .8rem" }}> {message}</p>}
         {/* Render Data for Users and else for Projects. */}
-        {flag === "users"
+
+        {flag && flag === "users"
           ? renderedData
             .slice(pagesVisited, pagesVisited + usersPerPage)
             .map((user, index) => {
@@ -46,7 +49,16 @@ const Table = ({ data = [], title, flag, userId }) => {
                     </div>
                     {/* Cell2 */}
                     <p className="cell">
-                      {user.location.country}, {user.location.city}
+                      {user.location.country},&nbsp;
+                      {
+                        user.location.city.map((city) => {
+                          return (
+                            <span>
+                              {city},
+                            </span>
+                          )
+                        })
+                      }
                     </p>
                     {/* Cell3 */}
                     <p className="cell">
@@ -83,15 +95,18 @@ const Table = ({ data = [], title, flag, userId }) => {
           activeClassName={"paginationActive"}
         />
       </div>
-    </Wrapper>
+    </Wrapper >
   );
 };
 
 export default Table;
 const Wrapper = styled.section`
   min-height: calc(100vh - 100px);
-  padding: 2rem 2rem;
-
+  .search {
+    max-width: 110rem;
+    width: 100%;
+    margin: auto;
+  }
   .search__title,
   .subtitle {
     font-family: "Roboto", sans-serif;
@@ -107,12 +122,6 @@ const Wrapper = styled.section`
   .subtitle {
     font-size: 2rem;
     color: #ffffff;
-  }
-
-  .search {
-    max-width: 110rem;
-    width: 100%;
-    margin: auto;
   }
 
   .cell {
@@ -159,6 +168,7 @@ const Wrapper = styled.section`
       display: none;
     }
   }
+
   .search_profile {
     display: flex;
     align-items: center;
@@ -210,9 +220,6 @@ const Wrapper = styled.section`
 
   .paginationDisabled a:hover {
     background-color: #dddddd;
-  }
-  .test {
-    width: 70px;
   }
 `;
 

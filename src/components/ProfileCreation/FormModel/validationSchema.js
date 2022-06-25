@@ -51,7 +51,7 @@ export default [
             .required(`${experience.requiredErrorMsg}`),
 
         [projects.name]: Yup.number()
-            .min(5, "Min value 5.").max(5, "Max value 5.")
+            .min(1, "Min value 5.").max(5, "Max value 5.")
             .required(`${projects.requiredErrorMsg}`),
 
         [employees.name]: Yup.number()
@@ -74,37 +74,17 @@ export default [
     }),
 
     Yup.object().shape({
-        [projectName1.name]: Yup.string("Enter ProjectName").required(
-            `${projectName1.requiredErrorMsg}`
-        ),
-        [projectName2.name]: Yup.string("Enter ProjectName").required(
-            `${projectName2.requiredErrorMsg}`
-        ),
-        [projectName3.name]: Yup.string("Enter ProjectName").required(
-            `${projectName3.requiredErrorMsg}`
-        ),
-        [projectName4.name]: Yup.string("Enter ProjectName").required(
-            `${projectName4.requiredErrorMsg}`
-        ),
-        [projectName5.name]: Yup.string("Enter ProjectName").required(
-            `${projectName5.requiredErrorMsg}`
-        ),
+        [projectName1.name]: Yup.string("Enter ProjectName"),
+        [projectName2.name]: Yup.string("Enter ProjectName"),
+        [projectName3.name]: Yup.string("Enter ProjectName"),
+        [projectName4.name]: Yup.string("Enter ProjectName"),
+        [projectName5.name]: Yup.string("Enter ProjectName"),
 
-        [projectLocation1.name]: Yup.string("Enter projectLocation").required(
-            `${projectLocation1.requiredErrorMsg}`
-        ),
-        [projectLocation2.name]: Yup.string("Enter projectLocation").required(
-            `${projectLocation2.requiredErrorMsg}`
-        ),
-        [projectLocation3.name]: Yup.string("Enter projectLocation").required(
-            `${projectLocation3.requiredErrorMsg}`
-        ),
-        [projectLocation4.name]: Yup.string("Enter projectLocation").required(
-            `${projectLocation4.requiredErrorMsg}`
-        ),
-        [projectLocation5.name]: Yup.string("Enter projectLocation").required(
-            `${projectLocation5.requiredErrorMsg}`
-        ),
+        [projectLocation1.name]: Yup.string("Enter projectLocation"),
+        [projectLocation2.name]: Yup.string("Enter projectLocation"),
+        [projectLocation3.name]: Yup.string("Enter projectLocation"),
+        [projectLocation4.name]: Yup.string("Enter projectLocation"),
+        [projectLocation5.name]: Yup.string("Enter projectLocation"),
         // Optional Description.
         [projectDescription1.name]: Yup.string("Enter projectLocation"),
         [projectDescription2.name]: Yup.string("Enter projectLocation"),

@@ -19,11 +19,11 @@ export const contractors = [
         name: "Electrical",
         subCategories: [
             "Electrical (Medium Voltage) Contractors",
-            "Low Current (Telephone, date, TV)  Contractors",
-            "Camera and CCTV  Contractors",
-            "Fire Alarm  Contractors",
-            "Electrical (High Voltage)  Contractors",
-            "Complete Electrical Contractors  Contractors"
+            "Low Current (Telephone, date, TV) Contractors",
+            "Camera and CCTV Contractors",
+            "Fire Alarm Contractors",
+            "Electrical (High Voltage) Contractors",
+            "Complete Electrical Contractors Contractors",
         ]
     },
     {
@@ -35,7 +35,6 @@ export const contractors = [
             "VRV and VRF Installation",
             "Chiller Instalation",
             "Complete HVAC contracting company"
-
         ]
     },
     {
@@ -47,7 +46,6 @@ export const contractors = [
             "Swimming Pool, Jacouzi and Suana works",
             "Garden Sprinkler works",
             "Irrigation piping works"
-
         ]
     },
     {
@@ -62,7 +60,6 @@ export const contractors = [
             "Block Works",
             "Plaster Works",
             "All Civil Works Contractors"
-
         ]
     },
     {
@@ -77,7 +74,6 @@ export const contractors = [
             "Gyps and Gypsumboards",
             "Ceiling works",
             "Wallpaper works"
-
         ]
     },
     {
@@ -87,7 +83,6 @@ export const contractors = [
             "Firefighting Piping",
             "Firealarm works",
             "Complete Firefighting Contractors"
-
         ]
     },
     {
@@ -105,12 +100,11 @@ export const handymen = [
         name: "Electrical",
         subCategories: [
             "Electrical (Medium Voltage) handymen",
-            "Low Current (Telephone, date, TV)  handymen",
-            "Camera and CCTV  handymen",
-            "Fire Alarm  handymen",
-            "Electrical (High Voltage)  handymen",
+            "Low Current (Telephone, date, TV) handymen",
+            "Camera and CCTV handymen",
+            "Fire Alarm handymen",
+            "Electrical (High Voltage) handymen",
             "Complete Electrical maintenance company"
-
         ]
     },
     {
@@ -120,7 +114,6 @@ export const handymen = [
             "Plumbing Technician",
             "Swimming Pool, Jacouzi and Suana works",
             "Garden Sprinkler and Irrigation Technician"
-
         ]
     },
     {
@@ -132,7 +125,6 @@ export const handymen = [
             "VRV and VRF technician",
             "Chiller system technician",
             "Complete HVAC Maintenance Company"
-
         ]
     }
 ]
@@ -143,7 +135,7 @@ export const designersAndConsultantFirms = [
         name: "Building Designers",
         subCategories: [
             "Civil Structure Designers",
-            "Archetect/Finishing  Designers",
+            "Archetect/Finishing Designers",
             "Mechanical System Designers",
             "Electrical System Designers",
             "Plumbing Designers",
@@ -153,5 +145,3 @@ export const designersAndConsultantFirms = [
         ]
     }
 ]
-
-

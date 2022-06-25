@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 import i18next from "i18next";
 
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
@@ -10,7 +11,9 @@ import ListItem from "@mui/material/ListItem";
 import ListSubheader from "@mui/material/ListSubheader";
 
 const languageMap = {
-    en: { label: "English", dir: "ltr", active: true },
+    en: {
+        label: "English", dir: "ltr", active: true
+    },
     ar: { label: "العربية", dir: "rtl", active: false },
 };
 
@@ -34,8 +37,8 @@ const LanguageSelect = () => {
     }, [menuAnchor, selected]);
 
     return (
-        <div className="d-flex justify-content-end align-items-center language-select-root">
-            <Button sx={{ fontSize: "1.3rem", fontWeight: "bold", }} onClick={({ currentTarget }) => setMenuAnchor(currentTarget)}>
+        <Wrapper>
+            <Button className="button" onClick={({ currentTarget }) => setMenuAnchor(currentTarget)}>
                 {languageMap[selected].label}
                 <ArrowDropDown fontSize="small" />
             </Button>
@@ -71,8 +74,20 @@ const LanguageSelect = () => {
                     </List>
                 </div>
             </Popover>
-        </div >
+        </Wrapper>
     );
 };
 
 export default LanguageSelect;
+
+const Wrapper = styled.div`
+display: flex;
+justify-content:flex-end;
+.button{
+    padding: 2px 5px;
+    margin: .5rem 0rem;
+    margin-right:1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+`;

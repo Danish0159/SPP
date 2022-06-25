@@ -7,7 +7,7 @@ import { Navbar, Footer, Spinner } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
 import { CardLayout } from '../../components/Common/styled'
 import { CardTitle } from "../../components/Common"
-// Form Model
+// Form Model.
 import {
   formInitialValues,
   validationSchema,
@@ -66,6 +66,7 @@ const Driver = () => {
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
+  const [portfolioMapping] = useState([]);
 
   // Redux State.
   const { t } = useTranslation();
@@ -90,6 +91,58 @@ const Driver = () => {
   }, [isError, isSuccess, message, dispatch]);
 
   async function _submitForm(values, actions) {
+    //Optimze the solution.
+    if (values.projectName1) {
+      portfolioMapping.push(
+        {
+          projectName: values.projectName1,
+          location: values.projectLocation1,
+          description: values.projectDescription1,
+          images: values.images.src1,
+        }
+      );
+    }
+    if (values.projectName2) {
+      portfolioMapping.push(
+        {
+          projectName: values.projectName2,
+          location: values.projectLocation2,
+          description: values.projectDescription2,
+          images: values.images.src2,
+        }
+      );
+    }
+    if (values.projectName3) {
+      portfolioMapping.push(
+        {
+          projectName: values.projectName3,
+          location: values.projectLocation3,
+          description: values.projectDescription3,
+          images: values.images.src3,
+        }
+      );
+    }
+    if (values.projectName4) {
+      portfolioMapping.push(
+        {
+          projectName: values.projectName4,
+          location: values.projectLocation4,
+          description: values.projectDescription4,
+          images: values.images.src4,
+        }
+      );
+    }
+    if (values.projectName5) {
+      portfolioMapping.push(
+        {
+          projectName: values.projectName5,
+          location: values.projectLocation5,
+          description: values.projectDescription5,
+          images: values.images.src5,
+        }
+      );
+    }
+
     const payload = {
       category: values.Category,
       subCategory: values.subCategory,
@@ -105,40 +158,8 @@ const Driver = () => {
           location: values.location,
           description: values.description,
         },
-      ]
-      ,
-      portfolio: [
-        {
-          projectName: values.projectName1,
-          location: values.projectLocation1,
-          description: values.projectDescription1,
-          images: values.images.src1,
-        },
-        {
-          projectName: values.projectName2,
-          location: values.projectLocation2,
-          description: values.projectDescription2,
-          images: values.images.src2,
-        },
-        {
-          projectName: values.projectName3,
-          location: values.projectLocation3,
-          description: values.projectDescription3,
-          images: values.images.src3,
-        },
-        {
-          projectName: values.projectName4,
-          location: values.projectLocation4,
-          description: values.projectDescription4,
-          images: values.images.src4,
-        },
-        {
-          projectName: values.projectName5,
-          location: values.projectLocation5,
-          description: values.projectDescription5,
-          images: values.images.src5,
-        },
       ],
+      portfolio: portfolioMapping,
       location: {
         country: values.Country,
         city: values.City,
@@ -147,7 +168,7 @@ const Driver = () => {
     };
 
     console.log(payload);
-    dispatch(profileCreation(payload));
+    // dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);
   }
@@ -226,10 +247,10 @@ const Driver = () => {
 export default Driver;
 
 const Wrapper = styled.section`
-  .error-p {
-    font-size: 1.3rem;
-    color: red;
-    font-family: "Nunito Sans", sans-serif;
-    height: 5px;
-  }
+.error-p{
+  font-size: 1.3rem;
+  color: red;
+  font-family: "Nunito Sans", sans-serif;
+  height: 5px;
+}
 `;

@@ -80,7 +80,7 @@ export const categories = {
       value: "Complete Project",
     }
   ],
-  Handyman: [
+  Handymen: [
     {
       value: "Electrical",
     },
@@ -102,11 +102,11 @@ export const subCategories = {
   Contractor: {
     "Electrical": [
       { value: "Electrical (Medium Voltage) Contractors" },
-      { value: "Low Current (Telephone, date, TV)  Contractors" },
-      { value: "Camera and CCTV  Contractors" },
-      { value: "Fire Alarm  Contractors" },
-      { value: "Electrical (High Voltage)  Contractors" },
-      { value: "Complete Electrical Contractors  Contractors" }
+      { value: "Low Current (Telephone, date, TV) Contractors" },
+      { value: "Camera and CCTV Contractors" },
+      { value: "Fire Alarm Contractors" },
+      { value: "Electrical (High Voltage) Contractors" },
+      { value: "Complete Electrical Contractors Contractors" }
     ],
     "HVAC": [
       { value: "Split AC Installation" },
@@ -151,33 +151,33 @@ export const subCategories = {
       { value: "Complete Project Handover Companies" },
     ],
   },
-  Handyman: {
+  Handymen: {
     "Electrical": [
-      "Electrical (Medium Voltage) handymen",
-      "Low Current (Telephone, date, TV)  handymen",
-      "Camera and CCTV  handymen",
-      "Fire Alarm  handymen",
-      "Electrical (High Voltage)  handymen",
-      "Complete Electrical maintenance company"
+      { value: "Electrical (Medium Voltage) handymen" },
+      { value: "Low Current (Telephone, date, TV) handymen" },
+      { value: "Camera and CCTV handymen" },
+      { value: "Fire Alarm handymen" },
+      { value: "Electrical (High Voltage) handymen" },
+      { value: "Complete Electrical maintenance company" },
     ],
     "Plumbing": [
-      "Plumbing Technician",
-      "Swimming Pool, Jacouzi and Suana works",
-      "Garden Sprinkler and Irrigation Technician"
+      { value: "Plumbing Technician" },
+      { value: "Swimming Pool, Jacouzi and Suana works" },
+      { value: "Garden Sprinkler and Irrigation Technician" },
     ],
     "HVAC": [
-      "Split and Cassete technician",
-      "Concealled and Package technician",
-      "VRV and VRF technician",
-      "Chiller system technician",
-      "Complete HVAC Maintenance Company"
+      { value: "Split and Cassete technician" },
+      { value: "Concealled and Package technician" },
+      { value: "VRV and VRF technician" },
+      { value: "Chiller system technician" },
+      { value: "Complete HVAC Maintenance Company" },
     ]
   },
   DesignerConsultantFirm: {
     "Building Designers":
       [
         { value: "Civil Structure Designers" },
-        { value: "Archetect/Finishing  Designers" },
+        { value: "Archetect/Finishing Designers" },
         { value: "Mechanical System Designers" },
         { value: "Electrical System Designers" },
         { value: "Plumbing Designers" },
@@ -190,8 +190,8 @@ export const subCategories = {
 
 export const users = [
   {
-    label: "Handyman",
-    value: "Handyman",
+    label: "Handymen",
+    value: "Handymen",
   },
   {
     label: "Contractor",
@@ -207,7 +207,6 @@ export const countries = [
   { value: "Saudi Arabia", label: "Saudi Arabia" },
   { value: "Pakistan", label: "Pakistan" },
 ];
-
 
 export const pakCities = [
   "Ahmed Nager Chatha",
@@ -446,7 +445,6 @@ export const pakCities = [
   "Zhob",
   "Ziarat",
 ];
-
 
 export const saudiCities = [
   "Abhā", "Abqaiq", "Al-Baḥah",

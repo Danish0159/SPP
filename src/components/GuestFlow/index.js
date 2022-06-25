@@ -8,6 +8,7 @@ import Reviews from "./Reviews";
 import Gallery from "./Gallery";
 import BackToProfile from "./BackToProfile";
 import Table from "./Table";
+import Buttons from "./Buttons";
 
 export {
   Cards,
@@ -20,4 +21,5 @@ export {
   Gallery,
   BackToProfile,
   Table,
+  Buttons,
 };

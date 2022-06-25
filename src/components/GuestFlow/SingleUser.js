@@ -40,6 +40,8 @@ const SingleUser = () => {
     );
   }
 
+  // console.log(single_user.data.user.location.city);
+
   if (single_user.data) {
     return (
       <Wrapper>
@@ -68,18 +70,35 @@ const SingleUser = () => {
 
             {/* Content */}
             <div className="profile__content">
+
+              <h2 className="profile__content--title">Company Name:     <span className="profile__content--text">
+                Coca Cola
+              </span>
+              </h2>
+
               <h2 className="profile__content--title">{t("UserLocation")}</h2>
-              <p className="profile__content--location">
+              <p className="profile__content--text">
                 {single_user.data.user.location.country},{" "}
-                {single_user.data.user.location.city}
+                {
+                  single_user.data.user.location.city.map((city) => {
+                    return (
+                      <span>
+                        {city},
+                      </span>
+                    )
+                  })
+                }
               </p>
-              <h2 className="profile__content--title">{t("UserNumber")}</h2>
-              <p className="profile__content--number">
-                <a href={"tel:" + single_user.data.user.phoneNumber}>
-                  {single_user.data.user.phoneNumber}
-                </a>
-              </p>
-              <h2 className="profile__content--title mb">
+
+              <h2 className="profile__content--title">{t("UserNumber")}:&nbsp;
+                <span className="profile__content--text">
+                  <a href={"tel:" + single_user.data.user.phoneNumber}>
+                    {single_user.data.user.phoneNumber}
+                  </a>
+                </span>
+              </h2>
+
+              <h2 className="profile__content--title m">
                 {t("UserTotalProjects")} {single_user.data.noOfProjects}
               </h2>
               <Link
@@ -98,11 +117,6 @@ const SingleUser = () => {
           </div>
         </div>
 
-        <div className="section__blue">
-          <h3 className="section__title">{t("UserReviews")}</h3>
-          <Reviews single={false}></Reviews>
-        </div>
-
         <div className="section__white">
           <h3 className="section__title">{t("UserGallery")}</h3>
 
@@ -110,7 +124,6 @@ const SingleUser = () => {
             return (
               <>
                 <div key={index} className="parent">
-                  {/* project.name */}
                   <h1 className="project-name">{project.projectName}</h1>
                 </div>
                 <Gallery data={[
@@ -119,17 +132,13 @@ const SingleUser = () => {
               </>
             )
           })}
-
-          {/* <h1 className="project-name">Name</h1>
-          <Gallery data={[
-            // ...single_user.data.user.portfolio[0]?.images,
-            ...single_user.data.user.portfolio[1]?.images,
-            // ...single_user.data.user.portfolio[2]?.images,
-            // ...single_user.data.user.portfolio[3]?.images,
-            // ...single_user.data.user.portfolio[4]?.images,
-          ]}></Gallery>
-          */}
         </div>
+
+        <div className="section__blue">
+          <h3 className="section__title">{t("UserReviews")}</h3>
+          <Reviews single={false}></Reviews>
+        </div>
+
       </Wrapper>
     );
   }
@@ -214,20 +223,16 @@ const Wrapper = styled.section`
     color: var(--clr-black);
     margin-bottom: 1.2rem;
   }
-  .profile__content--location {
+  .profile__content--text {
     font-size: 1.7rem;
     font-weight: 600;
     color: var(--clr-black);
     margin-bottom: 2.2rem;
   }
-  .profile__content--number {
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: var(--clr-black);
-    margin-bottom: 5.2rem;
-  }
-  .mb {
+
+  .m{
     margin-bottom: 2rem;
+    margin-top: 4rem;
   }
   .profile__rating > p {
     color: yellow;

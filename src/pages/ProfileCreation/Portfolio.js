@@ -6,9 +6,14 @@ import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { styles } from '../../styles';
+import { useSelector } from "react-redux";
 
 export default function Portfolio(props) {
   const { t } = useTranslation();
+  const { conditionalFlag } = useSelector(
+    (state) => state.auth
+  );
+
   const {
     formField: {
       projectName1,
@@ -72,6 +77,7 @@ export default function Portfolio(props) {
   };
 
   // Testing State.
+  // const [enteredProjects, setenteredProjects] = useState([]);
   const [state, setState] = useState([
     {
       projectName: projectName1,
@@ -211,23 +217,23 @@ export default function Portfolio(props) {
   );
   return (
     <>
-      {state.map((step, index) => {
+      {state.slice(0, conditionalFlag).map((step, index) => {
         return (
           <>
             <div key={index}>
               <p className="card__subtitle"> {t("PortfolioQuestion1")}</p>
               <InputField
-                // name={step.projectName`${index + 1}`.name}
-                // name={step`.${index}`.name}
                 name={step.projectName.name}
                 type="text"
                 fullWidth
+                required
               />
               <p className="card__subtitle"> {t("PortfolioQuestion2")}</p>
               <InputField
                 name={step.projectLocation.name}
                 type="text"
                 fullWidth
+                required
               />
 
               <p className="card__subtitle"> {t("PortfolioQuestion3")}</p>

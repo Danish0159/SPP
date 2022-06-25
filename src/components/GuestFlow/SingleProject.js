@@ -48,12 +48,14 @@ const SingleProject = () => {
         <div className="project">
           <h1 className="project__title">{t("Project Detail")}</h1>
 
-          <h1 className="project__name">
-            {single_project.data.portfolio[0].projectName}
-          </h1>
-          <h1 className="project__location">
-            {single_project.data.portfolio[0].location}
-          </h1>
+          <p className="project__subtitle">Project Name: <span className="project__name">{single_project.data.portfolio[0].projectName}
+          </span>
+          </p>
+          <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].location}
+          </span>
+          </p>
+          <p className="project__subtitle">Project Description: <span className="project__description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus quo saepe dolore repellendus quos fugit necessitatibus ab quod quasi, accusantium modi. Suscipit explicabo at excepturi eos pariatur nulla qui.
+          </span></p>
         </div>
 
         <div className="section__blue">
@@ -65,7 +67,7 @@ const SingleProject = () => {
           <h3 className="section__title">{t("Client Review")}</h3>
           <Reviews single={true}></Reviews>
         </div>
-      </Wrapper>
+      </Wrapper >
     );
   }
   return null;
@@ -82,12 +84,22 @@ const Wrapper = styled.section`
 
   .project__title {
     font-size: 3rem;
+    margin-bottom:2.5rem ;
     color: var(--clr-blue-2);
   }
-  .project__name,
-  .project__location {
+  .project__subtitle{
     font-size: 2rem;
+    color: var(--clr-black);
+    margin-bottom: 2.2rem;
     margin-left: 2rem;
-    margin: 1.3rem;
+    font-weight: 700;
+    }
+  .project__name,
+  .project__location,
+    .project__description {
+    font-size: 2rem;
+    margin: 1.3rem 0rem;
+    margin-left: 2rem;
+    font-weight: 500;
   }
 `;
