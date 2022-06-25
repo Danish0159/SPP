@@ -168,7 +168,7 @@ const Driver = () => {
     };
 
     console.log(payload);
-    // dispatch(profileCreation(payload));
+    dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);
   }
