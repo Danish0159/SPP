@@ -54,7 +54,7 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                         user.location.city.map((city) => {
                           return (
                             <span>
-                              {city},
+                              {city},&nbsp;
                             </span>
                           )
                         })

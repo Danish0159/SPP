@@ -39,11 +39,11 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <Switch>
             <Route exact path="/">
-              <HomePage></HomePage>
-            </Route>
-            <Route exact path="/HomePage">
               <NewHomePage></NewHomePage>
             </Route>
+            {/* <Route exact path="/HomePage">
+              <NewHomePage></NewHomePage>
+            </Route> */}
             <Route exact path="/Login">
               <LoginPage></LoginPage>
             </Route>

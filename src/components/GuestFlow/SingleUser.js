@@ -83,7 +83,7 @@ const SingleUser = () => {
                   single_user.data.user.location.city.map((city) => {
                     return (
                       <span>
-                        {city},
+                        {city},&nbsp;
                       </span>
                     )
                   })

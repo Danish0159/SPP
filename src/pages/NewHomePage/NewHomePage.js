@@ -17,6 +17,18 @@ const NewHomePage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    // If user is already logedIN and trying to access the homePage, Redirect him to HomeFeed Page.
+    if (user && user.profile) {
+        history.push("/HomeFeed");
+    }
+    else if (user && !user.profile) {
+        history.push("/joinus");
+    }
+    else {
+        history.push("/");
+    }
+
     const responsive = {
         0: { items: 1 },
         568: { items: 2 },

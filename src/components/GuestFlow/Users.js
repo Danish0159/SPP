@@ -55,9 +55,14 @@ const Users = () => {
 
   if (isLoading) {
     return (
-      <div className="section-100vh">
-        <Spinner />;
-      </div>
+      <Wrapper>
+        <div className="users__left">
+          <Buttons handleStep={handleStep} step={step}></Buttons>
+        </div>
+        <div className="section-100vh">
+          <Spinner />;
+        </div>
+      </Wrapper>
     );
   }
   if (users) {

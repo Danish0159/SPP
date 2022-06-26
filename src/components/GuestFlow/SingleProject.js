@@ -54,7 +54,7 @@ const SingleProject = () => {
           <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].location}
           </span>
           </p>
-          <p className="project__subtitle">Project Description: <span className="project__description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus quo saepe dolore repellendus quos fugit necessitatibus ab quod quasi, accusantium modi. Suscipit explicabo at excepturi eos pariatur nulla qui.
+          <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].description ? single_project.data.portfolio[0].description : null}
           </span></p>
         </div>
 
