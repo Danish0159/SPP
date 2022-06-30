@@ -57,7 +57,7 @@ export const cardsData = [
 ];
 
 export const categories = {
-  Contractor: [
+  Contractors: [
     {
       value: "Electrical",
     },
@@ -91,12 +91,12 @@ export const categories = {
       value: "HVAC",
     }
   ],
-  Designer: [
+  Designers: [
     {
       value: "Building Designers",
     }
   ],
-  Consultant: [
+  Consultants: [
     {
       value: "Building Consultants",
     }
@@ -104,7 +104,7 @@ export const categories = {
 };
 
 export const subCategories = {
-  Contractor: {
+  Contractors: {
     "Electrical": [
       { value: "Electrical (Medium Voltage) Contractors" },
       { value: "Low Current (Telephone, date, TV) Contractors" },
@@ -178,7 +178,7 @@ export const subCategories = {
       { value: "Complete HVAC Maintenance Company" },
     ]
   },
-  Designer: {
+  Designers: {
     "Building Designers":
       [
         { value: "Civil Structure Designers" },
@@ -191,7 +191,7 @@ export const subCategories = {
         { value: "All System Design Companies" },
       ]
   },
-  Consultant: {
+  Consultants: {
     "Building Consultants":
       [
         { value: "Civil Structure Consultants" },
@@ -205,22 +205,23 @@ export const subCategories = {
       ]
   },
 };
+
 export const users = [
   {
     label: "Handymen",
     value: "Handymen",
   },
   {
-    label: "Contractor",
-    value: "Contractor",
+    label: "Contractors",
+    value: "Contractors",
   },
   {
-    label: "Designer",
-    value: "Designer",
+    label: "Designers",
+    value: "Designers",
   },
   {
-    label: "Consultant",
-    value: "Consultant",
+    label: "Consultants",
+    value: "Consultants",
   },
 ];
 

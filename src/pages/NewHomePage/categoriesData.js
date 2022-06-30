@@ -12,7 +12,7 @@ import buildingdesigners from '../../images/Designers/bd.jpg';
 import buildingconsultants from '../../images/Consultant Firms/bd.jpg';
 
 
-export const contractors = [
+export const Contractors = [
     {
         img: electricalc,
         name: "Electrical",
@@ -93,7 +93,7 @@ export const contractors = [
     }
 ]
 
-export const handymen = [
+export const Handymen = [
     {
         img: electricalh,
         name: "Electrical",
@@ -128,7 +128,7 @@ export const handymen = [
     }
 ]
 
-export const designers = [
+export const Designers = [
     {
         img: buildingdesigners,
         name: "Building Designers",
@@ -145,7 +145,7 @@ export const designers = [
     }
 ]
 
-export const consultants = [
+export const Consultants = [
     {
         img: buildingconsultants,
         name: "Building Consultants",

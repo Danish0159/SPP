@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './newHomePage.css';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import { contractors, handymen, designers, consultants } from './categoriesData';
+import { Contractors, Handymen, Designers, Consultants } from './categoriesData';
 import noDataFound from '../../images/ndf.jpg';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, reset } from "../../slices/users";
@@ -25,10 +25,10 @@ const NewHomePage = () => {
         1400: { items: 5 }
     };
 
-    const [categoriesDataH, setCategoriesDataH] = useState(handymen); // H stands for HandymenConsultants
-    const [categoriesDataC, setCategoriesDataC] = useState(contractors); // C stands for Contractors
-    const [categoriesDataD, setCategoriesDataD] = useState(designers); // D stands for Designers 
-    const [categoriesDataCF, setCategoriesDataCF] = useState(consultants); //C stands for Consultant Firms
+    const [categoriesDataH, setCategoriesDataH] = useState(Handymen); // H stands for HandymenConsultants
+    const [categoriesDataC, setCategoriesDataC] = useState(Contractors); // C stands for Contractors
+    const [categoriesDataD, setCategoriesDataD] = useState(Designers); // D stands for Designers 
+    const [categoriesDataCF, setCategoriesDataCF] = useState(Consultants); //C stands for Consultant Firms
 
     const [country, setCountry] = useState("Country");
     const [city, setCity] = useState("City");
@@ -77,7 +77,7 @@ const NewHomePage = () => {
                         placeholder='Search Category'
                         onChange={(e) => {
 
-                            let updatedDataH = handymen.filter((val) => {
+                            let updatedDataH = Handymen.filter((val) => {
                                 if (e.target.value === "") {
                                     return val;
                                 }
@@ -87,7 +87,7 @@ const NewHomePage = () => {
                                 return false;
                             });
 
-                            let updatedDataC = contractors.filter((val) => {
+                            let updatedDataC = Contractors.filter((val) => {
                                 if (e.target.value === "") {
                                     return val;
                                 }
@@ -97,7 +97,7 @@ const NewHomePage = () => {
                                 return false;
                             });
 
-                            let updatedDataD = designers.filter((val) => {
+                            let updatedDataD = Designers.filter((val) => {
                                 if (e.target.value === "") {
                                     return val;
                                 }
@@ -107,7 +107,7 @@ const NewHomePage = () => {
                                 return false;
                             });
 
-                            let updatedDataCF = consultants.filter((val) => {
+                            let updatedDataCF = Consultants.filter((val) => {
                                 if (e.target.value === "") {
                                     return val;
                                 }
@@ -191,7 +191,7 @@ const NewHomePage = () => {
                                 type="text"
                                 placeholder='Search Category'
                                 onChange={(e) => {
-                                    let updatedData = handymen.filter((val) => {
+                                    let updatedData = Handymen.filter((val) => {
                                         if (e.target.value === "") {
                                             return val;
                                         }
@@ -281,7 +281,7 @@ const NewHomePage = () => {
                                 type="text"
                                 placeholder='Search Category'
                                 onChange={(e) => {
-                                    let updatedData = contractors.filter((val) => {
+                                    let updatedData = Contractors.filter((val) => {
                                         if (e.target.value === "") {
                                             return val;
                                         }
@@ -323,9 +323,9 @@ const NewHomePage = () => {
                                     <img
                                         className='bottom-img'
                                         onClick={() => {
-                                            const searchValues = { user: "Contractor", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
+                                            const searchValues = { user: "Contractors", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Contractor", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
+                                            dispatch(fetchUsers({ user: "Contractors", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
                                         }}
                                         src={val.img}
                                         alt=''
@@ -334,9 +334,9 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-                                            const searchValues = { user: "Contractor", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            const searchValues = { user: "Contractors", category: val.name, country: country, city: city, subCategory: e.target.value }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Contractor", category: val.name, country: country, city: city, subCategory: e.target.value }));
+                                            dispatch(fetchUsers({ user: "Contractors", category: val.name, country: country, city: city, subCategory: e.target.value }));
                                         }}
                                     >
                                         <option className='dropdown-item' hidden>Select Sub-Category</option>
@@ -369,7 +369,7 @@ const NewHomePage = () => {
                                 type="text"
                                 placeholder='Search Category'
                                 onChange={(e) => {
-                                    let updatedData = designers.filter((val) => {
+                                    let updatedData = Designers.filter((val) => {
                                         if (e.target.value === "") {
                                             return val;
                                         }
@@ -410,9 +410,9 @@ const NewHomePage = () => {
 
                                     <img
                                         onClick={(e) => {
-                                            const searchValues = { user: "Designer", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
+                                            const searchValues = { user: "Designers", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Designer", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
+                                            dispatch(fetchUsers({ user: "Designers", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
                                         }
                                         }
                                         className='bottom-img'
@@ -423,9 +423,9 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-                                            const searchValues = { user: "Designer", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            const searchValues = { user: "Designers", category: val.name, country: country, city: city, subCategory: e.target.value }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Designer", category: val.name, country: country, city: city, subCategory: e.target.value }));
+                                            dispatch(fetchUsers({ user: "Designers", category: val.name, country: country, city: city, subCategory: e.target.value }));
                                         }}
                                     >
                                         <option className='dropdown-item' hidden>Select Sub-Category</option>
@@ -459,7 +459,7 @@ const NewHomePage = () => {
                                 type="text"
                                 placeholder='Search Category'
                                 onChange={(e) => {
-                                    let updatedData = consultants.filter((val) => {
+                                    let updatedData = Consultants.filter((val) => {
                                         if (e.target.value === "") {
                                             return val;
                                         }
@@ -500,9 +500,9 @@ const NewHomePage = () => {
 
                                     <img
                                         onClick={(e) => {
-                                            const searchValues = { user: "Consultant", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
+                                            const searchValues = { user: "Consultants", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Consultant", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
+                                            dispatch(fetchUsers({ user: "Consultants", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
                                         }
                                         }
                                         className='bottom-img'
@@ -513,9 +513,9 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-                                            const searchValues = { user: "Consultant", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            const searchValues = { user: "Consultants", category: val.name, country: country, city: city, subCategory: e.target.value }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Consultant", category: val.name, country: country, city: city, subCategory: e.target.value }));
+                                            dispatch(fetchUsers({ user: "Consultants", category: val.name, country: country, city: city, subCategory: e.target.value }));
                                         }}
                                     >
                                         <option className='dropdown-item' hidden>Select Sub-Category</option>
