@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './newHomePage.css';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import { contractors, handymen, designersAndConsultantFirms } from './categoriesData';
+import { contractors, handymen, designers, consultants } from './categoriesData';
 import noDataFound from '../../images/ndf.jpg';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, reset } from "../../slices/users";
@@ -17,18 +17,6 @@ const NewHomePage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    // If user is already logedIN and trying to access the homePage, Redirect him to HomeFeed Page.
-    if (user && user.profile) {
-        history.push("/HomeFeed");
-    }
-    else if (user && !user.profile) {
-        history.push("/joinus");
-    }
-    else {
-        history.push("/");
-    }
-
     const responsive = {
         0: { items: 1 },
         568: { items: 2 },
@@ -37,9 +25,10 @@ const NewHomePage = () => {
         1400: { items: 5 }
     };
 
-    const [categoriesDataH, setCategoriesDataH] = useState(handymen); // H stands for Handymen
+    const [categoriesDataH, setCategoriesDataH] = useState(handymen); // H stands for HandymenConsultants
     const [categoriesDataC, setCategoriesDataC] = useState(contractors); // C stands for Contractors
-    const [categoriesDataDCF, setCategoriesDataDCF] = useState(designersAndConsultantFirms); // DCF stands for Designers and Consultant Firms
+    const [categoriesDataD, setCategoriesDataD] = useState(designers); // D stands for Designers 
+    const [categoriesDataCF, setCategoriesDataCF] = useState(consultants); //C stands for Consultant Firms
 
     const [country, setCountry] = useState("Country");
     const [city, setCity] = useState("City");
@@ -108,7 +97,17 @@ const NewHomePage = () => {
                                 return false;
                             });
 
-                            let updatedDataDCF = designersAndConsultantFirms.filter((val) => {
+                            let updatedDataD = designers.filter((val) => {
+                                if (e.target.value === "") {
+                                    return val;
+                                }
+                                else if (e.target.value.length === 1 ? val.name.toLowerCase().startsWith(e.target.value.toLowerCase()) : val.name.toLowerCase().includes(e.target.value.toLowerCase())) {
+                                    return val;
+                                }
+                                return false;
+                            });
+
+                            let updatedDataCF = consultants.filter((val) => {
                                 if (e.target.value === "") {
                                     return val;
                                 }
@@ -145,8 +144,8 @@ const NewHomePage = () => {
                                 setCategoriesDataC(updatedDataC);
                             }
 
-                            if (updatedDataDCF.length === 0) {
-                                setCategoriesDataDCF([{
+                            if (updatedDataD.length === 0) {
+                                setCategoriesDataD([{
                                     img: noDataFound,
                                     name: "No Data Found",
                                     subCategories: [
@@ -155,7 +154,20 @@ const NewHomePage = () => {
                                 }])
                             }
                             else {
-                                setCategoriesDataDCF(updatedDataDCF);
+                                setCategoriesDataD(updatedDataD);
+                            }
+
+                            if (updatedDataCF.length === 0) {
+                                setCategoriesDataCF([{
+                                    img: noDataFound,
+                                    name: "No Data Found",
+                                    subCategories: [
+                                        "No Data Found"
+                                    ]
+                                }])
+                            }
+                            else {
+                                setCategoriesDataCF(updatedDataCF);
                             }
                         }}
                     />
@@ -220,9 +232,9 @@ const NewHomePage = () => {
 
                                     <img
                                         onClick={() => {
-                                            const searchValues = { user: "Handyman", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
+                                            const searchValues = { user: "Handymen", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Handyman", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
+                                            dispatch(fetchUsers({ user: "Handymen", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
                                         }}
                                         className='bottom-img'
                                         src={val.img}
@@ -232,9 +244,9 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-                                            const searchValues = { user: "Handyman", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            const searchValues = { user: "Handymen", category: val.name, country: country, city: city, subCategory: e.target.value }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "Handyman", category: val.name, country: country, city: city, subCategory: e.target.value }));
+                                            dispatch(fetchUsers({ user: "Handymen", category: val.name, country: country, city: city, subCategory: e.target.value }));
 
                                         }}
                                     >
@@ -348,16 +360,16 @@ const NewHomePage = () => {
             </div>
 
             {/* --------------------- */}
-            <div className="selectcategory" id="Designers & Consultants">
+            <div className="selectcategory" id="Designers">
                 <div className='selectcategory-top'>
-                    <h1 className='top-title'>Designers & Consultants</h1>
+                    <h1 className='top-title'>Designers</h1>
                     <div className='top-searchbox'>
                         <div className='search__parent'>
                             <input
                                 type="text"
                                 placeholder='Search Category'
                                 onChange={(e) => {
-                                    let updatedData = designersAndConsultantFirms.filter((val) => {
+                                    let updatedData = designers.filter((val) => {
                                         if (e.target.value === "") {
                                             return val;
                                         }
@@ -368,7 +380,7 @@ const NewHomePage = () => {
                                     });
 
                                     if (updatedData.length === 0) {
-                                        setCategoriesDataDCF([{
+                                        setCategoriesDataD([{
                                             img: noDataFound,
                                             name: "No Data Found",
                                             subCategories: [
@@ -377,7 +389,7 @@ const NewHomePage = () => {
                                         }])
                                     }
                                     else {
-                                        setCategoriesDataDCF(updatedData);
+                                        setCategoriesDataD(updatedData);
                                     }
                                 }}
                             />
@@ -390,7 +402,7 @@ const NewHomePage = () => {
                     disableDotsControls={true}
                     responsive={responsive}
                     items={
-                        categoriesDataDCF.map((val, key) => {
+                        categoriesDataD.map((val, key) => {
                             return (
                                 <div className='selectcategory-bottom' key={key} >
 
@@ -398,9 +410,9 @@ const NewHomePage = () => {
 
                                     <img
                                         onClick={(e) => {
-                                            const searchValues = { user: "DesignerConsultantFirm", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
+                                            const searchValues = { user: "Designer", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "DesignerConsultantFirm", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
+                                            dispatch(fetchUsers({ user: "Designer", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
                                         }
                                         }
                                         className='bottom-img'
@@ -411,9 +423,99 @@ const NewHomePage = () => {
                                     <select
                                         className="bottom-dropdown"
                                         onChange={(e) => {
-                                            const searchValues = { user: "DesignerConsultantFirm", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            const searchValues = { user: "Designer", category: val.name, country: country, city: city, subCategory: e.target.value }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            dispatch(fetchUsers({ user: "DesignerConsultantFirm", category: val.name, country: country, city: city, subCategory: e.target.value }));
+                                            dispatch(fetchUsers({ user: "Designer", category: val.name, country: country, city: city, subCategory: e.target.value }));
+                                        }}
+                                    >
+                                        <option className='dropdown-item' hidden>Select Sub-Category</option>
+
+                                        {val.subCategories.map((item, index) => {
+                                            return (
+                                                <option key={index} className='dropdown-item' >{item}</option>
+                                            )
+                                        })}
+
+                                    </select>
+
+                                </div>
+                            )
+                        })}
+                />
+
+            </div>
+
+            <div className='separator'>
+
+            </div>
+
+            {/* --------------------- */}
+            <div className="selectcategory" id="Consultants">
+                <div className='selectcategory-top'>
+                    <h1 className='top-title'>Consultants</h1>
+                    <div className='top-searchbox'>
+                        <div className='search__parent'>
+                            <input
+                                type="text"
+                                placeholder='Search Category'
+                                onChange={(e) => {
+                                    let updatedData = consultants.filter((val) => {
+                                        if (e.target.value === "") {
+                                            return val;
+                                        }
+                                        else if (e.target.value.length === 1 ? val.name.toLowerCase().startsWith(e.target.value.toLowerCase()) : val.name.toLowerCase().includes(e.target.value.toLowerCase())) {
+                                            return val;
+                                        }
+                                        return false;
+                                    });
+
+                                    if (updatedData.length === 0) {
+                                        setCategoriesDataCF([{
+                                            img: noDataFound,
+                                            name: "No Data Found",
+                                            subCategories: [
+                                                "No Data Found"
+                                            ]
+                                        }])
+                                    }
+                                    else {
+                                        setCategoriesDataCF(updatedData);
+                                    }
+                                }}
+                            />
+                            <SearchIcon className='icon'></SearchIcon>
+                        </div>
+                    </div>
+                </div>
+
+                <AliceCarousel
+                    disableDotsControls={true}
+                    responsive={responsive}
+                    items={
+                        categoriesDataCF.map((val, key) => {
+                            return (
+                                <div className='selectcategory-bottom' key={key} >
+
+                                    <h3 className='bottom-title'>{val.name}</h3>
+
+                                    <img
+                                        onClick={(e) => {
+                                            const searchValues = { user: "Consultant", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }
+                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
+                                            dispatch(fetchUsers({ user: "Consultant", category: val.name, country: country, city: city, subCategory: val.subCategories[0] }));
+                                        }
+                                        }
+                                        className='bottom-img'
+                                        src={val.img}
+                                        alt=''
+                                    />
+
+                                    <select
+                                        className="bottom-dropdown"
+                                        onChange={(e) => {
+                                            const searchValues = { user: "Consultant", category: val.name, country: country, city: city, subCategory: e.target.value }
+                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
+                                            dispatch(fetchUsers({ user: "Consultant", category: val.name, country: country, city: city, subCategory: e.target.value }));
                                         }}
                                     >
                                         <option className='dropdown-item' hidden>Select Sub-Category</option>

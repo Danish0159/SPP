@@ -12,9 +12,9 @@ function Hero() {
 
         <div className='hero__left'>
           <a href="#Handymen" className='hero__role'>Handymen</a>
-          <a href="#Contractors" className='hero__role'>Contractor</a>
-          <a href="#Designers & Consultants" className='hero__role'>Designer</a>
-          <a href="#Designers & Consultants" className='hero__role'>Consultant</a>
+          <a href="#Contractors" className='hero__role'>Contractors</a>
+          <a href="#Designers" className='hero__role'>Designers</a>
+          <a href="#Consultants" className='hero__role'>Consultants</a>
         </div>
 
         <div className="hero__content">

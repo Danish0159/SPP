@@ -33,7 +33,7 @@ const BackToProfile = () => {
               </div>
             </div>
             <div className="backToProfile__btns">
-              <Link to="#" type="submit" className="blue-btn backToProfile-btn">
+              <Link to="#" type="submit" className="blue-btn backToProfile-btn disableButtonColor">
                 {t("ProjectsMessage")}
               </Link>
 

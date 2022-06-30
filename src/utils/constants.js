@@ -91,9 +91,14 @@ export const categories = {
       value: "HVAC",
     }
   ],
-  DesignerConsultantFirm: [
+  Designer: [
     {
       value: "Building Designers",
+    }
+  ],
+  Consultant: [
+    {
+      value: "Building Consultants",
     }
   ],
 };
@@ -173,7 +178,7 @@ export const subCategories = {
       { value: "Complete HVAC Maintenance Company" },
     ]
   },
-  DesignerConsultantFirm: {
+  Designer: {
     "Building Designers":
       [
         { value: "Civil Structure Designers" },
@@ -186,8 +191,20 @@ export const subCategories = {
         { value: "All System Design Companies" },
       ]
   },
+  Consultant: {
+    "Building Consultants":
+      [
+        { value: "Civil Structure Consultants" },
+        { value: "Archetect/Finishing Consultants" },
+        { value: "Mechanical System Consultants" },
+        { value: "Electrical System Consultants" },
+        { value: "Plumbing Consultants" },
+        { value: "HVAC Consultants" },
+        { value: "Firefighting System Consultants" },
+        { value: "All System Consultant Companies" },
+      ]
+  },
 };
-
 export const users = [
   {
     label: "Handymen",
@@ -198,8 +215,12 @@ export const users = [
     value: "Contractor",
   },
   {
-    label: "DesignerConsultantFirm",
-    value: "DesignerConsultantFirm",
+    label: "Designer",
+    value: "Designer",
+  },
+  {
+    label: "Consultant",
+    value: "Consultant",
   },
 ];
 

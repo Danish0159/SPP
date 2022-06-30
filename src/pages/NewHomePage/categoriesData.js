@@ -9,8 +9,7 @@ import hvach from '../../images/Handymen and Maintenance/hvac.jpg';
 import electricalh from '../../images/Handymen and Maintenance/e.jpg';
 import plumbingh from '../../images/Handymen and Maintenance/p.jpg';
 import buildingdesigners from '../../images/Designers/bd.jpg';
-
-
+import buildingconsultants from '../../images/Consultant Firms/bd.jpg';
 
 
 export const contractors = [
@@ -129,7 +128,7 @@ export const handymen = [
     }
 ]
 
-export const designersAndConsultantFirms = [
+export const designers = [
     {
         img: buildingdesigners,
         name: "Building Designers",
@@ -142,6 +141,23 @@ export const designersAndConsultantFirms = [
             "HVAC Designers",
             "Firefighting System Designers",
             "All System Design Companies"
+        ]
+    }
+]
+
+export const consultants = [
+    {
+        img: buildingconsultants,
+        name: "Building Consultants",
+        subCategories: [
+            "Civil Structure Consultants",
+            "Archetect/Finishing Consultants",
+            "Mechanical System Consultants",
+            "Electrical System Consultants",
+            "Plumbing Consultants",
+            "HVAC Consultants",
+            "Firefighting System Consultants",
+            "All System Consultant Companies"
         ]
     }
 ]

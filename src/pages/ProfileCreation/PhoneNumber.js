@@ -13,7 +13,7 @@ export default function PhoneNumber(props) {
       <p className="card__subtitle"> {t("PhoneQuestion1")}</p>
       <InputField
         name={phone.name}
-        type="number"
+        type="text"
         fullWidth
       />
       <p className="card__subtitle">

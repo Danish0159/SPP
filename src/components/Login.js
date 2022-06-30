@@ -30,7 +30,7 @@ const Login = () => {
     if (isSuccess || user) {
       // The Profile Is Already Created For the User.
       if (user && user.profile) {
-        history.push("/HomeFeed");
+        history.push("/Profile");
       } else if (user && !user.profile) {
         history.push("/joinus");
       }
@@ -136,7 +136,7 @@ const Login = () => {
             {t("login_don't")}
             <span className="login__register">
               {" "}
-              <Link to="/Signup"> {t("login_register")}</Link>{" "}
+              <Link to="/Signup"><u>{t("Register Now")}</u></Link>{" "}
             </span>
           </p>
         </form>

@@ -3,7 +3,7 @@ import { at } from "lodash";
 import { useField } from "formik";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { updateConditionalFlag } from "../../../slices/auth";
+import { updateProjectsFlag } from "../../../slices/auth";
 import { styles } from '../../../styles';
 
 export default function InputFieldSetConditional(props) {
@@ -18,7 +18,7 @@ export default function InputFieldSetConditional(props) {
     }
 
     function updateState(value) {
-        dispatch(updateConditionalFlag(value));
+        dispatch(updateProjectsFlag(value));
     }
 
     // State.
@@ -33,7 +33,7 @@ export default function InputFieldSetConditional(props) {
     return (
         <>
             <TextField
-                inputProps={{ style: styles.textField, }}
+                inputProps={{ style: styles.textField, min: 1 }}
                 type={type}
                 error={meta.touched && meta.error && true}
                 {...field}

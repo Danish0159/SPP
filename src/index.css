@@ -170,9 +170,6 @@ Button Styles
   color: var(--clr-black);
 }
 
-#CityField{
-  font-size: 1.8rem;
-  font-weight: 400;
-  padding: 7px 14px;
-  color: #2a2a2a;
+.disableButtonColor{
+  background-color:#6c6d79;
 }

@@ -192,6 +192,7 @@ const initialState = {
   isLoading: false,
   message: "",
   conditionalFlag: null,
+  projectsFlag: null,
   // communityUser: null,
 };
 
@@ -205,9 +206,13 @@ const authSlice = createSlice({
       state.isError = false;
       state.message = "";
       state.conditionalFlag = "";
+      state.projectsFlag = "";
     },
     updateConditionalFlag: (state, action) => {
       state.conditionalFlag = action.payload;
+    },
+    updateProjectsFlag: (state, action) => {
+      state.projectsFlag = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -328,6 +333,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { reset, updateConditionalFlag } = authSlice.actions;
+export const { reset, updateConditionalFlag, updateProjectsFlag } = authSlice.actions;
 const { reducer } = authSlice;
 export default reducer;

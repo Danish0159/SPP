@@ -18,7 +18,7 @@ export default function InputField(props) {
   return (
     <>
       <TextField
-        inputProps={{ style: styles.textField, }}
+        inputProps={{ style: styles.textField, min: 0 }}
         type={type}
         error={meta.touched && meta.error && true}
         {...field}

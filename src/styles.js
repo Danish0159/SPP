@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material";
 
-
+//Global Styles.
 export const theme = createTheme({
     typography: {
         fontFamily: ["Nunito Sans", "sans-serif"].join(","),

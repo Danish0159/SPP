@@ -26,10 +26,6 @@ export default function Location(props) {
       <p className="card__subtitle">{t("LocationQuestion2")}</p>
 
       <Field
-        inputProps={{
-          style: styles.textField,
-        }}
-        sx={styles.select}
         name={city.name}
         component={SelectMultiple}
         options={

@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 export default function Portfolio(props) {
   const { t } = useTranslation();
-  const { conditionalFlag } = useSelector(
+  const { projectsFlag } = useSelector(
     (state) => state.auth
   );
 
@@ -217,7 +217,7 @@ export default function Portfolio(props) {
   );
   return (
     <>
-      {state.slice(0, conditionalFlag).map((step, index) => {
+      {state.slice(0, projectsFlag).map((step, index) => {
         return (
           <>
             <div key={index}>

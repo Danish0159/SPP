@@ -3,87 +3,87 @@ export default {
   formField: {
     category: {
       name: "Category",
-      requiredErrorMsg: "Category is required",
+      requiredErrorMsg: "Enter the Category",
     },
     subCategory: {
       name: "subCategory",
-      requiredErrorMsg: "Sub-Category is required",
+      requiredErrorMsg: "Enter the Sub-Category",
     },
     experience: {
       name: "experience",
-      requiredErrorMsg: "Experience is required",
+      requiredErrorMsg: "Enter the Experience",
     },
     projects: {
       name: "projects",
-      requiredErrorMsg: "Projects is required",
+      requiredErrorMsg: "Enter the Projects",
     },
     employees: {
       name: "employees",
-      requiredErrorMsg: "Employees is required",
+      requiredErrorMsg: "Enter the Employees",
     },
     company: {
       name: "company",
-      requiredErrorMsg: "Company is required",
+      requiredErrorMsg: "Enter the Company",
     },
     location: {
       name: "location",
-      requiredErrorMsg: "Location is required",
+      requiredErrorMsg: "Enter the Location",
     },
     description: {
       name: "description",
-      requiredErrorMsg: "Description is required",
+      requiredErrorMsg: "Enter the Description ",
     },
     projectName1: {
       name: "projectName1",
-      requiredErrorMsg: "ProjectName is required",
+      requiredErrorMsg: "Enter the ProjectName ",
     },
     projectLocation1: {
       name: "projectLocation1",
-      requiredErrorMsg: "ProjectLocation is required",
+      requiredErrorMsg: "Enter the ProjectLocation",
     },
     projectDescription1: {
       name: "projectDescription1",
     },
     projectName2: {
       name: "projectName2",
-      requiredErrorMsg: "ProjectName is required",
+      requiredErrorMsg: "Enter the ProjectName",
     },
     projectLocation2: {
       name: "projectLocation2",
-      requiredErrorMsg: "ProjectLocation is required",
+      requiredErrorMsg: "Enter the ProjectLocation",
     },
     projectDescription2: {
       name: "projectDescription2",
     },
     projectName3: {
       name: "projectName3",
-      requiredErrorMsg: "ProjectName is required",
+      requiredErrorMsg: "Enter the ProjectName",
     },
     projectLocation3: {
       name: "projectLocation3",
-      requiredErrorMsg: "ProjectLocation is required",
+      requiredErrorMsg: "Enter the ProjectLocation",
     },
     projectDescription3: {
       name: "projectDescription3",
     },
     projectName4: {
       name: "projectName4",
-      requiredErrorMsg: "ProjectName is required",
+      requiredErrorMsg: "Enter the ProjectName",
     },
     projectLocation4: {
       name: "projectLocation4",
-      requiredErrorMsg: "ProjectLocation is required",
+      requiredErrorMsg: "Enter the ProjectLocation",
     },
     projectDescription4: {
       name: "projectDescription4",
     },
     projectName5: {
       name: "projectName5",
-      requiredErrorMsg: "ProjectName is required",
+      requiredErrorMsg: "Enter the ProjectName",
     },
     projectLocation5: {
       name: "projectLocation5",
-      requiredErrorMsg: "ProjectLocation is required",
+      requiredErrorMsg: "Enter the ProjectLocation",
     },
     projectDescription5: {
       name: "projectDescription5",
@@ -93,15 +93,15 @@ export default {
     },
     country: {
       name: "Country",
-      requiredErrorMsg: "Country is required",
+      requiredErrorMsg: "Enter the Country",
     },
     city: {
       name: "City",
-      requiredErrorMsg: "City is required",
+      requiredErrorMsg: "Enter the City",
     },
     phone: {
       name: "Phone",
-      requiredErrorMsg: "Phone is required",
+      requiredErrorMsg: "Enter the Phone",
     },
     image: {
       name: "image",

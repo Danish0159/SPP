@@ -63,7 +63,7 @@ const SingleUser = () => {
                 {" "}
                 {single_user.data.user.user.role}
               </p>
-              <Link to="#" type="submit" className="blue-btn profile-btn">
+              <Link to="#" type="submit" className="blue-btn profile-btn disableButtonColor">
                 {t("UserMessage")}
               </Link>
             </div>
@@ -72,13 +72,13 @@ const SingleUser = () => {
             <div className="profile__content">
 
               <h2 className="profile__content--title">Company Name:     <span className="profile__content--text">
-                Coca Cola
+                {single_user.data.user.employmentHistory[0].companyName}
               </span>
               </h2>
 
               <h2 className="profile__content--title">{t("UserLocation")}</h2>
               <p className="profile__content--text">
-                {single_user.data.user.location.country},{" "}
+                {single_user.data.user.location.country},{" "}&nbsp;
                 {
                   single_user.data.user.location.city.map((city) => {
                     return (

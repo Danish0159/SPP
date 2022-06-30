@@ -83,7 +83,7 @@ const Driver = () => {
 
     if (isSuccess) {
       toast.success(message);
-      history.push("/HomeFeed");
+      history.push("/Profile");
     }
 
     dispatch(reset());

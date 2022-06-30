@@ -184,7 +184,7 @@ const Signup = () => {
             <span className="signup__register">
               {" "}
               <Link to="/Login">
-                {t("register_login")}
+                <u>{t("register_login")}</u>
               </Link>{" "}
             </span>
           </p>
