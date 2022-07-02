@@ -36,7 +36,13 @@ const Projects = () => {
 
   return (
     <React.Fragment>
-      <BackToProfile></BackToProfile>
+      {projects.data && (<BackToProfile
+        avatar={projects.data.projects.profilePhoto}
+        name={projects.data.projects.user.name}
+        role={projects.data.projects.user.role}
+        userId={projects.data.projects._id}
+      ></BackToProfile>
+      )}
       {projects.data && (
         <Table
           data={projects.data.projects.portfolio}

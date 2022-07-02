@@ -71,6 +71,13 @@ const Signup = () => {
     validationSchema: validationSchema,
     // async keyword can be removed from here.
     onSubmit: (values, { resetForm }) => {
+      console.log({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        role,
+      });
+
       dispatch(
         register({
           name: values.name,

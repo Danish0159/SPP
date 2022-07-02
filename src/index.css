@@ -47,6 +47,10 @@ p {
   background-color: #f7f8ff;
 }
 
+input[type='file'] {
+  color: transparent;
+}
+
 .section__title {
   max-width: 80rem;
   margin: auto;
@@ -173,3 +177,4 @@ Button Styles
 .disableButtonColor{
   background-color:#6c6d79;
 }
+

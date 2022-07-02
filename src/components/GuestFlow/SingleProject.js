@@ -25,8 +25,8 @@ const SingleProject = () => {
   }, [isError, isSuccess, message, dispatch]);
 
   const { userId, id } = useParams();
-  console.log(userId);
-  console.log(id);
+  // console.log(userId);
+  // console.log(id);
 
   useEffect(() => {
     dispatch(fetchSingleProject({ userId, id }));
@@ -44,7 +44,13 @@ const SingleProject = () => {
   if (single_project.data) {
     return (
       <Wrapper>
-        <BackToProfile></BackToProfile>
+        <BackToProfile
+          avatar={single_project.data.profilePhoto}
+          name={single_project.data.user.name}
+          role={single_project.data.user.role}
+          userId={userId}
+        ></BackToProfile>
+
         <div className="project">
           <h1 className="project__title">{t("Project Detail")}</h1>
 

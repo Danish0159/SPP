@@ -23,10 +23,10 @@ export default function Category(props) {
       <SelectFieldSetConditional
         name={category.name}
         data={
-          role === "Contractor" ? categories.Contractor :
-            role === "HandymenAndMaintenance" ? categories.HandymenAndMaintenance :
-              role === "Designer" ? categories.Designer :
-                role === "ConsultantFirms" ? categories.ConsultantFirms
+          role === "Contractors" ? categories.Contractors :
+            role === "Handymen" ? categories.Handymen :
+              role === "Designers" ? categories.Designers :
+                role === "Consultants" ? categories.Consultants
                   : null
         }
         fullWidth

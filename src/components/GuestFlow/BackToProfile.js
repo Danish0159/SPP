@@ -1,54 +1,48 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-const BackToProfile = () => {
+const BackToProfile = ({ avatar, name, role, userId }) => {
   const { t } = useTranslation();
-  const { single_user } = useSelector((state) => state.users);
 
-  if (single_user.data) {
-    return (
-      <Wrapper>
-        <div className="backToProfile">
-          <div className="backToProfile__grid">
-            <div className="backToProfile__profile">
-              <Avatar
-                src={single_user.data.user.profilePhoto}
-                sx={{ width: 130, height: 130 }}
-                alt="Avatar"
-              />
-              <div className="BackToProfile__content">
-                <h1 className="BackToProfile--title">
-                  {" "}
-                  {single_user.data.user.user.name}
-                </h1>
+  return (
+    <Wrapper>
+      <div className="backToProfile">
+        <div className="backToProfile__grid">
+          <div className="backToProfile__profile">
+            <Avatar
+              src={avatar}
+              sx={{ width: 130, height: 130 }}
+              alt="Avatar"
+            />
+            <div className="BackToProfile__content">
+              <h1 className="BackToProfile--title">
+                {" "}
+                {name}
+              </h1>
 
-                <p className="BackToProfile-subtitle">
-                  {" "}
-                  {single_user.data.user.user.role}
-                </p>
-              </div>
-            </div>
-            <div className="backToProfile__btns">
-              <Link to="#" type="submit" className="blue-btn backToProfile-btn disableButtonColor">
-                {t("ProjectsMessage")}
-              </Link>
-
-              <Link to={`/Users/${single_user.data.user._id}`} type="submit" className="blue-btn backToProfile-btn">
-                {t("Back To Profile")}
-              </Link>
+              <p className="BackToProfile-subtitle">
+                {" "}
+                {role}
+              </p>
             </div>
           </div>
-        </div>
-      </Wrapper>
-    );
-  }
-  return null;
-};
+          <div className="backToProfile__btns">
+            <Link to="#" type="submit" className="blue-btn backToProfile-btn disableButtonColor">
+              {t("ProjectsMessage")}
+            </Link>
 
+            <Link to={`/Users/${userId}`} type="submit" className="blue-btn backToProfile-btn">
+              {t("Back To Profile")}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  )
+}
 export default BackToProfile;
 
 const Wrapper = styled.section`

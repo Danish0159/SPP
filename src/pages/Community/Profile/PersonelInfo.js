@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import { FormControl, Select, TextField, MenuItem } from '@mui/material';
+import { FormControl, Select, TextField, MenuItem, Avatar } from '@mui/material';
 import { users } from "../../../utils/constants";
 import CancelIcon from '@mui/icons-material/Cancel';
 
@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProfile, reset, getCommunityUser } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
 import { styles } from '../../../styles';
+
+import { categories, subCategories } from "../../../utils/constants"
 
 const PersonelInfo = () => {
     const [update, setUpdate] = useState(false);
@@ -20,10 +22,13 @@ const PersonelInfo = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
-    const handleChange = (event) => {
-        setRole(event.target.value);
-    };
+    // const handleChange = (event) => {
+    //     setRole(event.target.value);
+    // };
     const [phoneNumber, setNumber] = useState("");
+    const [photo, setPhoto] = useState("");
+    const [category, setCategory] = useState("");
+    const [subCategory, setSubCategory] = useState("");
 
     // state.
     const dispatch = useDispatch();
@@ -57,13 +62,17 @@ const PersonelInfo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({
-            name,
-            email,
-            role,
-            phoneNumber,
-            id: user.profile._id,
-        })
+        // console.log({
+        //     photo,
+        //     name,
+        //     email,
+        //     phoneNumber,
+        //     id: user.profile._id,
+        //     role,
+        //     category,
+        //     subCategory,
+        // })
+        // Update the api with photo,category,sub-category,role
         //  API CALL.
         dispatch(
             updateProfile({
@@ -94,6 +103,30 @@ const PersonelInfo = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    {photo &&
+                        <Avatar
+                            style={{ marginBottom: "0rem", marginRight: ".3rem" }}
+                            src={photo}
+                            sx={{ width: 90, height: 90 }}
+                            alt="Avatar"
+                        />
+                    }
+                    <input
+                        type="file"
+                        name="myImage"
+                        style={{ marginLeft: "1.4rem" }}
+                        onChange={(event) => {
+                            var file = event.target.files[0];
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                setPhoto(event.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        }}
+                    />
+                </div>
+
                 <p className="card__subtitle">Company Name</p>
                 <TextField
                     fullWidth
@@ -123,12 +156,49 @@ const PersonelInfo = () => {
                     <Select
                         sx={styles.select}
                         value={role}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                            setRole(e.target.value);
+                            setCategory("");
+                            setSubCategory("");
+                        }}
                         required
                     >
                         {users.map((user, index) => (
                             <MenuItem sx={styles.menu} key={index} value={user.value}>
                                 {user.label}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <p className="card__subtitle">Category</p>
+                <FormControl fullWidth>
+                    <Select
+                        sx={styles.select}
+                        value={category}
+                        onChange={(e) => {
+                            setCategory(e.target.value);
+                            setSubCategory("");
+                        }}
+                        required
+                    >
+                        {categories[role]?.map((user, index) => (
+                            <MenuItem sx={styles.menu} key={index} value={user.value}>
+                                {user.value}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <p className="card__subtitle">Sub-Category</p>
+                <FormControl fullWidth>
+                    <Select
+                        sx={styles.select}
+                        value={subCategory}
+                        onChange={(e) => { setSubCategory(e.target.value); }}
+                        required
+                    >
+                        {subCategories[role][category]?.map((user, index) => (
+                            <MenuItem sx={styles.menu} key={index} value={user.value}>
+                                {user.value}
                             </MenuItem>
                         ))}
                     </Select>
@@ -165,16 +235,29 @@ const PersonelInfo = () => {
                         setEmail(user.user.email);
                         setRole(user.user.role);
                         setNumber(user.profile.phoneNumber);
+                        setPhoto(user.profile.profilePhoto);
+                        setCategory(user.profile.category);
+                        setSubCategory(user.profile.subCategory);
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
+                <Avatar
+                    style={{ marginBottom: "3rem" }}
+                    src={user?.profile.profilePhoto}
+                    sx={{ width: 110, height: 110 }}
+                    alt="Avatar"
+                />
                 <p className="personel__title">Name</p>
                 <p className="personel__subtitle">{user?.user.name}</p>
                 <p className="personel__title">Email</p>
                 <p className="personel__subtitle">{user?.user.email}</p>
-                <p className="personel__title">Role</p>
-                <p className="personel__subtitle">{user?.user.role}</p>
                 <p className="personel__title">Number</p>
                 <p className="personel__subtitle">{user?.profile.phoneNumber}</p>
+                <p className="personel__title">Role</p>
+                <p className="personel__subtitle">{user?.user.role}</p>
+                <p className="personel__title">Category</p>
+                <p className="personel__subtitle">{user?.profile.category}</p>
+                <p className="personel__title">Sub-Category</p>
+                <p className="personel__subtitle">{user?.profile.subCategory}</p>
             </Wrapper>
         )
     }
