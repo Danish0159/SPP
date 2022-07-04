@@ -72,6 +72,15 @@ export const CardLayout = styled.div`
     width: auto;
     height: 100%;
   }
+  .thumbPadding {
+    padding: 10px 0px;
+  }
+  /* Drop Zone Text */
+.drop {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.5rem;
+  color: var(--clr-black);
+}
 `;
 
 // Seperate styling for Review Page.

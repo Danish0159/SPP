@@ -3,29 +3,28 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
-import { theme } from './styles';
-import LanguageSelect from "./components/languageSelect";
+import { theme } from './components/Shared/styles';
+import LanguageSelect from "./components/Shared/languageSelect";
 
 // Public Pages. 
-import { HomePage, ErrorPage, LoginPage, SignupPage, TempHomePage } from "./pages";
+import { LoginPage, SignupPage, ErrorPage } from "./pages";
 
-// Flow 1
+// Flow 1 (Guest Flow)
 import {
-  WelcomePage,
   UsersPage,
   SingleUserPage,
   ProjectsPage,
   SingleProjectPage,
 } from "./pages/GuestFlow";
 
-// Flow 2
+// Flow 2 (ProfileCreation Flow)
 import { JoinUs, Driver } from "./pages/ProfileCreation";
 
-// Flow 3
+// Flow 3 (Community Flow)
 import { FeedDriver } from "./pages/Community/Feed";
 import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
 
-// Private Route.
+// Private Routes.
 import { PrivateWithOutProfile, PrivateWithProfile } from "./pages/ProtectedRoutes";
 
 // NewHomePage.
@@ -41,17 +40,11 @@ const App = () => {
             <Route exact path="/">
               <NewHomePage></NewHomePage>
             </Route>
-            {/* <Route exact path="/HomePage">
-              <NewHomePage></NewHomePage>
-            </Route> */}
             <Route exact path="/Login">
               <LoginPage></LoginPage>
             </Route>
             <Route exact path="/Signup">
               <SignupPage></SignupPage>
-            </Route>
-            <Route exact path="/Welcome">
-              <WelcomePage></WelcomePage>
             </Route>
             <Route exact path="/Users">
               <UsersPage></UsersPage>

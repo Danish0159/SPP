@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile, reset, getCommunityUser } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
-import { styles } from '../../../styles';
+import { styles } from '../../../components/Shared/styles';
 
 import { categories, subCategories } from "../../../utils/constants"
 
@@ -22,9 +22,6 @@ const PersonelInfo = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
-    // const handleChange = (event) => {
-    //     setRole(event.target.value);
-    // };
     const [phoneNumber, setNumber] = useState("");
     const [photo, setPhoto] = useState("");
     const [category, setCategory] = useState("");
@@ -62,24 +59,27 @@ const PersonelInfo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log({
-        //     photo,
-        //     name,
-        //     email,
-        //     phoneNumber,
-        //     id: user.profile._id,
-        //     role,
-        //     category,
-        //     subCategory,
-        // })
-        // Update the api with photo,category,sub-category,role
         //  API CALL.
+        console.log({
+            photo,
+            name,
+            email,
+            phoneNumber,
+            role,
+            category,
+            subCategory,
+            id: user.profile._id,
+        });
+
         dispatch(
             updateProfile({
+                photo,
                 name,
                 email,
-                role,
                 phoneNumber,
+                role,
+                category,
+                subCategory,
                 id: user.profile._id,
             })
         );
@@ -90,6 +90,9 @@ const PersonelInfo = () => {
         setEmail("");
         setRole("");
         setNumber("");
+        setPhoto("");
+        setCategory("");
+        setSubCategory("");
     };
 
     if (isLoading) {

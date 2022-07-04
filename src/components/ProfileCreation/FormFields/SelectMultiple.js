@@ -2,7 +2,7 @@
 import React from "react";
 import { fieldToTextField } from 'formik-material-ui'
 import { Autocomplete, TextField } from "@mui/material";
-import { styles } from "../../../styles";
+import { styles } from "../../../components/Shared/styles";
 import styled from "styled-components";
 
 function SelectMultiple({ textFieldProps, ...props }) {

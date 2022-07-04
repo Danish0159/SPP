@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { at } from "lodash";
 import { useField } from "formik";
 import { FormControl, Select, MenuItem } from "@mui/material";
-import { styles } from '../../../styles';
+import { styles } from '../../../components/Shared/styles';
 
 function SelectField(props) {
   const { label, data, ...rest } = props;

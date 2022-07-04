@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Navbar, Footer } from "../../components";
+import { Footer } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
 import image from "../../images/join.jpg";
-import { CardLayout } from '../../components/Common/styled'
+import { CardLayout } from '../../components/Shared/styled'
 import { useTranslation } from "react-i18next";
-
+import { NavbarProfileCreation } from "../../components/Navigations";
 const JoinUs = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const { t } = useTranslation();
 
   return (
     <main>
-      <Navbar page="profileCreation"></Navbar>
+      <NavbarProfileCreation></NavbarProfileCreation>
       <CardLayout>
         <Buttons activeStep={null}></Buttons>
         <Wrapper>
@@ -38,7 +38,7 @@ const JoinUs = () => {
         </Wrapper>
       </CardLayout>
       <Footer></Footer>
-    </main>
+    </main >
   );
 };
 

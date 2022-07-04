@@ -1,32 +1,31 @@
 import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import Spinner from "./Spinner";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import Spinner from "./Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { login, reset } from "../slices/auth";
 import loginImage from "../images/Login.png";
 import { useFormik } from "formik";
-import * as yup from "yup";
 import { TextField } from "@mui/material";
-import { styles } from '../styles';
-
+import { styles } from '../components/Shared/styles';
+import { loginInitialValues, loginValidationSchema } from "../utils/helpers"
 
 const Login = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // State.
   const user = JSON.parse(localStorage.getItem("user"));
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
-
     if (isSuccess || user) {
       // The Profile Is Already Created For the User.
       if (user && user.profile) {
@@ -39,27 +38,9 @@ const Login = () => {
     // eslint-disable-next-line
   }, [user, isError, isSuccess, message, dispatch]);
 
-  // initial values
-  const initialValues = {
-    email: "",
-    password: "",
-  };
-
-  // validation schema
-  const validationSchema = yup.object({
-    email: yup
-      .string("Enter your email")
-      .email("Enter a valid email")
-      .required("Email is required"),
-    password: yup
-      .string("Enter your password")
-      .min(8, "Password is too short - Enter 8 chars minimum.")
-      .required("Password is required"),
-  });
-
   const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: validationSchema,
+    initialValues: loginInitialValues,
+    validationSchema: loginValidationSchema,
     onSubmit: (values, { resetForm }) => {
       dispatch(
         login({
@@ -156,7 +137,6 @@ const Wrapper = styled.section`
   @media only screen and (max-width: 850px) {
     padding: 3rem 2rem 5rem 2rem;
   }
-
   .login__grid {
     max-width: 108rem;
     margin: auto;
@@ -165,7 +145,6 @@ const Wrapper = styled.section`
     grid-gap: 6rem;
     align-items: center;
   }
-
   @media only screen and (max-width: 850px) {
     .login__grid {
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
@@ -215,13 +194,11 @@ const Wrapper = styled.section`
     margin: 0 auto 1.25rem auto;
     padding: 0.25rem;
   }
-
   .submit-button {
     display: block;
     width: 200px;
     font-weight: 500;
   }
-
   .login__dont {
     text-align: center;
     margin-top: 1.8rem;
@@ -236,14 +213,5 @@ const Wrapper = styled.section`
     font-size: 15px;
     color: red;
     height: 5px;
-  }
-  /* OverRiding Material UI styles. */
-  #email,
-  #password {
-    /* font-family: "Nunito Sans", sans-serif; */
-    /* color: #2a2a2a;
-    font-size: 1.8rem;
-    padding: 12px 14px;
-    font-weight: 400; */
   }
 `;

@@ -5,7 +5,7 @@ import { useField } from "formik";
 import { useDispatch } from "react-redux";
 import { updateConditionalFlag } from "../../../slices/auth";
 import { FormControl, Select, MenuItem } from "@mui/material";
-import { styles } from '../../../styles';
+import { styles } from '../../../components/Shared/styles';
 
 function SelectFieldSetConditional(props) {
     const { label, data, ...rest } = props;

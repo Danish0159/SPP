@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Navbar, Footer, Spinner } from "../../../components";
+import { Footer } from "../../../components";
 import { Buttons } from "../../../components/Community/Profile";
-import { CardLayout } from '../../../components/Common/styled'
+import { CardLayout } from '../../../components/Shared/styled'
 import { AddProject, PreviewProfile, PersonelInfo, PersonelProjects } from '../Profile'
-import { CardTitle } from '../../../components/Common'
+import { CardTitle } from '../../../components/Shared'
+import { useSelector } from "react-redux";
+import { NavbarCommunity } from '../../../components/Navigations'
 
 const ProfileDriver = () => {
+  const { user } = useSelector(
+    (state) => state.auth
+  );
   const [step, setStep] = useState(0);
 
   const steps = [
@@ -31,7 +36,7 @@ const ProfileDriver = () => {
 
   return (
     <main>
-      <Navbar page="community"></Navbar>
+      <NavbarCommunity profile={user?.profile.profilePhoto}></NavbarCommunity>
       <CardLayout>
         <Buttons handleStep={handleStep} step={step}></Buttons>
         <Wrapper>

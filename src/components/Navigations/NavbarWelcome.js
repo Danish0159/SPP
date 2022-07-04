@@ -5,11 +5,12 @@ import Avatar from "@mui/material/Avatar";
 
 const NavbarWelcome = () => {
   return (
-    <div className="nav__container">
-      <Link className="navbar__link" to="/">
-        <img className="navbar__logo" src={logo} alt="Logo" />
-      </Link>
-      <Avatar sx={{ width: 47, height: 47 }}></Avatar>
+    <div className="nav__parent">
+      <div className="nav__container">
+        <Link className="navbar__link" to="/">
+          <img className="navbar__logo" src={logo} alt="Logo" />
+        </Link>
+      </div>
     </div>
   );
 };

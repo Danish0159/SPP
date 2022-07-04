@@ -1,10 +1,11 @@
 import React from "react";
-import { Navbar, Login } from "../components";
+import { Login } from "../components";
+import { NavbarLogin } from '../components/Navigations'
 
 const LoginPage = () => {
   return (
     <main>
-      <Navbar page="login"></Navbar>
+      <NavbarLogin></NavbarLogin>
       <Login></Login>
     </main>
   );

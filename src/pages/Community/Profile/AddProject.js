@@ -6,7 +6,7 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProject, reset } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
-import { styles } from '../../../styles';
+import { styles } from '../../../components/Shared/styles';
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");

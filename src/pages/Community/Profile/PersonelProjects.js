@@ -13,7 +13,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 import Spinner from "../../../components/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
-import { styles } from '../../../styles';
+import { styles } from '../../../components/Shared/styles';
 
 const PersonelProjects = () => {
     /////////////////////////////
@@ -41,12 +41,13 @@ const PersonelProjects = () => {
     );
     // thumbs.
     const thumbs = images.map((image, index) => (
-        <div style={thumb} key={index}>
-            <div style={thumbInner}>
-                <img alt="selected" src={image} style={img} />
+        <div className="thumb" key={index}>
+            <div className="thumbInner">
+                <img alt="selected" src={image} className="img" />
             </div>
         </div>
     ));
+
     // Update project end.
     /////////////////////////////
     /////////////////////////////
@@ -104,7 +105,6 @@ const PersonelProjects = () => {
         setImages(project.images);
         setUpdateId(projectId);
     }
-    // 
 
     /////////////////////////////
     // Update Project
@@ -281,7 +281,7 @@ const PersonelProjects = () => {
                                 </div>
                             )}
                         </Dropzone>
-                        <aside style={thumbsContainer}>
+                        <aside className='thumbsContainer'>
                             {thumbs}
                         </aside>
                         {images.length > 0 &&
@@ -385,14 +385,6 @@ const Wrapper = styled.div`
 
 
 ///////////////////////////
-// Css Styling.
-const thumbsContainer = {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 16,
-};
-
 const thumb = {
     display: "inline-flex",
     borderRadius: 2,

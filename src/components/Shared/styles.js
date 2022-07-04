@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material";
 
+// Material UI
 //Global Styles.
 export const theme = createTheme({
     typography: {
@@ -7,7 +8,7 @@ export const theme = createTheme({
     },
 });
 
-
+// Material UI
 export const styles = {
     textField: {
         fontSize: "1.8rem",

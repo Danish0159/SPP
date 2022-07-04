@@ -42,15 +42,12 @@ a {
 p {
   font-weight: 400;
 }
-
 .bg {
   background-color: #f7f8ff;
 }
-
 input[type='file'] {
   color: transparent;
 }
-
 .section__title {
   max-width: 80rem;
   margin: auto;
@@ -60,23 +57,19 @@ input[type='file'] {
   color: var(--clr-black);
   margin-bottom: 5rem;
 }
-
 @media only screen and (max-width: 900px) {
   .section__title {
     font-size: 3rem;
   }
 }
-
 .section__blue {
   padding: 5rem 4rem;
   background-color: #f7f8ff;
 }
-
 .section__white {
   padding: 5rem 4rem;
   background-color: #ffffff;
 }
-
 /*
 ==============================
 Button Styles
@@ -101,7 +94,6 @@ Button Styles
     padding: 0.9rem 3rem;
   }
 }
-
 .blue-btn {
   display: inline-block;
   margin: auto;
@@ -121,60 +113,42 @@ Button Styles
     font-size: 2rem;
   }
 }
-
-/* Spinner */
-.loadingSpinnerContainer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  z-index: 5000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loadingSpinner {
-  width: 64px;
-  height: 64px;
-  border: 8px solid;
-  border-color: #424d83 transparent #424d83 transparent;
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .section-100vh {
   min-height: 100vh;
   background-color: #fff;
 }
 
-/* OverRdign */
-/* avatar font size */
-/* .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 1.5rem !important;
-  font-weight: 600 !important;
-} */
+/*
+==============================
+Navigation Styles
+==============================
+*/
+  .nav__parent{
+    background-color: #424d83;
+  }
+  .nav__container {
+    max-width: 119rem;
+    margin: auto;
+    padding: 2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar__logo {
+    height: 6rem;
+  }
+  @media only screen and (max-width: 850px) {
+      .navbar__logo {
+        height: 4.2rem;
+  }
+  }
+  @media only screen and (max-width: 850px) {
+    .btn-nav {
+      align-self: flex-end;
+    }
+  }
 
-/* Drop Zone Text */
-.drop {
-  font-family: "Nunito Sans", sans-serif;
-  font-size: 1.5rem;
-  color: var(--clr-black);
-}
-
+/* Temporary Disable Button. */
 .disableButtonColor{
   background-color:#6c6d79;
 }
-

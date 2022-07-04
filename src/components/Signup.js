@@ -6,78 +6,39 @@ import { toast } from "react-toastify";
 import { Link, useHistory } from "react-router-dom";
 import signupImage from "../images/signup.png";
 import { useFormik } from "formik";
-import * as yup from "yup";
 import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../slices/auth";
 import { users } from "../utils/constants";
-import { styles } from '../styles';
+import { styles } from '../components/Shared/styles';
+import { signupInitialValues, signupValidationSchema } from "../utils/helpers"
 
 const Signup = () => {
+  const [role, setRole] = useState("");
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  // State.
+  const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
-
     if (isSuccess) {
       toast.success(message);
       history.push("/Login");
     }
-
     dispatch(reset());
     // eslint-disable-next-line
-  }, [user, isError, isSuccess, message, dispatch]);
-
-  // Role
-  const [role, setRole] = useState("");
-  const handleChange = (event) => {
-    setRole(event.target.value);
-  };
-
-  // initial values.
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-  };
-
-  // validation schema.
-  const validationSchema = yup.object({
-    name: yup
-      .string("Enter your name")
-      .min(3)
-      .max(25)
-      .required("Name is required"),
-    email: yup
-      .string("Enter your email")
-      .email("Enter a valid email")
-      .required("Email is required"),
-    password: yup
-      .string("Enter your password")
-      .min(8, "Password is too short - should be 8 chars minimum.")
-      .required("Password is required"),
-  });
+  }, [isError, isSuccess, message, dispatch]);
 
   const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: validationSchema,
-    // async keyword can be removed from here.
+    initialValues: signupInitialValues,
+    validationSchema: signupValidationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log({
-        name: values.name,
-        email: values.email,
-        password: values.password,
-        role,
-      });
-
       dispatch(
         register({
           name: values.name,
@@ -164,7 +125,7 @@ const Signup = () => {
               <Select
                 sx={styles.select}
                 value={role}
-                onChange={handleChange}
+                onChange={(event) => { setRole(event.target.value); }}
                 required
               >
                 {users.map((user, index) => (
@@ -212,7 +173,6 @@ const Wrapper = styled.section`
   @media only screen and (max-width: 850px) {
     padding: 3rem 2rem 5rem 2rem;
   }
-
   .signup__grid {
     max-width: 108rem;
     margin: auto;
@@ -221,7 +181,6 @@ const Wrapper = styled.section`
     grid-gap: 6rem;
     align-items: center;
   }
-
   @media only screen and (max-width: 850px) {
     .signup__grid {
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));

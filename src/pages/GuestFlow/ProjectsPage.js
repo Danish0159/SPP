@@ -1,11 +1,12 @@
 import React from "react";
-import { Navbar, Footer } from "../../components";
+import { Footer } from "../../components";
 import { Projects } from "../../components/GuestFlow";
+import { NavbarWelcome } from '../../components/Navigations'
 
 const ProjectsPage = () => {
   return (
     <main>
-      <Navbar page="welcome"></Navbar>
+      <NavbarWelcome></NavbarWelcome>
       <Projects></Projects>
       <Footer></Footer>
     </main>

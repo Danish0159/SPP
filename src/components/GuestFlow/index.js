@@ -1,5 +1,4 @@
 import Cards from "./Cards";
-import Welcome from "./Welcome";
 import Users from "./Users";
 import Projects from "./Projects";
 import SingleProject from "./SingleProject";
@@ -12,7 +11,6 @@ import Buttons from "./Buttons";
 
 export {
   Cards,
-  Welcome,
   Users,
   SingleUser,
   Projects,

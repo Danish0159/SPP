@@ -4,7 +4,7 @@ import { useField } from "formik";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { updateProjectsFlag } from "../../../slices/auth";
-import { styles } from '../../../styles';
+import { styles } from '../../../components/Shared/styles';
 
 export default function InputFieldSetConditional(props) {
     const { errorText, type, ...rest } = props;

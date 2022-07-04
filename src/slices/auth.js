@@ -101,9 +101,9 @@ export const addProject = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
   "auth/updateProfile",
-  async ({ name, email, role, phoneNumber, id }, thunkAPI) => {
+  async ({ photo, name, email, phoneNumber, role, category, subCategory, id }, thunkAPI) => {
     try {
-      const data = await AuthService.updateProfile(name, email, role, phoneNumber, id);
+      const data = await AuthService.updateProfile(photo, name, email, phoneNumber, role, category, subCategory, id);
       if (data.status !== "SUCCESS") {
         return thunkAPI.rejectWithValue(data.message);
       }

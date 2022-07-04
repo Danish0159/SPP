@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HeroImage from "../images/HeroImage.jpg";
 import { useTranslation } from "react-i18next";
@@ -37,6 +36,7 @@ const Wrapper = styled.section`
   color: #ffffff;
   display: flex;
   align-items: center;
+
   .hero__title {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
@@ -66,6 +66,7 @@ const Wrapper = styled.section`
     align-items: flex-start;
     justify-content: center;
   }
+
   .hero__content > * {
     margin-bottom: 2rem;
   }
@@ -82,6 +83,7 @@ const Wrapper = styled.section`
     width: 80%;
     height: 100%;
   }
+
   .hero__img {
     padding: 2rem 0rem;
     width: 100%;
@@ -101,6 +103,7 @@ const Wrapper = styled.section`
     color: #ffffff;
     text-align: center;
   }
+  
   .hero__role:last-child{
        border-bottom: none;
   }

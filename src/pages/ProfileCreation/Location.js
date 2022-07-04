@@ -4,7 +4,7 @@ import { SelectFieldSetConditional, SelectMultiple } from "../../components/Prof
 import { useTranslation } from "react-i18next";
 import { countries, pakCities, saudiCities } from "../../utils/constants";
 import { Field } from 'formik'
-import { styles } from '../../styles';
+import { styles } from '../../components/Shared/styles';
 
 
 export default function Location(props) {

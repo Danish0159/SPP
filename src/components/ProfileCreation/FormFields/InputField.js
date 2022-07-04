@@ -2,7 +2,7 @@ import React from "react";
 import { at } from "lodash";
 import { useField } from "formik";
 import { TextField } from "@mui/material";
-import { styles } from '../../../styles';
+import { styles } from '../../../components/Shared/styles';
 
 export default function InputField(props) {
   const { errorText, type, ...rest } = props;

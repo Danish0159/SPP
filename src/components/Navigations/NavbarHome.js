@@ -20,44 +20,44 @@ const NavbarHome = ({ country, city, setCountry, setCity, }) => {
 
   return (
     <Wrapper>
-      <div className="nav__container">
-        {/* Logo. */}
-        <Link to="/">
-          <img className="navbar__logo" src={logo} alt="Logo" />
-        </Link>
+      <div className="nav__parent">
+        <div className="nav__container">
+          {/* Logo. */}
+          <Link to="/">
+            <img className="navbar__logo" src={logo} alt="Logo" />
+          </Link>
 
-        <div className='navbar-dropdown'>
-          <select onChange={(e) => { setCountry(e.target.value) }}>
-            <option hidden>{country}</option>
-            <option>Pakistan</option>
-            <option>Saudi Arabia</option>
-          </select>
+          <div className='navbar-dropdown'>
+            <select onChange={(e) => { setCountry(e.target.value) }}>
+              <option hidden>{country}</option>
+              <option>Pakistan</option>
+              <option>Saudi Arabia</option>
+            </select>
+          </div>
+
+          <div className='navbar-dropdown'>
+            <select onChange={(e) => { setCity(e.target.value) }}>
+              <option hidden>{city}</option>
+              <option disabled>none</option>
+              {country === "Pakistan"
+                ? pakCities.map((item, index) => (
+                  <option key={index}>
+                    {item}
+                  </option>
+                ))
+                : country === "Saudi Arabia" ? saudiCities.map((item, index) => (
+                  <option key={index}>
+                    {item}
+                  </option>
+                )) : null}
+
+            </select>
+          </div>
+          {/* Navbar. */}
+          <Link to="/Login" className="btn-small btn-nav">
+            {t("home_login")}
+          </Link>
         </div>
-
-        <div className='navbar-dropdown'>
-          <select onChange={(e) => { setCity(e.target.value) }}>
-            <option hidden>{city}</option>
-            <option disabled>none</option>
-            {country === "Pakistan"
-              ? pakCities.map((item, index) => (
-                <option key={index}>
-                  {item}
-                </option>
-              ))
-              : country === "Saudi Arabia" ? saudiCities.map((item, index) => (
-                <option key={index}>
-                  {item}
-                </option>
-              )) : null}
-
-          </select>
-        </div>
-
-
-        {/* Navbar. */}
-        <Link to="/Login" className="btn-small btn-nav">
-          {t("home_login")}
-        </Link>
       </div>
     </Wrapper>
   );
@@ -72,24 +72,21 @@ const Wrapper = styled.section`
     font-size: 3rem;
     color: white;
 }
-
 .navbar-dropdown select {
-    background: none;
-    border: none;
-    font-size: 3rem;
-    color: white;
-    cursor: pointer;
-    width: 210px;
-    text-align: center;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  width: 210px;
+  text-align: center;
 }
-
 .navbar-dropdown select option {
     color: black;
     width: 100%;
     font-size: 2.2rem;
     text-align: center;
 }
-
 @media screen and (max-width:790px) {
     .navbar-dropdown {
         display: none;

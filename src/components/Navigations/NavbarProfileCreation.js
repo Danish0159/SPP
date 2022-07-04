@@ -34,38 +34,40 @@ const NavbarProfileCreation = () => {
   };
 
   return (
-    <div className="nav__container">
-      <Link className="navbar__link" to="/">
-        <img className="navbar__logo" src={logo} alt="Logo" />
-      </Link>
-      <Tooltip title={<h2>Account Settings</h2>}>
-        <IconButton
-          onClick={handleClick}
-          size="small"
-          sx={{ ml: 2 }}
-          aria-controls={open ? "account-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
+    <div className="nav__parent">
+      <div className="nav__container">
+        <Link className="navbar__link" to="/">
+          <img className="navbar__logo" src={logo} alt="Logo" />
+        </Link>
+        <Tooltip title={<h2>Account Settings</h2>}>
+          <IconButton
+            onClick={handleClick}
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? "account-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+          >
+            <Avatar sx={{ width: 47, height: 47 }}></Avatar>
+          </IconButton>
+        </Tooltip>
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <Avatar sx={{ width: 47, height: 47 }}></Avatar>
-        </IconButton>
-      </Tooltip>
-      <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        transformOrigin={{ horizontal: "right", vertical: "top" }}
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-      >
-        <MenuItem onClick={onLogout}>
-          <ListItemIcon>
-            <Logout />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
-      </Menu>
+          <MenuItem onClick={onLogout}>
+            <ListItemIcon>
+              <Logout />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
+        </Menu>
+      </div>
     </div>
   );
 };

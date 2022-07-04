@@ -3,10 +3,12 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
 import { useTranslation } from "react-i18next";
-import { Navbar, Footer, Spinner } from "../../components";
+import { Footer, Spinner } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
-import { CardLayout } from '../../components/Common/styled'
-import { CardTitle } from "../../components/Common"
+import { CardLayout } from '../../components/Shared/styled'
+import { CardTitle } from "../../components/Shared"
+import { NavbarWelcome } from '../../components/Navigations'
+
 // Form Model.
 import {
   formInitialValues,
@@ -28,7 +30,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileCreation, reset } from "../../slices/auth";
 import { Redirect, useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
-import { styles } from "../../styles";
+import { styles } from "../../components/Shared/styles";
 const { formId, formField } = registrationFormModel;
 
 const steps = [
@@ -98,7 +100,7 @@ const Driver = () => {
           projectName: values.projectName1,
           location: values.projectLocation1,
           description: values.projectDescription1,
-          images: values.images.src1,
+          images: values.images.images1,
         }
       );
     }
@@ -108,7 +110,7 @@ const Driver = () => {
           projectName: values.projectName2,
           location: values.projectLocation2,
           description: values.projectDescription2,
-          images: values.images.src2,
+          images: values.images.images2,
         }
       );
     }
@@ -118,7 +120,7 @@ const Driver = () => {
           projectName: values.projectName3,
           location: values.projectLocation3,
           description: values.projectDescription3,
-          images: values.images.src3,
+          images: values.images.images3,
         }
       );
     }
@@ -128,7 +130,7 @@ const Driver = () => {
           projectName: values.projectName4,
           location: values.projectLocation4,
           description: values.projectDescription4,
-          images: values.images.src4,
+          images: values.images.images4,
         }
       );
     }
@@ -138,7 +140,7 @@ const Driver = () => {
           projectName: values.projectName5,
           location: values.projectLocation5,
           description: values.projectDescription5,
-          images: values.images.src5,
+          images: values.images.images5,
         }
       );
     }
@@ -167,7 +169,6 @@ const Driver = () => {
       profilePhoto: values.image.src,
     };
 
-    console.log(payload);
     dispatch(profileCreation(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);
@@ -193,7 +194,7 @@ const Driver = () => {
 
   return (
     <main>
-      <Navbar page="welcome"></Navbar>
+      <NavbarWelcome></NavbarWelcome>
       <CardLayout>
         <Buttons activeStep={activeStep}></Buttons>
 

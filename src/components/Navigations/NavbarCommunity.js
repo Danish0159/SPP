@@ -14,7 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 
-const NavbarCommunity = () => {
+const NavbarCommunity = ({ profile }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -35,77 +35,79 @@ const NavbarCommunity = () => {
     };
 
     return (
-        <div className="nav__container">
-            <Link className="navbar__link" to="/">
-                <img className="navbar__logo" src={logo} alt="Logo" />
-            </Link>
-            <Tooltip title={<h2>Account Settings</h2>}>
-                <IconButton
-                    onClick={handleClick}
-                    size="small"
-                    sx={{ ml: 2 }}
-                    aria-controls={open ? "account-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
+        <div className="nav__parent">
+            <div className="nav__container">
+                <Link className="navbar__link" to="/">
+                    <img className="navbar__logo" src={logo} alt="Logo" />
+                </Link>
+                <Tooltip title={<h2>Account Settings</h2>}>
+                    <IconButton
+                        onClick={handleClick}
+                        size="small"
+                        sx={{ ml: 2 }}
+                        aria-controls={open ? "account-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                    >
+                        <Avatar src={profile} sx={{ width: 47, height: 47 }}></Avatar>
+                    </IconButton>
+                </Tooltip>
+                <Menu
+                    anchorEl={anchorEl}
+                    id="account-menu"
+                    open={open}
+                    onClose={handleClose}
+                    onClick={handleClose}
+                    PaperProps={{
+                        elevation: 0,
+                        sx: {
+                            overflow: 'visible',
+                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            mt: 1.5,
+                            '& .MuiAvatar-root': {
+                                width: 30,
+                                height: 30,
+                                ml: -0.5,
+                                mr: 1,
+                            },
+                            '&:before': {
+                                content: '""',
+                                display: 'block',
+                                position: 'absolute',
+                                top: 0,
+                                right: 14,
+                                width: 10,
+                                height: 10,
+                                bgcolor: 'background.paper',
+                                transform: 'translateY(-50%) rotate(45deg)',
+                                zIndex: 0,
+                            },
+                        },
+                    }}
+                    transformOrigin={{ horizontal: "right", vertical: "top" }}
+                    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                    <Avatar sx={{ width: 47, height: 47 }}></Avatar>
-                </IconButton>
-            </Tooltip>
-            <Menu
-                anchorEl={anchorEl}
-                id="account-menu"
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                PaperProps={{
-                    elevation: 0,
-                    sx: {
-                        overflow: 'visible',
-                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                        mt: 1.5,
-                        '& .MuiAvatar-root': {
-                            width: 30,
-                            height: 30,
-                            ml: -0.5,
-                            mr: 1,
-                        },
-                        '&:before': {
-                            content: '""',
-                            display: 'block',
-                            position: 'absolute',
-                            top: 0,
-                            right: 14,
-                            width: 10,
-                            height: 10,
-                            bgcolor: 'background.paper',
-                            transform: 'translateY(-50%) rotate(45deg)',
-                            zIndex: 0,
-                        },
-                    },
-                }}
-                transformOrigin={{ horizontal: "right", vertical: "top" }}
-                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-                <Link to="/HomeFeed">
-                    <MenuItem>
-                        <HomeIcon sx={{
-                            width: 30, height: 30, ml: -0.5, mr: 1, color: "rgba(0, 0, 0, 0.39)",
-                        }} /> <span style={{ color: '#121212' }}>Feed</span>
+                    <Link to="/HomeFeed">
+                        <MenuItem>
+                            <HomeIcon sx={{
+                                width: 30, height: 30, ml: -0.5, mr: 1, color: "rgba(0, 0, 0, 0.39)",
+                            }} /> <span style={{ color: '#121212' }}>Feed</span>
+                        </MenuItem>
+                    </Link>
+                    <Link to="/Profile">
+                        <MenuItem>
+                            <Avatar /> <span style={{ color: '#121212' }}>Profile</span>
+                        </MenuItem>
+                    </Link>
+                    <MenuItem onClick={onLogout}>
+                        <ListItemIcon>
+                            <Logout />
+                        </ListItemIcon>
+                        Logout
                     </MenuItem>
-                </Link>
-                <Link to="/Profile">
-                    <MenuItem>
-                        <Avatar /> <span style={{ color: '#121212' }}>Profile</span>
-                    </MenuItem>
-                </Link>
-                <MenuItem onClick={onLogout}>
-                    <ListItemIcon>
-                        <Logout />
-                    </ListItemIcon>
-                    Logout
-                </MenuItem>
-            </Menu>
-        </div >
+                </Menu>
+            </div>
+        </div>
     );
 };
 

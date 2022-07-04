@@ -1,11 +1,12 @@
 import React from "react";
-import { Navbar, Footer } from "../../components";
+import { Footer } from "../../components";
 import { SingleUser } from "../../components/GuestFlow";
+import { NavbarWelcome } from '../../components/Navigations'
 
 const SingleUserPage = () => {
   return (
     <main>
-      <Navbar page="welcome"></Navbar>
+      <NavbarWelcome></NavbarWelcome>
       <SingleUser></SingleUser>
       <Footer></Footer>
     </main>

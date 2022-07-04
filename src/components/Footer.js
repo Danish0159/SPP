@@ -73,5 +73,4 @@ const Wrapper = styled.footer`
       height: 4.2rem;
     }
   }
-
 `;

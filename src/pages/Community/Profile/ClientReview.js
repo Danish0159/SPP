@@ -2,8 +2,8 @@ import { TextField } from '@mui/material';
 import React from 'react'
 import styled from "styled-components";
 import logo from '../../../images/logo3.png'
-import { Review } from '../../../components/Common/styled'
-import { styles } from '../../../styles'
+import { Review } from '../../../components/Shared/styled'
+import { styles } from '../../../components/Shared/styles'
 
 const ClientReview = () => {
     return (

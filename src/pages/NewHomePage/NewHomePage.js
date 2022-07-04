@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, reset } from "../../slices/users";
 import { toast } from "react-toastify";
 import Spinner from "../../components/Spinner";
-import Navbar from '../../components/Navbar';
+import { NavbarHome } from '../../components/Navigations';
 import { Footer, Hero } from "../../components"
 import { useHistory } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
@@ -65,7 +65,7 @@ const NewHomePage = () => {
     }
     return (
         <>
-            <Navbar page="home" HomeValues={HomeValues}></Navbar>
+            <NavbarHome {...HomeValues}></NavbarHome>
 
             {/* Global Search. */}
             <div className='navbar2'>
