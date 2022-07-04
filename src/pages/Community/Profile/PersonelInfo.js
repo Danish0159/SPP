@@ -23,7 +23,7 @@ const PersonelInfo = () => {
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
     const [phoneNumber, setNumber] = useState("");
-    const [photo, setPhoto] = useState("");
+    const [profilePhoto, setProfilePhoto] = useState("");
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
 
@@ -61,7 +61,7 @@ const PersonelInfo = () => {
         e.preventDefault();
         //  API CALL.
         console.log({
-            photo,
+            profilePhoto,
             name,
             email,
             phoneNumber,
@@ -73,7 +73,7 @@ const PersonelInfo = () => {
 
         dispatch(
             updateProfile({
-                photo,
+                profilePhoto,
                 name,
                 email,
                 phoneNumber,
@@ -90,7 +90,7 @@ const PersonelInfo = () => {
         setEmail("");
         setRole("");
         setNumber("");
-        setPhoto("");
+        setProfilePhoto("");
         setCategory("");
         setSubCategory("");
     };
@@ -107,10 +107,10 @@ const PersonelInfo = () => {
 
             <form onSubmit={handleSubmit}>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    {photo &&
+                    {profilePhoto &&
                         <Avatar
                             style={{ marginBottom: "0rem", marginRight: ".3rem" }}
-                            src={photo}
+                            src={profilePhoto}
                             sx={{ width: 90, height: 90 }}
                             alt="Avatar"
                         />
@@ -123,7 +123,7 @@ const PersonelInfo = () => {
                             var file = event.target.files[0];
                             var reader = new FileReader();
                             reader.onload = function (event) {
-                                setPhoto(event.target.result);
+                                setProfilePhoto(event.target.result);
                             };
                             reader.readAsDataURL(file);
                         }}
@@ -238,7 +238,7 @@ const PersonelInfo = () => {
                         setEmail(user.user.email);
                         setRole(user.user.role);
                         setNumber(user.profile.phoneNumber);
-                        setPhoto(user.profile.profilePhoto);
+                        setProfilePhoto(user.profile.profilePhoto);
                         setCategory(user.profile.category);
                         setSubCategory(user.profile.subCategory);
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>

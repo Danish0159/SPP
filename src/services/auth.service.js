@@ -93,11 +93,11 @@ const addProject = async (projectName, location, description, images, id) => {
   return response.data;
 };
 
-const updateProfile = async (photo, name, email, phoneNumber, role, category, subCategory, id) => {
+const updateProfile = async (profilePhoto, name, email, phoneNumber, role, category, subCategory, id) => {
   const response = await axios.patch(
     `https://warm-cove-25020.herokuapp.com/api/profile/updateprofile/${id}`,
     {
-      photo, name, email, phoneNumber, role, category, subCategory,
+      profilePhoto, name, email, phoneNumber, role, category, subCategory,
     },
     {
       headers: authHeader(),
