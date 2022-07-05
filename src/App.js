@@ -86,7 +86,8 @@ const App = () => {
             ></PrivateWithOutProfile>
             {/* ----------------------------------------------- */}
             {/* End Of Private Routes. */}
-            <Route exact path="/Review">
+            {/* Public Route(For Giving Reviews) */}
+            <Route exact path="/Review/:userId/:id">
               <ClientReview></ClientReview>
             </Route>
             <Route exact path="*">

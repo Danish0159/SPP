@@ -55,10 +55,8 @@ const PersonelProjects = () => {
     /////////////////////////////
     // Take Review. 
     const [review, setReview] = useState(false);
-    const [clientName, setClientName] = useState("");
-    const [clientEmail, setClientEmail] = useState("");
-    const [clientTitle, setClientTitle] = useState("Ex. Director of Marketting");
-    const [clientMessage, setClientMessage] = useState("Hi, It was great working together on your recent project! Would you mind sharing a brief testimonial about my work with you? It will help build my business on Maqawal and show my value to other potential clients. Thanks in advance for your help! ");
+    const [projectReviewId, setProjectReviewId] = useState(false);
+
     /////////////////////////////
     // Take Review end. 
 
@@ -79,16 +77,10 @@ const PersonelProjects = () => {
     }, [user, isError, isSuccess, message, dispatch]);
 
     /////////////////////////////
-    // Delete Project 
+    // Delete Project.
     function handleDelete(projectId) {
-        //  API CALL.
-        console.log({
-            profileId: user.profile._id,
-            projectId,
-        });
 
         //Before API Call.
-
         dispatch(
             deleteProject({
                 profileId: user.profile._id,
@@ -139,73 +131,23 @@ const PersonelProjects = () => {
                 <div className='edit__div'>
                     <CancelIcon onClick={() => { setReview(false) }} className="edit__icon"></CancelIcon>
                 </div>
-                <h1 className='request__title'>Request a client testimonial</h1>
-
-                <form onSubmit={handleProjectSubmit}>
-                    <p className="card__subtitle">Name</p>
-                    <TextField
-                        fullWidth
-                        type="text"
-                        name="text"
-                        inputProps={{
-                            style: styles.textField,
-                        }}
-                        value={clientName}
-                        onChange={(e) => setClientName(e.target.value)}
-                        required
-                    />
-                    <p className="card__subtitle">Business Email Address</p>
-                    <TextField
-                        fullWidth
-                        type="email"
-                        name="email"
-                        inputProps={{
-                            style: styles.textField,
-                        }}
-                        value={clientEmail}
-                        onChange={(e) => setClientEmail(e.target.value)}
-                        required
-                    />
-                    <p className="card__subtitle">Client's title</p>
-                    <TextField
-                        fullWidth
-                        type="text"
-                        name="text"
-                        inputProps={{
-                            style: styles.textField,
-                        }}
-                        value={clientTitle}
-                        onChange={(e) => setClientTitle(e.target.value)}
-                        required
-                    />
-                    <p className="card__subtitle">Message to Client</p>
-                    <TextField
-                        fullWidth
-                        type="text"
-                        name="text"
-                        inputProps={{
-                            style: styles.desciption,
-                        }}
-                        rows={5}
-                        multiline
-                        value={clientMessage}
-                        onChange={(e) => setClientMessage(e.target.value)}
-                        required
-                    />
-                    <button
-                        style={{ marginTop: '2rem' }}
-                        className="blue-btn card-btn"
-                        type="submit"
-                    >
-                        REQUEST
-                    </button>
-                </form>
-
+                <div>
+                    <h1 className='request__title'>Request a client testimonial</h1>
+                    <p className="card__subtitle">You can send the following link to the client to take a review for your project.</p>
+                    <button onClick={() => {
+                        toast.success("Copied to clipboard", {
+                            position: "top-center",
+                            autoClose: 300,
+                            hideProgressBar: true,
+                        });
+                        navigator.clipboard.writeText(`Maqawal.com/Review/${user.profile._id}/${projectReviewId}`);
+                    }} className="request__link">Maqawal.com/Review/{user.profile._id}{projectReviewId}</button>
+                </div>
             </Wrapper>
         )
     }
 
-    // Update Project
+    {/* // Update Project */ }
     if (updateId) {
         return (
             <Wrapper>
@@ -316,7 +258,10 @@ const PersonelProjects = () => {
                             <AccordionSummary
                                 expandIcon={
                                     <>
-                                        <RateReviewIcon onClick={() => { setReview(true); }} className="icons"></RateReviewIcon>
+                                        <RateReviewIcon onClick={() => {
+                                            setReview(true);
+                                            setProjectReviewId(project._id);
+                                        }} className="icons"></RateReviewIcon>
                                         <ModeEditOutlineOutlinedIcon onClick={() => handleProjectUpdate(project._id)} className="icons" />
                                         <DeleteIcon onClick={() => { handleDelete(project._id) }} className="icons" />
                                     </>
@@ -381,33 +326,18 @@ const Wrapper = styled.div`
 .request__title{
     font-size: 2.7rem;
 }
+.request__link{
+    background-color:#424d83;
+    color: rgb(255, 255, 255);;
+    border: none;
+    font-size: 1.3rem;
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 2rem;
+}
 `;
 
-
-///////////////////////////
-const thumb = {
-    display: "inline-flex",
-    borderRadius: 2,
-    border: "1px solid #eaeaea",
-    marginBottom: 8,
-    marginRight: 8,
-    width: 100,
-    height: 100,
-    padding: 4,
-    boxSizing: "border-box",
-};
-
-const thumbInner = {
-    display: "flex",
-    minWidth: 0,
-    overflow: "hidden",
-};
-
-const img = {
-    display: "block",
-    width: "auto",
-    height: "100%",
-};
 
 const baseStyle = {
     flex: 1,

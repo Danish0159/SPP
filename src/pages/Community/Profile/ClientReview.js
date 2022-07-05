@@ -1,55 +1,107 @@
 import { TextField } from '@mui/material';
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from "styled-components";
 import logo from '../../../images/logo3.png'
 import { Review } from '../../../components/Shared/styled'
 import { styles } from '../../../components/Shared/styles'
+import { fetchSingleProject, reset } from '../../../slices/users';
+import { toast } from 'react-toastify';
+import Spinner from '../../../components/Spinner';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ClientReview = () => {
-    return (
-        <Review>
-            <Wrapper>
-                <div className="review">
-                    <div className="review__left">
-                        <img className="review__left--logo" src={logo} alt="Logo" />
-                        <div className="review__left--content">
-                            <p className='review__left--text'>A community of where you can find contractors, designers and companies. A way to Learn and Excel your Skills.
-                            </p>
+    const { single_project, isLoading, isError, isSuccess, message } =
+        useSelector((state) => state.users);
+    const dispatch = useDispatch();
+    const { userId, id } = useParams();
+
+    useEffect(() => {
+        dispatch(fetchSingleProject({ userId, id }));
+        // eslint-disable-next-line
+    }, [id]);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+            dispatch(reset());
+        }
+        if (isSuccess) {
+            dispatch(reset());
+        }
+    }, [isError, isSuccess, message, dispatch]);
+
+    if (isLoading) {
+        return (
+            <div className="section-100vh">
+                <Spinner />;
+            </div>
+        );
+    }
+
+    if (single_project.data) {
+        return (
+            <Review>
+                <Wrapper>
+
+                    <div className="review">
+                        <div className="review__left">
+                            <img className="review__left--logo" src={logo} alt="Logo" />
+                            <div className="review__left--content">
+                                <p className='review__left--text'>A community of where you can find contractors, designers and companies. A way to Learn and Excel your Skills.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="review__right">
+                            <div className="form">
+                                <h1 className='form__title'>Help {single_project.data.user.name} with a testimonial</h1>
+                                <div className="project">
+                                    <h1 className="project__title">Project Detail</h1>
+
+                                    <p className="project__subtitle">Project Name: <span className="project__name">{single_project.data.portfolio[0].projectName}
+                                    </span>
+                                    </p>
+                                    <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].location}
+                                    </span>
+                                    </p>
+                                    <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].description ? single_project.data.portfolio[0].description : null}
+                                    </span></p>
+                                </div>
+
+                                <form>
+                                    <p className="card__subtitle">Enter your testimonial</p>
+                                    <TextField
+                                        fullWidth
+                                        type="text"
+                                        name="text"
+                                        inputProps={{
+                                            style: styles.desciption,
+                                        }}
+                                        rows={4}
+                                        multiline
+                                        value="SomeContent"
+                                        // value={clientMessage}
+                                        // onChange={(e) => setClientMessage(e.target.value)}
+                                        required
+                                    />
+                                    <button
+                                        style={{ marginTop: '2rem' }}
+                                        className="blue-btn card-btn"
+                                        type="submit"
+                                    >
+                                        SUBMIT
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div className="review__right">
-                        <div className="form">
-                            <h1 className='form__title'>Help Jhon with a testimonial</h1>
-                            <form>
-                                <p className="card__subtitle">Enter your testimonial</p>
-                                <TextField
-                                    fullWidth
-                                    type="text"
-                                    name="text"
-                                    inputProps={{
-                                        style: styles.desciption,
-                                    }}
-                                    rows={4}
-                                    multiline
-                                    value="SomeContent"
-                                    // value={clientMessage}
-                                    // onChange={(e) => setClientMessage(e.target.value)}
-                                    required
-                                />
-                                <button
-                                    style={{ marginTop: '2rem' }}
-                                    className="blue-btn card-btn"
-                                    type="submit"
-                                >
-                                    SUBMIT
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </Wrapper>
-        </Review>
-    )
+                </Wrapper>
+            </Review>
+        )
+    }
+    else {
+        return null;
+    }
 }
 
 export default ClientReview

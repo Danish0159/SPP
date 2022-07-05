@@ -25,8 +25,6 @@ const SingleProject = () => {
   }, [isError, isSuccess, message, dispatch]);
 
   const { userId, id } = useParams();
-  // console.log(userId);
-  // console.log(id);
 
   useEffect(() => {
     dispatch(fetchSingleProject({ userId, id }));
