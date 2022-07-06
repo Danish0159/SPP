@@ -215,9 +215,9 @@ const Driver = () => {
                       {_renderStepContent(activeStep)}
                       <div className="btn-container">
                         {activeStep !== 0 && (
-                          <Button sx={styles.backBtn} onClick={_handleBack}>
+                          <button className="blue-btn card-btn" onClick={_handleBack}>
                             {t("BACK")}
-                          </Button>
+                          </button>
                         )}
                         <div>
                           <button

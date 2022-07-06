@@ -43,18 +43,11 @@ const Wrapper = styled.section`
     }
   }
   .portfolio__div {
-    height: 250px;
     overflow: hidden;
   }
   .portfolio__div img {
     width: 100%;
-    height: 100%;
     transition: all 0.3s ease-out;
     cursor: pointer;
-  }
-  @media only screen and (max-width: 900px) {
-    .portfolio__div img {
-      height: 85%;
-    }
   }
 `;

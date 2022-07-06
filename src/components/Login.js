@@ -194,11 +194,6 @@ const Wrapper = styled.section`
     margin: 0 auto 1.25rem auto;
     padding: 0.25rem;
   }
-  .submit-button {
-    display: block;
-    width: 200px;
-    font-weight: 500;
-  }
   .login__dont {
     text-align: center;
     margin-top: 1.8rem;

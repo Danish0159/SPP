@@ -84,16 +84,16 @@ export const CardLayout = styled.div`
 `;
 
 // Seperate styling for Review Page.
-export const Review = styled.div`
-  .card__subtitle {
-    font-size: 1.8rem;
-    margin: 2rem 0rem;
-  }
-  .card-btn {
-    font-size: 1.6rem;
-    border-radius: 25px;
-    /* OverRiding index.css styling */
-    margin: 0.1rem;
-    font-weight: 500;
-  }
-`;
+// export const Review = styled.div`
+//   .card__subtitle {
+//     font-size: 1.8rem;
+//     margin: 2rem 0rem;
+//   }
+//   .card-btn {
+//     font-size: 1.6rem;
+//     border-radius: 25px;
+//     /* OverRiding index.css styling */
+//     margin: 0.1rem;
+//     font-weight: 500;
+//   }
+// `;

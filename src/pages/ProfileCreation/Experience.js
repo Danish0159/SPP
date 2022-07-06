@@ -12,11 +12,11 @@ export default function Experience(props) {
   return (
     <>
       <p className="card__subtitle">{t("ExpertiseQuestion1")}</p>
-      <InputField name={experience.name} type="number" fullWidth />
+      <InputField name={experience.name} type="number" min={0} fullWidth />
       <p className="card__subtitle">{t("ExpertiseQuestion2")}</p>
       <InputFieldSetConditional name={projects.name} type="number" fullWidth />
       <p className="card__subtitle">{t("ExpertiseQuestion3")}</p>
-      <InputField name={employees.name} type="number" fullWidth />
+      <InputField name={employees.name} type="number" min={1} fullWidth />
     </>
   );
 }

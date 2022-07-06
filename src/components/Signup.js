@@ -244,11 +244,6 @@ const Wrapper = styled.section`
     border-color: #80bdff;
     outline: 0;
   }
-  .submit-button {
-    display: block;
-    width: 200px;
-    font-weight: 500;
-  }
   .signup__dont {
     text-align: center;
     margin-top: 2rem;

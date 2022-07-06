@@ -113,6 +113,11 @@ Button Styles
     font-size: 2rem;
   }
 }
+  .submit-button {
+    display: block;
+    width: 200px;
+    font-weight: 500;
+  }
 .section-100vh {
   min-height: 100vh;
   background-color: #fff;
