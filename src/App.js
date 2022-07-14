@@ -11,6 +11,7 @@ import { LoginPage, SignupPage, ErrorPage } from "./pages";
 
 // Flow 1 (Guest Flow)
 import {
+  HomePage,
   UsersPage,
   SingleUserPage,
   ProjectsPage,
@@ -27,8 +28,6 @@ import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
 // Private Routes.
 import { PrivateWithOutProfile, PrivateWithProfile } from "./pages/ProtectedRoutes";
 
-// NewHomePage.
-import NewHomePage from "./pages/NewHomePage/NewHomePage";
 const App = () => {
 
   return (
@@ -38,7 +37,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <Switch>
             <Route exact path="/">
-              <NewHomePage></NewHomePage>
+              <HomePage></HomePage>
             </Route>
             <Route exact path="/Login">
               <LoginPage></LoginPage>

@@ -10,22 +10,20 @@ import { useTranslation } from "react-i18next";
 
 const SingleProject = () => {
   const { t } = useTranslation();
-
   const dispatch = useDispatch();
+
+  //State.
   const { single_project, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.users);
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
-
     dispatch(reset());
     // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
   const { userId, id } = useParams();
-
   useEffect(() => {
     dispatch(fetchSingleProject({ userId, id }));
     // eslint-disable-next-line
@@ -38,7 +36,6 @@ const SingleProject = () => {
       </div>
     );
   }
-
   if (single_project.data) {
     return (
       <Wrapper>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import HeroImage from "../images/HeroImage.jpg";
+import HeroImage from "../../../images/HeroImage.jpg";
 import { useTranslation } from "react-i18next";
 
 function Hero() {

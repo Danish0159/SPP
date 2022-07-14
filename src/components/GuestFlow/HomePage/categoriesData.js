@@ -1,15 +1,15 @@
-import hvacc from '../../images/Contractors/hvac.jpg';
-import electricalc from '../../images/Contractors/e.jpg';
-import plumbingc from '../../images/Contractors/p.jpg';
-import civilworks from '../../images/Contractors/cw.jpg';
-import finishworks from '../../images/Contractors/fw.jpg';
-import firefighting from '../../images/Contractors/ff.jpg';
-import cphc from '../../images/Contractors/cphc.jpg';
-import hvach from '../../images/Handymen and Maintenance/hvac.jpg';
-import electricalh from '../../images/Handymen and Maintenance/e.jpg';
-import plumbingh from '../../images/Handymen and Maintenance/p.jpg';
-import buildingdesigners from '../../images/Designers/bd.jpg';
-import buildingconsultants from '../../images/Consultant Firms/bd.jpg';
+import hvacc from '../../../images/Contractors/hvac.jpg';
+import electricalc from '../../../images/Contractors/e.jpg';
+import plumbingc from '../../../images/Contractors/p.jpg';
+import civilworks from '../../../images/Contractors/cw.jpg';
+import finishworks from '../../../images/Contractors/fw.jpg';
+import firefighting from '../../../images/Contractors/ff.jpg';
+import cphc from '../../../images/Contractors/cphc.jpg';
+import hvach from '../../../images/Handymen and Maintenance/hvac.jpg';
+import electricalh from '../../../images/Handymen and Maintenance/e.jpg';
+import plumbingh from '../../../images/Handymen and Maintenance/p.jpg';
+import buildingdesigners from '../../../images/Designers/bd.jpg';
+import buildingconsultants from '../../../images/Consultant Firms/bd.jpg';
 
 
 export const Contractors = [

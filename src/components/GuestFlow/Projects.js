@@ -8,20 +8,19 @@ import { fetchProjects, reset } from "../../slices/users";
 
 const Projects = () => {
   const dispatch = useDispatch();
+
+  //State.
   const { projects, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.users
   );
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
-
     dispatch(reset());
   }, [isError, isSuccess, message, dispatch]);
 
   const { id } = useParams();
-
   useEffect(() => {
     dispatch(fetchProjects(id));
   }, [id]);
@@ -34,25 +33,24 @@ const Projects = () => {
     );
   }
 
-  return (
-    <React.Fragment>
-      {projects.data && (<BackToProfile
-        avatar={projects.data.projects.profilePhoto}
-        name={projects.data.projects.user.name}
-        role={projects.data.projects.user.role}
-        userId={projects.data.projects._id}
-      ></BackToProfile>
-      )}
-      {projects.data && (
+  if (projects.data) {
+    return (
+      <>
+        <BackToProfile
+          avatar={projects.data.projects.profilePhoto}
+          name={projects.data.projects.user.name}
+          role={projects.data.projects.user.role}
+          userId={projects.data.projects._id}
+        ></BackToProfile>
         <Table
           data={projects.data.projects.portfolio}
           title="Projects Completed"
           flag="projects"
           userId={projects.data.projects._id}
         ></Table>
-      )}
-    </React.Fragment>
-  );
+      </>
+    );
+  }
+  return null;
 };
-
 export default Projects;

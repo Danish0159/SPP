@@ -39,5 +39,4 @@ const Wrapper = styled.div`
     transform: rotate(360deg);
   }
 }
-
 `;

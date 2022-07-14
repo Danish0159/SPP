@@ -10,7 +10,7 @@ const Users = () => {
   // If User refreshes page(For persistent).
   useEffect(() => {
     if (!users) {
-      // Someone new paste the url in the serarch bar.
+      // Someone new paste the url in the seaarch bar.
       if (!searchValues) {
         history.replace("/HomePage");
       }
@@ -40,7 +40,6 @@ const Users = () => {
       firstUpdate.current = false;
       return;
     }
-
     dispatch(fetchUsers({ user: searchValues.user, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: step }));
   }, [step])
 

@@ -76,24 +76,9 @@ export const CardLayout = styled.div`
     padding: 10px 0px;
   }
   /* Drop Zone Text */
-.drop {
+ .drop {
   font-family: "Nunito Sans", sans-serif;
   font-size: 1.5rem;
   color: var(--clr-black);
 }
 `;
-
-// Seperate styling for Review Page.
-// export const Review = styled.div`
-//   .card__subtitle {
-//     font-size: 1.8rem;
-//     margin: 2rem 0rem;
-//   }
-//   .card-btn {
-//     font-size: 1.6rem;
-//     border-radius: 25px;
-//     /* OverRiding index.css styling */
-//     margin: 0.1rem;
-//     font-weight: 500;
-//   }
-// `;

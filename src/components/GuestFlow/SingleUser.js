@@ -13,21 +13,20 @@ import { useTranslation } from "react-i18next";
 const SingleUser = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  //State.
   const { single_user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.users
   );
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
-
     dispatch(reset());
     // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
   const { id } = useParams();
-
   useEffect(() => {
     dispatch(fetchSingleUser(id));
   }, [id]);
@@ -39,9 +38,6 @@ const SingleUser = () => {
       </div>
     );
   }
-
-  // console.log(single_user.data.user.location.city);
-
   if (single_user.data) {
     return (
       <Wrapper>
@@ -59,7 +55,7 @@ const SingleUser = () => {
               <h1 className="profile__name--title">
                 {single_user.data.user.user.name}
               </h1>
-              <p className="profile__name-subtitle">
+              <p className="profile__name--subtitle">
                 {" "}
                 {single_user.data.user.user.role}
               </p>
@@ -70,12 +66,10 @@ const SingleUser = () => {
 
             {/* Content */}
             <div className="profile__content">
-
               <h2 className="profile__content--title">Company Name:     <span className="profile__content--text">
                 {single_user.data.user.employmentHistory[0].companyName}
               </span>
               </h2>
-
               <h2 className="profile__content--title">{t("UserLocation")}</h2>
               <p className="profile__content--text">
                 {single_user.data.user.location.country},{" "}&nbsp;
@@ -89,7 +83,6 @@ const SingleUser = () => {
                   })
                 }
               </p>
-
               <h2 className="profile__content--title">{t("UserNumber")}:&nbsp;
                 <span className="profile__content--text">
                   <a href={"tel:" + single_user.data.user.phoneNumber}>
@@ -97,7 +90,6 @@ const SingleUser = () => {
                   </a>
                 </span>
               </h2>
-
               <h2 className="profile__content--title m">
                 {t("UserTotalProjects")} {single_user.data.noOfProjects}
               </h2>
@@ -117,9 +109,9 @@ const SingleUser = () => {
           </div>
         </div>
 
+
         <div className="section__white">
           <h3 className="section__title">{t("UserGallery")}</h3>
-
           {single_user.data.user.portfolio.map((project, index) => {
             return (
               <>
@@ -190,7 +182,7 @@ const Wrapper = styled.section`
     margin-bottom: 1.2rem;
   }
 
-  .profile__name-subtitle {
+  .profile__name--subtitle {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--clr-black);
@@ -229,7 +221,6 @@ const Wrapper = styled.section`
     color: var(--clr-black);
     margin-bottom: 2.2rem;
   }
-
   .m{
     margin-bottom: 2rem;
     margin-top: 4rem;

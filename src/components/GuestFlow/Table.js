@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 
 const Table = ({ data = [], title, flag, userId, message }) => {
   const { t } = useTranslation();
-  // Displaying only 5 users.
   const [renderedData] = useState(data);
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
