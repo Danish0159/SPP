@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo3.png";
 import styled from "styled-components";
@@ -7,7 +6,6 @@ import { pakCities, saudiCities } from '../../utils/constants';
 import axios from "axios";
 
 const NavbarHome = ({ country, city, setCountry, setCity, }) => {
-  const { t } = useTranslation();
 
   useEffect(() => {
     axios.get('https://api.ipify.org?format=json').then((response) => {
@@ -55,7 +53,7 @@ const NavbarHome = ({ country, city, setCountry, setCity, }) => {
           </div>
           {/* Navbar. */}
           <Link to="/Login" className="btn-small btn-nav">
-            {t("home_login")}
+            Login
           </Link>
         </div>
       </div>

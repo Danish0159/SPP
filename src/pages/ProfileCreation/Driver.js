@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
-import { useTranslation } from "react-i18next";
 import { Footer, Spinner } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
 import { CardLayout } from '../../components/Shared/styled'
@@ -71,7 +70,6 @@ const Driver = () => {
   const [portfolioMapping] = useState([]);
 
   // Redux State.
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
   const { isLoading, isError, isSuccess, message } = useSelector(
@@ -216,7 +214,7 @@ const Driver = () => {
                       <div className="btn-container">
                         {activeStep !== 0 && (
                           <button className="blue-btn card-btn" onClick={_handleBack}>
-                            {t("BACK")}
+                            BACK
                           </button>
                         )}
                         <div>
@@ -227,7 +225,7 @@ const Driver = () => {
                             variant="contained"
                             color="primary"
                           >
-                            {isLastStep ? t("COMPLETE") : t("NEXT")}
+                            {isLastStep ? "COMPLETE" : "NEXT"}
                           </button>
                           {/* {isSubmitting && <CircularProgress size={24} />} */}
                         </div>

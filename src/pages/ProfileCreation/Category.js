@@ -2,7 +2,6 @@
 import React from "react";
 import { SelectField, SelectFieldSetConditional } from "../../components/ProfileCreation/FormFields";
 import { categories, subCategories } from "../../utils/constants";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 export default function Category(props) {
@@ -15,11 +14,10 @@ export default function Category(props) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const role = user.role;
-  const { t } = useTranslation();
 
   return (
     <>
-      <p className="card__subtitle">{t("CategoryQuestion1")}</p>
+      <p className="card__subtitle">What are the main services you offer.</p>
       <SelectFieldSetConditional
         name={category.name}
         data={
@@ -32,7 +30,7 @@ export default function Category(props) {
         fullWidth
       />
 
-      <p className="card__subtitle">{t("CategoryQuestion2")}</p>
+      <p className="card__subtitle">Select Sub-Category</p>
 
       <SelectField
         name={subCategory.name}

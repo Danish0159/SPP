@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
-import { useTranslation } from "react-i18next";
 
 const BackToProfile = ({ avatar, name, role, userId }) => {
-  const { t } = useTranslation();
-
   return (
     <Wrapper>
       <div className="backToProfile">
@@ -31,11 +27,11 @@ const BackToProfile = ({ avatar, name, role, userId }) => {
           </div>
           <div className="backToProfile__btns">
             <Link to="#" type="submit" className="blue-btn backToProfile-btn disableButtonColor">
-              {t("ProjectsMessage")}
+              Message Now
             </Link>
 
             <Link to={`/Users/${userId}`} type="submit" className="blue-btn backToProfile-btn">
-              {t("Back To Profile")}
+              Back To Profile
             </Link>
           </div>
         </div>

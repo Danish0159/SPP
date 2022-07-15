@@ -4,12 +4,10 @@ import { useField } from "formik";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { styles } from '../../components/Shared/styles';
 import { useSelector } from "react-redux";
 
 export default function Portfolio(props) {
-  const { t } = useTranslation();
   const { projectsFlag } = useSelector(
     (state) => state.auth
   );
@@ -189,22 +187,21 @@ export default function Portfolio(props) {
         return (
           <>
             <div key={index}>
-              <p className="card__subtitle"> {t("PortfolioQuestion1")}</p>
+              <p className="card__subtitle">Project Name</p>
               <InputField
                 name={step.projectName.name}
                 type="text"
                 fullWidth
                 required
               />
-              <p className="card__subtitle"> {t("PortfolioQuestion2")}</p>
+              <p className="card__subtitle">Location</p>
               <InputField
                 name={step.projectLocation.name}
                 type="text"
                 fullWidth
                 required
               />
-
-              <p className="card__subtitle"> {t("PortfolioQuestion3")}</p>
+              <p className="card__subtitle">Description (optional)</p>
               <InputField
                 inputProps={{ style: styles.desciption, }}
                 name={step.projectDescription.name}
@@ -214,7 +211,7 @@ export default function Portfolio(props) {
                 fullWidth
               />
 
-              <p className="card__subtitle"> {t("PortfolioQuestion4")}</p>
+              <p className="card__subtitle">Project Files</p>
               <div key={index} className="form-group">
                 <Dropzone
                   onDrop={(acceptedFiles) => {

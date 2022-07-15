@@ -17,37 +17,46 @@ Global Styles
   margin: 0;
   padding: 0;
 }
+
 *,
 ::after,
 ::before {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
+
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 62.5%;
   scroll-behavior: smooth;
 }
+
 body {
   font-family: "Nunito Sans", sans-serif;
 }
+
 ul {
   list-style-type: none;
 }
+
 a {
-  color:#121212;
+  color: #121212;
   text-decoration: none;
 }
+
 p {
   font-weight: 400;
 }
+
 .bg {
   background-color: #f7f8ff;
 }
+
 input[type='file'] {
   color: transparent;
 }
+
 .section__title {
   max-width: 80rem;
   margin: auto;
@@ -57,19 +66,23 @@ input[type='file'] {
   color: var(--clr-black);
   margin-bottom: 5rem;
 }
+
 @media only screen and (max-width: 900px) {
   .section__title {
     font-size: 3rem;
   }
 }
+
 .section__blue {
   padding: 5rem 4rem;
   background-color: #f7f8ff;
 }
+
 .section__white {
   padding: 5rem 4rem;
   background-color: #ffffff;
 }
+
 /*
 ==============================
 Button Styles
@@ -88,12 +101,14 @@ Button Styles
 }
 
 @media only screen and (max-width: 850px) {
+
   .btn-small:link,
   .btn-small:visited {
     font-size: 1.6rem;
     padding: 0.9rem 3rem;
   }
 }
+
 .blue-btn {
   display: inline-block;
   margin: auto;
@@ -108,16 +123,19 @@ Button Styles
   cursor: pointer;
   text-align: center;
 }
+
 @media only screen and (max-width: 850px) {
   .blue-btn {
     font-size: 2rem;
   }
 }
-  .submit-button {
-    display: block;
-    width: 200px;
-    font-weight: 500;
-  }
+
+.submit-button {
+  display: block;
+  width: 200px;
+  font-weight: 500;
+}
+
 .section-100vh {
   min-height: 100vh;
   background-color: #fff;
@@ -128,32 +146,36 @@ Button Styles
 Navigation Styles
 ==============================
 */
-  .nav__parent{
-    background-color: #424d83;
-  }
-  .nav__container {
-    max-width: 119rem;
-    margin: auto;
-    padding: 2rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.nav__parent {
+  background-color: #424d83;
+}
+
+.nav__container {
+  max-width: 119rem;
+  margin: auto;
+  padding: 2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  height: 6rem;
+}
+
+@media only screen and (max-width: 850px) {
   .navbar__logo {
-    height: 6rem;
+    height: 4.2rem;
   }
-  @media only screen and (max-width: 850px) {
-      .navbar__logo {
-        height: 4.2rem;
+}
+
+@media only screen and (max-width: 850px) {
+  .btn-nav {
+    align-self: flex-end;
   }
-  }
-  @media only screen and (max-width: 850px) {
-    .btn-nav {
-      align-self: flex-end;
-    }
-  }
+}
 
 /* Temporary Disable Button. */
-.disableButtonColor{
-  background-color:#6c6d79;
+.disableButtonColor {
+  background-color: #6c6d79;
 }

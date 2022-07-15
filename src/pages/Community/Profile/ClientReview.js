@@ -1,5 +1,5 @@
-import { TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
+import { Rating, TextField } from '@mui/material';
 import styled from "styled-components";
 import logo from '../../../images/logo3.png'
 import { styles } from '../../../components/Shared/styles'
@@ -12,10 +12,10 @@ import { Gallery } from '../../../components/GuestFlow';
 
 const ClientReview = () => {
     const [clientName, setClientName] = useState("");
-    const [clientEmail, setClientEmail] = useState("");
     const [clientTitle, setClientTitle] = useState("Ex. Director of Marketting");
     const [clientMessage, setClientMessage] = useState("It was great working with zubair project! Thanks for your help! ");
-
+    const [value, setValue] = useState(2.5);
+    // State
     const { single_project, isLoading, isError, isSuccess, message } =
         useSelector((state) => state.users);
     const dispatch = useDispatch();
@@ -35,6 +35,29 @@ const ClientReview = () => {
             dispatch(reset());
         }
     }, [isError, isSuccess, message, dispatch]);
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({
+            clientName,
+            clientTitle,
+            value,
+            clientMessage,
+        })
+        //  API CALL.
+        // dispatch(
+        //     Rating({
+
+        //     })
+        // );
+
+        setClientName("");
+        setClientTitle("");
+        setClientMessage("");
+        setValue(null);
+    };
+
 
     if (isLoading) {
         return (
@@ -73,7 +96,7 @@ const ClientReview = () => {
                                 <Gallery data={single_project.data.portfolio[0].images}></Gallery>
                             </div>
 
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <h1 className='section__title'>Help {single_project.data.user.name} with a testimonial</h1>
 
                                 <p className="project__subtitle">Name</p>
@@ -88,18 +111,6 @@ const ClientReview = () => {
                                     onChange={(e) => setClientName(e.target.value)}
                                     required
                                 />
-                                <p className="project__subtitle">Business Email Address</p>
-                                <TextField
-                                    fullWidth
-                                    type="email"
-                                    name="email"
-                                    inputProps={{
-                                        style: styles.textField,
-                                    }}
-                                    value={clientEmail}
-                                    onChange={(e) => setClientEmail(e.target.value)}
-                                    required
-                                />
                                 <p className="project__subtitle">Business title</p>
                                 <TextField
                                     fullWidth
@@ -111,6 +122,18 @@ const ClientReview = () => {
                                     value={clientTitle}
                                     onChange={(e) => setClientTitle(e.target.value)}
                                     required
+                                />
+                                <p className="project__subtitle">Rating</p>
+                                <Rating
+                                    value={value}
+                                    name="simple-controlled"
+                                    onChange={(event, newValue) => {
+                                        setValue(newValue);
+                                    }
+                                    }
+                                    precision={0.5}
+                                    size="large"
+                                    style={{ fontSize: "2.6rem" }}
                                 />
                                 <p className="project__subtitle">Testimonial</p>
                                 <TextField

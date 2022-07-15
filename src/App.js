@@ -4,7 +4,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { theme } from './components/Shared/styles';
-import LanguageSelect from "./components/Shared/languageSelect";
 
 // Public Pages. 
 import { LoginPage, SignupPage, ErrorPage } from "./pages";
@@ -33,7 +32,6 @@ const App = () => {
   return (
     <>
       <Router>
-        <LanguageSelect></LanguageSelect>
         <ThemeProvider theme={theme}>
           <Switch>
             <Route exact path="/">

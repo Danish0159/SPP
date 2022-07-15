@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Field, useField } from "formik";
 import { UploadField } from "../../components/ProfileCreation/FormFields";
-import { useTranslation } from "react-i18next";
 
 const ProfilePhoto = (props) => {
-  const { t } = useTranslation();
   const {
     formField: { image },
   } = props;
@@ -45,7 +43,7 @@ const ProfilePhoto = (props) => {
 
   return (
     <>
-      <p className="card__subtitle">{t("ProfilePhoto")}</p>
+      <p className="card__subtitle">Please upload a professional portrait that clearly shows your face.</p>
       <div>
         <Field
           variant="outlined"

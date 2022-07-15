@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import HeroImage from "../../../images/HeroImage.jpg";
-import { useTranslation } from "react-i18next";
 
 function Hero() {
-  const { t } = useTranslation();
   return (
     <Wrapper>
       <div className="hero__grid">
@@ -17,8 +15,8 @@ function Hero() {
         </div>
 
         <div className="hero__content">
-          <h2 className="hero__title">{t("home_title")}</h2>
-          <p className="hero__paragraph">{t("home_subtitle")}</p>
+          <h2 className="hero__title">Everything Is In Your Hands</h2>
+          <p className="hero__paragraph">Search the world information including webpages, images, videos and more. Google has many special features to help you find exactly what you use and pay for.</p>
         </div>
 
         <figure className="hero__div">

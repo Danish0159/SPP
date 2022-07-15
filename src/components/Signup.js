@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Spinner from "./Spinner";
 import { toast } from "react-toastify";
@@ -13,9 +12,9 @@ import { users } from "../utils/constants";
 import { styles } from '../components/Shared/styles';
 import { signupInitialValues, signupValidationSchema } from "../utils/helpers"
 
+
 const Signup = () => {
   const [role, setRole] = useState("");
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -64,9 +63,9 @@ const Signup = () => {
           <img class="signup__img" src={signupImage} alt="SignUp" />
         </figure>
         <form onSubmit={formik.handleSubmit} class="signup__form">
-          <h2 className="signup__title">{t("register_title")}</h2>
+          <h2 className="signup__title">Register</h2>
           <div class="form-group">
-            <label Htmlfor="name">{t("register_name")}</label>
+            <label Htmlfor="name">Name</label>
             <TextField
               fullWidth
               type="text"
@@ -84,7 +83,7 @@ const Signup = () => {
           </div>
 
           <div class="form-group">
-            <label Htmlfor="email">{t("register_email")}</label>
+            <label Htmlfor="email">Email Address</label>
             <TextField
               fullWidth
               type="email"
@@ -102,7 +101,7 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">{t("register_password")}</label>
+            <label Htmlfor="password">Password</label>
             <TextField
               fullWidth
               type="password"
@@ -120,7 +119,7 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">{t("register_as")}</label>
+            <label Htmlfor="password">Register As</label>
             <FormControl fullWidth>
               <Select
                 sx={styles.select}
@@ -144,15 +143,14 @@ const Signup = () => {
             variant="contained"
             className="blue-btn submit-button"
           >
-            {t("register_register")}
+            Register
           </button>
-
           <p className="signup__dont">
-            {t("register_already")}
+            Already have an account?
             <span className="signup__register">
               {" "}
               <Link to="/Login">
-                <u>{t("register_login")}</u>
+                <u>Log In Now</u>
               </Link>{" "}
             </span>
           </p>

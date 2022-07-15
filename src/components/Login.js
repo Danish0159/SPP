@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +12,6 @@ import { styles } from '../components/Shared/styles';
 import { loginInitialValues, loginValidationSchema } from "../utils/helpers"
 
 const Login = () => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -56,7 +54,6 @@ const Login = () => {
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <Wrapper>
       <div className="login__grid">
@@ -65,11 +62,11 @@ const Login = () => {
         </figure>
 
         <form noValidate onSubmit={formik.handleSubmit} className="login__form">
-          <h2 className="login__title">{t("login_welcome")}</h2>
-          <p className="login__subTitle">{t("login_please")}</p>
+          <h2 className="login__title">Welcome</h2>
+          <p className="login__subTitle">Please login to your account.</p>
 
           <div className="form-group">
-            <label Htmlfor="email">{t("login_email")}</label>
+            <label Htmlfor="email">Email Address</label>
             <TextField
               fullWidth
               type="email"
@@ -88,7 +85,7 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">{t("login_password")}</label>
+            <label Htmlfor="password">Password</label>
             <TextField
               fullWidth
               type="password"
@@ -111,13 +108,13 @@ const Login = () => {
             variant="contained"
             className="blue-btn submit-button"
           >
-            {t("login_login")}
+            LOGIN
           </button>
           <p className="login__dont">
-            {t("login_don't")}
+            Don’t have an account?
             <span className="login__register">
               {" "}
-              <Link to="/Signup"><u>{t("Register Now")}</u></Link>{" "}
+              <Link to="/Signup"><u>Register Now</u></Link>{" "}
             </span>
           </p>
         </form>

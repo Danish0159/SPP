@@ -8,10 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
-import { useTranslation } from "react-i18next";
 
 const SingleUser = () => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   //State.
@@ -60,7 +58,7 @@ const SingleUser = () => {
                 {single_user.data.user.user.role}
               </p>
               <Link to="#" type="submit" className="blue-btn profile-btn disableButtonColor">
-                {t("UserMessage")}
+                Message Now
               </Link>
             </div>
 
@@ -70,7 +68,7 @@ const SingleUser = () => {
                 {single_user.data.user.employmentHistory[0].companyName}
               </span>
               </h2>
-              <h2 className="profile__content--title">{t("UserLocation")}</h2>
+              <h2 className="profile__content--title">Location</h2>
               <p className="profile__content--text">
                 {single_user.data.user.location.country},{" "}&nbsp;
                 {
@@ -83,7 +81,7 @@ const SingleUser = () => {
                   })
                 }
               </p>
-              <h2 className="profile__content--title">{t("UserNumber")}:&nbsp;
+              <h2 className="profile__content--title">Contact Number:&nbsp;
                 <span className="profile__content--text">
                   <a href={"tel:" + single_user.data.user.phoneNumber}>
                     {single_user.data.user.phoneNumber}
@@ -91,19 +89,19 @@ const SingleUser = () => {
                 </span>
               </h2>
               <h2 className="profile__content--title m">
-                {t("UserTotalProjects")} {single_user.data.noOfProjects}
+                Number of Projects Completed: {single_user.data.noOfProjects}
               </h2>
               <Link
                 to={`/Projects/${id}`}
                 type="submit"
                 className="blue-btn profile-btn"
               >
-                {t("UserViewDetails")}
+                View Projects Details
               </Link>
             </div>
             {/* Rating */}
             <div className="profile__rating">
-              <h2 className="profile__content--title">{t("UserRating")}</h2>
+              <h2 className="profile__content--title">Rating</h2>
               <Rating name="read-only" value={4} readOnly />
             </div>
           </div>
@@ -111,7 +109,7 @@ const SingleUser = () => {
 
 
         <div className="section__white">
-          <h3 className="section__title">{t("UserGallery")}</h3>
+          <h3 className="section__title">Projects Gallery</h3>
           {single_user.data.user.portfolio.map((project, index) => {
             return (
               <>
@@ -127,7 +125,7 @@ const SingleUser = () => {
         </div>
 
         <div className="section__blue">
-          <h3 className="section__title">{t("UserReviews")}</h3>
+          <h3 className="section__title">Client Reviews</h3>
           <Reviews single={false}></Reviews>
         </div>
 

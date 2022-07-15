@@ -3,10 +3,8 @@ import styled from "styled-components";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { Avatar, Rating } from "@mui/material";
-import { useTranslation } from "react-i18next";
 
 const Table = ({ data = [], title, flag, userId, message }) => {
-  const { t } = useTranslation();
   const [renderedData] = useState(data);
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
@@ -19,11 +17,11 @@ const Table = ({ data = [], title, flag, userId, message }) => {
   return (
     <Wrapper>
       <div className={flag === "projects" ? "search" : ""}>
-        <h2 className="search__title">{t(title)}</h2>
+        <h2 className="search__title">{title}</h2>
         <div className="search__columns">
-          <p className="subtitle">{t("UsersName")}</p>
-          <p className="subtitle">{t("UsersLocation")}</p>
-          <p className="subtitle">{t("UsersRating")}</p>
+          <p className="subtitle">Name</p>
+          <p className="subtitle">Location</p>
+          <p className="subtitle">Rating</p>
         </div>
 
         {/* Return message on Users page if no user exists. */}
