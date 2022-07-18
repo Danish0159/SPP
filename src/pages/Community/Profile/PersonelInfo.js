@@ -243,12 +243,14 @@ const PersonelInfo = () => {
                         setSubCategory(user.profile.subCategory);
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
-                <Avatar
-                    style={{ marginBottom: "3rem" }}
-                    src={user?.profile.profilePhoto}
-                    sx={{ width: 110, height: 110 }}
-                    alt="Avatar"
-                />
+                <div className="personel__avatar">
+                    <Avatar
+                        style={{ marginBottom: "4rem" }}
+                        src={user?.profile.profilePhoto}
+                        sx={{ width: 100, height: 100, }}
+                        alt="Avatar"
+                    />
+                </div>
                 <p className="personel__title">Name</p>
                 <p className="personel__subtitle">{user?.user.name}</p>
                 <p className="personel__title">Email</p>

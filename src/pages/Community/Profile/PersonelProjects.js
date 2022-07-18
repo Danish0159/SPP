@@ -124,7 +124,7 @@ const PersonelProjects = () => {
         return <Spinner />;
     }
 
-    // Take Reveiw
+    // Take Reveiw.
     if (review) {
         return (
             <Wrapper>

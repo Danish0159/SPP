@@ -75,7 +75,6 @@ const HomePage = () => {
 
 export default HomePage;
 
-
 const Seperator = () => {
     return (
         <Wrapper>

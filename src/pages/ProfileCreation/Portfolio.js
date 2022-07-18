@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { InputField } from "../../components/ProfileCreation/FormFields";
 import { useField } from "formik";
 import Dropzone, { useDropzone } from "react-dropzone";
-import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { styles } from '../../components/Shared/styles';
 import { useSelector } from "react-redux";
@@ -159,19 +158,6 @@ export default function Portfolio(props) {
       </div>
     </div>
   ));
-
-  // Toast.
-  useEffect(() => {
-    toast.info("Upload Your Top 5 Projects.!", {
-      position: "top-right",
-      autoClose: 7000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }, []);
 
   // Update the initial state.
   useEffect(() => {

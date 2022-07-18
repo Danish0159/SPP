@@ -134,7 +134,6 @@ export const subCategories = {
       { value: "Concrete works" },
       { value: "Plaster Works" },
       { value: "Block Works" },
-      { value: "Plaster Works" },
       { value: "All Civil Works Contractors" },
     ],
     "Finish Works": [
@@ -182,7 +181,7 @@ export const subCategories = {
     "Building Designers":
       [
         { value: "Civil Structure Designers" },
-        { value: "Archetect/Finishing Designers" },
+        { value: "Architect/Finishing Designers" },
         { value: "Mechanical System Designers" },
         { value: "Electrical System Designers" },
         { value: "Plumbing Designers" },

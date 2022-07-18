@@ -24,7 +24,7 @@ const Login = () => {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess || user) {
+    if (isSuccess) {
       // The Profile Is Already Created For the User.
       if (user && user.profile) {
         history.push("/Profile");

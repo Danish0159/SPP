@@ -132,6 +132,17 @@ const updateProject = async (projectName, location, images, profileId, projectId
   return response.data;
 };
 
+const reviewProject = async (name, title, stars, phoneNumber, review, profileId, projectId) => {
+  const response = await axios.patch(
+    `https://warm-cove-25020.herokuapp.com/api/profile/review/${profileId}/${projectId}`,
+    {
+      name, title, stars, phoneNumber, review
+    },
+  );
+
+  return response.data;
+};
+
 
 const getCommunityUser = async () => {
   const response = await axios.get(
@@ -154,6 +165,7 @@ const authService = {
   updateProfile,
   deleteProject,
   updateProject,
+  reviewProject,
   getCommunityUser,
 };
 

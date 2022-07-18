@@ -25,7 +25,7 @@ import { FeedDriver } from "./pages/Community/Feed";
 import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
 
 // Private Routes.
-import { PrivateWithOutProfile, PrivateWithProfile } from "./pages/ProtectedRoutes";
+import { PrivateWithOutProfile, PrivateWithProfile, PrivateWithUser } from "./pages/ProtectedRoutes";
 
 const App = () => {
 
@@ -34,14 +34,23 @@ const App = () => {
       <Router>
         <ThemeProvider theme={theme}>
           <Switch>
+            {/* ----------------------------------------------- */}
+            {/* Cannot Access login+SignUp Page If user is already loggedIn */}
+            <PrivateWithUser
+              exact
+              path="/Login"
+              component={LoginPage}
+            ></PrivateWithUser>
+            <PrivateWithUser
+              exact
+              path="/Signup"
+              component={SignupPage}
+            ></PrivateWithUser>
+
+            {/* ----------------------------------------------- */}
+            {/* Guest Flow (Public) */}
             <Route exact path="/">
               <HomePage></HomePage>
-            </Route>
-            <Route exact path="/Login">
-              <LoginPage></LoginPage>
-            </Route>
-            <Route exact path="/Signup">
-              <SignupPage></SignupPage>
             </Route>
             <Route exact path="/Users">
               <UsersPage></UsersPage>

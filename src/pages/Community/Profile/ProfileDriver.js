@@ -66,6 +66,11 @@ const Wrapper = styled.div`
  font-size: 1.5rem;
  margin-bottom: 2.5rem;
 }
+.personel__avatar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
  .preview__title {
    font-size: 2.3rem;
    font-weight:700;

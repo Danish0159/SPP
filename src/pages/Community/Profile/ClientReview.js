@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Rating, TextField } from '@mui/material';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 import logo from '../../../images/logo3.png'
-import { styles } from '../../../components/Shared/styles'
 import { fetchSingleProject, reset } from '../../../slices/users';
 import { toast } from 'react-toastify';
 import Spinner from '../../../components/Spinner';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Gallery } from '../../../components/GuestFlow';
+import ReviewForm from '../../../components/Community/Profile/ReviewForm';
 
 const ClientReview = () => {
-    const [clientName, setClientName] = useState("");
-    const [clientTitle, setClientTitle] = useState("Ex. Director of Marketting");
-    const [clientMessage, setClientMessage] = useState("It was great working with zubair project! Thanks for your help! ");
-    const [value, setValue] = useState(2.5);
-    // State
+    // State.
     const { single_project, isLoading, isError, isSuccess, message } =
         useSelector((state) => state.users);
     const dispatch = useDispatch();
@@ -23,7 +18,6 @@ const ClientReview = () => {
 
     useEffect(() => {
         dispatch(fetchSingleProject({ userId, id }));
-        // eslint-disable-next-line
     }, [id]);
 
     useEffect(() => {
@@ -35,29 +29,6 @@ const ClientReview = () => {
             dispatch(reset());
         }
     }, [isError, isSuccess, message, dispatch]);
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log({
-            clientName,
-            clientTitle,
-            value,
-            clientMessage,
-        })
-        //  API CALL.
-        // dispatch(
-        //     Rating({
-
-        //     })
-        // );
-
-        setClientName("");
-        setClientTitle("");
-        setClientMessage("");
-        setValue(null);
-    };
-
 
     if (isLoading) {
         return (
@@ -72,7 +43,9 @@ const ClientReview = () => {
             <Wrapper>
                 <div className="review">
                     <div className="review__left">
-                        <img className="review__left--logo" src={logo} alt="Logo" />
+                        <Link to="/">
+                            <img className="review__left--logo" src={logo} alt="Logo" />
+                        </Link>
                         <div className="review__left--content">
                             <p className='review__left--text'>A community of where you can find contractors, designers and companies. A way to Learn and Excel your Skills.
                             </p>
@@ -95,68 +68,7 @@ const ClientReview = () => {
                                 </span></p>
                                 <Gallery data={single_project.data.portfolio[0].images}></Gallery>
                             </div>
-
-                            <form onSubmit={handleSubmit}>
-                                <h1 className='section__title'>Help {single_project.data.user.name} with a testimonial</h1>
-
-                                <p className="project__subtitle">Name</p>
-                                <TextField
-                                    fullWidth
-                                    type="text"
-                                    name="text"
-                                    inputProps={{
-                                        style: styles.textField,
-                                    }}
-                                    value={clientName}
-                                    onChange={(e) => setClientName(e.target.value)}
-                                    required
-                                />
-                                <p className="project__subtitle">Business title</p>
-                                <TextField
-                                    fullWidth
-                                    type="text"
-                                    name="text"
-                                    inputProps={{
-                                        style: styles.textField,
-                                    }}
-                                    value={clientTitle}
-                                    onChange={(e) => setClientTitle(e.target.value)}
-                                    required
-                                />
-                                <p className="project__subtitle">Rating</p>
-                                <Rating
-                                    value={value}
-                                    name="simple-controlled"
-                                    onChange={(event, newValue) => {
-                                        setValue(newValue);
-                                    }
-                                    }
-                                    precision={0.5}
-                                    size="large"
-                                    style={{ fontSize: "2.6rem" }}
-                                />
-                                <p className="project__subtitle">Testimonial</p>
-                                <TextField
-                                    fullWidth
-                                    type="text"
-                                    name="text"
-                                    inputProps={{
-                                        style: styles.desciption,
-                                    }}
-                                    rows={5}
-                                    multiline
-                                    value={clientMessage}
-                                    onChange={(e) => setClientMessage(e.target.value)}
-                                    required
-                                />
-                                <button
-                                    style={{ marginTop: '2rem' }}
-                                    className="blue-btn submit-button"
-                                    type="submit"
-                                >
-                                    SUBMIT
-                                </button>
-                            </form>
+                            <ReviewForm User={single_project.data.user.name} userId={userId} id={id}></ReviewForm>
                         </div>
                     </div>
                 </div>
@@ -184,6 +96,9 @@ const Wrapper = styled.div`
      background-color: #424d83;
      flex: 0 0 32%;
      padding: 2.2rem 4rem;
+     display: flex;
+     flex-direction:column;
+     align-items:center;
      @media only screen and (max-width: 850px) {
          padding: 2rem;
      }
@@ -198,6 +113,7 @@ const Wrapper = styled.div`
         margin-top: 2rem;
         font-size: 1.5rem;
         color: white;
+        text-align:center;
     }
     .review__right {
         background: url(https://res.cloudinary.com/dm1mlee94/image/upload/v1652984141/Img_megrmd.png);

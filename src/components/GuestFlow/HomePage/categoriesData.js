@@ -57,7 +57,6 @@ export const Contractors = [
             "Concrete works",
             "Plaster Works",
             "Block Works",
-            "Plaster Works",
             "All Civil Works Contractors"
         ]
     },
@@ -134,7 +133,7 @@ export const Designers = [
         name: "Building Designers",
         subCategories: [
             "Civil Structure Designers",
-            "Archetect/Finishing Designers",
+            "Architect/Finishing Designers",
             "Mechanical System Designers",
             "Electrical System Designers",
             "Plumbing Designers",

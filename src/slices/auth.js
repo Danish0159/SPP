@@ -162,7 +162,28 @@ export const updateProject = createAsyncThunk(
   }
 );
 
-// This is a temporary code here, this will be put in seperate slicep after.
+export const reviewProject = createAsyncThunk(
+  "auth/reviewProject",
+  async ({ name, title, stars, phoneNumber, review, profileId, projectId }, thunkAPI) => {
+    try {
+      const data = await AuthService.reviewProject(name, title, stars, phoneNumber, review, profileId, projectId);
+      if (data.status !== "SUCCESS") {
+        return thunkAPI.rejectWithValue(data.message);
+      }
+      return data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// This is a temporary code here, this will be put in seperate slice after.
 export const getCommunityUser = createAsyncThunk(
   "auth/getCommunityUser",
   async (thunkAPI) => {
@@ -312,6 +333,19 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(updateProject.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(reviewProject.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(reviewProject.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+      })
+      .addCase(reviewProject.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

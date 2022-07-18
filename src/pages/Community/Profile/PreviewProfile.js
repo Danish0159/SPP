@@ -13,11 +13,13 @@ const PreviewProfile = () => {
     );
     return (
         <Wrapper>
-            <Avatar
-                src={user.profile.profilePhoto}
-                sx={{ width: 130, height: 130 }}
-                alt="Avatar"
-            />
+            <div className="personel__avatar">
+                <Avatar
+                    src={user.profile.profilePhoto}
+                    sx={{ width: 100, height: 100 }}
+                    alt="Avatar"
+                />
+            </div>
             <div className="preview__info">
                 <p className="personel__title">Name</p>
                 <p className="personel__subtitle">{user.user.name}</p>
@@ -28,7 +30,17 @@ const PreviewProfile = () => {
                 <p className="personel__title">Number</p>
                 <p className="personel__subtitle">{user.profile.phoneNumber}</p>
                 <p className="personel__title">Location</p>
-                <p className="personel__subtitle">{user.profile.location.country} , {user.profile.location.city}</p>
+                <p className="personel__subtitle">
+                    {user.profile.location.country},{" "}&nbsp;
+                    {user.profile.location.city.map((city, index) => {
+                        return (
+                            <span key={index}>
+                                {city},&nbsp;
+                            </span>
+                        )
+                    })
+                    }
+                </p>
             </div>
             <h2 className='preview__title'>Portfolio</h2>
             {user.profile.portfolio.map((project, index) => {
@@ -72,6 +84,7 @@ const PreviewProfile = () => {
 export default PreviewProfile
 
 const Wrapper = styled.div`
+margin-top: 1.3rem;
 .preview__info{
     margin-top: 3rem;
 }
