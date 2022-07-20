@@ -59,7 +59,7 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                     </p>
                     {/* Cell3 */}
                     <p className="cell">
-                      <Rating name="read-only" value={4} readOnly />
+                      <Rating precision={0.5} name="read-only" value={user.stars} style={{ fontSize: "1.9rem" }} readOnly />
                     </p>
                   </div>
                 </Link>
@@ -74,7 +74,7 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                     <p className="cell">{project.projectName}</p>
                     <p className="cell">{project.location}</p>
                     <p className="cell">
-                      <Rating name="read-only" value={4} readOnly />
+                      <Rating precision={0.5} name="read-only" value={project.noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
                     </p>
                   </div>
                 </Link>

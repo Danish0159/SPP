@@ -19,7 +19,6 @@ const HomePage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-
     const [country, setCountry] = useState("Country");
     const [city, setCity] = useState("City");
 
@@ -27,6 +26,7 @@ const HomePage = () => {
     const { isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.users
     );
+
     useEffect(() => {
         if (isError) {
             toast.error(message);
@@ -46,9 +46,11 @@ const HomePage = () => {
             </div>
         );
     }
+
     const HomeValues = {
         country, city, setCity, setCountry, setCategoriesDataH, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
     }
+
     return (
         <>
             <NavbarHome {...HomeValues}></NavbarHome>

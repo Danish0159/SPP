@@ -102,11 +102,10 @@ const SingleUser = () => {
             {/* Rating */}
             <div className="profile__rating">
               <h2 className="profile__content--title">Rating</h2>
-              <Rating name="read-only" value={4} readOnly />
+              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem" }} readOnly />
             </div>
           </div>
         </div>
-
 
         <div className="section__white">
           <h3 className="section__title">Projects Gallery</h3>
