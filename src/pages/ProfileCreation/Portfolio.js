@@ -17,7 +17,6 @@ export default function Portfolio(props) {
       projectName1,
       projectLocation1,
       projectDescription1,
-      multiFiles,
       projectName2,
       projectLocation2,
       projectDescription2,
@@ -30,6 +29,7 @@ export default function Portfolio(props) {
       projectName5,
       projectLocation5,
       projectDescription5,
+      multiFiles,
     },
   } = props;
 
@@ -196,7 +196,6 @@ export default function Portfolio(props) {
                 multiline
                 fullWidth
               />
-
               <p className="card__subtitle">Project Files</p>
               <div key={index} className="form-group">
                 <Dropzone

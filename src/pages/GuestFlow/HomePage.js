@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { NavbarHome } from '../../components/Navigations';
 import { Contractors, Handymen, Designers, Consultants } from '../../components/GuestFlow/HomePage/categoriesData';
 import { GlobalSearch, RoleSubSections, Hero } from '../../components/GuestFlow/HomePage'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Footer, Spinner } from "../../components";
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+import { reset } from '../../slices/users';
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
     const [categoriesDataH, setCategoriesDataH] = useState(Handymen); // H stands for HandymenConsultants
@@ -13,13 +16,29 @@ const HomePage = () => {
     const [categoriesDataD, setCategoriesDataD] = useState(Designers); // D stands for Designers 
     const [categoriesDataCF, setCategoriesDataCF] = useState(Consultants); //C stands for Consultant Firms
 
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+
     const [country, setCountry] = useState("Country");
     const [city, setCity] = useState("City");
 
     //State. (API Call IN RoleSubSections Component).
-    const { isLoading, } = useSelector(
+    const { isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.users
     );
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+        if (isSuccess) {
+            history.push("/Users");
+        }
+        setCountry("Country");
+        setCity("City");
+        dispatch(reset());
+    }, [isError, isSuccess, message, dispatch]);
+
     if (isLoading) {
         return (
             <div className="section-100vh">

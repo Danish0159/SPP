@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import noDataFound from '../../../images/ndf.jpg';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import SearchIcon from '@mui/icons-material/Search';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, reset } from "../../../slices/users";
-import { toast } from 'react-toastify';
+import { useDispatch, } from 'react-redux';
+import { fetchUsers } from "../../../slices/users";
 import styled from 'styled-components';
 
 const RoleSubSections = ({ role, roleData, country, city, roleCategories, roleCategoriesUpdate, setCity, setCountry }) => {
-    const history = useHistory();
     const dispatch = useDispatch();
 
     const responsive = {
@@ -20,22 +17,6 @@ const RoleSubSections = ({ role, roleData, country, city, roleCategories, roleCa
         1300: { items: 4 },
         1400: { items: 5 }
     };
-
-    //State.
-    const { isError, isSuccess, message } = useSelector(
-        (state) => state.users
-    );
-    useEffect(() => {
-        if (isError) {
-            toast.error(message);
-        }
-        if (isSuccess) {
-            history.push("/Users");
-        }
-        setCountry("Country");
-        setCity("City");
-        dispatch(reset());
-    }, [isError, isSuccess, message, dispatch]);
 
     return (
         <Wrapper>
