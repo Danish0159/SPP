@@ -57,24 +57,24 @@ const ProfileDriver = () => {
 export default ProfileDriver;
 
 const Wrapper = styled.div`
- .personel__title {
- font-size: 1.7rem;
- font-weight: 600;
- margin-bottom: 0.9rem; 
+.profile__title {
+font-size: 1.7rem;
+font-weight: 600;
+margin-bottom: 0.9rem; 
 }
- .personel__subtitle {
- font-size: 1.5rem;
- margin-bottom: 2.5rem;
+.profile__subtitle {
+font-size: 1.5rem;
+margin-bottom: 2.5rem;
 }
-.personel__avatar{
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.profile__avatar {
+display:flex;
+align-items:center;
+justify-content:center;
 }
- .preview__title {
-   font-size: 2.3rem;
-   font-weight:700;
-   margin: 2.5rem 0rem;
-   color: #424d83;
+.profile__portfolio {
+font-size: 2.3rem;
+font-weight: 700;
+margin: 2.5rem 0rem;
+color: #424d83;
 }
 `;

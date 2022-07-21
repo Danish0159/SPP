@@ -88,7 +88,7 @@ const SingleUser = () => {
                   </a>
                 </span>
               </h2>
-              <h2 className="profile__content--title m">
+              <h2 className="profile__content--title mbmt">
                 Number of Projects Completed: {single_user.data.noOfProjects}
               </h2>
               <Link
@@ -111,23 +111,21 @@ const SingleUser = () => {
           <h3 className="section__title">Projects Gallery</h3>
           {single_user.data.user.portfolio.map((project, index) => {
             return (
-              <>
-                <div key={index} className="parent">
+              <div key={index}>
+                <div className="parent">
                   <h1 className="project-name">{project.projectName}</h1>
                 </div>
                 <Gallery data={[
                   ...project.images,
                 ]}></Gallery>
-              </>
+              </div>
             )
           })}
         </div>
-
         <div className="section__blue">
           <h3 className="section__title">Client Reviews</h3>
           <Reviews single={false}></Reviews>
         </div>
-
       </Wrapper>
     );
   }
@@ -143,7 +141,6 @@ const Wrapper = styled.section`
       padding-bottom: 0rem;
     }
   }
-
   .profile__grid {
     max-width: 120rem;
     margin: auto;
@@ -157,28 +154,23 @@ const Wrapper = styled.section`
       grid-gap: 3rem;
     }
   }
-  /* Profie Name */
-  /* /////////////// */
   .profile__name {
     /* border-right: 1px solid #424d83; */
     @media only screen and (max-width: 800px) {
       border-right: none;
     }
   }
-
   .profile__name--avatar {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 2rem;
   }
-
   .profile__name--title {
     font-size: 2.3rem;
     color: var(--clr-black);
     margin-bottom: 1.2rem;
   }
-
   .profile__name--subtitle {
     font-size: 1.5rem;
     font-weight: 600;
@@ -188,15 +180,11 @@ const Wrapper = styled.section`
       margin-bottom: 4rem;
     }
   }
-
   .profile-btn {
     padding: 0.9rem 2.5rem;
     font-size: 1.7rem;
     margin: 0;
   }
-
-  /* /////////////// */
-  /* Profie Content */
   .profile__content {
     text-align: left;
     padding-top: 1.5rem;
@@ -218,7 +206,7 @@ const Wrapper = styled.section`
     color: var(--clr-black);
     margin-bottom: 2.2rem;
   }
-  .m{
+  .mbmt{
     margin-bottom: 2rem;
     margin-top: 4rem;
   }

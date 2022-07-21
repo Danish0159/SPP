@@ -82,3 +82,19 @@ export const CardLayout = styled.div`
   color: var(--clr-black);
 }
 `;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ button {
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    padding: 1.2rem 0.5rem;
+    margin: 0.9rem 0rem;
+ }
+`;

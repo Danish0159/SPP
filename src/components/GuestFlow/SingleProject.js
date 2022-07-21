@@ -64,7 +64,7 @@ const SingleProject = () => {
 
         <div className="section__white">
           <h3 className="section__title">Client Review</h3>
-          <Reviews single={true}></Reviews>
+          <Reviews review={single_project.data.portfolio[0].review ? single_project.data.portfolio[0].review : null} title={single_project.data.portfolio[0].reviwerTitle ? single_project.data.portfolio[0].reviwerTitle : null} single={true}></Reviews>
         </div>
       </Wrapper >
     );
@@ -80,7 +80,6 @@ const Wrapper = styled.section`
     width: 100%;
     padding: 3rem 0rem;
   }
-
   .project__title {
     font-size: 3rem;
     margin-bottom:2.5rem ;
@@ -95,7 +94,7 @@ const Wrapper = styled.section`
     }
   .project__name,
   .project__location,
-    .project__description {
+  .project__description {
     font-size: 2rem;
     margin: 1.3rem 0rem;
     margin-left: 2rem;

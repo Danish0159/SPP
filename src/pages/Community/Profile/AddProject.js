@@ -17,37 +17,23 @@ const AddProject = () => {
     const removeImages = () => {
         setImages([]);
     };
-
     // state.
     const dispatch = useDispatch();
-
     const { user, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.auth
     );
-
     useEffect(() => {
         if (isError) {
             toast.error(message);
         }
         if (isSuccess) {
             toast.success(message);
-            // history.push("/Login");
         }
         dispatch(reset());
         // eslint-disable-next-line
     }, [user, isError, isSuccess, message, dispatch]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log({
-            projectName,
-            location,
-            description,
-            images,
-            id: user.profile._id,
-        })
-
         //  API CALL.
         dispatch(
             addProject({
@@ -77,9 +63,9 @@ const AddProject = () => {
     );
     // thumbs.
     const thumbs = images.map((image, index) => (
-        <div style={thumb} key={index}>
-            <div style={thumbInner}>
-                <img alt="selected" src={image} style={img} />
+        <div className="thumb" key={index}>
+            <div className="thumbInner">
+                <img alt="selected" src={image} className="img" />
             </div>
         </div>
     ));
@@ -156,7 +142,7 @@ const AddProject = () => {
                             </div>
                         )}
                     </Dropzone>
-                    <aside style={thumbsContainer}>
+                    <aside className='thumbsContainer'>
                         {thumbs}
                     </aside>
                     {images.length > 0 &&
@@ -182,40 +168,6 @@ const AddProject = () => {
 }
 
 export default AddProject
-
-
-///////////////////////////
-// Css Styling.
-const thumbsContainer = {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 16,
-};
-
-const thumb = {
-    display: "inline-flex",
-    borderRadius: 2,
-    border: "1px solid #eaeaea",
-    marginBottom: 8,
-    marginRight: 8,
-    width: 100,
-    height: 100,
-    padding: 4,
-    boxSizing: "border-box",
-};
-
-const thumbInner = {
-    display: "flex",
-    minWidth: 0,
-    overflow: "hidden",
-};
-
-const img = {
-    display: "block",
-    width: "auto",
-    height: "100%",
-};
 
 const baseStyle = {
     flex: 1,

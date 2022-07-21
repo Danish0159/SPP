@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Reviews = ({ single }) => {
+const Reviews = ({ single, review, title, }) => {
   // Single Review For Single Project.
   if (single) {
     return (
@@ -9,11 +9,9 @@ const Reviews = ({ single }) => {
         <div className="reviews__grid max-restrict">
           <div className="reviews__item">
             <p className="reviews__paragraph">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
-              deserunt, dolor ut veniam minus illo iusto ea totam veritatis.
+              {review}
             </p>
-            <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Maqawal</h1>
+            <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>{title ? title : "No feedback given"}</h1>
           </div>
         </div>
       </Wrapper >

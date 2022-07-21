@@ -16,8 +16,6 @@ import { Button, TextField } from '@mui/material';
 import { styles } from '../../../components/Shared/styles';
 
 const PersonelProjects = () => {
-    /////////////////////////////
-    /////////////////////////////
     // Update Project.
     const [updateId, setUpdateId] = useState(false);
     const [projectName, setProjectName] = useState("");
@@ -27,9 +25,7 @@ const PersonelProjects = () => {
     const removeImages = () => {
         setImages([]);
     };
-
     const { isDragActive, isDragAccept, isDragReject } = useDropzone();
-    // Styles.
     const style = React.useMemo(
         () => ({
             ...baseStyle,
@@ -39,7 +35,6 @@ const PersonelProjects = () => {
         }),
         [isDragActive, isDragReject, isDragAccept]
     );
-    // thumbs.
     const thumbs = images.map((image, index) => (
         <div className="thumb" key={index}>
             <div className="thumbInner">
@@ -47,16 +42,13 @@ const PersonelProjects = () => {
             </div>
         </div>
     ));
-
     // Update project end.
-    /////////////////////////////
-    /////////////////////////////
+
 
     /////////////////////////////
     // Take Review. 
     const [review, setReview] = useState(false);
     const [projectReviewId, setProjectReviewId] = useState(false);
-
     /////////////////////////////
     // Take Review end. 
 
@@ -79,7 +71,6 @@ const PersonelProjects = () => {
     /////////////////////////////
     // Delete Project.
     function handleDelete(projectId) {
-
         //Before API Call.
         dispatch(
             deleteProject({
@@ -118,13 +109,9 @@ const PersonelProjects = () => {
         setImages([]);
         setUpdateId(false);
     }
-
-    // Loading.
     if (isLoading) {
         return <Spinner />;
     }
-
-    // Take Reveiw.
     if (review) {
         return (
             <Wrapper>
@@ -146,8 +133,6 @@ const PersonelProjects = () => {
             </Wrapper>
         )
     }
-
-    {/* // Update Project */ }
     if (updateId) {
         return (
             <Wrapper>
@@ -247,11 +232,10 @@ const PersonelProjects = () => {
             </Wrapper>
         )
     }
-    // Render All the projects.
     else {
         return (
             <Wrapper>
-                <h2 className='preview__title'>Portfolio</h2>
+                <h2 className='profile__portfolio'>Portfolio</h2>
                 {user.profile.portfolio.map((project, index) => {
                     return (
                         <Accordion key={index}>
@@ -269,14 +253,14 @@ const PersonelProjects = () => {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <p className="personel__title">{project.projectName}</p>
+                                <p className="profile__title">{project.projectName}</p>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <div className="preview__portfolio">
-                                    <p className="personel__title">Project Name</p>
-                                    <p className="personel__subtitle">{project.projectName}</p>
-                                    <p className="personel__title">Project Location</p>
-                                    <p className="personel__subtitle">{project.location}</p>
+                                    <p className="profile__title">Project Name</p>
+                                    <p className="profile__subtitle">{project.projectName}</p>
+                                    <p className="profile__title">Project Location</p>
+                                    <p className="profile__subtitle">{project.location}</p>
                                     <aside className='thumbsContainer'>
                                         {
                                             project.images.map((img, index) => {
@@ -303,14 +287,14 @@ const PersonelProjects = () => {
 export default PersonelProjects
 
 const Wrapper = styled.div`
-.edit__div{
+.edit__div {
     display:flex;
     align-items:center;
     margin-bottom:7px;
     padding-bottom:0px;
     justify-content:flex-end;
 }
-.edit__icon{
+.edit__icon {
     color: #656565;
     font-size: 35px;
     border: 1px solid #656565;
@@ -319,14 +303,14 @@ const Wrapper = styled.div`
     padding: 6px;
     cursor: pointer;
 }
-.icons{
+.icons {
     font-size: 20px;
     margin-right: 8px;
 }
-.request__title{
+.request__title {
     font-size: 2.7rem;
 }
-.request__link{
+.request__link {
     background-color:#424d83;
     color: rgb(255, 255, 255);;
     border: none;

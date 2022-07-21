@@ -95,7 +95,6 @@ const Wrapper = styled.div`
  max-width: 140rem;
  width: 100%;
  margin: auto;
-
  @media only screen and (max-width: 1200px) {
  grid-template-columns: 1fr;
  }

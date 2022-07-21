@@ -250,7 +250,6 @@ const Wrapper = styled.section`
   .signup__register {
     color: var(--clr-blue-2);
   }
-  
   .error-p {
     padding: 0px 0px 0px 3px;
     margin: 0px;

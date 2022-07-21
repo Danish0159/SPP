@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ButtonsWrapper } from "../../Shared/styled";
 
 const Buttons = ({ handleStep, step }) => {
   const steps = [
@@ -11,15 +12,17 @@ const Buttons = ({ handleStep, step }) => {
 
   return (
     <Wrapper>
-      {steps.map((label, index) => (
-        <button
-          key={index}
-          className={step === index ? "btn active" : "btn nonActive"}
-          onClick={() => handleStep(index)}
-        >
-          {label}
-        </button>
-      ))}
+      <ButtonsWrapper>
+        {steps.map((label, index) => (
+          <button
+            key={index}
+            className={step === index ? "btn active" : "btn nonActive"}
+            onClick={() => handleStep(index)}
+          >
+            {label}
+          </button>
+        ))}
+      </ButtonsWrapper>
     </Wrapper>
   );
 };
@@ -27,28 +30,15 @@ const Buttons = ({ handleStep, step }) => {
 export default Buttons;
 
 const Wrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   .active {
     background-color: #424d83;
   }
-
   .nonActive {
     background-color: #424d83;
     opacity: 0.7;
   }
-
   .btn {
     color: white;
     width: 150px;
-    padding: 1.2rem 0.5rem;
-    border: none;
-    margin: 0.9rem 0rem;
-    font-size: 1.7rem;
-    cursor: pointer;
-    border-radius: 5px;
-    font-weight: 600;
   }
 `;

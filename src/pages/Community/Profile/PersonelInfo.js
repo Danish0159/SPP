@@ -4,13 +4,11 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import { FormControl, Select, TextField, MenuItem, Avatar } from '@mui/material';
 import { users } from "../../../utils/constants";
 import CancelIcon from '@mui/icons-material/Cancel';
-
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile, reset, getCommunityUser } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
 import { styles } from '../../../components/Shared/styles';
-
 import { categories, subCategories } from "../../../utils/constants"
 
 const PersonelInfo = () => {
@@ -29,7 +27,6 @@ const PersonelInfo = () => {
 
     // state.
     const dispatch = useDispatch();
-
     useEffect(() => {
         if (isError) {
             toast.error(message);
@@ -42,7 +39,6 @@ const PersonelInfo = () => {
                 toast.success(message);
             }
         }
-
         dispatch(reset());
     }, [isError, isSuccess, message, dispatch]);
 
@@ -56,21 +52,8 @@ const PersonelInfo = () => {
             dispatch(reset());
         }
     }, [user])
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        //  API CALL.
-        console.log({
-            profilePhoto,
-            name,
-            email,
-            phoneNumber,
-            role,
-            category,
-            subCategory,
-            id: user.profile._id,
-        });
-
         dispatch(
             updateProfile({
                 profilePhoto,
@@ -83,7 +66,6 @@ const PersonelInfo = () => {
                 id: user.profile._id,
             })
         );
-
         setUpdate(false);
         // Reset form.
         setName("");
@@ -98,13 +80,11 @@ const PersonelInfo = () => {
     if (isLoading) {
         return <Spinner />;
     }
-
     if (update) {
         return <Wrapper>
             <div className='edit__div'>
                 <CancelIcon onClick={() => { setUpdate(false); }} className="edit__icon"></CancelIcon>
             </div>
-
             <form onSubmit={handleSubmit}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                     {profilePhoto &&
@@ -129,7 +109,6 @@ const PersonelInfo = () => {
                         }}
                     />
                 </div>
-
                 <p className="card__subtitle">Company Name</p>
                 <TextField
                     fullWidth
@@ -243,7 +222,7 @@ const PersonelInfo = () => {
                         setSubCategory(user.profile.subCategory);
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
-                <div className="personel__avatar">
+                <div className="profile__avatar">
                     <Avatar
                         style={{ marginBottom: "4rem" }}
                         src={user?.profile.profilePhoto}
@@ -251,18 +230,18 @@ const PersonelInfo = () => {
                         alt="Avatar"
                     />
                 </div>
-                <p className="personel__title">Name</p>
-                <p className="personel__subtitle">{user?.user.name}</p>
-                <p className="personel__title">Email</p>
-                <p className="personel__subtitle">{user?.user.email}</p>
-                <p className="personel__title">Number</p>
-                <p className="personel__subtitle">{user?.profile.phoneNumber}</p>
-                <p className="personel__title">Role</p>
-                <p className="personel__subtitle">{user?.user.role}</p>
-                <p className="personel__title">Category</p>
-                <p className="personel__subtitle">{user?.profile.category}</p>
-                <p className="personel__title">Sub-Category</p>
-                <p className="personel__subtitle">{user?.profile.subCategory}</p>
+                <p className="profile__title">Name</p>
+                <p className="profile__subtitle">{user?.user.name}</p>
+                <p className="profile__title">Email</p>
+                <p className="profile__subtitle">{user?.user.email}</p>
+                <p className="profile__title">Number</p>
+                <p className="profile__subtitle">{user?.profile.phoneNumber}</p>
+                <p className="profile__title">Role</p>
+                <p className="profile__subtitle">{user?.user.role}</p>
+                <p className="profile__title">Category</p>
+                <p className="profile__subtitle">{user?.profile.category}</p>
+                <p className="profile__title">Sub-Category</p>
+                <p className="profile__subtitle">{user?.profile.subCategory}</p>
             </Wrapper>
         )
     }

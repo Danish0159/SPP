@@ -13,7 +13,7 @@ const PreviewProfile = () => {
     );
     return (
         <Wrapper>
-            <div className="personel__avatar">
+            <div className="profile__avatar">
                 <Avatar
                     src={user.profile.profilePhoto}
                     sx={{ width: 100, height: 100 }}
@@ -21,16 +21,16 @@ const PreviewProfile = () => {
                 />
             </div>
             <div className="preview__info">
-                <p className="personel__title">Name</p>
-                <p className="personel__subtitle">{user.user.name}</p>
-                <p className="personel__title">Email</p>
-                <p className="personel__subtitle">{user.user.email}</p>
-                <p className="personel__title">Role</p>
-                <p className="personel__subtitle">{user.user.role}</p>
-                <p className="personel__title">Number</p>
-                <p className="personel__subtitle">{user.profile.phoneNumber}</p>
-                <p className="personel__title">Location</p>
-                <p className="personel__subtitle">
+                <p className="profile__title">Name</p>
+                <p className="profile__subtitle">{user.user.name}</p>
+                <p className="profile__title">Email</p>
+                <p className="profile__subtitle">{user.user.email}</p>
+                <p className="profile__title">Role</p>
+                <p className="profile__subtitle">{user.user.role}</p>
+                <p className="profile__title">Number</p>
+                <p className="profile__subtitle">{user.profile.phoneNumber}</p>
+                <p className="profile__title">Location</p>
+                <p className="profile__subtitle">
                     {user.profile.location.country},{" "}&nbsp;
                     {user.profile.location.city.map((city, index) => {
                         return (
@@ -42,7 +42,7 @@ const PreviewProfile = () => {
                     }
                 </p>
             </div>
-            <h2 className='preview__title'>Portfolio</h2>
+            <h2 className='profile__portfolio'>Portfolio</h2>
             {user.profile.portfolio.map((project, index) => {
                 return (
                     <Accordion key={index}>
@@ -51,14 +51,14 @@ const PreviewProfile = () => {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <p className="personel__title">{project.projectName}</p>
+                            <p className="profile__title">{project.projectName}</p>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className="preview__portfolio">
-                                <p className="personel__title">Project Name</p>
-                                <p className="personel__subtitle">{project.projectName}</p>
-                                <p className="personel__title">Project Location</p>
-                                <p className="personel__subtitle">{project.location}</p>
+                                <p className="profile__title">Project Name</p>
+                                <p className="profile__subtitle">{project.projectName}</p>
+                                <p className="profile__title">Project Location</p>
+                                <p className="profile__subtitle">{project.location}</p>
                                 <aside className='thumbsContainer'>
                                     {
                                         project.images.map((img, index) => {
