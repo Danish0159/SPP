@@ -23,6 +23,8 @@ const FeedDriver = () => {
             case 1: return <CommunityInbox></CommunityInbox>;
             case 2: return <Communities></Communities>;
             case 3: return <EnrolledCourses></EnrolledCourses>
+            default:
+                return <div>Not Found</div>;
         }
     }
 

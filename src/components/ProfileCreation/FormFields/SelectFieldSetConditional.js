@@ -27,6 +27,7 @@ function SelectFieldSetConditional(props) {
         if (selectedValue) {
             updateState();
         }
+        // eslint-disable-next-line
     }, [selectedValue]);
 
     return (

@@ -45,12 +45,14 @@ const PersonelInfo = () => {
     // Get The user to display data.
     useEffect(() => {
         dispatch(getCommunityUser());
+        // eslint-disable-next-line
     }, [])
     // Reset after getting user.
     useEffect(() => {
         if (user) {
             dispatch(reset());
         }
+        // eslint-disable-next-line
     }, [user])
     const handleSubmit = (e) => {
         e.preventDefault();

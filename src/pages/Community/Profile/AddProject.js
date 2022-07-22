@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
-import styled from "styled-components";
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProject, reset } from "../../../slices/auth";
@@ -11,7 +10,6 @@ import { styles } from '../../../components/Shared/styles';
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
     const [location, setLocation] = useState("");
-    const [description, setDescription] = useState("");
     const [images, setImages] = useState([]);
 
     const removeImages = () => {
@@ -39,7 +37,6 @@ const AddProject = () => {
             addProject({
                 projectName,
                 location,
-                description,
                 images,
                 id: user.profile._id,
             })
@@ -115,6 +112,8 @@ const AddProject = () => {
                                 reader.onerror = function () {
                                     alert(reader.error);
                                 };
+
+                                return null;
                             });
                         }}
                         accept="image/*"

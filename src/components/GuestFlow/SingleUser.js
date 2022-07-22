@@ -27,6 +27,7 @@ const SingleUser = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchSingleUser(id));
+    // eslint-disable-next-line
   }, [id]);
 
   if (isLoading) {
@@ -72,9 +73,9 @@ const SingleUser = () => {
               <p className="profile__content--text">
                 {single_user.data.user.location.country},{" "}&nbsp;
                 {
-                  single_user.data.user.location.city.map((city) => {
+                  single_user.data.user.location.city.map((city, index) => {
                     return (
-                      <span>
+                      <span key={index}>
                         {city},&nbsp;
                       </span>
                     )

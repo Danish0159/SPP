@@ -58,14 +58,14 @@ const Signup = () => {
 
   return (
     <Wrapper>
-      <div class="signup__grid">
-        <figure class="signup__div">
-          <img class="signup__img" src={signupImage} alt="SignUp" />
+      <div className="signup__grid">
+        <figure className="signup__div">
+          <img className="signup__img" src={signupImage} alt="SignUp" />
         </figure>
-        <form onSubmit={formik.handleSubmit} class="signup__form">
+        <form onSubmit={formik.handleSubmit} className="signup__form">
           <h2 className="signup__title">Register</h2>
-          <div class="form-group">
-            <label Htmlfor="name">Name</label>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
             <TextField
               fullWidth
               type="text"
@@ -82,8 +82,8 @@ const Signup = () => {
             </p>
           </div>
 
-          <div class="form-group">
-            <label Htmlfor="email">Email Address</label>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
             <TextField
               fullWidth
               type="email"
@@ -101,7 +101,7 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">Password</label>
+            <label htmlFor="password">Password</label>
             <TextField
               fullWidth
               type="password"
@@ -119,7 +119,7 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">Register As</label>
+            <label htmlFor="password">Register As</label>
             <FormControl fullWidth>
               <Select
                 sx={styles.select}

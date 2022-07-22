@@ -28,6 +28,7 @@ export default function InputFieldSetConditional(props) {
         if (field.value) {
             updateState(field.value);
         }
+        // eslint-disable-next-line
     }, [field.value])
 
     return (

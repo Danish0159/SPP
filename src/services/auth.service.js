@@ -75,11 +75,11 @@ const profileCreation = async (profilePayload) => {
 // /////////////////////////////////
 // (Community Flow API) (PersonelUser).
 // /////////////////////////////////
-const addProject = async (projectName, location, description, images, id) => {
+const addProject = async (projectName, location, images, id) => {
   const response = await axios.patch(
     `https://warm-cove-25020.herokuapp.com/api/profile/addproject/${id}`,
     {
-      projectName, location, description, images
+      projectName, location, images
     },
     {
       headers: authHeader(),

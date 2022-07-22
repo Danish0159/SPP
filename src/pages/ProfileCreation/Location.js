@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { SelectFieldSetConditional, SelectMultiple } from "../../components/ProfileCreation/FormFields";
 import { countries, pakCities, saudiCities } from "../../utils/constants";
 import { Field } from 'formik'
-import { styles } from '../../components/Shared/styles';
-
 
 export default function Location(props) {
   const { conditionalFlag } = useSelector(

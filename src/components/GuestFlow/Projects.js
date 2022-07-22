@@ -23,6 +23,7 @@ const Projects = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchProjects(id));
+    // eslint-disable-next-line
   }, [id]);
 
   if (isLoading) {

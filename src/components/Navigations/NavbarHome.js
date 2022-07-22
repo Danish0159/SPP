@@ -46,6 +46,7 @@ const NavbarHome = ({ country, city, setCountry, setCity, }) => {
         setCity(response.data.city);
       })
     })
+    // eslint-disable-next-line
   }, [])
   return (
     <Wrapper>

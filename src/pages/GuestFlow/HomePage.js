@@ -37,6 +37,7 @@ const HomePage = () => {
         setCountry("Country");
         setCity("City");
         dispatch(reset());
+        // eslint-disable-next-line
     }, [isError, isSuccess, message, dispatch]);
 
     if (isLoading) {

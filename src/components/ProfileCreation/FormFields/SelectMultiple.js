@@ -2,7 +2,6 @@
 import React from "react";
 import { fieldToTextField } from 'formik-material-ui'
 import { Autocomplete, TextField } from "@mui/material";
-import { styles } from "../../../components/Shared/styles";
 import styled from "styled-components";
 
 function SelectMultiple({ textFieldProps, ...props }) {
@@ -24,7 +23,7 @@ function SelectMultiple({ textFieldProps, ...props }) {
                 {...props}
                 {...field}
                 onChange={(_, value) => setFieldValue(name, value)}
-                getOptionSelected={(item, current) => item.value === current.value}
+                getoptionselected={(item, current) => item.value === current.value}
                 sx={{
                     '& .MuiAutocomplete-input, & .MuiInputLabel-root': {
                         fontSize: "1.8rem",

@@ -18,6 +18,7 @@ const ClientReview = () => {
 
     useEffect(() => {
         dispatch(fetchSingleProject({ userId, id }));
+        // eslint-disable-next-line
     }, [id]);
 
     useEffect(() => {

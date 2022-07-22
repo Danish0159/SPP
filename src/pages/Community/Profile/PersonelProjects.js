@@ -181,6 +181,8 @@ const PersonelProjects = () => {
                                     reader.onerror = function () {
                                         alert(reader.error);
                                     };
+
+                                    return null;
                                 });
                             }}
                             accept="image/*"

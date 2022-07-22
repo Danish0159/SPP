@@ -80,9 +80,9 @@ export const profileCreation = createAsyncThunk(
 // /////////////////////////////////
 export const addProject = createAsyncThunk(
   "auth/addProject",
-  async ({ projectName, location, description, images, id }, thunkAPI) => {
+  async ({ projectName, location, images, id }, thunkAPI) => {
     try {
-      const data = await AuthService.addProject(projectName, location, description, images, id);
+      const data = await AuthService.addProject(projectName, location, images, id);
       if (data.status !== "SUCCESS") {
         return thunkAPI.rejectWithValue(data.message);
       }

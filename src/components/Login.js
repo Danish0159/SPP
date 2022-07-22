@@ -66,7 +66,7 @@ const Login = () => {
           <p className="login__subTitle">Please login to your account.</p>
 
           <div className="form-group">
-            <label Htmlfor="email">Email Address</label>
+            <label htmlFor="email">Email Address</label>
             <TextField
               fullWidth
               type="email"
@@ -85,7 +85,7 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <label Htmlfor="password">Password</label>
+            <label htmlFor="password">Password</label>
             <TextField
               fullWidth
               type="password"

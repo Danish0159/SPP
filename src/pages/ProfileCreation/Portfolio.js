@@ -171,90 +171,90 @@ export default function Portfolio(props) {
     <>
       {state.slice(0, projectsFlag).map((step, index) => {
         return (
-          <>
-            <div key={index}>
-              <p className="card__subtitle">Project Name</p>
-              <InputField
-                name={step.projectName.name}
-                type="text"
-                fullWidth
-                required
-              />
-              <p className="card__subtitle">Location</p>
-              <InputField
-                name={step.projectLocation.name}
-                type="text"
-                fullWidth
-                required
-              />
-              <p className="card__subtitle">Description (optional)</p>
-              <InputField
-                inputProps={{ style: styles.desciption, }}
-                name={step.projectDescription.name}
-                type="text"
-                rows={3}
-                multiline
-                fullWidth
-              />
-              <p className="card__subtitle">Project Files</p>
-              <div key={index} className="form-group">
-                <Dropzone
-                  onDrop={(acceptedFiles) => {
-                    acceptedFiles.map((file) => {
-                      let reader = new FileReader();
-                      reader.readAsDataURL(file);
+          <div key={index}>
+            <p className="card__subtitle">Project Name</p>
+            <InputField
+              name={step.projectName.name}
+              type="text"
+              fullWidth
+              required
+            />
+            <p className="card__subtitle">Location</p>
+            <InputField
+              name={step.projectLocation.name}
+              type="text"
+              fullWidth
+              required
+            />
+            <p className="card__subtitle">Description (optional)</p>
+            <InputField
+              inputProps={{ style: styles.desciption, }}
+              name={step.projectDescription.name}
+              type="text"
+              rows={3}
+              multiline
+              fullWidth
+            />
+            <p className="card__subtitle">Project Files</p>
+            <div className="form-group">
+              <Dropzone
+                onDrop={(acceptedFiles) => {
+                  acceptedFiles.map((file) => {
+                    let reader = new FileReader();
+                    reader.readAsDataURL(file);
 
-                      reader.onload = () => {
-                        step.setImage((images) => [...images, reader.result]);
-                      };
+                    reader.onload = () => {
+                      step.setImage((images) => [...images, reader.result]);
+                    };
 
-                      reader.onerror = function () {
-                        alert(reader.error);
-                      };
-                    });
-                  }}
-                  accept="image/*"
-                  name="heroImage"
-                  multiple={true}
-                  maxFiles={6}
-                  maxSize={10 * 1024 * 1024}
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <div {...getRootProps({ className: "dropzone", style })}>
-                      <input {...getInputProps()} />
-                      {isDragActive ? (
-                        <p className="drop">Drop the files here ...</p>
-                      ) : (
-                        <p className="drop">
-                          Drag 'n' drop only image files here, or click to
-                          select files <br />{" "}
-                          <p className="thumbPadding">
-                            {" "}
-                            (6 files each of 10MB are the maximum number of
-                            files you can drop here)
-                          </p>
+                    reader.onerror = function () {
+                      alert(reader.error);
+                    };
+
+                    return null;
+                  });
+                }}
+                accept="image/*"
+                name="heroImage"
+                multiple={true}
+                maxFiles={6}
+                maxSize={10 * 1024 * 1024}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps({ className: "dropzone", style })}>
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                      <p className="drop">Drop the files here ...</p>
+                    ) : (
+                      <p className="drop">
+                        Drag 'n' drop only image files here, or click to
+                        select files <br />{" "}
+                        <p className="thumbPadding">
+                          {" "}
+                          (6 files each of 10MB are the maximum number of
+                          files you can drop here)
                         </p>
-                      )}
-                    </div>
-                  )}
-                </Dropzone>
-                <aside className="thumbsContainer">
-                  {index === 0 ? thumbs1 : null}
-                  {index === 1 ? thumbs2 : null}
-                  {index === 2 ? thumbs3 : null}
-                  {index === 3 ? thumbs4 : null}
-                  {index === 4 ? thumbs5 : null}
-                </aside>
-                <Button
-                  sx={styles.removeBtn}
-                  type="button"
-                  onClick={step.remove}
-                >
-                  Remove Images
-                </Button>
-              </div>
+                      </p>
+                    )}
+                  </div>
+                )}
+              </Dropzone>
+              <aside className="thumbsContainer">
+                {index === 0 ? thumbs1 : null}
+                {index === 1 ? thumbs2 : null}
+                {index === 2 ? thumbs3 : null}
+                {index === 3 ? thumbs4 : null}
+                {index === 4 ? thumbs5 : null}
+              </aside>
+              <Button
+                sx={styles.removeBtn}
+                type="button"
+                onClick={step.remove}
+              >
+                Remove Images
+              </Button>
             </div>
-          </>
+          </div>
         );
       })}
     </>

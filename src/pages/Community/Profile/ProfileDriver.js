@@ -31,6 +31,8 @@ const ProfileDriver = () => {
       case 1: return <PersonelProjects></PersonelProjects>;
       case 2: return <PreviewProfile></PreviewProfile>;
       case 3: return <AddProject></AddProject>
+      default:
+        return <div>Not Found</div>;
     }
   }
 

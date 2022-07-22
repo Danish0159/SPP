@@ -28,8 +28,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { profileCreation, reset } from "../../slices/auth";
 import { Redirect, useHistory } from "react-router-dom";
-import { Button } from "@mui/material";
-import { styles } from "../../components/Shared/styles";
 const { formId, formField } = registrationFormModel;
 
 const steps = [
@@ -213,7 +211,7 @@ const Driver = () => {
                       {_renderStepContent(activeStep)}
                       <div className="btn-container">
                         {activeStep !== 0 && (
-                          <button className="blue-btn card-btn" onClick={_handleBack}>
+                          <button type="button" className="blue-btn card-btn" onClick={_handleBack}>
                             BACK
                           </button>
                         )}

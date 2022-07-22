@@ -19,6 +19,7 @@ const Users = () => {
         dispatch(fetchUsers(searchValues));
       }
     }
+    // eslint-disable-next-line
   }, [])
 
   const searchValues = JSON.parse(localStorage.getItem("searchValues"));
@@ -41,6 +42,7 @@ const Users = () => {
       return;
     }
     dispatch(fetchUsers({ user: searchValues.user, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: step }));
+    // eslint-disable-next-line
   }, [step])
 
   useEffect(() => {

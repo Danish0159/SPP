@@ -48,9 +48,9 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                     <p className="cell">
                       {user.location.country},&nbsp;
                       {
-                        user.location.city.map((city) => {
+                        user.location.city.map((city, index) => {
                           return (
-                            <span>
+                            <span key={index}>
                               {city},&nbsp;
                             </span>
                           )
@@ -92,7 +92,7 @@ const Table = ({ data = [], title, flag, userId, message }) => {
           activeClassName={"paginationActive"}
         />
       </div>
-    </Wrapper >
+    </Wrapper>
   );
 };
 
