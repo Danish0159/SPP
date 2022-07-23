@@ -4,24 +4,48 @@ import Spinner from "./Spinner";
 import { toast } from "react-toastify";
 import { Link, useHistory } from "react-router-dom";
 import signupImage from "../images/signup.png";
-import { useFormik } from "formik";
 import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../slices/auth";
 import { users } from "../utils/constants";
 import { styles } from '../components/Shared/styles';
-import { signupInitialValues, signupValidationSchema } from "../utils/helpers"
 
+const initialState = {
+  name: "",
+  email: "",
+  password: "",
+  role: "",
+};
 
 const Signup = () => {
-  const [role, setRole] = useState("");
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  // State.
+  const [values, setValues] = useState(initialState);
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setValues({ ...values, [name]: value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, password, role } = values;
+    if (!name || !email || !password || !role) {
+      toast.error('Please fill out all fields');
+      return;
+    }
+    if (password.length < 8) {
+      toast.error("Password is too short - should be 8 chars minimum.");
+      return;
+    }
+    dispatch(register({ name, email, password, role, }));
+  };
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -34,24 +58,6 @@ const Signup = () => {
     // eslint-disable-next-line
   }, [isError, isSuccess, message, dispatch]);
 
-  const formik = useFormik({
-    initialValues: signupInitialValues,
-    validationSchema: signupValidationSchema,
-    onSubmit: (values, { resetForm }) => {
-      dispatch(
-        register({
-          name: values.name,
-          email: values.email,
-          password: values.password,
-          role,
-        })
-      );
-      // Reset form.
-      setRole("");
-      resetForm();
-    },
-  });
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -62,42 +68,34 @@ const Signup = () => {
         <figure className="signup__div">
           <img className="signup__img" src={signupImage} alt="SignUp" />
         </figure>
-        <form onSubmit={formik.handleSubmit} className="signup__form">
+        <form onSubmit={onSubmit} className="signup__form">
           <h2 className="signup__title">Register</h2>
+
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <TextField
               fullWidth
               type="text"
               name="name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              error={formik.touched.name && Boolean(formik.errors.name)}
+              value={values.name}
+              onChange={handleChange}
               inputProps={{
                 style: styles.textField,
               }}
             />
-            <p className="error-p">
-              {formik.touched.name && formik.errors.name}
-            </p>
           </div>
-
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <TextField
               fullWidth
               type="email"
               name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
+              value={values.email}
+              onChange={handleChange}
               inputProps={{
                 style: styles.textField,
               }}
             />
-            <p className="error-p">
-              {formik.touched.email && formik.errors.email}
-            </p>
           </div>
 
           <div className="form-group">
@@ -106,26 +104,23 @@ const Signup = () => {
               fullWidth
               type="password"
               name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
+              value={values.password}
+              onChange={handleChange}
               inputProps={{
                 style: styles.textField,
               }}
             />
-            <p className="error-p">
-              {formik.touched.password && formik.errors.password}
-            </p>
           </div>
 
           <div className="form-group">
             <label htmlFor="password">Register As</label>
             <FormControl fullWidth>
               <Select
+                type="text"
+                name="role"
+                value={values.role}
+                onChange={handleChange}
                 sx={styles.select}
-                value={role}
-                onChange={(event) => { setRole(event.target.value); }}
-                required
               >
                 {users.map((user, index) => (
                   <MenuItem
@@ -140,11 +135,11 @@ const Signup = () => {
 
           <button
             type="submit"
-            variant="contained"
             className="blue-btn submit-button"
           >
             Register
           </button>
+
           <p className="signup__dont">
             Already have an account?
             <span className="signup__register">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
@@ -6,20 +6,44 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { login, reset } from "../slices/auth";
 import loginImage from "../images/Login.png";
-import { useFormik } from "formik";
 import { TextField } from "@mui/material";
 import { styles } from '../components/Shared/styles';
-import { loginInitialValues, loginValidationSchema } from "../utils/helpers"
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  // State.
+  const [values, setValues] = useState(initialState);
   const user = JSON.parse(localStorage.getItem("user"));
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setValues({ ...values, [name]: value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { email, password, } = values;
+    if (!email || !password) {
+      toast.error('Please fill out all fields');
+      return;
+    }
+    if (password.length < 8) {
+      toast.error("Password is too short - should be 8 chars minimum.");
+      return;
+    }
+    dispatch(login({ email, password, }));
+  };
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -36,21 +60,6 @@ const Login = () => {
     // eslint-disable-next-line
   }, [user, isError, isSuccess, message, dispatch]);
 
-  const formik = useFormik({
-    initialValues: loginInitialValues,
-    validationSchema: loginValidationSchema,
-    onSubmit: (values, { resetForm }) => {
-      dispatch(
-        login({
-          email: values.email,
-          password: values.password,
-        })
-      );
-      // Reset form
-      resetForm();
-    },
-  });
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -61,7 +70,7 @@ const Login = () => {
           <img className="login__img" src={loginImage} alt="login-img" />
         </figure>
 
-        <form noValidate onSubmit={formik.handleSubmit} className="login__form">
+        <form onSubmit={onSubmit} className="login__form">
           <h2 className="login__title">Welcome</h2>
           <p className="login__subTitle">Please login to your account.</p>
 
@@ -71,17 +80,12 @@ const Login = () => {
               fullWidth
               type="email"
               name="email"
-              id="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
+              value={values.email}
+              onChange={handleChange}
               inputProps={{
                 style: styles.textField,
               }}
             />
-            <p className="error-p">
-              {formik.touched.email && formik.errors.email}
-            </p>
           </div>
 
           <div className="form-group">
@@ -90,22 +94,16 @@ const Login = () => {
               fullWidth
               type="password"
               name="password"
-              id="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
+              value={values.password}
+              onChange={handleChange}
               inputProps={{
                 style: styles.textField,
               }}
             />
-            <p className="error-p">
-              {formik.touched.password && formik.errors.password}
-            </p>
           </div>
 
           <button
             type="submit"
-            variant="contained"
             className="blue-btn submit-button"
           >
             LOGIN
