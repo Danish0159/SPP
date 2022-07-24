@@ -1,8 +1,9 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
+import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 function PrivateWithProfile({ component: Component, ...restOfProps }) {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = getUserFromLocalStorage();
   return (
     <Route
       {...restOfProps}

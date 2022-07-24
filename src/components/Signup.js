@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import signupImage from "../images/signup.png";
 import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { register, reset } from "../slices/auth";
+import { registerUser, reset } from '../features/user/userSlice';
 import { users } from "../utils/constants";
 import { styles } from '../components/Shared/styles';
 
@@ -19,9 +19,10 @@ const initialState = {
 
 const Signup = () => {
   const [values, setValues] = useState(initialState);
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
+  const { isLoading, isSuccess, } = useSelector(
+    (state) => state.user
   );
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -43,25 +44,20 @@ const Signup = () => {
       toast.error("Password is too short - should be 8 chars minimum.");
       return;
     }
-    dispatch(register({ name, email, password, role, }));
+    dispatch(registerUser({ name, email, password, role, }));
   };
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
     if (isSuccess) {
-      toast.success(message);
       history.push("/Login");
+      dispatch(reset());
     }
-    dispatch(reset());
     // eslint-disable-next-line
-  }, [isError, isSuccess, message, dispatch]);
+  }, [isSuccess]);
 
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <Wrapper>
       <div className="signup__grid">

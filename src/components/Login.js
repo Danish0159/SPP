@@ -4,10 +4,11 @@ import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { login, reset } from "../slices/auth";
 import loginImage from "../images/Login.png";
 import { TextField } from "@mui/material";
 import { styles } from '../components/Shared/styles';
+import { loginUser } from "../features/user/userSlice";
+import { getUserFromLocalStorage } from "../utils/localStorage";
 
 const initialState = {
   email: "",
@@ -16,10 +17,11 @@ const initialState = {
 
 const Login = () => {
   const [values, setValues] = useState(initialState);
-  const user = JSON.parse(localStorage.getItem("user"));
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
+  const { isLoading } = useSelector(
+    (state) => state.user
   );
+  const user = getUserFromLocalStorage();
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,24 +43,17 @@ const Login = () => {
       toast.error("Password is too short - should be 8 chars minimum.");
       return;
     }
-    dispatch(login({ email, password, }));
+    dispatch(loginUser({ email, password, }));
   };
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
+    if (user && user.profile) {
+      history.push("/Profile");
+    } else if (user && !user.profile) {
+      history.push("/joinus");
     }
-    if (isSuccess) {
-      // The Profile Is Already Created For the User.
-      if (user && user.profile) {
-        history.push("/Profile");
-      } else if (user && !user.profile) {
-        history.push("/joinus");
-      }
-    }
-    dispatch(reset());
     // eslint-disable-next-line
-  }, [user, isError, isSuccess, message, dispatch]);
+  }, [user]);
 
   if (isLoading) {
     return <Spinner />;

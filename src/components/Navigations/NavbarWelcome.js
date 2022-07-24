@@ -10,12 +10,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
-import { logout, reset } from "../../slices/auth";
 import { useDispatch } from "react-redux";
+import { logoutUser } from "../../features/user/userSlice";
+import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 const NavbarWelcome = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-
+  const user = getUserFromLocalStorage();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,8 +30,7 @@ const NavbarWelcome = () => {
   };
 
   const onLogout = () => {
-    dispatch(logout());
-    dispatch(reset());
+    dispatch(logoutUser());
     history.push("/");
   };
 

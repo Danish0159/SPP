@@ -1,8 +1,9 @@
 // Desinger && Consultant.
 import React from "react";
+import { useSelector } from "react-redux";
 import { SelectField, SelectFieldSetConditional } from "../../components/ProfileCreation/FormFields";
 import { categories, subCategories } from "../../utils/constants";
-import { useSelector } from "react-redux";
+import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 export default function Category(props) {
   const {
@@ -11,7 +12,8 @@ export default function Category(props) {
   const { conditionalFlag } = useSelector(
     (state) => state.auth
   );
-  const user = JSON.parse(localStorage.getItem("user"));
+
+  const user = getUserFromLocalStorage();
 
   const role = user.role;
 

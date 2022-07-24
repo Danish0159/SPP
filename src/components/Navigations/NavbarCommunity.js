@@ -13,6 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
+import { logoutUser } from "../../features/user/userSlice";
 
 const NavbarCommunity = ({ profile }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,8 +30,7 @@ const NavbarCommunity = ({ profile }) => {
     const history = useHistory();
 
     const onLogout = () => {
-        dispatch(logout());
-        dispatch(reset());
+        dispatch(logoutUser());
         history.push("/");
     };
 

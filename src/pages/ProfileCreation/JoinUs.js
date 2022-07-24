@@ -6,8 +6,9 @@ import { Buttons } from "../../components/ProfileCreation";
 import image from "../../images/join.jpg";
 import { CardLayout } from '../../components/Shared/styled'
 import { NavbarProfileCreation } from "../../components/Navigations";
+import { getUserFromLocalStorage } from "../../utils/localStorage";
 const JoinUs = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = getUserFromLocalStorage();
   return (
     <main>
       <NavbarProfileCreation></NavbarProfileCreation>

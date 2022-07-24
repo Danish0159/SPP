@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "../../images/logo3.png";
 // Logout
-import { logout, reset } from "../../slices/auth";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 // Logout Drop Down.
@@ -12,6 +11,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
+import { logoutUser } from "../../features/user/userSlice";
 
 const NavbarProfileCreation = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,8 +28,7 @@ const NavbarProfileCreation = () => {
   const history = useHistory();
 
   const onLogout = () => {
-    dispatch(logout());
-    dispatch(reset());
+    dispatch(logoutUser());
     history.push("/");
   };
 
