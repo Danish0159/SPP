@@ -4,19 +4,17 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import { FormControl, Select, TextField, MenuItem, Avatar } from '@mui/material';
 import { users } from "../../../utils/constants";
 import CancelIcon from '@mui/icons-material/Cancel';
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfile, reset, getCommunityUser } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
 import { styles } from '../../../components/Shared/styles';
 import { categories, subCategories } from "../../../utils/constants"
+import { getCommunityUser, updateProfile } from '../../../features/profile/profileSlice';
 
 const PersonelInfo = () => {
     const [update, setUpdate] = useState(false);
-    const { user, isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.auth
+    const { user, isLoading, } = useSelector(
+        (state) => state.profile
     );
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
@@ -28,32 +26,10 @@ const PersonelInfo = () => {
     // state.
     const dispatch = useDispatch();
     useEffect(() => {
-        if (isError) {
-            toast.error(message);
-        }
-        if (isSuccess) {
-            if (message === "Successful request") {
-                return;
-            }
-            else {
-                toast.success(message);
-            }
-        }
-        dispatch(reset());
-    }, [isError, isSuccess, message, dispatch]);
-
-    // Get The user to display data.
-    useEffect(() => {
         dispatch(getCommunityUser());
         // eslint-disable-next-line
     }, [])
-    // Reset after getting user.
-    useEffect(() => {
-        if (user) {
-            dispatch(reset());
-        }
-        // eslint-disable-next-line
-    }, [user])
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(

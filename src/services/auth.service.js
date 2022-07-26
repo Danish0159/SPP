@@ -143,7 +143,6 @@ const reviewProject = async (name, title, stars, phoneNumber, review, profileId,
   return response.data;
 };
 
-
 const getCommunityUser = async () => {
   const response = await axios.get(
     "https://warm-cove-25020.herokuapp.com/api/user/getuser",

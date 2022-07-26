@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const PreviewProfile = () => {
     const { user } = useSelector(
-        (state) => state.auth
+        (state) => state.profile
     );
     return (
         <Wrapper>

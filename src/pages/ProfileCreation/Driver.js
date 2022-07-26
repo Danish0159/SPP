@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
 import { Footer, Spinner } from "../../components";
 import { Buttons } from "../../components/ProfileCreation";
@@ -26,8 +25,8 @@ import {
 } from "../ProfileCreation";
 // redux/state
 import { useDispatch, useSelector } from "react-redux";
-import { profileCreation, reset } from "../../slices/auth";
 import { Redirect, useHistory } from "react-router-dom";
+import { profileCreation, reset } from "../../features/profile/profileSlice";
 const { formId, formField } = registrationFormModel;
 
 const steps = [
@@ -70,23 +69,17 @@ const Driver = () => {
   // Redux State.
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
+  const { isLoading, isSuccess, } = useSelector(
+    (state) => state.profile
   );
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
     if (isSuccess) {
-      toast.success(message);
       history.push("/Profile");
+      dispatch(reset());
     }
-
-    dispatch(reset());
     // eslint-disable-next-line
-  }, [isError, isSuccess, message, dispatch]);
+  }, [isSuccess]);
 
   async function _submitForm(values, actions) {
     //Optimze the solution.

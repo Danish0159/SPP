@@ -74,7 +74,7 @@ export const profileCreation = createAsyncThunk(
 );
 
 // /////////////////////////////////
-//  (Community Flow API) (PersonelUser).
+// (Community Flow API) (PersonelUser).
 // /////////////////////////////////
 export const addProject = createAsyncThunk(
   "auth/addProject",

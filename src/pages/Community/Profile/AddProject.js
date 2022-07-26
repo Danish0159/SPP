@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Dropzone, { useDropzone } from "react-dropzone";
-import { toast } from "react-toastify";
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addProject, reset } from "../../../slices/auth";
 import Spinner from "../../../components/Spinner";
 import { styles } from '../../../components/Shared/styles';
+import { addProject } from "../../../features/profile/profileSlice";
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
@@ -17,19 +16,9 @@ const AddProject = () => {
     };
     // state.
     const dispatch = useDispatch();
-    const { user, isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.auth
+    const { user, isLoading, } = useSelector(
+        (state) => state.profile
     );
-    useEffect(() => {
-        if (isError) {
-            toast.error(message);
-        }
-        if (isSuccess) {
-            toast.success(message);
-        }
-        dispatch(reset());
-        // eslint-disable-next-line
-    }, [user, isError, isSuccess, message, dispatch]);
     const handleSubmit = (e) => {
         e.preventDefault();
         //  API CALL.

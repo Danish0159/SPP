@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Accordion from '@mui/material/Accordion';
 import styled from "styled-components";
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,16 +7,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProject, updateProject, reset } from "../../../slices/auth";
 import CancelIcon from '@mui/icons-material/Cancel';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import Spinner from "../../../components/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
 import { styles } from '../../../components/Shared/styles';
+import { deleteProject, updateProject } from '../../../features/profile/profileSlice';
 
 const PersonelProjects = () => {
-    // Update Project.
+    // Update Project start.
     const [updateId, setUpdateId] = useState(false);
     const [projectName, setProjectName] = useState("");
     const [location, setLocation] = useState("");
@@ -44,34 +44,18 @@ const PersonelProjects = () => {
     ));
     // Update project end.
 
-
-    /////////////////////////////
     // Take Review. 
     const [review, setReview] = useState(false);
     const [projectReviewId, setProjectReviewId] = useState(false);
-    /////////////////////////////
     // Take Review end. 
 
-    // state.
-    const { user, isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.auth
+    const { user, isLoading } = useSelector(
+        (state) => state.profile
     );
     const dispatch = useDispatch();
-    useEffect(() => {
-        if (isError) {
-            toast.error(message);
-        }
-        if (isSuccess) {
-            toast.success(message);
-        }
-        dispatch(reset());
-        // eslint-disable-next-line
-    }, [user, isError, isSuccess, message, dispatch]);
 
-    /////////////////////////////
     // Delete Project.
     function handleDelete(projectId) {
-        //Before API Call.
         dispatch(
             deleteProject({
                 profileId: user.profile._id,
@@ -79,7 +63,7 @@ const PersonelProjects = () => {
             })
         );
     }
-    /////////////////////////////
+
     // Necessary Updates
     function handleProjectUpdate(projectId) {
         const project = user.profile.portfolio.find((project) => project._id === projectId);
@@ -89,7 +73,6 @@ const PersonelProjects = () => {
         setUpdateId(projectId);
     }
 
-    /////////////////////////////
     // Update Project
     function handleProjectSubmit(e) {
         e.preventDefault();

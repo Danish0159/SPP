@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Rating, TextField } from '@mui/material';
 import { styles } from '../../../components/Shared/styles'
-import { reset, reviewProject } from '../../../slices/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../Spinner';
-import { toast } from 'react-toastify';
+import { reviewProject } from '../../../features/profile/profileSlice';
 
 const ReviewForm = ({ User, userId, id }) => {
     const [name, setName] = useState("");
@@ -15,30 +14,11 @@ const ReviewForm = ({ User, userId, id }) => {
 
     // State.
     const dispatch = useDispatch();
-    const { isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.auth
+    const { isLoading, } = useSelector(
+        (state) => state.profile
     );
-    useEffect(() => {
-        if (isError) {
-            toast.error(message);
-        }
-        if (isSuccess) {
-            toast.success("Your Review has been submitted.");
-            dispatch(reset());
-        }
-    }, [isError, isSuccess, message, dispatch]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({
-            name,
-            title,
-            stars,
-            phoneNumber,
-            review,
-            profileId: userId,
-            projectId: id,
-        })
         //  API CALL.
         dispatch(reviewProject({
             name,
