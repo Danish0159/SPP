@@ -3,30 +3,20 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Reviews, Gallery } from ".";
-import { fetchSingleUser, reset } from "../../slices/users";
+import { fetchSingleUser } from "../../features/guest/guestSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
 
 const SingleUser = () => {
   const dispatch = useDispatch();
-
-  //State.
-  const { single_user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.users
+  const { single_user, isLoading, } = useSelector(
+    (state) => state.guest
   );
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-    dispatch(reset());
-    // eslint-disable-next-line
-  }, [isError, isSuccess, message, dispatch]);
 
   const { id } = useParams();
   useEffect(() => {
-    dispatch(fetchSingleUser(id));
+    dispatch(fetchSingleUser({ id }));
     // eslint-disable-next-line
   }, [id]);
 

@@ -4,7 +4,7 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, } from 'react-redux';
-import { fetchUsers } from "../../../slices/users";
+import { fetchUsers } from "../../../features/guest/guestSlice";
 import styled from 'styled-components';
 
 const RoleSubSections = ({ role, roleData, country, city, roleCategories, roleCategoriesUpdate, setCity, setCountry }) => {

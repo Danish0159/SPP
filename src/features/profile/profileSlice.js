@@ -18,6 +18,8 @@ const initialState = {
   user: null,
   isLoading: false,
   isSuccess: false,
+  conditionalFlag: null,
+  projectsFlag: null,
 };
 
 export const profileCreation = createAsyncThunk('profile/profileCreation', profileCreationThunk);
@@ -36,6 +38,12 @@ const profileSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
     },
+    updateConditionalFlag: (state, { payload }) => {
+      state.conditionalFlag = payload;
+    },
+    updateProjectsFlag: (state, { payload }) => {
+      state.projectsFlag = payload;
+    },
   },
   extraReducers: {
     [profileCreation.pending]: (state) => {
@@ -50,10 +58,16 @@ const profileSlice = createSlice({
       addUserToLocalStorage(user);
 
       toast.success(payload.message);
+
+      state.conditionalFlag = null;
+      state.projectsFlag = null;
     },
     [profileCreation.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
+
+      state.conditionalFlag = null;
+      state.projectsFlag = null;
     },
 
     [getCommunityUser.pending]: (state) => {
@@ -134,5 +148,5 @@ const profileSlice = createSlice({
   },
 });
 
-export const { reset } = profileSlice.actions;
+export const { reset, updateConditionalFlag, updateProjectsFlag } = profileSlice.actions;
 export default profileSlice.reducer;

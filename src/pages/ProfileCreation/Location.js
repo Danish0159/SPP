@@ -6,7 +6,7 @@ import { Field } from 'formik'
 
 export default function Location(props) {
   const { conditionalFlag } = useSelector(
-    (state) => state.auth
+    (state) => state.profile
   );
   const {
     formField: { country, city },

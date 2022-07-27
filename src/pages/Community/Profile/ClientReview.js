@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
 import styled from "styled-components";
 import logo from '../../../images/logo3.png'
-import { fetchSingleProject, reset } from '../../../slices/users';
-import { toast } from 'react-toastify';
 import Spinner from '../../../components/Spinner';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Gallery } from '../../../components/GuestFlow';
 import ReviewForm from '../../../components/Community/Profile/ReviewForm';
+import { fetchSingleProject } from '../../../features/guest/guestSlice';
 
 const ClientReview = () => {
     // State.
-    const { single_project, isLoading, isError, isSuccess, message } =
-        useSelector((state) => state.users);
+    const { single_project, isLoading, } = useSelector((state) => state.guest);
     const dispatch = useDispatch();
     const { userId, id } = useParams();
 
@@ -21,16 +19,6 @@ const ClientReview = () => {
         // eslint-disable-next-line
     }, [id]);
 
-    useEffect(() => {
-        if (isError) {
-            toast.error(message);
-            dispatch(reset());
-        }
-        if (isSuccess) {
-            dispatch(reset());
-        }
-    }, [isError, isSuccess, message, dispatch]);
-
     if (isLoading) {
         return (
             <div className="section-100vh">
@@ -38,7 +26,6 @@ const ClientReview = () => {
             </div>
         );
     }
-
     if (single_project.data) {
         return (
             <Wrapper>

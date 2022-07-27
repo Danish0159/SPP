@@ -8,10 +8,10 @@ import { useSelector } from "react-redux";
 
 export default function Portfolio(props) {
   const { projectsFlag } = useSelector(
-    (state) => state.auth
+    (state) => state.profile
   );
 
-  //Brute Force Solution (Optamize the Solution).
+  // Brute Force Solution (Optamize the Solution).
   const {
     formField: {
       projectName1,

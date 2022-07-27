@@ -1,28 +1,19 @@
 import React, { useEffect } from "react";
 import { BackToProfile, Table } from "../GuestFlow";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { fetchProjects, reset } from "../../slices/users";
+import { fetchProjects } from "../../features/guest/guestSlice";
 
 const Projects = () => {
   const dispatch = useDispatch();
-
-  //State.
-  const { projects, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.users
+  const { projects, isLoading, } = useSelector(
+    (state) => state.guest
   );
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-    dispatch(reset());
-  }, [isError, isSuccess, message, dispatch]);
 
   const { id } = useParams();
   useEffect(() => {
-    dispatch(fetchProjects(id));
+    dispatch(fetchProjects({ id }));
     // eslint-disable-next-line
   }, [id]);
 

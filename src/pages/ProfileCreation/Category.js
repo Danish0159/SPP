@@ -1,4 +1,3 @@
-// Desinger && Consultant.
 import React from "react";
 import { useSelector } from "react-redux";
 import { SelectField, SelectFieldSetConditional } from "../../components/ProfileCreation/FormFields";
@@ -10,7 +9,7 @@ export default function Category(props) {
     formField: { category, subCategory },
   } = props;
   const { conditionalFlag } = useSelector(
-    (state) => state.auth
+    (state) => state.profile
   );
 
   const user = getUserFromLocalStorage();

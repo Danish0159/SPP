@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "../../images/logo3.png";
 // Logout
-import { logout, reset } from "../../slices/auth";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 // Logout Drop Down.

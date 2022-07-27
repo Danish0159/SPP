@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Footer, Spinner } from "../../components";
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { reset } from '../../slices/users';
+import { reset } from '../../features/guest/guestSlice';
 import { toast } from 'react-toastify';
 
 const HomePage = () => {
@@ -23,22 +23,23 @@ const HomePage = () => {
     const [city, setCity] = useState("City");
 
     //State. (API Call IN RoleSubSections Component).
-    const { isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.users
+    const { isLoading, isSuccess, isError } = useSelector(
+        (state) => state.guest
     );
 
     useEffect(() => {
         if (isError) {
-            toast.error(message);
+            toast.error(isError);
+            dispatch(reset());
         }
         if (isSuccess) {
             history.push("/Users");
+            dispatch(reset());
+            setCountry("Country");
+            setCity("City");
         }
-        setCountry("Country");
-        setCity("City");
-        dispatch(reset());
         // eslint-disable-next-line
-    }, [isError, isSuccess, message, dispatch]);
+    }, [isSuccess, isError]);
 
     if (isLoading) {
         return (

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { at } from "lodash";
 import { useField } from "formik";
 import { useDispatch } from "react-redux";
-import { updateConditionalFlag } from "../../../slices/auth";
+import { updateConditionalFlag } from "../../../features/profile/profileSlice";
 import { FormControl, Select, MenuItem } from "@mui/material";
 import { styles } from '../../../components/Shared/styles';
 

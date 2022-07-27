@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Table, Buttons } from "../GuestFlow";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchUsers, reset } from "../../slices/users";
+import { fetchUsers, reset } from "../../features/guest/guestSlice";
 import Spinner from "../Spinner";
 import styled from "styled-components";
 
@@ -30,8 +30,8 @@ const Users = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const { users, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.users
+  const { users, isLoading, isSuccess, isError } = useSelector(
+    (state) => state.guest
   );
 
   // If User changes subCategory. (But Prevent on first render.)
@@ -52,7 +52,7 @@ const Users = () => {
     if (isSuccess) {
       dispatch(reset());
     }
-  }, [isError, isSuccess, message, dispatch]);
+  }, [isSuccess, isError]);
 
   if (isLoading) {
     return (
