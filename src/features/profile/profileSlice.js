@@ -5,10 +5,12 @@ import {
   getUserFromLocalStorage,
 } from '../../utils/localStorage';
 import {
-  profileCreationThunk,
+  profileCreationThunkEn,
+  profileCreationThunkAr,
   addProjectThunk,
   getCommunityUserThunk,
-  updateProfileThunk,
+  updateProfileThunkEn,
+  updateProfileThunkAr,
   deleteProjectThunk,
   updateProjectThunk,
   reviewProjectThunk,
@@ -22,9 +24,11 @@ const initialState = {
   projectsFlag: null,
 };
 
-export const profileCreation = createAsyncThunk('profile/profileCreation', profileCreationThunk);
+export const profileCreationEn = createAsyncThunk('profile/profileCreationEn', profileCreationThunkEn);
+export const profileCreationAr = createAsyncThunk('profile/profileCreationAr', profileCreationThunkAr);
 export const getCommunityUser = createAsyncThunk('profile/getCommunityUser', getCommunityUserThunk);
-export const updateProfile = createAsyncThunk('profile/updateProfile', updateProfileThunk);
+export const updateProfileEn = createAsyncThunk('profile/updateProfileEn', updateProfileThunkEn);
+export const updateProfileAr = createAsyncThunk('profile/updateProfileAr', updateProfileThunkAr);
 export const deleteProject = createAsyncThunk('profile/deleteProject', deleteProjectThunk);
 export const updateProject = createAsyncThunk('profile/updateProject', updateProjectThunk);
 export const addProject = createAsyncThunk('profile/addProject', addProjectThunk);
@@ -46,10 +50,10 @@ const profileSlice = createSlice({
     },
   },
   extraReducers: {
-    [profileCreation.pending]: (state) => {
+    [profileCreationEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [profileCreation.fulfilled]: (state, { payload }) => {
+    [profileCreationEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.isSuccess = true;
 
@@ -62,14 +66,36 @@ const profileSlice = createSlice({
       state.conditionalFlag = null;
       state.projectsFlag = null;
     },
-    [profileCreation.rejected]: (state, { payload }) => {
+    [profileCreationEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
 
       state.conditionalFlag = null;
       state.projectsFlag = null;
     },
+    [profileCreationAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [profileCreationAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
 
+      const user = getUserFromLocalStorage();
+      user.profile = true;
+      addUserToLocalStorage(user);
+
+      toast.success(payload.message);
+
+      state.conditionalFlag = null;
+      state.projectsFlag = null;
+    },
+    [profileCreationAr.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+
+      state.conditionalFlag = null;
+      state.projectsFlag = null;
+    },
     [getCommunityUser.pending]: (state) => {
       state.isLoading = true;
     },
@@ -82,15 +108,27 @@ const profileSlice = createSlice({
       toast.error(payload);
     },
 
-    [updateProfile.pending]: (state) => {
+    [updateProfileEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [updateProfile.fulfilled]: (state, { payload }) => {
+    [updateProfileEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       toast.success(payload.message);
       state.user = payload;
     },
-    [updateProfile.rejected]: (state, { payload }) => {
+    [updateProfileEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+    [updateProfileAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updateProfileAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.success(payload.message);
+      state.user = payload;
+    },
+    [updateProfileAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },

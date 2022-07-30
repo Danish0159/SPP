@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import {
   addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage,
 } from '../../utils/localStorage';
-import { loginUserThunk, registerUserThunk, } from './userThunk';
+import { loginUserThunk, registerUserThunkEn, registerUserThunkAr } from './userThunk';
 
 const initialState = {
   isLoading: false,
@@ -11,7 +11,8 @@ const initialState = {
   user: getUserFromLocalStorage(),
 };
 
-export const registerUser = createAsyncThunk('user/registerUser', registerUserThunk);
+export const registerUserEn = createAsyncThunk('user/registerUserEn', registerUserThunkEn);
+export const registerUserAr = createAsyncThunk('user/registerUserAr', registerUserThunkAr);
 export const loginUser = createAsyncThunk('user/loginUser', loginUserThunk);
 
 const userSlice = createSlice({
@@ -28,15 +29,27 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [registerUser.pending]: (state) => {
+    [registerUserEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [registerUser.fulfilled]: (state, { payload }) => {
+    [registerUserEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.isSuccess = true;
       toast.success(payload.message);
     },
-    [registerUser.rejected]: (state, { payload }) => {
+    [registerUserEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+    [registerUserAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [registerUserAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      toast.success(payload.message);
+    },
+    [registerUserAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
@@ -46,10 +59,13 @@ const userSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       const user = {
-        name: payload.user.name,
+        userId: payload.user._id,
+        name_en: payload.user.name_en,
+        name_ar: payload.user.name_ar,
         token: payload.token,
         profile: payload.user.profile,
-        role: payload.user.role,
+        role_en: payload.user.role_en,
+        role_ar: payload.user.role_ar
       }
       state.user = user;
       addUserToLocalStorage(user);

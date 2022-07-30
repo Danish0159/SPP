@@ -2,9 +2,20 @@ import { customFetchProfile } from '../../utils/axios';
 import { checkStatus, checkError } from '../../utils/helpers';
 import axios from "axios";
 
-export const profileCreationThunk = async (profile, thunkAPI) => {
+export const profileCreationThunkEn = async (profile, thunkAPI) => {
   try {
-    const resp = await customFetchProfile.post('/profile/createprofile', profile);
+    const resp = await customFetchProfile.post('/profile/createprofileen', profile);
+    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
+    return resp.data;
+  } catch (error) {
+    const message = checkError(error);
+    return thunkAPI.rejectWithValue(message);
+  }
+};
+
+export const profileCreationThunkAr = async (profile, thunkAPI) => {
+  try {
+    const resp = await customFetchProfile.post('/profile/createprofilear', profile);
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {
@@ -24,9 +35,21 @@ export const getCommunityUserThunk = async (thunkAPI) => {
   }
 };
 
-export const updateProfileThunk = async ({ profilePhoto, name, email, phoneNumber, role, category, subCategory, id }, thunkAPI) => {
+export const updateProfileThunkEn = async ({ profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar, id }, thunkAPI) => {
   try {
-    const resp = await customFetchProfile.patch(`/profile/updateprofile/${id}`, { profilePhoto, name, email, phoneNumber, role, category, subCategory, });
+    const resp = await customFetchProfile.patch(`/profile/updateprofileen/${id}`, { profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar });
+    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
+    return resp.data;
+  } catch (error) {
+    const message = checkError(error);
+    return thunkAPI.rejectWithValue(message);
+  }
+};
+
+
+export const updateProfileThunkAr = async ({ profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar, id }, thunkAPI) => {
+  try {
+    const resp = await customFetchProfile.patch(`/profile/updateprofilear/${id}`, { profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar });
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {
@@ -71,7 +94,7 @@ export const addProjectThunk = async ({ projectName, location, images, id }, thu
 export const reviewProjectThunk = async ({ name, title, stars, phoneNumber, review, profileId, projectId }, thunkAPI) => {
   try {
     // No Header Needed for reviewAPI (So we are using axios direct).
-    const resp = await axios.patch(`https://warm-cove-25020.herokuapp.com/api/profile/review/${profileId}/${projectId}`, { name, title, stars, phoneNumber, review });
+    const resp = await axios.patch(`https://maqawaltemp.herokuapp.com/api/profile/review/${profileId}/${projectId}`, { name, title, stars, phoneNumber, review });
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {

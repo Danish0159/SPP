@@ -3,29 +3,44 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
-import { theme } from './components/Shared/styles';
+import { theme } from './Shared/styles';
+import ErrorPage from "./ErrorPage";
 
 // Public Pages. 
-import { LoginPage, SignupPage, ErrorPage } from "./pages";
+import { LoginPageEn, SignupPageEn} from "./pages_en";
+import { LoginPageAr, SignupPageAr} from "./pages_ar";
 
 // Flow 1 (Guest Flow)
 import {
-  HomePage,
-  UsersPage,
-  SingleUserPage,
-  ProjectsPage,
-  SingleProjectPage,
-} from "./pages/GuestFlow";
+  HomePageEn,
+  UsersPageEn,
+  SingleUserPageEn,
+  ProjectsPageEn,
+  SingleProjectPageEn,
+} from "./pages_en/GuestFlow";
+
+import {
+  HomePageAr,
+  UsersPageAr,
+  SingleUserPageAr,
+  ProjectsPageAr,
+  SingleProjectPageAr,
+} from "./pages_ar/GuestFlow";
 
 // Flow 2 (ProfileCreation Flow)
-import { JoinUs, Driver } from "./pages/ProfileCreation";
+import { JoinUsEn, DriverEn } from "./pages_en/ProfileCreation";
+import { JoinUsAr, DriverAr } from "./pages_ar/ProfileCreation";
 
 // Flow 3 (Community Flow)
-import { FeedDriver } from "./pages/Community/Feed";
-import { ProfileDriver, ClientReview } from "./pages/Community/Profile";
+import { FeedDriverEn } from "./pages_en/Community/Feed";
+import { ProfileDriverEn, ClientReviewEn } from "./pages_en/Community/Profile";
+
+import { FeedDriverAr } from "./pages_ar/Community/Feed";
+import { ProfileDriverAr, ClientReviewAr } from "./pages_ar/Community/Profile";
 
 // Private Routes.
-import { PrivateWithOutProfile, PrivateWithProfile, PrivateWithUser } from "./pages/ProtectedRoutes";
+import { PrivateWithOutProfileEn, PrivateWithProfileEn, PrivateWithUserEn } from "./pages_en/ProtectedRoutes";
+import { PrivateWithOutProfileAr, PrivateWithProfileAr, PrivateWithUserAr } from "./pages_ar/ProtectedRoutes";
 
 const App = () => {
 
@@ -36,69 +51,143 @@ const App = () => {
           <Switch>
             {/* ----------------------------------------------- */}
             {/* Cannot Access login+SignUp Page If user is already loggedIn */}
-            <PrivateWithUser
+            <PrivateWithUserEn
               exact
               path="/Login"
-              component={LoginPage}
-            ></PrivateWithUser>
-            <PrivateWithUser
+              component={LoginPageEn}
+            ></PrivateWithUserEn>
+
+            <PrivateWithUserAr
+              exact
+              path="/Loginar"
+              component={LoginPageAr}
+            ></PrivateWithUserAr>
+
+            <PrivateWithUserEn
               exact
               path="/Signup"
-              component={SignupPage}
-            ></PrivateWithUser>
+              component={SignupPageEn}
+            ></PrivateWithUserEn>
+
+            <PrivateWithUserAr
+              exact
+              path="/Signupar"
+              component={SignupPageAr}
+            ></PrivateWithUserAr>
 
             {/* ----------------------------------------------- */}
             {/* Guest Flow (Public) */}
+
             <Route exact path="/">
-              <HomePage></HomePage>
+              <HomePageEn></HomePageEn>
             </Route>
+
+            <Route exact path="/ar">
+              <HomePageAr></HomePageAr>
+            </Route>
+
             <Route exact path="/Users">
-              <UsersPage></UsersPage>
+              <UsersPageEn></UsersPageEn>
             </Route>
+
+            <Route exact path="/Usersar">
+              <UsersPageAr></UsersPageAr>
+            </Route>
+
             <Route exact path="/Users/:id">
-              <SingleUserPage></SingleUserPage>
+              <SingleUserPageEn></SingleUserPageEn>
             </Route>
+
+            <Route exact path="/Usersar/:id">
+              <SingleUserPageAr></SingleUserPageAr>
+            </Route>
+
             <Route exact path="/Projects/:id">
-              <ProjectsPage></ProjectsPage>
+              <ProjectsPageEn></ProjectsPageEn>
             </Route>
+
+            <Route exact path="/Projectsar/:id">
+              <ProjectsPageAr></ProjectsPageAr>
+            </Route>
+
             <Route exact path="/Projects/:userId/:id">
-              <SingleProjectPage></SingleProjectPage>
+              <SingleProjectPageEn></SingleProjectPageEn>
             </Route>
+
+            <Route exact path="/Projectsar/:userId/:id">
+              <SingleProjectPageAr></SingleProjectPageAr>
+            </Route>
+
             {/* ----------------------------------------------- */}
             {/* NewUser (Can Access if Profile is Not Created). */}
-            <PrivateWithProfile
+
+            <PrivateWithProfileEn
               exact
               path="/JoinUs"
-              component={JoinUs}
-            ></PrivateWithProfile>
+              component={JoinUsEn}
+            ></PrivateWithProfileEn>
 
-            <PrivateWithProfile
+            <PrivateWithProfileAr
+              exact
+              path="/JoinUsar"
+              component={JoinUsAr}
+            ></PrivateWithProfileAr>
+
+            <PrivateWithProfileEn
               exact
               path="/RegistrationPage"
-              component={Driver}
-            ></PrivateWithProfile>
+              component={DriverEn}
+            ></PrivateWithProfileEn>
+
+            <PrivateWithProfileAr
+              exact
+              path="/RegistrationPagear"
+              component={DriverAr}
+            ></PrivateWithProfileAr>
+
             {/* ----------------------------------------------- */}
             {/* ExistingUser (Can Access if Profile is Created). */}
-            <PrivateWithOutProfile
+
+            <PrivateWithOutProfileEn
               exact
               path="/HomeFeed"
-              component={FeedDriver}
-            ></PrivateWithOutProfile>
+              component={FeedDriverEn}
+            ></PrivateWithOutProfileEn>
 
-            <PrivateWithOutProfile
+            <PrivateWithOutProfileAr
+              exact
+              path="/HomeFeedar"
+              component={FeedDriverAr}
+            ></PrivateWithOutProfileAr>
+
+            <PrivateWithOutProfileEn
               exact
               path="/Profile"
-              component={ProfileDriver}
-            ></PrivateWithOutProfile>
+              component={ProfileDriverEn}
+            ></PrivateWithOutProfileEn>
+
+            <PrivateWithOutProfileAr
+              exact
+              path="/Profilear"
+              component={ProfileDriverAr}
+            ></PrivateWithOutProfileAr>
+
             {/* ----------------------------------------------- */}
             {/* End Of Private Routes. */}
             {/* Public Route(For Giving Reviews) */}
+
             <Route exact path="/Review/:userId/:id">
-              <ClientReview></ClientReview>
+              <ClientReviewEn></ClientReviewEn>
             </Route>
+
+            <Route exact path="/Reviewar/:userId/:id">
+              <ClientReviewAr></ClientReviewAr>
+            </Route>
+
             <Route exact path="*">
               <ErrorPage></ErrorPage>
             </Route>
+
           </Switch>
         </ThemeProvider>
       </Router>

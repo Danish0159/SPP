@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import {
-  fetchUsersThunk,
+  fetchUsersThunkEn,
+  fetchUsersThunkAr,
   fetchSingleUserThunk,
   fetchProjectsThunk,
   fetchSingleProjectThunk,
@@ -17,7 +18,8 @@ const initialState = {
   isError: false,
 };
 
-export const fetchUsers = createAsyncThunk('guest/fetchUsers', fetchUsersThunk);
+export const fetchUsersEn = createAsyncThunk('guest/fetchUsersEn', fetchUsersThunkEn);
+export const fetchUsersAr = createAsyncThunk('guest/fetchUsersAr', fetchUsersThunkAr);
 export const fetchSingleUser = createAsyncThunk('guest/fetchSingleUser', fetchSingleUserThunk);
 export const fetchProjects = createAsyncThunk('guest/fetchProjects', fetchProjectsThunk);
 export const fetchSingleProject = createAsyncThunk('guest/fetchSingleProject', fetchSingleProjectThunk);
@@ -33,20 +35,32 @@ const guestSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUsers.pending]: (state) => {
+    [fetchUsersEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [fetchUsers.fulfilled]: (state, { payload }) => {
+    [fetchUsersEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.users = payload;
     },
-    [fetchUsers.rejected]: (state, { payload }) => {
+    [fetchUsersEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.isError = payload;
       state.users = null;
     },
-
+    [fetchUsersAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchUsersAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.users = payload;
+    },
+    [fetchUsersAr.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isError = payload;
+      state.users = null;
+    },
     [fetchSingleUser.pending]: (state) => {
       state.isLoading = true;
     },
