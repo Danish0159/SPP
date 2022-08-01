@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import loginImage from "../images/Login.png";
 import { TextField } from "@mui/material";
 import { styles } from '../Shared/styles';
-import { loginUser } from "../features/user/userSlice";
+import { loginUserEn } from "../features/user/userSlice";
 import { getUserFromLocalStorage } from "../utils/localStorage";
 
 const initialState = {
@@ -43,7 +43,7 @@ const Login = () => {
       toast.error("Password is too short - should be 8 chars minimum.");
       return;
     }
-    dispatch(loginUser({ email, password, }));
+    dispatch(loginUserEn({ email, password, }));
   };
 
   useEffect(() => {

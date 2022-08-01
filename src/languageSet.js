@@ -11,11 +11,14 @@ const languageSet = () => {
   }
   else {
 
-    // var userLanguage = window.navigator.userLanguage || window.navigator.language;
+    let userLanguage = window.navigator.userLanguage || window.navigator.language;
 
-    // localStorage.setItem('lang', userLanguage);
+    localStorage.setItem('lang', userLanguage);
 
-    localStorage.setItem('lang', "en");
+    if (userLanguage === 'ar') {
+      document.body.dir = "rtl";
+    }
+
   }
 
 

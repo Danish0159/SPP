@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { registrationFormModel } from "./registrationFormModel";
+import {registrationFormModel} from "./registrationFormModel";
 const {
     formField: {
         category,
@@ -37,12 +37,8 @@ const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const validationSchema = [
     Yup.object().shape({
-        [category.name]: Yup.object()
-            .nullable()
-            .required(`${category.requiredErrorMsg}`),
-        [subCategory.name]: Yup.object()
-            .nullable()
-            .required(`${subCategory.requiredErrorMsg}`),
+        [category.name]: Yup.object().nullable().required(`${category.requiredErrorMsg}`),
+        [subCategory.name]: Yup.object().nullable().required(`${subCategory.requiredErrorMsg}`),
     }),
 
     Yup.object().shape({
@@ -51,7 +47,7 @@ export const validationSchema = [
             .required(`${experience.requiredErrorMsg}`),
 
         [projects.name]: Yup.number()
-            .min(1, "Min value 5.").max(5, "Max value 5.")
+            .min(1, "Minimum 1 Project Must be Added").max(5, "Maximum 5 Projects Can be Added.")
             .required(`${projects.requiredErrorMsg}`),
 
         [employees.name]: Yup.number()

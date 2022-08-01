@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { theme } from './Shared/styles';
 import ErrorPage from "./ErrorPage";
+import CheckHomePage from "./CheckHomePage";
 
 // Public Pages. 
 import { LoginPageEn, SignupPageEn} from "./pages_en";
@@ -44,6 +45,7 @@ import { PrivateWithOutProfileAr, PrivateWithProfileAr, PrivateWithUserAr } from
 
 const App = () => {
 
+
   return (
     <>
       <Router>
@@ -78,13 +80,21 @@ const App = () => {
             {/* ----------------------------------------------- */}
             {/* Guest Flow (Public) */}
 
-            <Route exact path="/">
+
+            <CheckHomePage
+            exact
+            path="/"
+            component={HomePageEn}
+            >
+            </CheckHomePage>
+
+            {/* <Route exact path="/">
               <HomePageEn></HomePageEn>
-            </Route>
+            </Route> */}
 
             <Route exact path="/ar">
               <HomePageAr></HomePageAr>
-            </Route>
+            </Route> 
 
             <Route exact path="/Users">
               <UsersPageEn></UsersPageEn>

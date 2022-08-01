@@ -4,7 +4,8 @@ import { Reviews, Gallery, BackToProfile } from "../GuestFlow";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { fetchSingleProject } from "../../features/guest/guestSlice";
+import { fetchSingleProjectEn } from "../../features/guest/guestSlice";
+import { Rating } from "@mui/material";
 
 const SingleProject = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const SingleProject = () => {
 
   const { userId, id } = useParams();
   useEffect(() => {
-    dispatch(fetchSingleProject({ userId, id }));
+    dispatch(fetchSingleProjectEn({ userId, id }));
     // eslint-disable-next-line
   }, [id]);
 
@@ -42,8 +43,10 @@ const SingleProject = () => {
           <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].location}
           </span>
           </p>
-          <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].description ? single_project.data.portfolio[0].description : null}
-          </span></p>
+          {single_project.data.portfolio[0].description && <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].description}</span></p>}
+          
+          {single_project.data.portfolio[0].noOfStars && <p className="project__subtitle">Project Rating: <span className="project__description"><Rating precision={0.5} name="read-only" value={single_project.data.portfolio[0].noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
+          </span></p>}
         </div>
 
         <div className="section__blue">
@@ -53,7 +56,12 @@ const SingleProject = () => {
 
         <div className="section__white">
           <h3 className="section__title">Client Review</h3>
-          <Reviews review={single_project.data.portfolio[0].review ? single_project.data.portfolio[0].review : null} title={single_project.data.portfolio[0].reviwerTitle ? single_project.data.portfolio[0].reviwerTitle : null} single={true}></Reviews>
+          <Reviews 
+          review={single_project.data.portfolio[0].review ? single_project.data.portfolio[0].review : null} 
+          title={single_project.data.portfolio[0].reviwerTitle ? single_project.data.portfolio[0].reviwerTitle : null} 
+          rating={single_project.data.portfolio[0].noOfStars ? single_project.data.portfolio[0].noOfStars : null}
+          single={true}>
+          </Reviews>
         </div>
       </Wrapper >
     );
@@ -81,12 +89,13 @@ const Wrapper = styled.section`
     margin-left: 2rem;
     font-weight: 700;
     }
-  .project__name,
-  .project__location,
-  .project__description {
-    font-size: 2rem;
-    margin: 1.3rem 0rem;
-    margin-left: 2rem;
-    font-weight: 500;
-  }
+    .project__name,
+    .project__location,
+    .project__description,
+    .project__stars {
+      font-size: 2rem;
+      margin: 1.3rem 0rem;
+      margin-left: 2rem;
+      font-weight: 500;
+    }
 `;

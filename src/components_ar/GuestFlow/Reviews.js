@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Rating } from "@mui/material";
 
-const Reviews = ({ single, review, title, }) => {
+const Reviews = ({ single, review, title, rating }) => {
   // Single Review For Single Project.
   if (single) {
     return (
@@ -12,6 +13,8 @@ const Reviews = ({ single, review, title, }) => {
               {review}
             </p>
             <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>{title ? title : "لم يتم تقديم أي تعليقات"}</h1>
+            <br />
+            <Rating precision={0.5} name="read-only" value={rating} style={{ fontSize: "1.9rem" }} readOnly />
           </div>
         </div>
       </Wrapper >

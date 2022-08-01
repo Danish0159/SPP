@@ -33,6 +33,7 @@ export default function Portfolio(props) {
     },
   } = props;
 
+
   const [images1, setImages1] = useState([]);
   const [images2, setImages2] = useState([]);
   const [images3, setImages3] = useState([]);
@@ -201,6 +202,7 @@ export default function Portfolio(props) {
 
                     reader.onload = () => {
                       step.setImage((images) => [...images, reader.result]);
+
                     };
 
                     reader.onerror = function () {
@@ -225,11 +227,11 @@ export default function Portfolio(props) {
                       <p className="drop">
                         Drag 'n' drop only image files here, or click to
                         select files <br />{" "}
-                        <p className="thumbPadding">
+                        <small className="thumbPadding">
                           {" "}
                           (6 files each of 10MB are the maximum number of
                           files you can drop here)
-                        </p>
+                        </small>
                       </p>
                     )}
                   </div>

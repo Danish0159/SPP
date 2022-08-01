@@ -4,7 +4,7 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components_en/Spinner";
 import { styles } from '../../../Shared/styles';
-import { addProject } from "../../../features/profile/profileSlice";
+import { addProjectEn } from "../../../features/profile/profileSlice";
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
@@ -23,7 +23,7 @@ const AddProject = () => {
         e.preventDefault();
         //  API CALL.
         dispatch(
-            addProject({
+            addProjectEn({
                 projectName,
                 location,
                 images,

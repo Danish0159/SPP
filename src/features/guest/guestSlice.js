@@ -3,9 +3,12 @@ import { toast } from 'react-toastify';
 import {
   fetchUsersThunkEn,
   fetchUsersThunkAr,
-  fetchSingleUserThunk,
-  fetchProjectsThunk,
-  fetchSingleProjectThunk,
+  fetchSingleUserThunkEn,
+  fetchSingleUserThunkAr,
+  fetchProjectsThunkEn,
+  fetchProjectsThunkAr,
+  fetchSingleProjectThunkEn,
+  fetchSingleProjectThunkAr,
 } from './guestThunk';
 
 const initialState = {
@@ -20,9 +23,12 @@ const initialState = {
 
 export const fetchUsersEn = createAsyncThunk('guest/fetchUsersEn', fetchUsersThunkEn);
 export const fetchUsersAr = createAsyncThunk('guest/fetchUsersAr', fetchUsersThunkAr);
-export const fetchSingleUser = createAsyncThunk('guest/fetchSingleUser', fetchSingleUserThunk);
-export const fetchProjects = createAsyncThunk('guest/fetchProjects', fetchProjectsThunk);
-export const fetchSingleProject = createAsyncThunk('guest/fetchSingleProject', fetchSingleProjectThunk);
+export const fetchSingleUserEn = createAsyncThunk('guest/fetchSingleUserEn', fetchSingleUserThunkEn);
+export const fetchSingleUserAr = createAsyncThunk('guest/fetchSingleUserAr', fetchSingleUserThunkAr);
+export const fetchProjectsEn = createAsyncThunk('guest/fetchProjectsEn', fetchProjectsThunkEn);
+export const fetchProjectsAr = createAsyncThunk('guest/fetchProjectsAr', fetchProjectsThunkAr);
+export const fetchSingleProjectEn = createAsyncThunk('guest/fetchSingleProjectEn', fetchSingleProjectThunkEn);
+export const fetchSingleProjectAr = createAsyncThunk('guest/fetchSingleProjectAr', fetchSingleProjectThunkAr);
 
 const guestSlice = createSlice({
   name: 'guest',
@@ -48,6 +54,7 @@ const guestSlice = createSlice({
       state.isError = payload;
       state.users = null;
     },
+
     [fetchUsersAr.pending]: (state) => {
       state.isLoading = true;
     },
@@ -61,38 +68,80 @@ const guestSlice = createSlice({
       state.isError = payload;
       state.users = null;
     },
-    [fetchSingleUser.pending]: (state) => {
+
+    [fetchSingleUserEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [fetchSingleUser.fulfilled]: (state, { payload }) => {
+    [fetchSingleUserEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
+      state.isSuccess = true;
       state.single_user = payload;
     },
-    [fetchSingleUser.rejected]: (state, { payload }) => {
+    [fetchSingleUserEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
-      toast.error(payload);
+      state.isError = payload;
+      state.single_user = {};
     },
 
-    [fetchProjects.pending]: (state) => {
+    [fetchSingleUserAr.pending]: (state) => {
       state.isLoading = true;
     },
-    [fetchProjects.fulfilled]: (state, { payload }) => {
+    [fetchSingleUserAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.single_user = payload;
+    },
+    [fetchSingleUserAr.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isError = payload;
+      state.single_user = {};
+    },
+
+    [fetchProjectsEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchProjectsEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.projects = payload;
     },
-    [fetchProjects.rejected]: (state, { payload }) => {
+    [fetchProjectsEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
 
-    [fetchSingleProject.pending]: (state) => {
+    
+    [fetchProjectsAr.pending]: (state) => {
       state.isLoading = true;
     },
-    [fetchSingleProject.fulfilled]: (state, { payload }) => {
+    [fetchProjectsAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.projects = payload;
+    },
+    [fetchProjectsAr.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [fetchSingleProjectEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchSingleProjectEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.single_project = payload;
     },
-    [fetchSingleProject.rejected]: (state, { payload }) => {
+    [fetchSingleProjectEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [fetchSingleProjectAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchSingleProjectAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.single_project = payload;
+    },
+    [fetchSingleProjectAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },

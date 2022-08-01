@@ -3,7 +3,7 @@ import { BackToProfile, Table } from "../GuestFlow";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { fetchProjects } from "../../features/guest/guestSlice";
+import { fetchProjectsEn } from "../../features/guest/guestSlice";
 
 const Projects = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Projects = () => {
 
   const { id } = useParams();
   useEffect(() => {
-    dispatch(fetchProjects({ id }));
+    dispatch(fetchProjectsEn({ id }));
     // eslint-disable-next-line
   }, [id]);
 

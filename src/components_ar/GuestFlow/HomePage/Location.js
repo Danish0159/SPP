@@ -61,25 +61,30 @@ const Location = ({ country, city, setCountry, setCity }) => {
                                 item = "en";
                             }
 
-                            localStorage.setItem('lang', item);
 
                             if (item === "ar") {
 
-                                if (location.pathname.includes("/Users")) {
-                                    history.push(`${location.pathname.replace("/Users", "/Usersar")}`);
+                                if (localStorage.getItem("lang") === "ar") {
+                                    history.push(`${location.pathname}`);
                                 }
-                                else if (location.pathname.includes("/Projects")) {
-                                    history.push(`${location.pathname.replace("/Projects", "/Projectsar")}`);
-                                }
-                                else if (location.pathname.includes("/Review")) {
-                                    history.push(`${location.pathname.replace("/Review", "/Reviewar")}`);
-                                }
-                                else {
+                                else if (localStorage.getItem("lang") === "en") {
 
-                                    history.push(`${location.pathname}ar`);
-                                }
+                                    if (location.pathname.includes("/Users")) {
+                                        history.push(`${location.pathname.replace("/Users", "/Usersar")}`);
+                                    }
+                                    else if (location.pathname.includes("/Projects")) {
+                                        history.push(`${location.pathname.replace("/Projects", "/Projectsar")}`);
+                                    }
+                                    else if (location.pathname.includes("/Review")) {
+                                        history.push(`${location.pathname.replace("/Review", "/Reviewar")}`);
+                                    }
+                                    else {
 
-                                document.body.dir = "rtl";
+                                        history.push(`${location.pathname}ar`);
+                                    }
+
+                                    document.body.dir = "rtl";
+                                }
 
                             }
                             else if (item === "en") {
@@ -100,6 +105,8 @@ const Location = ({ country, city, setCountry, setCity }) => {
                                 document.body.dir = "ltr";
 
                             }
+                            localStorage.setItem('lang', item);
+
                         }}
                     >
                         <option hidden>{title}</option>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Gallery } from ".";
-import { fetchSingleUser } from "../../features/guest/guestSlice";
+import { fetchSingleUserEn } from "../../features/guest/guestSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
@@ -16,7 +16,7 @@ const SingleUser = () => {
 
   const { id } = useParams();
   useEffect(() => {
-    dispatch(fetchSingleUser({ id }));
+    dispatch(fetchSingleUserEn({ id }));
     // eslint-disable-next-line
   }, [id]);
 

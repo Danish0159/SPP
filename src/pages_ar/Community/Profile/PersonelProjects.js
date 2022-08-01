@@ -13,7 +13,7 @@ import Spinner from "../../../components_ar/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles';
-import { deleteProject, updateProject } from '../../../features/profile/profileSlice';
+import { deleteProjectAr, updateProjectAr } from '../../../features/profile/profileSlice';
 
 
 const PersonelProjects = () => {
@@ -58,7 +58,7 @@ const PersonelProjects = () => {
     // Delete Project.
     function handleDelete(projectId) {
         dispatch(
-            deleteProject({
+            deleteProjectAr({
                 profileId: user.profile._id,
                 projectId,
             })
@@ -79,7 +79,7 @@ const PersonelProjects = () => {
         e.preventDefault();
         //  API CALL.
         dispatch(
-            updateProject({
+            updateProjectAr({
                 projectName,
                 location,
                 images,
@@ -186,7 +186,7 @@ const PersonelProjects = () => {
                                             <small style={padding}>
                                                 {" "}
                                                 (الحد الأقصى لعدد الملفات هو 6 ملفات كل منها 10 ميجابايت
-                                                الملفات التي يمكنك إسقاطها هنا)
+                                                 الملفات التي يمكنك إسقاطها هنا)
                                             </small>
                                         </p>
                                     )}

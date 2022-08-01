@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Gallery } from '../../../components_en/GuestFlow';
 import ReviewForm from '../../../components_en/Community/Profile/ReviewForm';
-import { fetchSingleProject } from '../../../features/guest/guestSlice';
+import { fetchSingleProjectAr } from '../../../features/guest/guestSlice';
 
 const ClientReview = () => {
     // State.
@@ -15,7 +15,7 @@ const ClientReview = () => {
     const { userId, id } = useParams();
 
     useEffect(() => {
-        dispatch(fetchSingleProject({ userId, id }));
+        dispatch(fetchSingleProjectAr({ userId, id }));
         // eslint-disable-next-line
     }, [id]);
 
@@ -81,12 +81,17 @@ const Wrapper = styled.div`
     }
     }
     .review__left {
+     position: sticky;
+     top: 0;
+     z-index: 1;
      background-color: #424d83;
+     height: 100vh;
      flex: 0 0 32%;
      padding: 2.2rem 4rem;
      display: flex;
      flex-direction:column;
      align-items:center;
+     justify-content:center;
      @media only screen and (max-width: 850px) {
          padding: 2rem;
      }
@@ -126,7 +131,18 @@ const Wrapper = styled.div`
      }
     }
     .project__subtitle{
-        font-size: 1.8rem;
-        margin: 1.4rem 0rem;
-    }
+        font-size: 2rem;
+        color: var(--clr-black);
+        margin-bottom: 2.2rem;
+        margin-left: 2rem;
+        font-weight: 700;
+        }
+      .project__name,
+      .project__location,
+      .project__description {
+        font-size: 2rem;
+        margin: 1.3rem 0rem;
+        margin-left: 2rem;
+        font-weight: 500;
+      }
 `;

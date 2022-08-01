@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import {
   addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage,
 } from '../../utils/localStorage';
-import { loginUserThunk, registerUserThunkEn, registerUserThunkAr } from './userThunk';
+import { loginUserThunkEn, loginUserThunkAr,registerUserThunkEn, registerUserThunkAr } from './userThunk';
 
 const initialState = {
   isLoading: false,
@@ -13,7 +13,8 @@ const initialState = {
 
 export const registerUserEn = createAsyncThunk('user/registerUserEn', registerUserThunkEn);
 export const registerUserAr = createAsyncThunk('user/registerUserAr', registerUserThunkAr);
-export const loginUser = createAsyncThunk('user/loginUser', loginUserThunk);
+export const loginUserEn = createAsyncThunk('user/loginUserEn', loginUserThunkEn);
+export const loginUserAr = createAsyncThunk('user/loginUserAr', loginUserThunkAr);
 
 const userSlice = createSlice({
   name: 'user',
@@ -53,10 +54,10 @@ const userSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     },
-    [loginUser.pending]: (state) => {
+    [loginUserEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [loginUser.fulfilled]: (state, { payload }) => {
+    [loginUserEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       const user = {
         userId: payload.user._id,
@@ -70,7 +71,29 @@ const userSlice = createSlice({
       state.user = user;
       addUserToLocalStorage(user);
     },
-    [loginUser.rejected]: (state, { payload }) => {
+    [loginUserEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [loginUserAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [loginUserAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      const user = {
+        userId: payload.user._id,
+        name_en: payload.user.name_en,
+        name_ar: payload.user.name_ar,
+        token: payload.token,
+        profile: payload.user.profile,
+        role_en: payload.user.role_en,
+        role_ar: payload.user.role_ar
+      }
+      state.user = user;
+      addUserToLocalStorage(user);
+    },
+    [loginUserAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },

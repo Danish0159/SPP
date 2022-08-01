@@ -5,7 +5,7 @@ import { FormControl, Select, TextField, MenuItem, Avatar } from '@mui/material'
 import { users } from "../../../utils/constantsAr";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
-import { getCommunityUser, updateProfileAr } from '../../../features/profile/profileSlice';
+import { getCommunityUserAr, updateProfileAr } from '../../../features/profile/profileSlice';
 import Spinner from "../../../components_ar/Spinner";
 import { styles } from '../../../Shared/styles';
 import { categories, subCategories } from "../../../utils/constantsAr"
@@ -32,7 +32,7 @@ const PersonelInfo = () => {
     // state.
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getCommunityUser());
+        dispatch(getCommunityUserAr());
         // eslint-disable-next-line
     }, [])
 

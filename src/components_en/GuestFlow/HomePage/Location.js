@@ -52,6 +52,8 @@ const Location = ({ country, city, setCountry, setCity }) => {
                     <select
                         onChange={(e) => {
 
+
+
                             let item;
 
                             if (e.target.value === "العربية") {
@@ -61,7 +63,6 @@ const Location = ({ country, city, setCountry, setCity }) => {
                                 item = "en";
                             }
 
-                            localStorage.setItem('lang', item);
 
                             if (item === "ar") {
 
@@ -75,7 +76,6 @@ const Location = ({ country, city, setCountry, setCity }) => {
                                     history.push(`${location.pathname.replace("/Review", "/Reviewar")}`);
                                 }
                                 else {
-
                                     history.push(`${location.pathname}ar`);
                                 }
 
@@ -84,22 +84,31 @@ const Location = ({ country, city, setCountry, setCity }) => {
                             }
                             else if (item === "en") {
 
-                                if (location.pathname.includes("/Usersar")) {
-                                    history.push(`${location.pathname.replace("/Usersar", "/Users")}`);
+                                if (localStorage.getItem("lang") === "en") {
+                                    history.push(`${location.pathname}`);
                                 }
-                                else if (location.pathname.includes("/Projectsar")) {
-                                    history.push(`${location.pathname.replace("/Projectsar", "/Projects")}`);
-                                }
-                                else if (location.pathname.includes("/Reviewar")) {
-                                    history.push(`${location.pathname.replace("/Reviewar", "/Review")}`);
-                                }
-                                else {
-                                    history.push(`${location.pathname.slice(0, location.pathname.length - 2)}`);
-                                }
+                                else if (localStorage.getItem("lang") === "ar") {
 
-                                document.body.dir = "ltr";
+                                    if (location.pathname.includes("/Usersar")) {
+                                        history.push(`${location.pathname.replace("/Usersar", "/Users")}`);
+                                    }
+                                    else if (location.pathname.includes("/Projectsar")) {
+                                        history.push(`${location.pathname.replace("/Projectsar", "/Projects")}`);
+                                    }
+                                    else if (location.pathname.includes("/Reviewar")) {
+                                        history.push(`${location.pathname.replace("/Reviewar", "/Review")}`);
+                                    }
+                                    else {
+                                        history.push(`${location.pathname.slice(0, location.pathname.length - 2)}`);
+                                    }
+
+                                    document.body.dir = "ltr";
+                                }
 
                             }
+
+                            localStorage.setItem('lang', item);
+
                         }}
                     >
                         <option hidden>{title}</option>
@@ -126,7 +135,7 @@ const Location = ({ country, city, setCountry, setCity }) => {
                     </select>
                 </div>
             </div>
-        </Wrapper>
+        </Wrapper >
     )
 }
 

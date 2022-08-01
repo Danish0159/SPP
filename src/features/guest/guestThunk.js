@@ -23,9 +23,9 @@ export const fetchUsersThunkAr = async ({ user, category, country, city, subCate
   }
 };
 
-export const fetchSingleUserThunk = async ({ id }, thunkAPI) => {
+export const fetchSingleUserThunkEn = async ({ id }, thunkAPI) => {
   try {
-    const resp = await customFetch.get(`/public/search/${id}`);
+    const resp = await customFetch.get(`/public/searchen/${id}`);
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {
@@ -34,9 +34,9 @@ export const fetchSingleUserThunk = async ({ id }, thunkAPI) => {
   }
 };
 
-export const fetchProjectsThunk = async ({ id }, thunkAPI) => {
+export const fetchSingleUserThunkAr = async ({ id }, thunkAPI) => {
   try {
-    const resp = await customFetch.get(`/public/search/project/${id}`);
+    const resp = await customFetch.get(`/public/searchar/${id}`);
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {
@@ -45,9 +45,42 @@ export const fetchProjectsThunk = async ({ id }, thunkAPI) => {
   }
 };
 
-export const fetchSingleProjectThunk = async ({ userId, id }, thunkAPI) => {
+export const fetchProjectsThunkEn = async ({ id }, thunkAPI) => {
   try {
-    const resp = await customFetch.get(`/public/search/project/${userId}/${id}`);
+    const resp = await customFetch.get(`/public/searchen/project/${id}`);
+    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
+    return resp.data;
+  } catch (error) {
+    const message = checkError(error);
+    return thunkAPI.rejectWithValue(message);
+  }
+};
+
+export const fetchProjectsThunkAr = async ({ id }, thunkAPI) => {
+  try {
+    const resp = await customFetch.get(`/public/searchar/project/${id}`);
+    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
+    return resp.data;
+  } catch (error) {
+    const message = checkError(error);
+    return thunkAPI.rejectWithValue(message);
+  }
+};
+
+export const fetchSingleProjectThunkEn = async ({ userId, id }, thunkAPI) => {
+  try {
+    const resp = await customFetch.get(`/public/searchen/project/${userId}/${id}`);
+    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
+    return resp.data;
+  } catch (error) {
+    const message = checkError(error);
+    return thunkAPI.rejectWithValue(message);
+  }
+};
+
+export const fetchSingleProjectThunkAr = async ({ userId, id }, thunkAPI) => {
+  try {
+    const resp = await customFetch.get(`/public/searchar/project/${userId}/${id}`);
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {

@@ -51,7 +51,7 @@ export const validationSchema = [
             .required(`${experience.requiredErrorMsg}`),
 
         [projects.name]: Yup.number()
-            .min(1, "الحد الأدنى للقيمة 5.").max(5, "أقصى قيمة 5.")
+            .min(1, "يجب إضافة مشروع واحد على الأقل").max(5, "يمكن إضافة 5 مشاريع كحد أقصى.")
             .required(`${projects.requiredErrorMsg}`),
 
         [employees.name]: Yup.number()

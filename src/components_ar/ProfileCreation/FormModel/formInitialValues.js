@@ -36,8 +36,8 @@ const {
 
 
 export const formInitialValues = {
-  [category.name]: {},
-  [subCategory.name]: {},
+  [category.name]: "",
+  [subCategory.name]: "",
   [experience.name]: "",
   [projects.name]: "",
   [employees.name]: "",

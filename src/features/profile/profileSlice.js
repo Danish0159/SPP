@@ -7,13 +7,18 @@ import {
 import {
   profileCreationThunkEn,
   profileCreationThunkAr,
-  addProjectThunk,
-  getCommunityUserThunk,
+  addProjectThunkEn,
+  addProjectThunkAr,
+  getCommunityUserThunkEn,
+  getCommunityUserThunkAr,
   updateProfileThunkEn,
   updateProfileThunkAr,
-  deleteProjectThunk,
-  updateProjectThunk,
-  reviewProjectThunk,
+  deleteProjectThunkEn,
+  deleteProjectThunkAr,
+  updateProjectThunkEn,
+  updateProjectThunkAr,
+  reviewProjectThunkEn,
+  reviewProjectThunkAr,
 } from './profileThunk';
 
 const initialState = {
@@ -26,13 +31,18 @@ const initialState = {
 
 export const profileCreationEn = createAsyncThunk('profile/profileCreationEn', profileCreationThunkEn);
 export const profileCreationAr = createAsyncThunk('profile/profileCreationAr', profileCreationThunkAr);
-export const getCommunityUser = createAsyncThunk('profile/getCommunityUser', getCommunityUserThunk);
+export const getCommunityUserEn = createAsyncThunk('profile/getCommunityUserEn', getCommunityUserThunkEn);
+export const getCommunityUserAr = createAsyncThunk('profile/getCommunityUserAr', getCommunityUserThunkAr);
 export const updateProfileEn = createAsyncThunk('profile/updateProfileEn', updateProfileThunkEn);
 export const updateProfileAr = createAsyncThunk('profile/updateProfileAr', updateProfileThunkAr);
-export const deleteProject = createAsyncThunk('profile/deleteProject', deleteProjectThunk);
-export const updateProject = createAsyncThunk('profile/updateProject', updateProjectThunk);
-export const addProject = createAsyncThunk('profile/addProject', addProjectThunk);
-export const reviewProject = createAsyncThunk('profile/reviewProject', reviewProjectThunk);
+export const deleteProjectEn = createAsyncThunk('profile/deleteProjectEn', deleteProjectThunkEn);
+export const deleteProjectAr = createAsyncThunk('profile/deleteProjectAr', deleteProjectThunkAr);
+export const updateProjectEn = createAsyncThunk('profile/updateProjectEn', updateProjectThunkEn);
+export const updateProjectAr = createAsyncThunk('profile/updateProjectAr', updateProjectThunkAr);
+export const addProjectEn = createAsyncThunk('profile/addProjectEn', addProjectThunkEn);
+export const addProjectAr = createAsyncThunk('profile/addProjectAr', addProjectThunkAr);
+export const reviewProjectEn = createAsyncThunk('profile/reviewProjectEn', reviewProjectThunkEn);
+export const reviewProjectAr = createAsyncThunk('profile/reviewProjectAr', reviewProjectThunkAr);
 
 const profileSlice = createSlice({
   name: 'profile',
@@ -96,14 +106,27 @@ const profileSlice = createSlice({
       state.conditionalFlag = null;
       state.projectsFlag = null;
     },
-    [getCommunityUser.pending]: (state) => {
+
+    [getCommunityUserEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [getCommunityUser.fulfilled]: (state, { payload }) => {
+    [getCommunityUserEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.user = payload;
     },
-    [getCommunityUser.rejected]: (state, { payload }) => {
+    [getCommunityUserEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [getCommunityUserAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getCommunityUserAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.user = payload;
+    },
+    [getCommunityUserAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
@@ -114,7 +137,17 @@ const profileSlice = createSlice({
     [updateProfileEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       toast.success(payload.message);
+      const user = {
+        userId: payload.user._id,
+        name_en: payload.user.name_en,
+        name_ar: payload.user.name_ar,
+        token: payload.token,
+        profile: payload.user.profile,
+        role_en: payload.user.role_en,
+        role_ar: payload.user.role_ar
+      }
       state.user = payload;
+      addUserToLocalStorage(user);
     },
     [updateProfileEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
@@ -126,63 +159,135 @@ const profileSlice = createSlice({
     [updateProfileAr.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       toast.success(payload.message);
+      const user = {
+        userId: payload.user._id,
+        name_en: payload.user.name_en,
+        name_ar: payload.user.name_ar,
+        token: payload.token,
+        profile: payload.user.profile,
+        role_en: payload.user.role_en,
+        role_ar: payload.user.role_ar
+      }
       state.user = payload;
+      addUserToLocalStorage(user);
     },
     [updateProfileAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
 
-    [deleteProject.pending]: (state) => {
+    [deleteProjectEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [deleteProject.fulfilled]: (state, { payload }) => {
+    [deleteProjectEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       toast.success(payload.message);
       state.user = payload;
     },
-    [deleteProject.rejected]: (state, { payload }) => {
+    [deleteProjectEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
 
-    [updateProject.pending]: (state) => {
+    
+    [deleteProjectAr.pending]: (state) => {
       state.isLoading = true;
     },
-    [updateProject.fulfilled]: (state, { payload }) => {
+    [deleteProjectAr.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       toast.success(payload.message);
       state.user = payload;
     },
-    [updateProject.rejected]: (state, { payload }) => {
+    [deleteProjectAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
 
-    [addProject.pending]: (state) => {
+    [updateProjectEn.pending]: (state) => {
       state.isLoading = true;
     },
-    [addProject.fulfilled]: (state, { payload }) => {
+    [updateProjectEn.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       toast.success(payload.message);
       state.user = payload;
     },
-    [addProject.rejected]: (state, { payload }) => {
+    [updateProjectEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
 
-    [reviewProject.pending]: (state) => {
+    [updateProjectAr.pending]: (state) => {
       state.isLoading = true;
     },
-    [reviewProject.fulfilled]: (state, { payload }) => {
+    [updateProjectAr.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      toast.success("Your Review has been submitted.");
+      toast.success(payload.message);
+      state.user = payload;
     },
-    [reviewProject.rejected]: (state, { payload }) => {
+    [updateProjectAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
+
+    [addProjectEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addProjectEn.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.success(payload.message);
+      state.user = payload;
+    },
+    [addProjectEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [addProjectAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addProjectAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.success(payload.message);
+      state.user = payload;
+    },
+    [addProjectAr.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [reviewProjectEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [reviewProjectEn.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      setTimeout(() => {
+        window.location.replace("https://maqawal.com/");
+      }, 3000);
+      toast.success("Your Review has been submitted.", {autoClose:2500});
+      
+    },
+    [reviewProjectEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [reviewProjectAr.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [reviewProjectAr.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      setTimeout(() => {
+        window.location.replace("https://maqawal.com/");
+      }, 3000);
+      toast.success("تم تقديم الاستعراض الخاص بك.", {autoClose:2500});
+      
+    },
+    [reviewProjectAr.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+
   },
 });
 

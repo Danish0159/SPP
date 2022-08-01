@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import loginImage from "../images/Login.png";
 import { TextField } from "@mui/material";
 import { styles } from '../Shared/styles';
-import { loginUser } from "../features/user/userSlice";
+import { loginUserAr } from "../features/user/userSlice";
 import { getUserFromLocalStorage } from "../utils/localStorage";
 
 const initialState = {
@@ -43,7 +43,7 @@ const Login = () => {
       toast.error("كلمة المرور قصيرة جدًا - يجب ألا تقل عن 8 أحرف.");
       return;
     }
-    dispatch(loginUser({ email, password, }));
+    dispatch(loginUserAr({ email, password, }));
   };
 
   useEffect(() => {

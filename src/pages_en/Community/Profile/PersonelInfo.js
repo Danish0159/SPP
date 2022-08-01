@@ -5,7 +5,7 @@ import { FormControl, Select, TextField, MenuItem, Avatar } from '@mui/material'
 import { users } from "../../../utils/constantsEn";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
-import { getCommunityUser, updateProfileEn } from '../../../features/profile/profileSlice';
+import { getCommunityUserEn, updateProfileEn } from '../../../features/profile/profileSlice';
 import Spinner from "../../../components_en/Spinner";
 import { styles } from '../../../Shared/styles';
 import { categories, subCategories } from "../../../utils/constantsEn"
@@ -14,7 +14,7 @@ const PersonelInfo = () => {
 
     const [update, setUpdate] = useState(false);
 
-    const { user, isLoading, } = useSelector(
+    const { user, isLoading} = useSelector(
         (state) => state.profile
     );
 
@@ -32,7 +32,7 @@ const PersonelInfo = () => {
     // state.
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getCommunityUser());
+        dispatch(getCommunityUserEn());
         // eslint-disable-next-line
     }, [])
 

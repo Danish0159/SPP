@@ -13,7 +13,7 @@ import Spinner from "../../../components_en/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles';
-import { deleteProject, updateProject } from '../../../features/profile/profileSlice';
+import { deleteProjectEn, updateProjectEn } from '../../../features/profile/profileSlice';
 
 
 const PersonelProjects = () => {
@@ -58,7 +58,7 @@ const PersonelProjects = () => {
     // Delete Project.
     function handleDelete(projectId) {
         dispatch(
-            deleteProject({
+            deleteProjectEn({
                 profileId: user.profile._id,
                 projectId,
             })
@@ -79,7 +79,7 @@ const PersonelProjects = () => {
         e.preventDefault();
         //  API CALL.
         dispatch(
-            updateProject({
+            updateProjectEn({
                 projectName,
                 location,
                 images,
@@ -112,7 +112,7 @@ const PersonelProjects = () => {
                             hideProgressBar: true,
                         });
                         navigator.clipboard.writeText(`maqawal.com/Review/${user.profile._id}/${projectReviewId}`);
-                    }} className="request__link">maqawal.com./Review/{user.profile._id}{projectReviewId}</button>
+                    }} className="request__link">maqawal.com/Review/{user.profile._id}{projectReviewId}</button>
                 </div>
             </Wrapper>
         )

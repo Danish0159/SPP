@@ -3,7 +3,7 @@ import { Rating, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles'
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../Spinner';
-import { reviewProject } from '../../../features/profile/profileSlice';
+import { reviewProjectAr } from '../../../features/profile/profileSlice';
 
 const ReviewForm = ({ User, userId, id }) => {
     const [name, setName] = useState("");
@@ -20,7 +20,7 @@ const ReviewForm = ({ User, userId, id }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //  API CALL.
-        dispatch(reviewProject({
+        dispatch(reviewProjectAr({
             name,
             title,
             stars,
