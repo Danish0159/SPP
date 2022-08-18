@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Portfolio(props) {
   const { projectsFlag } = useSelector(
-    (state) => state.profile
+    (state) => state.profileEn
   );
 
   // Brute Force Solution (Optamize the Solution).
@@ -215,7 +215,6 @@ export default function Portfolio(props) {
                 accept="image/*"
                 name="heroImage"
                 multiple={true}
-                maxFiles={6}
                 maxSize={10 * 1024 * 1024}
               >
                 {({ getRootProps, getInputProps }) => (
@@ -229,8 +228,7 @@ export default function Portfolio(props) {
                         select files <br />{" "}
                         <small className="thumbPadding">
                           {" "}
-                          (6 files each of 10MB are the maximum number of
-                          files you can drop here)
+                          (Max file size allowed for each file is 10 Mb)
                         </small>
                       </p>
                     )}

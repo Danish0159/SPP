@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import signupImage from "../images/signup.png";
 import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUserAr, reset } from '../features/user/userSlice';
+import { registerUserAr, reset } from '../features_ar/user/userSlice';
 import { users } from "../utils/constantsAr";
 import { styles } from '../Shared/styles';
 
@@ -20,7 +20,7 @@ const initialState = {
 const Signup = () => {
   const [values, setValues] = useState(initialState);
   const { isLoading, isSuccess, } = useSelector(
-    (state) => state.user
+    (state) => state.userAr
   );
 
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ const Signup = () => {
           <h2 className="signup__title">سجل الان</h2>
 
           <div className="form-group">
-            <label htmlFor="name">اسم</label>
+            <label htmlFor="name">الاسم الكامل</label>
             <TextField
               fullWidth
               type="text"
@@ -197,7 +197,7 @@ const Wrapper = styled.section`
     }
   }
   .signup__title {
-    font-family: "Roboto", sans-serif;
+    
     font-size: 3.6rem;
     font-weight: 900;
     color: var(--clr-black);

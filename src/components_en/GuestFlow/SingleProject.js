@@ -4,12 +4,12 @@ import { Reviews, Gallery, BackToProfile } from "../GuestFlow";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { fetchSingleProjectEn } from "../../features/guest/guestSlice";
+import { fetchSingleProjectEn } from "../../features_en/guest/guestSlice";
 import { Rating } from "@mui/material";
 
 const SingleProject = () => {
   const dispatch = useDispatch();
-  const { single_project, isLoading, } = useSelector((state) => state.guest);
+  const { single_project, isLoading, } = useSelector((state) => state.guestEn);
 
   const { userId, id } = useParams();
   useEffect(() => {
@@ -29,13 +29,13 @@ const SingleProject = () => {
       <Wrapper>
         <BackToProfile
           avatar={single_project.data.profilePhoto}
-          name={single_project.data.user.name_en}
+          name={single_project.data.employmentHistory_en.companyName}
           role={single_project.data.user.role_en}
           userId={userId}
         ></BackToProfile>
 
         <div className="project">
-          <h1 className="project__title">Project Detail</h1>
+          <h1 className="project__title">Project Details</h1>
 
           <p className="project__subtitle">Project Name: <span className="project__name">{single_project.data.portfolio[0].projectName}
           </span>
@@ -45,7 +45,7 @@ const SingleProject = () => {
           </p>
           {single_project.data.portfolio[0].description && <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].description}</span></p>}
           
-          {single_project.data.portfolio[0].noOfStars && <p className="project__subtitle">Project Rating: <span className="project__description"><Rating precision={0.5} name="read-only" value={single_project.data.portfolio[0].noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
+          {single_project.data.portfolio[0].noOfStars > 0 && <p className="project__subtitle">Project Rating: <span className="project__description"><Rating precision={0.5} name="read-only" value={single_project.data.portfolio[0].noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
           </span></p>}
         </div>
 
@@ -58,7 +58,7 @@ const SingleProject = () => {
           <h3 className="section__title">Client Review</h3>
           <Reviews 
           review={single_project.data.portfolio[0].review ? single_project.data.portfolio[0].review : null} 
-          title={single_project.data.portfolio[0].reviwerTitle ? single_project.data.portfolio[0].reviwerTitle : null} 
+          title={single_project.data.portfolio[0].reviewerTitle ? single_project.data.portfolio[0].reviewerTitle : null} 
           rating={single_project.data.portfolio[0].noOfStars ? single_project.data.portfolio[0].noOfStars : null}
           single={true}>
           </Reviews>
@@ -79,7 +79,8 @@ const Wrapper = styled.section`
   }
   .project__title {
     font-size: 3rem;
-    margin-bottom:2.5rem ;
+    margin-bottom:2.5rem;
+    margin-left: 2rem;
     color: var(--clr-blue-2);
   }
   .project__subtitle{

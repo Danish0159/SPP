@@ -10,7 +10,7 @@ import { NavbarCommunity } from '../../../components_ar/Navigations'
 
 const ProfileDriver = () => {
   const { user } = useSelector(
-    (state) => state.profile
+    (state) => state.profileAr
   );
   const [step, setStep] = useState(0);
 

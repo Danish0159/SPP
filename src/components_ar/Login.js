@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import loginImage from "../images/Login.png";
 import { TextField } from "@mui/material";
 import { styles } from '../Shared/styles';
-import { loginUserAr } from "../features/user/userSlice";
+import { loginUserAr } from "../features_ar/user/userSlice";
 import { getUserFromLocalStorage } from "../utils/localStorage";
 
 const initialState = {
@@ -18,7 +18,7 @@ const initialState = {
 const Login = () => {
   const [values, setValues] = useState(initialState);
   const { isLoading } = useSelector(
-    (state) => state.user
+    (state) => state.userAr
   );
   const user = getUserFromLocalStorage();
 
@@ -162,7 +162,7 @@ const Wrapper = styled.section`
     }
   }
   .login__title {
-    font-family: "Roboto", sans-serif;
+    
     font-size: 3.6rem;
     font-weight: 900;
     color: var(--clr-black);

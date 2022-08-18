@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import 'react-alice-carousel/lib/alice-carousel.css';
 import { NavbarHome } from '../../components_en/Navigations';
 import { Contractors, Handymen, Designers, Consultants } from '../../components_en/GuestFlow/HomePage/categoriesData';
 import { Location, RoleSubSections, Hero } from '../../components_en/GuestFlow/HomePage'
-import { useDispatch, useSelector } from "react-redux";
-import { Footer, Spinner } from "../../components_en";
+import { Footer } from "../../components_en";
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { reset } from '../../features/guest/guestSlice';
-import { toast } from 'react-toastify';
 
 const HomePage = () => {
 
@@ -18,25 +14,19 @@ const HomePage = () => {
     const [categoriesDataCF, setCategoriesDataCF] = useState(Consultants); //C stands for Consultant Firms
 
     const history = useHistory();
-    const dispatch = useDispatch();
 
     const [country, setCountry] = useState("Country");
     const [city, setCity] = useState("City");
 
-    //State. (API Call IN RoleSubSections Component).
-    const { isLoading, isSuccess, isError } = useSelector(
-        (state) => state.guest
-    );
 
     useEffect(() => {
-        if (isError) {
-            toast.error(isError);
-            dispatch(reset());
+        let lang = localStorage.getItem('lang');
+
+        if(lang === "ar")
+        {
+            history.replace('/ar');
         }
-        if (isSuccess) {
-            history.push("/Users");
-            dispatch(reset());
-        }
+
         const location = JSON.parse(localStorage.getItem("locationEn"));
         if (location) {
             setCountry(location.country);
@@ -46,16 +36,8 @@ const HomePage = () => {
             setCountry("Country");
             setCity("City");
         }
-        // eslint-disable-next-line
-    }, [isSuccess, isError]);
 
-    if (isLoading) {
-        return (
-            <div className="section-100vh">
-                <Spinner />;
-            </div>
-        );
-    }
+    }, [history])
 
     const HomeValues = {
         country, city, setCity, setCountry, setCategoriesDataH, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
@@ -63,19 +45,10 @@ const HomePage = () => {
 
     return (
         <>
-            <NavbarHome {...HomeValues}></NavbarHome>
+            <NavbarHome></NavbarHome>
             <Location {...HomeValues}></Location>
             <Hero></Hero>
 
-            <RoleSubSections
-                {...HomeValues}
-                id="Handymen"
-                role="Handyman"
-                roleData={Handymen}
-                roleCategories={categoriesDataH}
-                roleCategoriesUpdate={setCategoriesDataH}
-            ></RoleSubSections>
-            <Seperator></Seperator>
             <RoleSubSections
                 {...HomeValues}
                 id="Contractors"
@@ -83,6 +56,15 @@ const HomePage = () => {
                 roleData={Contractors}
                 roleCategories={categoriesDataC}
                 roleCategoriesUpdate={setCategoriesDataC}
+            ></RoleSubSections>
+            <Seperator></Seperator>
+            <RoleSubSections
+                {...HomeValues}
+                id="Handymen"
+                role="Handyman"
+                roleData={Handymen}
+                roleCategories={categoriesDataH}
+                roleCategoriesUpdate={setCategoriesDataH}
             ></RoleSubSections>
             <Seperator></Seperator>
             <RoleSubSections
@@ -125,4 +107,5 @@ const Wrapper = styled.div`
     width: 100%;
     background-color: #424d83;
 }
+
 `

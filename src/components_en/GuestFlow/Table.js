@@ -39,10 +39,10 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                     <div className="search_profile">
                       <Avatar
                         src={user.profilePhoto}
-                        sx={{ width: 56, height: 56 }}
+                        sx={{ width: 56, height: 56, margin: "0px 5px" }}
                         alt="profile"
                       />
-                      <p className="search_name cell">{user.user.name_en}</p>
+                      <p className="search_name cell">{user.employmentHistory_en.companyName}</p>
                     </div>
                     {/* Cell2 */}
                     <p className="cell">
@@ -50,9 +50,9 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                       {
                         user.location_en.city.map((city, index) => {
                           return (
-                            <span key={index}>
-                              {city},&nbsp;
-                            </span>
+                            <small key={index}>
+                              {city}
+                            </small>
                           )
                         })
                       }
@@ -106,8 +106,7 @@ const Wrapper = styled.section`
   }
   .search__title,
   .subtitle {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
+        font-weight: 700;
     color: var(--clr-blue-2);
   }
 
@@ -119,6 +118,7 @@ const Wrapper = styled.section`
   .subtitle {
     font-size: 2rem;
     color: #ffffff;
+    padding-right: 0.7rem;
   }
 
   .cell {
@@ -127,6 +127,16 @@ const Wrapper = styled.section`
     @media only screen and (max-width: 800px) {
       margin-bottom: 0.2rem;
     }
+  }
+
+  .cell small {
+    border-right: 1px solid black;
+    padding-right: 5px;
+    margin-right: 5px;
+  }
+
+  .cell small:last-child {
+    border-right: none;
   }
 
   .search__columns {
@@ -148,7 +158,7 @@ const Wrapper = styled.section`
   .search__columns {
     display: grid;
     align-items: center;
-    grid-template-columns: 2fr 5fr 2fr;
+    grid-template-columns: 3.5fr 4.5fr 1.5fr;
     padding: 1.6rem;
   }
 
@@ -157,9 +167,13 @@ const Wrapper = styled.section`
     .search__columns {
       grid-template-columns: 1fr;
     }
-
+    .search__title {
+      text-align: center;
+      margin-top: 3rem;
+    }  
     .search__results > * {
       margin-bottom: 0.7rem;
+      margin-left: 0.7rem;
     }
     .search__columns {
       display: none;
@@ -172,8 +186,7 @@ const Wrapper = styled.section`
   }
 
   .search_name {
-    margin-left: 1.4rem;
-    margin-right: 1.4rem;
+    margin-left: 1rem;
   }
 
   .paginationBttns {

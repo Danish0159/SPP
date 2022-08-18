@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Gallery } from ".";
-import { fetchSingleUserAr } from "../../features/guest/guestSlice";
+import { Gallery, Reviews } from ".";
+import { fetchSingleUserAr } from "../../features_ar/guest/guestSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
@@ -11,7 +11,7 @@ import { Avatar, Rating } from "@mui/material";
 const SingleUser = () => {
   const dispatch = useDispatch();
   const { single_user, isLoading, } = useSelector(
-    (state) => state.guest
+    (state) => state.guestAr
   );
 
   const { id } = useParams();
@@ -42,60 +42,74 @@ const SingleUser = () => {
                 />
               </div>
               <h1 className="profile__name--title">
-                {single_user.data.user.user.name_ar}
+                {single_user.data.user.employmentHistory_ar.companyName}
               </h1>
               <p className="profile__name--subtitle">
-                {" "}
+                {single_user.data.user.employmentHistory_ar.vision}
+              </p>
+              <p className="profile__name--subtitle">
                 {single_user.data.user.user.role_ar}
               </p>
               <Link to="#" type="submit" className="blue-btn profile-btn disableButtonColor">
-              أرسل رسالة الآن
+                أرسل رسالة الآن
               </Link>
             </div>
 
             {/* Content */}
             <div className="profile__content">
-              <h2 className="profile__content--title">اسم الشركة:     <span className="profile__content--text">
+              <h2 className="profile__content--title">اسم الشركة:<span className="profile__content--text">
                 {single_user.data.user.employmentHistory_ar.companyName}
-              </span>
-              </h2>
-              <h2 className="profile__content--title">موقع</h2>
-              <p className="profile__content--text">
-                {single_user.data.user.location_ar.country},{" "}&nbsp;
+              </span></h2>
+
+
+              <h2 className="profile__content--title">موقع:<span className="profile__content--text">
+                {single_user.data.user.location_ar.country},&nbsp;
                 {
                   single_user.data.user.location_ar.city.map((city, index) => {
                     return (
-                      <span key={index}>
-                        {city},&nbsp;
-                      </span>
+                      <small key={index}>
+                        {city}
+                      </small>
                     )
                   })
                 }
-              </p>
-              <h2 className="profile__content--title">رقم الاتصال:&nbsp;
-                <span className="profile__content--text">
-                  <a href={"tel:" + single_user.data.user.phoneNumber}>
-                    {single_user.data.user.phoneNumber}
-                  </a>
-                </span>
-              </h2>
-              <h2 className="profile__content--title mbmt">
-              عدد المشاريع المنجزة: {single_user.data.noOfProjects}
+              </span></h2>
+
+              <h2 className="profile__content--title">رقم الاتصال:<span className="profile__content--text">
+                {single_user.data.user.phoneNumber}
+              </span></h2>
+
+
+              <h2 className="profile__content--title">المشاريع المنجزة:<span className="profile__content--text">{single_user.data.noOfProjects}</span>
               </h2>
               <Link
                 to={`/Projectsar/${id}`}
                 type="submit"
                 className="blue-btn profile-btn"
               >
-                عرض تفاصيل المشاريع
+               عرض تفاصيل المشاريع
               </Link>
             </div>
             {/* Rating */}
             <div className="profile__rating">
               <h2 className="profile__content--title">تقييم</h2>
-              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem" }} readOnly />
+              <Rating sx={{direction: "ltr"}} precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem" }} readOnly />
             </div>
           </div>
+        </div>
+
+        <div className="section__blue">
+          <h3 className="section__title">مراجعات العملاء</h3>
+          {single_user.data.user.portfolio.map((project, index) => {
+            return (
+              <Reviews key={index}
+                review={project.review ? project.review : null}
+                title={project.reviewerTitle ? project.reviewerTitle : null}
+                rating={project.noOfStars ? project.noOfStars : null}
+                single={true}>
+              </Reviews>
+            )
+          })}
         </div>
 
         <div className="section__white">
@@ -113,10 +127,6 @@ const SingleUser = () => {
             )
           })}
         </div>
-        {/* <div className="section__blue">
-          <h3 className="section__title">Client Reviews</h3>
-          <Reviews single={false}></Reviews>
-        </div> */}
       </Wrapper>
     );
   }
@@ -127,9 +137,10 @@ export default SingleUser;
 
 const Wrapper = styled.section`
   .profile {
-    padding: 6rem 0rem;
-    @media only screen and (max-width: 800px) {
-      padding-bottom: 0rem;
+    padding: 6rem;
+    @media only screen and (max-width: 990px) {
+      padding: 0rem;
+
     }
   }
   .profile__grid {
@@ -163,11 +174,11 @@ const Wrapper = styled.section`
     margin-bottom: 1.2rem;
   }
   .profile__name--subtitle {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 600;
     color: var(--clr-black);
     margin-bottom: 3.2rem;
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 990px) {
       margin-bottom: 4rem;
     }
   }
@@ -177,40 +188,63 @@ const Wrapper = styled.section`
     margin: 0;
   }
   .profile__content {
-    text-align: left;
+    text-align: right;
     padding-top: 1.5rem;
-    padding-right: 2%;
+    padding-right: 25%;
     padding-bottom: 0.26rem;
-    padding-left: 20%;
-    @media only screen and (max-width: 800px) {
-      padding: 2rem 3rem;
+    @media only screen and (max-width: 990px) {
+      padding: 2rem 5rem;
+    }
+    @media only screen and (max-width: 500px) {
+      padding-right: 2rem;
+    }
+    @media only screen and (max-width: 350px) {
+      padding-right: 1.75rem;
     }
   }
   .profile__content--title {
     font-size: 2rem;
     color: var(--clr-black);
-    margin-bottom: 1.2rem;
+    margin-bottom: 2.5rem;
+    @media only screen and (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+      align-items: en;
+      justify-content: center;
+      
+    }
   }
+
+  .profile__content--title small {
+    border-left: 1px solid black;
+    padding-left: 5px;
+    margin-left: 5px;
+  }
+
+  .profile__content--title small:last-child {
+    border-left: none;
+  }
+
   .profile__content--text {
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 500;
     color: var(--clr-black);
-    margin-bottom: 2.2rem;
-  }
-  .mbmt{
-    margin-bottom: 2rem;
-    margin-top: 4rem;
-  }
+    margin-right: 1.5rem;
+    @media only screen and (max-width: 500px) {
+      margin-right: 0rem;
+    }
+  }  
   .profile__rating > p {
     color: yellow;
     font-size: 2.3rem;
   }
   .profile__rating {
-    margin-bottom: 70%;
-    padding-left: 20%;
-    text-align: left;
-    @media only screen and (max-width: 800px) {
+    margin-bottom: 50%;
+    padding-right: 25%;
+    text-align: right;
+    @media only screen and (max-width: 990px) {
       padding: 0rem 3rem;
+      margin-bottom: 5%;
     }
   }
   .parent{

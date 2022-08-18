@@ -11,7 +11,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
-import { logoutUser } from "../../features/user/userSlice";
+import { logoutUser } from "../../features_en/user/userSlice";
 
 const NavbarProfileCreation = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);

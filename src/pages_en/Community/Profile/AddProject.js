@@ -4,7 +4,7 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components_en/Spinner";
 import { styles } from '../../../Shared/styles';
-import { addProjectEn } from "../../../features/profile/profileSlice";
+import { addProjectEn } from "../../../features_en/profile/profileSlice";
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
@@ -17,7 +17,7 @@ const AddProject = () => {
     // state.
     const dispatch = useDispatch();
     const { user, isLoading, } = useSelector(
-        (state) => state.profile
+        (state) => state.profileEn
     );
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -108,7 +108,6 @@ const AddProject = () => {
                         accept="image/*"
                         name="heroImage"
                         multiple={true}
-                        maxFiles={6}
                         maxSize={10 * 1024 * 1024}
                     >
                         {({ getRootProps, getInputProps }) => (
@@ -122,8 +121,7 @@ const AddProject = () => {
                                         select files <br />{" "}
                                         <p style={padding}>
                                             {" "}
-                                            (6 files each of 10MB are the maximum number of
-                                            files you can drop here)
+                                            (Max file size allowed for each file is 10 Mb)
                                         </p>
                                     </p>
                                 )}

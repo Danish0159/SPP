@@ -13,7 +13,7 @@ import Spinner from "../../../components_ar/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles';
-import { deleteProjectAr, updateProjectAr } from '../../../features/profile/profileSlice';
+import { deleteProjectAr, updateProjectAr } from '../../../features_ar/profile/profileSlice';
 
 
 const PersonelProjects = () => {
@@ -51,7 +51,7 @@ const PersonelProjects = () => {
     // Take Review end. 
 
     const { user, isLoading } = useSelector(
-        (state) => state.profile
+        (state) => state.profileAr
     );
     const dispatch = useDispatch();
 
@@ -102,17 +102,18 @@ const PersonelProjects = () => {
                 <div className='edit__div'>
                     <CancelIcon onClick={() => { setReview(false) }} className="edit__icon"></CancelIcon>
                 </div>
-                <div>
+                <div className='link__div'>
                     <h1 className='request__title'>طلب شهادة العميل</h1>
-                    <p className="card__subtitle">يمكنك إرسال الرابط التالي إلى العميل لأخذ مراجعة لمشروعك.</p>
+                    <p className="card__subtitle">أرسل رابط صفحة المراجعة إلى العميل لأخذ مراجعة لهذا المشروع بمجرد النقر على الزر أدناه لنسخ الرابط تلقائيًا.</p>
                     <button onClick={() => {
                         toast.success("نسخ إلى الحافظة", {
                             position: "top-center",
                             autoClose: 300,
                             hideProgressBar: true,
                         });
-                        navigator.clipboard.writeText(`maqawal.com/Reviewar/${user.profile._id}/${projectReviewId}`);
-                    }} className="request__link">maqawal.com/Reviewar/{user.profile._id}{projectReviewId}</button>
+                        navigator.clipboard.writeText(`maqawalupdated.netlify.app/Reviewar/${user.profile._id}/${projectReviewId}`);
+                    }} className="request__link">انقر لنسخ</button>
+                
                 </div>
             </Wrapper>
         )
@@ -172,7 +173,6 @@ const PersonelProjects = () => {
                             accept="image/*"
                             name="heroImage"
                             multiple={true}
-                            maxFiles={6}
                             maxSize={10 * 1024 * 1024}
                         >
                             {({ getRootProps, getInputProps }) => (
@@ -185,8 +185,7 @@ const PersonelProjects = () => {
                                             قم بسحب "وإفلات" ملفات الصور فقط هنا ، أو انقر لتحديد الملفات <br />{" "}
                                             <small style={padding}>
                                                 {" "}
-                                                (الحد الأقصى لعدد الملفات هو 6 ملفات كل منها 10 ميجابايت
-                                                 الملفات التي يمكنك إسقاطها هنا)
+                                                (الحد الأقصى لحجم الملف المسموح به لكل ملف هو 10 ميغا بايت)
                                             </small>
                                         </p>
                                     )}
@@ -279,6 +278,9 @@ const Wrapper = styled.div`
     padding-bottom:0px;
     justify-content:flex-end;
 }
+
+
+
 .edit__icon {
     color: #656565;
     font-size: 35px;
@@ -304,6 +306,7 @@ const Wrapper = styled.div`
     border-radius: 5px;
     cursor: pointer;
     margin-top: 2rem;
+    
 }
 `;
 

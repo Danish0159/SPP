@@ -9,12 +9,13 @@ export default function Category(props) {
     formField: { category, subCategory },
   } = props;
   const { conditionalFlag } = useSelector(
-    (state) => state.profile
+    (state) => state.profileAr
   );
 
   const user = getUserFromLocalStorage();
 
-  const role = user.role_en;
+  const role_en = user.role_en;
+  const role_ar = user.role_ar;
 
   return (
     <>
@@ -22,10 +23,10 @@ export default function Category(props) {
     <SelectFieldSetConditional
       name={category.name}
       data={
-        role === "Contractor" ? categories.Contractor :
-          role === "Handyman" ? categories.Handyman :
-            role === "Designer" ? categories.Designer :
-              role === "Consultant" ? categories.Consultant
+        role_en === "Contractor" ? categories.Contractor :
+          role_en === "Handyman" ? categories.Handyman :
+            role_en === "Designer" ? categories.Designer :
+              role_en === "Consultant" ? categories.Consultant
                 : null
       }
       fullWidth
@@ -35,7 +36,7 @@ export default function Category(props) {
 
     <SelectField
       name={subCategory.name}
-      data={subCategories[role][conditionalFlag]}
+      data={subCategories[role_ar][conditionalFlag]}
       fullWidth
     />
   </>

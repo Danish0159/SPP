@@ -3,7 +3,7 @@ import { at } from "lodash";
 import { useField } from "formik";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { updateProjectsFlag } from "../../../features/profile/profileSlice";
+import { updateProjectsFlag } from "../../../features_ar/profile/profileSlice";
 import { styles } from '../../../Shared/styles';
 
 export default function InputFieldSetConditional(props) {

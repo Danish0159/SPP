@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Table, Buttons } from "../GuestFlow";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchUsersAr, reset } from "../../features/guest/guestSlice";
+import { fetchUsersAr, reset } from "../../features_ar/guest/guestSlice";
 import Spinner from "../Spinner";
 import styled from "styled-components";
 
@@ -12,7 +12,7 @@ const Users = () => {
   const history = useHistory();
 
   const { users, isLoading, isSuccess, isError } = useSelector(
-    (state) => state.guest
+    (state) => state.guestAr
   );
 
   const searchValues = JSON.parse(localStorage.getItem("searchValues"));
@@ -87,7 +87,7 @@ const Users = () => {
       <div className="users__left">
         {searchValues && <Buttons handleStep={handleStep} step={step}></Buttons>}
       </div>
-      <Table message="لم يتم تسجيل أي مستخدم في هذه الفئة" title="نتائج البحث" flag={null}></Table>
+      <Table message= "لم يتم تسجيل أي مستخدم في هذه الفئة الفرعية" title="نتائج البحث" flag={null}></Table>
     </Wrapper>
   )
 };

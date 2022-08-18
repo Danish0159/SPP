@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const PreviewProfile = () => {
     const { user } = useSelector(
-        (state) => state.profile
+        (state) => state.profileAr
     );
     return (
         <Wrapper>
@@ -31,12 +31,12 @@ const PreviewProfile = () => {
                 <p className="profile__subtitle">{user.profile.phoneNumber}</p>
                 <p className="profile__title">موقع</p>
                 <p className="profile__subtitle">
-                    {user.profile.location_ar.country},{" "}&nbsp;
+                    {user.profile.location_ar.country},&nbsp;
                     {user.profile.location_ar.city.map((city, index) => {
                         return (
-                            <span key={index}>
-                                {city},&nbsp;
-                            </span>
+                            <small key={index}>
+                                {city}
+                            </small>
                         )
                     })
                     }
@@ -91,4 +91,14 @@ margin-top: 1.3rem;
 .preview__portfolio{
 margin: 2rem 0rem;
 }
+.profile__subtitle small {
+    border-left: 1px solid black;
+    padding-left: 5px;
+    margin-left: 5px;
+}
+
+.profile__subtitle small:last-child {
+    border-left: none;
+}
+
 `;

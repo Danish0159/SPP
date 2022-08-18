@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/logo3.png";
 // Logout Drop Down.
 import Avatar from "@mui/material/Avatar";
-import HomeIcon from '@mui/icons-material/Home';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -11,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../features/user/userSlice";
+import { logoutUser } from "../../features_ar/user/userSlice";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 const NavbarWelcome = () => {
@@ -92,27 +91,20 @@ const NavbarWelcome = () => {
               >
                 {user.profile ?
                   <>
-                    <Link to="/HomeFeedar">
-                      <MenuItem>
-                        <HomeIcon sx={{
-                          width: 30, height: 30, ml: -0.5, mr: 1, color: "rgba(0, 0, 0, 0.39)",
-                        }} /> <span style={{ color: '#121212' }}>استجابة</span>
-                      </MenuItem>
-                    </Link>
                     <Link to="/Profilear">
-                      <MenuItem>
+                      <MenuItem sx={{direction: "ltr"}}>
                         <Avatar /> <span style={{ color: '#121212' }}>الملف الشخصي</span>
                       </MenuItem>
                     </Link>
                   </>
                   :
                   <Link to="/JoinUsar">
-                    <MenuItem>
+                    <MenuItem sx={{direction: "ltr"}}>
                       <Avatar /> <span style={{ color: '#121212' }}>إنشاء الملف الشخصي</span>
                     </MenuItem>
                   </Link>
                 }
-                <MenuItem onClick={onLogout}>
+                <MenuItem onClick={onLogout} sx={{direction: "ltr"}}>
                   <ListItemIcon>
                     <Logout />
                   </ListItemIcon>

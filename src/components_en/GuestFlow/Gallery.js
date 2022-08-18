@@ -46,7 +46,8 @@ const Wrapper = styled.section`
     overflow: hidden;
   }
   .portfolio__div img {
-    width: 100%;
+    width: 330px;
+    height: 300px;
     transition: all 0.3s ease-out;
     cursor: pointer;
   }

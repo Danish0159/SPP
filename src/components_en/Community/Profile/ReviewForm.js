@@ -3,11 +3,11 @@ import { Rating, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles'
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../Spinner';
-import { reviewProjectEn } from '../../../features/profile/profileSlice';
+import { reviewProjectEn } from '../../../features_en/profile/profileSlice';
 
 const ReviewForm = ({ User, userId, id }) => {
     const [name, setName] = useState("");
-    const [title, setTitle] = useState("Ex. Director of Marketting");
+    const [title, setTitle] = useState("Ex. Director of Marketing");
     const [stars, setStars] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [review, setReview] = useState("");
@@ -15,7 +15,7 @@ const ReviewForm = ({ User, userId, id }) => {
     // State.
     const dispatch = useDispatch();
     const { isLoading, } = useSelector(
-        (state) => state.profile
+        (state) => state.profileEn
     );
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -47,7 +47,7 @@ const ReviewForm = ({ User, userId, id }) => {
         <form onSubmit={handleSubmit}>
             <h1 className='section__title'>Help {User} with a testimonial</h1>
 
-            <p className="project__subtitle">Name</p>
+            <p className="project__title">Name</p>
             <TextField
                 fullWidth
                 type="text"
@@ -59,7 +59,7 @@ const ReviewForm = ({ User, userId, id }) => {
                 onChange={(e) => setName(e.target.value)}
                 required
             />
-            <p className="project__subtitle">Business title</p>
+            <p className="project__title">Business title</p>
             <TextField
                 fullWidth
                 type="text"
@@ -71,7 +71,7 @@ const ReviewForm = ({ User, userId, id }) => {
                 onChange={(e) => setTitle(e.target.value)}
                 required
             />
-            <p className="project__subtitle">Phone Number</p>
+            <p className="project__title">Phone Number</p>
             <TextField
                 fullWidth
                 type="text"
@@ -83,7 +83,7 @@ const ReviewForm = ({ User, userId, id }) => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 required
             />
-            <p className="project__subtitle">Rating</p>
+            <p className="project__title">Rating</p>
             <Rating
                 value={stars}
                 name="simple-controlled"
@@ -95,7 +95,7 @@ const ReviewForm = ({ User, userId, id }) => {
                 size="large"
                 style={{ fontSize: "2.6rem" }}
             />
-            <p className="project__subtitle">Testimonial</p>
+            <p className="project__title">Testimonial</p>
             <TextField
                 fullWidth
                 type="text"

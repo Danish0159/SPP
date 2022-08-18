@@ -36,7 +36,7 @@ const Wrapper = styled.section`
   align-items: center;
 
   .hero__title {
-    font-family: "Roboto", sans-serif;
+    
     font-weight: 700;
     font-size: 3.5rem;
   }

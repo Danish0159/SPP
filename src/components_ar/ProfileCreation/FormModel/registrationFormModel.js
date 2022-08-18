@@ -29,9 +29,12 @@ export const registrationFormModel = {
       name: "location",
       requiredErrorMsg: "الموقع مطلوب",
     },
-    description: {
-      name: "description",
-      requiredErrorMsg: "الوصف مطلوب",
+    vision: {
+      name: "vision",
+      requiredErrorMsg: "الرؤية المطلوبة",
+    },
+    socialPlatformLink: {
+      name: "socialPlatformLink",
     },
     projectName1: {
       name: "projectName1",

@@ -4,7 +4,7 @@ import { createTheme } from "@mui/material";
 //Global Styles.
 export const theme = createTheme({
     typography: {
-        fontFamily: ["Nunito Sans", "sans-serif"].join(","),
+        fontFamily: ["Font"]
     },
 });
 
@@ -25,7 +25,7 @@ export const styles = {
     select: {
         fontSize: "1.8rem",
         fontWeight: "400",
-        color: "#2a2a2a"
+        color: "#2a2a2a",
     },
     menu: {
         fontSize: "1.5rem",

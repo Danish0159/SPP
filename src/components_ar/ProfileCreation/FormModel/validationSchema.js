@@ -9,7 +9,8 @@ const {
         employees,
         company,
         location,
-        description,
+        vision,
+        socialPlatformLink,
         projectName1,
         projectLocation1,
         projectDescription1,
@@ -68,9 +69,11 @@ export const validationSchema = [
             `${location.requiredErrorMsg}`
         ),
 
-        [description.name]: Yup.string("أدخل الوصف").required(
-            `${description.requiredErrorMsg}`
+        [vision.name]: Yup.string("أدخل رؤية الشركة").required(
+            `${vision.requiredErrorMsg}`
         ),
+
+        [socialPlatformLink.name]: Yup.string("أدخل رابط المنصة الاجتماعية")
     }),
 
     Yup.object().shape({

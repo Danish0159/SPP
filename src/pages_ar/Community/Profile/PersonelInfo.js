@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import { FormControl, Select, TextField, MenuItem, Avatar } from '@mui/material';
+import { Select, TextField, MenuItem, Avatar } from '@mui/material';
 import { users } from "../../../utils/constantsAr";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
-import { getCommunityUserAr, updateProfileAr } from '../../../features/profile/profileSlice';
+import { getCommunityUserAr, updateProfileAr } from '../../../features_ar/profile/profileSlice';
 import Spinner from "../../../components_ar/Spinner";
 import { styles } from '../../../Shared/styles';
 import { categories, subCategories } from "../../../utils/constantsAr"
@@ -15,7 +15,7 @@ const PersonelInfo = () => {
     const [update, setUpdate] = useState(false);
 
     const { user, isLoading, } = useSelector(
-        (state) => state.profile
+        (state) => state.profileAr
     );
 
     const [name, setName] = useState("");
@@ -96,10 +96,10 @@ const PersonelInfo = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div className="profile__updatePhoto">
                     {profilePhoto &&
                         <Avatar
-                            style={{ marginBottom: "0rem", marginRight: ".3rem" }}
+                            style={{ marginBottom: "0.5rem" }}
                             src={profilePhoto}
                             sx={{ width: 90, height: 90 }}
                             alt="Avatar"
@@ -108,7 +108,7 @@ const PersonelInfo = () => {
                     <input
                         type="file"
                         name="myImage"
-                        style={{ marginLeft: "1.4rem" }}
+                        style={{ width: "90px" }}
                         onChange={(event) => {
                             var file = event.target.files[0];
                             var reader = new FileReader();
@@ -119,118 +119,145 @@ const PersonelInfo = () => {
                         }}
                     />
                 </div>
-                <p className="card__subtitle">اسم</p>
-                <TextField
-                    fullWidth
-                    type="text"
-                    name="text"
-                    inputProps={{
-                        style: styles.textField,
-                    }}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-                <p className="card__subtitle">البريد الإلكتروني</p>
-                <TextField
-                    fullWidth
-                    type="email"
-                    name="email"
-                    inputProps={{
-                        style: styles.textField,
-                    }}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <p className="card__subtitle">وظيفة</p>
-                <FormControl fullWidth>
-                    <Select
-                        sx={styles.select}
-                        value={roleAr}
-                        onChange={(e) => {
 
-                            let obj = users.find(item => item.value_ar === e.target.value);
+                <div className="profile__updateData">
 
-                            setRoleEn(obj.value_en);
-                            setRoleAr(obj.value_ar);
-                            setCategoryEn("");
-                            setCategoryAr("");
-                            setSubCategoryEn("");
-                            setSubCategoryAr("");
-                        }}
-                        required
+                    <div>
+                        <p className="card__subtitle">اسم</p>
+                        <TextField
+                            fullWidth
+                            className="update"
+                            type="text"
+                            name="text"
+                            inputProps={{
+                                style: styles.textField,
+                            }}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">البريد الإلكتروني</p>
+                        <TextField
+                            fullWidth
+                            className="update"
+                            type="email"
+                            name="email"
+                            inputProps={{
+                                style: styles.textField,
+                            }}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">وظيفة</p>
+                        <Select
+                            sx={styles.select}
+                            fullWidth
+                            className="update"
+                            value={roleAr}
+                            onChange={(e) => {
+
+                                let obj = users.find(item => item.value_ar === e.target.value);
+
+                                setRoleEn(obj.value_en);
+                                setRoleAr(obj.value_ar);
+                                setCategoryEn("");
+                                setCategoryAr("");
+                                setSubCategoryEn("");
+                                setSubCategoryAr("");
+                            }}
+                            required
+                        >
+                            {users.map((user, index) => (
+                                <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
+                                    {user.value_ar}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </div>
+
+
+                    <div>
+                        <p className="card__subtitle">فئة</p>
+                        <Select
+                            sx={styles.select}
+                            fullWidth
+                            className="update"
+                            value={categoryAr}
+                            onChange={(e) => {
+
+                                let obj = categories[roleEn].find(item => item.value_ar === e.target.value);
+
+                                setCategoryEn(obj.value_en);
+                                setCategoryAr(obj.value_ar);
+                                setSubCategoryEn("");
+                                setSubCategoryAr("");
+                            }}
+                            required
+                        >
+                            {categories[roleEn]?.map((user, index) => (
+                                <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
+                                    {user.value_ar}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </div>
+
+
+                    <div>
+                        <p className="card__subtitle">تصنيف فرعي</p>
+                        <Select
+                            sx={styles.select}
+                            fullWidth
+                            className="update"
+                            value={subCategoryAr}
+                            onChange={(e) => {
+
+                                let obj = subCategories[roleAr][categoryEn].find(item => item.value_ar === e.target.value);
+
+                                setSubCategoryEn(obj.value_en);
+                                setSubCategoryAr(obj.value_ar);
+                            }}
+                            required
+                        >
+                            {subCategories[roleAr][categoryEn]?.map((user, index) => (
+                                <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
+                                    {user.value_ar}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">رقم الاتصال</p>
+                        <TextField
+                            fullWidth
+                            type="number"
+                            className="update"
+                            name="number"
+                            inputProps={{
+                                style: styles.textField,
+                            }}
+                            value={phoneNumber}
+                            onChange={(e) => setNumber(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <button
+                        style={{ marginTop: '2rem' }}
+                        className="blue-btn card-btn"
+                        type="submit"
                     >
-                        {users.map((user, index) => (
-                            <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
-                                {user.value_ar}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <p className="card__subtitle">فئة</p>
-                <FormControl fullWidth>
-                    <Select
-                        sx={styles.select}
-                        value={categoryAr}
-                        onChange={(e) => {
-
-                            let obj = categories[roleEn].find(item => item.value_ar === e.target.value);
-
-                            setCategoryEn(obj.value_en);
-                            setCategoryAr(obj.value_ar);
-                            setSubCategoryEn("");
-                            setSubCategoryAr("");
-                        }}
-                        required
-                    >
-                        {categories[roleEn]?.map((user, index) => (
-                            <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
-                                {user.value_ar}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <p className="card__subtitle">تصنيف فرعي</p>
-                <FormControl fullWidth>
-                    <Select
-                        sx={styles.select}
-                        value={subCategoryAr}
-                        onChange={(e) => {
-
-                            let obj = subCategories[roleEn][categoryEn].find(item => item.value_ar === e.target.value);
-
-                            setSubCategoryEn(obj.value_en);
-                            setSubCategoryAr(obj.value_ar);
-                        }}
-                        required
-                    >
-                        {subCategories[roleEn][categoryEn]?.map((user, index) => (
-                            <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
-                                {user.value_ar}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <p className="card__subtitle">رقم الاتصال</p>
-                <TextField
-                    fullWidth
-                    type="number"
-                    name="number"
-                    inputProps={{
-                        style: styles.textField,
-                    }}
-                    value={phoneNumber}
-                    onChange={(e) => setNumber(e.target.value)}
-                    required
-                />
-                <button
-                    style={{ marginTop: '2rem' }}
-                    className="blue-btn card-btn"
-                    type="submit"
-                >
-                    تحديث
-                </button>
+                        تحديث
+                    </button>
+                </div>
             </form>
         </Wrapper>;
     }
@@ -249,8 +276,8 @@ const PersonelInfo = () => {
                         setRoleEn(user.user.role_en);
                         setRoleAr(user.user.role_ar);
                         setNumber(user.profile.phoneNumber);
-                        setProfilePhoto(user.profile.profilePhoto);                       
-                        
+                        setProfilePhoto(user.profile.profilePhoto);
+
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
                 <div className="personel__avatar">
@@ -281,6 +308,54 @@ const PersonelInfo = () => {
 export default PersonelInfo
 
 const Wrapper = styled.div`
+
+.profile__updatePhoto {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    @media only screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+}
+
+.profile__updateData {
+    @media only screen and (max-width: 630px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+}
+
+.update {
+    @media only screen and (max-width: 630px) {
+        width: 40rem;
+    }
+    @media only screen and (max-width: 520px) {
+        width: 35rem;
+    }
+    @media only screen and (max-width: 475px) {
+        width: 32rem;
+    }
+    @media only screen and (max-width: 440px) {
+        width: 27rem;
+    }
+    @media only screen and (max-width: 390px) {
+        width: 25rem;
+    }
+    @media only screen and (max-width: 365px) {
+        width: 22rem;
+    }
+    @media only screen and (max-width: 340px) {
+        width: 20rem;
+    }
+    @media only screen and (max-width: 320px) {
+        width: 18rem;
+    }
+   
+}
+
 .edit__div{
     display:flex;
     align-items:center;

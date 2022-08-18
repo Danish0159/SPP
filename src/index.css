@@ -8,6 +8,11 @@
   --clr-white-3: #dedef5;
 }
 
+@font-face {
+  font-family: Font;
+  src: url(./utils/arabicfont.ttf);
+}
+
 /*
 ==============================
 Global Styles
@@ -32,8 +37,24 @@ html {
   scroll-behavior: smooth;
 }
 
+title {
+  font-family: Font;
+  letter-spacing: 0.5px;
+}
+
 body {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: Font;
+  letter-spacing: 0.5px;
+}
+
+select {
+  font-family: Font;
+  letter-spacing: 0.5px;
+}
+
+option {
+  font-family: Font;
+  letter-spacing: 0.5px;
 }
 
 ul {
@@ -45,8 +66,25 @@ a {
   text-decoration: none;
 }
 
+button {
+  font-family: Font;
+  letter-spacing: 0.5px;
+}
+
 p {
   font-weight: 400;
+  font-family: Font;
+  letter-spacing: 0.5px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: Font;
+  letter-spacing: 0.5px;
+}
+
+small {
+  font-family: Font;
+  letter-spacing: 0.5px;
 }
 
 .bg {

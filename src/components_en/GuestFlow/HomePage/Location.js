@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { useLocation, useHistory } from "react-router-dom";
 import { countries, pakCities, saudiCities } from '../../../utils/constantsEn';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
 const Location = ({ country, city, setCountry, setCity }) => {
@@ -22,20 +23,11 @@ const Location = ({ country, city, setCountry, setCity }) => {
         title = "English";
     }
 
-    // Location API.
-    // useEffect(() => {
-    //   axios.get('https://api.ipify.org?format=json').then((response) => {
-    //     axios.get(`https://api.ipfind.com/?ip=${response.data.ip}`).then((response) => {
-    //       setCountry(response.data.country);
-    //       setCity(response.data.city);
-    //     })
-    //   })
-    // }, [])
-
     return (
         <Wrapper>
             <div className="location">
                 <div className='location-dropdown'>
+                    <label>{country} <ArrowDropDownIcon className='icon' color="action" /></label>
                     <select onChange={(e) => setCountry(e.target.value)}>
                         <option hidden>{country}</option>
                         {countries.map((item, index) => {
@@ -48,11 +40,29 @@ const Location = ({ country, city, setCountry, setCity }) => {
                     </select>
                 </div>
 
+                <div className='location-dropdown'>
+                    <label>{city} <ArrowDropDownIcon className='icon' color="action" /></label>
+                    <select onChange={(e) => setCity(e.target.value)}>
+                        <option hidden>{city}</option>
+                        {country === "Pakistan"
+                            ? pakCities.map((item, index) => (
+                                <option key={index} value={item.value_en}>
+                                    {item.value_en}
+                                </option>
+                            ))
+                            : country === "Saudia" ? saudiCities.map((item, index) => (
+                                <option key={index} value={item.value_en}>
+                                    {item.value_en}
+                                </option>
+                            )) : null}
+
+                    </select>
+                </div>
+
                 <div className='language-dropdown'>
+                    <label>{title} <ArrowDropDownIcon className='icon' color="action" /></label>
                     <select
                         onChange={(e) => {
-
-
 
                             let item;
 
@@ -65,6 +75,10 @@ const Location = ({ country, city, setCountry, setCity }) => {
 
 
                             if (item === "ar") {
+
+                                localStorage.setItem('lang', item);
+
+                                document.title = "منصة أخصائي البناء";
 
                                 if (location.pathname.includes("/Users")) {
                                     history.push(`${location.pathname.replace("/Users", "/Usersar")}`);
@@ -82,33 +96,6 @@ const Location = ({ country, city, setCountry, setCity }) => {
                                 document.body.dir = "rtl";
 
                             }
-                            else if (item === "en") {
-
-                                if (localStorage.getItem("lang") === "en") {
-                                    history.push(`${location.pathname}`);
-                                }
-                                else if (localStorage.getItem("lang") === "ar") {
-
-                                    if (location.pathname.includes("/Usersar")) {
-                                        history.push(`${location.pathname.replace("/Usersar", "/Users")}`);
-                                    }
-                                    else if (location.pathname.includes("/Projectsar")) {
-                                        history.push(`${location.pathname.replace("/Projectsar", "/Projects")}`);
-                                    }
-                                    else if (location.pathname.includes("/Reviewar")) {
-                                        history.push(`${location.pathname.replace("/Reviewar", "/Review")}`);
-                                    }
-                                    else {
-                                        history.push(`${location.pathname.slice(0, location.pathname.length - 2)}`);
-                                    }
-
-                                    document.body.dir = "ltr";
-                                }
-
-                            }
-
-                            localStorage.setItem('lang', item);
-
                         }}
                     >
                         <option hidden>{title}</option>
@@ -117,23 +104,7 @@ const Location = ({ country, city, setCountry, setCity }) => {
                     </select>
                 </div>
 
-                <div className='location-dropdown'>
-                    <select onChange={(e) => setCity(e.target.value)}>
-                        <option hidden>{city}</option>
-                        {country === "Pakistan"
-                            ? pakCities.map((item, index) => (
-                                <option key={index} value={item.value_en}>
-                                    {item.value_en}
-                                </option>
-                            ))
-                            : country === "Saudi Arabia" ? saudiCities.map((item, index) => (
-                                <option key={index} value={item.value_en}>
-                                    {item.value_en}
-                                </option>
-                            )) : null}
 
-                    </select>
-                </div>
             </div>
         </Wrapper >
     )
@@ -148,84 +119,114 @@ const Wrapper = styled.div`
     z-index: 1;
 
 .location {
-    background-color: whitesmoke;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: whitesmoke;
     padding: 5px;
 }
 
 .location-dropdown {
-    font-weight: 700;
-    font-size: 3rem;
-    
-}
-.location-dropdown select {
-  background: none;
-  border: none;
-  font-size: 3rem;
-  color: #424d83;
-  cursor: pointer;
-  width: 210px;
-  text-align: center;
-}
-.location-dropdown select option {
-    color: black;
-    background-color: whitesmoke;
+    position: relative; 
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.location-dropdown label{
+    position: absolute;
+    width: auto;
+    font-size: 3rem;
+    text-align: center;
+    color: #424d83;
+}
+
+.location-dropdown select {
+    width: auto;
+    background: none;
+    font-size: 3rem;
+    color: #424d83;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.location-dropdown select option {
+    background-color: whitesmoke;
+    color: black;
     font-size: 2.2rem;
     text-align: center;
+
 }
 
 .language-dropdown {
-    font-weight: 700;
-    font-size: 3rem;    
+    position: relative; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.language-dropdown label{
+    position: absolute;
+    width: auto;
+    font-size: 3rem;
+    text-align: center;
+    color: #0303fc;
 }
 
 .language-dropdown select {
-  background: none;
-  border: none;
-  font-size: 3rem;
-  color: #0303fc;
-  cursor: pointer;
-  width: 210px;
-  text-align: center;
+    width: auto;
+    background: none;
+    font-size: 3rem;
+    color: #424d83;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
 }
+
 .language-dropdown select option {
-    color: black;
     background-color: whitesmoke;
-    width: 100%;
+    color: black;
     font-size: 2.2rem;
     text-align: center;
 }
 
+.icon {
+    font-size: 2.2rem;
+}
+
+
 @media only screen and (max-width: 850px) {
   
-.location-dropdown select {
-  font-size: 1.9rem;
-  width: 150px;
+    .location-dropdown select, .location-dropdown label {
+        font-size: 1.9rem;
+    }
+    .language-dropdown select, .language-dropdown label {
+        font-size: 1.9rem;
+    }
+    .icon {
+        font-size: 1.4rem;
+    }
 }
-.language-dropdown select {
-    font-size: 1.9rem;
-    width: 150px;
-  }
-}
+
+
 
 @media only screen and (max-width: 650px) {
   
-    .location-dropdown select {
-      font-size: 1.7rem;
-      width: 100px;
+    .location-dropdown select, .location-dropdown label {
+        font-size: 1.5rem;
     }
-    .language-dropdown select {
-        font-size: 1.7rem;
-        width: 100px;
-      }
-    .location {
-        background-color: whitesmoke;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+    .language-dropdown select, .language-dropdown label {
+          font-size: 1.5rem;
     }
+    .icon {
+        font-size: 1.1rem;
+    }
+    
 }
+
 `;

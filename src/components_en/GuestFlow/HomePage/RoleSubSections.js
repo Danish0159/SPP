@@ -1,122 +1,97 @@
 import React from 'react'
-import noDataFound from '../../../images/ndf.jpg';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-import SearchIcon from '@mui/icons-material/Search';
-import { useDispatch, } from 'react-redux';
-import { fetchUsersEn } from "../../../features/guest/guestSlice";
+import Carousel from 'react-elastic-carousel'
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const RoleSubSections = ({ id, role, roleData, country, city, roleCategories, roleCategoriesUpdate}) => {
-    const dispatch = useDispatch();
 
-    const responsive = {
-        0: { items: 1 },
-        568: { items: 2 },
-        1024: { items: 3 },
-        1300: { items: 4 },
-        1400: { items: 5 }
-    };
+const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
+
+    const history = useHistory();
+
+    let breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 568, itemsToShow: 2 },
+        { width: 1024, itemsToShow: 3 },
+        { width: 1300, itemsToShow: 4 },
+        { width: 1400, itemsToShow: 5 },
+        { width: 1750, itemsToShow: 6 },
+    ]
 
     return (
         <Wrapper>
             <div className="selectcategory" id={id}>
                 <div className='selectcategory-top'>
                     <h1 className='top-title'>{role}</h1>
-                    <div className='top-searchbox'>
-                        <div className='search__parent'>
-                            <input
-                                type="text"
-                                placeholder='Search Category'
-                                onChange={(e) => {
-                                    let updatedData = roleData.filter((val) => {
-                                        if (e.target.value === "") {
-                                            return val;
-                                        }
-                                        else if (e.target.value.length === 1 ? val.name.value_en.toLowerCase().startsWith(e.target.value.toLowerCase()) : val.name.value_en.toLowerCase().includes(e.target.value.toLowerCase())) {
-                                            return val;
-                                        }
-                                        return false;
-                                    });
-
-                                    if (updatedData.length === 0) {
-                                        roleCategoriesUpdate([{
-                                            img: noDataFound,
-                                            name: {
-                                                value_en: "No Data Found",
-                                                value_ar: "No Data Found"
-                                            },
-                                            subCategories: [
-                                                {
-                                                    value_en: "No Data Found",
-                                                    value_ar: "No Data Found"
-                                                }
-                                            ]
-                                        }])
-                                    }
-                                    else {
-                                        roleCategoriesUpdate(updatedData);
-                                    }
-                                }}
-                            />
-                            <SearchIcon className='icon'></SearchIcon>
-                        </div>
-                    </div>
                 </div>
 
-                <AliceCarousel
-                    disableDotsControls={true}
-                    responsive={responsive}
-                    items={
-                        roleCategories.map((val, key) => {
-                            return (
-                                <div className='selectcategory-bottom' key={key}>
+                <Carousel breakPoints={breakPoints} pagination={false}>
+                    {roleCategories.map((val, key) => {
+                        return (
+                            <div className='selectcategory-bottom' key={key}>
 
-                                    <h3 className='bottom-title'>{val.name.value_en}</h3>
+                                <h3 className='bottom-title'>{val.name.value_en}</h3>
 
-                                    <img
-                                        onClick={() => {
-                                            const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: val.subCategories[0].value_en }
-                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            const location = {country: country, city: city};
-                                            localStorage.setItem("locationEn",JSON.stringify(location));
-                                            dispatch(fetchUsersEn({ user: role, category: val.name.value_en, country: country, city: city, subCategory: val.subCategories[0].value_en }));
+                                <img
+                                    onClick={() => {
+                                        if (city === "City" && country === "Country") {
+                                            toast.error("Please Select both Country and City");
+                                        }
+                                        else if (city === "City") {
+                                            toast.error("Please Select the City as well");
+                                        }
+                                        else if (country === "Country") {
+                                            toast.error("Please Select the Country");
+                                        }
+                                        else {
+                                        const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: "subCategory" }
+                                        localStorage.setItem("searchValues", JSON.stringify(searchValues));
+                                        const location = { country: country, city: city };
+                                        localStorage.setItem("locationEn", JSON.stringify(location));
+                                        history.push("/Users");
+                                        }
+                                    }}
+                                    className='bottom-img'
+                                    src={val.img}
+                                    alt=''
+                                />
 
-                                        }}
-                                        className='bottom-img'
-                                        src={val.img}
-                                        alt=''
-                                    />
+                                <select
+                                    className="bottom-dropdown"
+                                    onChange={(e) => {
+                                        if (city === "City" && country === "Country") {
+                                            toast.error("Please Select both Country and City");
+                                        }
+                                        else if (city === "City") {
+                                            toast.error("Please Select the City as well");
+                                        }
+                                        else if (country === "Country") {
+                                            toast.error("Please Select the Country");
+                                        }
+                                        else {
+                                        const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: e.target.value }
+                                        localStorage.setItem("searchValues", JSON.stringify(searchValues));
+                                        const location = { country: country, city: city };
+                                        localStorage.setItem("locationEn", JSON.stringify(location));
+                                        history.push("/Users");
+                                        }
+                                    }}
+                                >
+                                    <option className='dropdown-item' hidden>Select Sub-Category</option>
 
-                                    <select
-                                        className="bottom-dropdown"
-                                        onChange={(e) => {
-                                            const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: e.target.value }
-                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            const location = {country: country, city: city};
-                                            localStorage.setItem("locationEn",JSON.stringify(location));
-                                            dispatch(fetchUsersEn({ user: role, category: val.name.value_en, country: country, city: city, subCategory: e.target.value }));
+                                    {val.subCategories.map((item, index) => {
+                                        return (
+                                            <option key={index} className='dropdown-item' value={item.value_en}>{item.value_en}</option>
+                                        )
+                                    })}
 
-                                        }}
-                                    >
-                                        <option className='dropdown-item' hidden>Select Sub-Category</option>
+                                </select>
 
-                                        {val.subCategories.map((item, index) => {
-                                            return (
-                                                <option key={index} className='dropdown-item' value={item.value_en}>{item.value_en}</option>
-                                            )
-                                        })}
-
-                                    </select>
-
-                                </div>
-                            )
-                        })}
-                />
-
+                            </div>
+                        )
+                    })}
+                </Carousel>
             </div>
-
-
         </Wrapper>
     )
 }
@@ -128,9 +103,8 @@ const Wrapper = styled.div`
     background-color: white;
     padding: 0px 25px;
     width: 100%;
-    width: 100%;
     max-width: 150rem;
-    margin: auto;
+    margin: auto auto 25px auto;
 }
 
 .selectcategory-top {
@@ -147,33 +121,12 @@ const Wrapper = styled.div`
 }
 
 .selectcategory-top .top-title {
-    font-family: "Roboto", sans-serif;
+    
     font-weight: 800;
     font-size: 4rem;
     color: rgb(51, 50, 50);
     text-align: center;
     margin-right: 1rem
-}
-
-.selectcategory-top .top-searchbox input {
-    font-size: 1.6rem;
-    padding: 12px 2rem;
-    border: none;
-    color: rgb(120, 116, 116);
-    border-radius: 25px;
-    transition: all 0.2s;
-    border: 1.4px solid #c0bdbd;
-    font-weight: 600;
-}
-
-.selectcategory-top .top-searchbox input:focus {
-    outline: none;
-}
-
-@media screen and (max-width:650px) {
-    .selectcategory-top .top-searchbox input {
-        padding-right: 2rem;
-    }
 }
 
 .selectcategory-bottom {
@@ -184,8 +137,7 @@ const Wrapper = styled.div`
 }
 
 .bottom-title {
-    font-size: 2.25rem;
-    font-family: "Roboto", sans-serif;
+    font-size: 2.25rem; 
     font-weight: 600;
     color: grey;
     margin-bottom: 10px;
@@ -211,18 +163,13 @@ const Wrapper = styled.div`
     text-align: center;
     cursor: pointer;
     margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.4rem;
 }
 
 .dropdown-item {
     text-align: center;
-}
-
-.alice-carousel__prev-btn {
-    font-size: 4rem;
-}
-
-.alice-carousel__next-btn {
-    font-size: 4rem;
+    font-size: 1.6rem;
 }
 
 @media screen and (max-width:650px) {
@@ -238,14 +185,19 @@ const Wrapper = styled.div`
         font-size: 3.5rem;
     }
 }
-.search__parent {
-    display: flex;
-    align-items: center;
+
+.rec.rec-arrow {
+    background-color: #424d83;
+    color: white;
 }
 
-.icon {
-    color: rgb(120, 116, 116);
-    transform: scale(1.7);
-    margin-left: -3.13rem;
+.rec.rec-arrow:disabled {
+    visibility: hidden;
 }
+
+.rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 1px lightgrey;
+}
+
 `

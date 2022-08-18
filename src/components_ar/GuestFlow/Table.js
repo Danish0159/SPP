@@ -39,10 +39,10 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                     <div className="search_profile">
                       <Avatar
                         src={user.profilePhoto}
-                        sx={{ width: 56, height: 56 }}
+                        sx={{ width: 56, height: 56, margin: "0px 5px" }}
                         alt="profile"
                       />
-                      <p className="search_name cell">{user.user.name_ar}</p>
+                      <p className="search_name cell">{user.employmentHistory_ar.companyName}</p>
                     </div>
                     {/* Cell2 */}
                     <p className="cell">
@@ -50,16 +50,16 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                       {
                         user.location_ar.city.map((city, index) => {
                           return (
-                            <span key={index}>
-                              {city},&nbsp;
-                            </span>
+                            <small key={index}>
+                              {city}
+                            </small>
                           )
                         })
                       }
                     </p>
                     {/* Cell3 */}
                     <p className="cell">
-                      <Rating precision={0.5} name="read-only" value={user.stars} style={{ fontSize: "1.9rem" }} readOnly />
+                      <Rating sx={{direction: "ltr"}} precision={0.5} name="read-only" value={user.stars} style={{ fontSize: "1.9rem" }} readOnly />
                     </p>
                   </div>
                 </Link>
@@ -74,15 +74,15 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                     <p className="cell">{project.projectName}</p>
                     <p className="cell">{project.location}</p>
                     <p className="cell">
-                      <Rating precision={0.5} name="read-only" value={project.noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
+                      <Rating sx={{direction: "ltr"}} precision={0.5} name="read-only" value={project.noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
                     </p>
                   </div>
                 </Link>
               );
             })}
         <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
+          previousLabel={"سابق"}
+          nextLabel={"التالي"}
           pageCount={pageCount}
           onPageChange={changePage}
           containerClassName={"paginationBttns"}
@@ -98,6 +98,7 @@ const Table = ({ data = [], title, flag, userId, message }) => {
 
 export default Table;
 const Wrapper = styled.section`
+
   min-height: calc(100vh - 100px);
   .search {
     max-width: 110rem;
@@ -106,7 +107,6 @@ const Wrapper = styled.section`
   }
   .search__title,
   .subtitle {
-    font-family: "Roboto", sans-serif;
     font-weight: 700;
     color: var(--clr-blue-2);
   }
@@ -119,6 +119,7 @@ const Wrapper = styled.section`
   .subtitle {
     font-size: 2rem;
     color: #ffffff;
+    padding-right: 0.7rem;
   }
 
   .cell {
@@ -127,6 +128,16 @@ const Wrapper = styled.section`
     @media only screen and (max-width: 800px) {
       margin-bottom: 0.2rem;
     }
+  }
+
+  .cell small {
+    border-left: 1px solid black;
+    padding-left: 5px;
+    margin-left: 5px;
+  }
+
+  .cell small:last-child {
+    border-left: none;
   }
 
   .search__columns {
@@ -148,7 +159,7 @@ const Wrapper = styled.section`
   .search__columns {
     display: grid;
     align-items: center;
-    grid-template-columns: 2fr 5fr 2fr;
+    grid-template-columns: 3.5fr 4.5fr 1.5fr;
     padding: 1.6rem;
   }
 
@@ -157,9 +168,13 @@ const Wrapper = styled.section`
     .search__columns {
       grid-template-columns: 1fr;
     }
-
+    .search__title {
+      text-align: center;
+      margin-top: 3rem;
+    }  
     .search__results > * {
       margin-bottom: 0.7rem;
+      margin-right: 0.7rem;
     }
     .search__columns {
       display: none;
@@ -169,11 +184,11 @@ const Wrapper = styled.section`
   .search_profile {
     display: flex;
     align-items: center;
+    justify-content: start;
   }
 
   .search_name {
-    margin-left: 1.4rem;
-    margin-right: 1.4rem;
+    margin-right: 1rem;
   }
 
   .paginationBttns {

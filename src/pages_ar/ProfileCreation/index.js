@@ -1,4 +1,5 @@
-import JoinUsAr from "./JoinUs";
+import { lazy } from "react";
+
 import DriverAr from "./Driver";
 import Category from "./Category";
 import Experience from "./Experience";
@@ -8,8 +9,14 @@ import Location from "./Location";
 import ProfilePhoto from "./ProfilePhoto";
 import PhoneNumber from "./PhoneNumber";
 
+export const JoinUsAr = lazy(() =>
+  import("./JoinUs").then(({ default: JoinUsAr }) => ({
+    default: JoinUsAr,
+  }))
+);
+
+
 export {
-  JoinUsAr,
   DriverAr,
   Category,
   Experience,
@@ -19,3 +26,5 @@ export {
   PhoneNumber,
   ProfilePhoto,
 };
+
+

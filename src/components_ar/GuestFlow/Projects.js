@@ -3,12 +3,12 @@ import { BackToProfile, Table } from "../GuestFlow";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { fetchProjectsAr } from "../../features/guest/guestSlice";
+import { fetchProjectsAr } from "../../features_ar/guest/guestSlice";
 
 const Projects = () => {
   const dispatch = useDispatch();
   const { projects, isLoading, } = useSelector(
-    (state) => state.guest
+    (state) => state.guestAr
   );
 
   const { id } = useParams();
@@ -30,7 +30,7 @@ const Projects = () => {
       <>
         <BackToProfile
           avatar={projects.data.projects.profilePhoto}
-          name={projects.data.projects.user.name_ar}
+          name={projects.data.projects.employmentHistory_ar.companyName}
           role={projects.data.projects.user.role_ar}
           userId={projects.data.projects._id}
         ></BackToProfile>

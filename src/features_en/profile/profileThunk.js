@@ -13,16 +13,7 @@ export const profileCreationThunkEn = async (profile, thunkAPI) => {
   }
 };
 
-export const profileCreationThunkAr = async (profile, thunkAPI) => {
-  try {
-    const resp = await customFetchProfile.post('/profile/createprofilear', profile);
-    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
-    return resp.data;
-  } catch (error) {
-    const message = checkError(error);
-    return thunkAPI.rejectWithValue(message);
-  }
-};
+
 
 export const getCommunityUserThunkEn = async (thunkAPI) => {
   try {
@@ -35,16 +26,7 @@ export const getCommunityUserThunkEn = async (thunkAPI) => {
   }
 };
 
-export const getCommunityUserThunkAr = async (thunkAPI) => {
-  try {
-    const resp = await customFetchProfile.get("/user/getuserar");
-    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
-    return resp.data;
-  } catch (error) {
-    const message = checkError(error);
-    return thunkAPI.rejectWithValue(message);
-  }
-};
+
 
 export const updateProfileThunkEn = async ({ profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar, id }, thunkAPI) => {
   try {
@@ -58,16 +40,7 @@ export const updateProfileThunkEn = async ({ profilePhoto, name, email, phoneNum
 };
 
 
-export const updateProfileThunkAr = async ({ profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar, id }, thunkAPI) => {
-  try {
-    const resp = await customFetchProfile.patch(`/profile/updateprofilear/${id}`, { profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar });
-    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
-    return resp.data;
-  } catch (error) {
-    const message = checkError(error);
-    return thunkAPI.rejectWithValue(message);
-  }
-};
+
 
 export const deleteProjectThunkEn = async ({ profileId, projectId }, thunkAPI) => {
   try {
@@ -80,16 +53,7 @@ export const deleteProjectThunkEn = async ({ profileId, projectId }, thunkAPI) =
   }
 };
 
-export const deleteProjectThunkAr = async ({ profileId, projectId }, thunkAPI) => {
-  try {
-    const resp = await customFetchProfile.delete(`/profile/deleteprojectar/${profileId}/${projectId}`);
-    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
-    return resp.data;
-  } catch (error) {
-    const message = checkError(error);
-    return thunkAPI.rejectWithValue(message);
-  }
-};
+
 
 export const updateProjectThunkEn = async ({ projectName, location, images, profileId, projectId }, thunkAPI) => {
   try {
@@ -102,16 +66,7 @@ export const updateProjectThunkEn = async ({ projectName, location, images, prof
   }
 };
 
-export const updateProjectThunkAr = async ({ projectName, location, images, profileId, projectId }, thunkAPI) => {
-  try {
-    const resp = await customFetchProfile.patch(`/profile/updateprojectar/${profileId}/${projectId}`, { projectName, location, images });
-    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
-    return resp.data;
-  } catch (error) {
-    const message = checkError(error);
-    return thunkAPI.rejectWithValue(message);
-  }
-};
+
 
 export const addProjectThunkEn = async ({ projectName, location, images, id }, thunkAPI) => {
   try {
@@ -124,16 +79,7 @@ export const addProjectThunkEn = async ({ projectName, location, images, id }, t
   }
 };
 
-export const addProjectThunkAr = async ({ projectName, location, images, id }, thunkAPI) => {
-  try {
-    const resp = await customFetchProfile.patch(`/profile/addprojectar/${id}`, { projectName, location, images });
-    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
-    return resp.data;
-  } catch (error) {
-    const message = checkError(error);
-    return thunkAPI.rejectWithValue(message);
-  }
-};
+
 
 export const reviewProjectThunkEn = async ({ name, title, stars, phoneNumber, review, profileId, projectId }, thunkAPI) => {
   try {
@@ -147,14 +93,3 @@ export const reviewProjectThunkEn = async ({ name, title, stars, phoneNumber, re
   }
 };
 
-export const reviewProjectThunkAr = async ({ name, title, stars, phoneNumber, review, profileId, projectId }, thunkAPI) => {
-  try {
-    // No Header Needed for reviewAPI (So we are using axios direct).
-    const resp = await axios.patch(`https://maqawaltemp.herokuapp.com/api/profile/reviewar/${profileId}/${projectId}`, { name, title, stars, phoneNumber, review });
-    if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
-    return resp.data;
-  } catch (error) {
-    const message = checkError(error);
-    return thunkAPI.rejectWithValue(message);
-  }
-};

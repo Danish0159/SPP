@@ -4,7 +4,7 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components_ar/Spinner";
 import { styles } from '../../../Shared/styles';
-import { addProjectAr } from "../../../features/profile/profileSlice";
+import { addProjectAr } from "../../../features_ar/profile/profileSlice";
 
 const AddProject = () => {
     const [projectName, setProjectName] = useState("");
@@ -17,7 +17,7 @@ const AddProject = () => {
     // state.
     const dispatch = useDispatch();
     const { user, isLoading, } = useSelector(
-        (state) => state.profile
+        (state) => state.profileAr
     );
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -108,7 +108,6 @@ const AddProject = () => {
                         accept="image/*"
                         name="heroImage"
                         multiple={true}
-                        maxFiles={6}
                         maxSize={10 * 1024 * 1024}
                     >
                         {({ getRootProps, getInputProps }) => (
@@ -121,8 +120,7 @@ const AddProject = () => {
                                         قم بسحب "وإفلات" ملفات الصور فقط هنا ، أو انقر لتحديد الملفات <br />{" "}
                                         <small style={padding}>
                                             {" "}
-                                            (الحد الأقصى لعدد الملفات هو 6 ملفات كل منها 10 ميجابايت
-                                            الملفات التي يمكنك إسقاطها هنا)
+                                            (الحد الأقصى لحجم الملف المسموح به لكل ملف هو 10 ميغا بايت)
                                         </small>
                                     </p>
                                 )}

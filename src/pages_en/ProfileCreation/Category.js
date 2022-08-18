@@ -9,7 +9,7 @@ export default function Category(props) {
     formField: { category, subCategory },
   } = props;
   const { conditionalFlag } = useSelector(
-    (state) => state.profile
+    (state) => state.profileEn
   );
 
   const user = getUserFromLocalStorage();

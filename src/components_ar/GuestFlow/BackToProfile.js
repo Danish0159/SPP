@@ -27,11 +27,11 @@ const BackToProfile = ({ avatar, name, role, userId }) => {
           </div>
           <div className="backToProfile__btns">
             <Link to="#" type="submit" className="blue-btn backToProfile-btn disableButtonColor">
-              أرسل رسالة الآن
+            أرسل رسالة الآن
             </Link>
 
             <Link to={`/Usersar/${userId}`} type="submit" className="blue-btn backToProfile-btn">
-              العودة إلى الملف الشخصي
+            العودة إلى الملف الشخصي
             </Link>
           </div>
         </div>

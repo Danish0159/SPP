@@ -6,16 +6,16 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Gallery } from '../../../components_en/GuestFlow';
 import ReviewForm from '../../../components_en/Community/Profile/ReviewForm';
-import { fetchSingleProjectAr } from '../../../features/guest/guestSlice';
+import { fetchSingleProjectEn } from '../../../features_en/guest/guestSlice';
 
 const ClientReview = () => {
     // State.
-    const { single_project, isLoading, } = useSelector((state) => state.guest);
+    const { single_project, isLoading, } = useSelector((state) => state.guestEn);
     const dispatch = useDispatch();
     const { userId, id } = useParams();
 
     useEffect(() => {
-        dispatch(fetchSingleProjectAr({ userId, id }));
+        dispatch(fetchSingleProjectEn({ userId, id }));
         // eslint-disable-next-line
     }, [id]);
 
@@ -56,7 +56,7 @@ const ClientReview = () => {
                                 </span></p>
                                 <Gallery data={single_project.data.portfolio[0].images}></Gallery>
                             </div>
-                            <ReviewForm User={single_project.data.user.name_en} userId={userId} id={id}></ReviewForm>
+                            <ReviewForm User={single_project.data.employmentHistory_en.companyName} userId={userId} id={id}></ReviewForm>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ const Wrapper = styled.div`
         text-align:center;
     }
     .review__right {
-        background: url(https://res.cloudinary.com/dm1mlee94/image/upload/v1652984141/Img_megrmd.png);
+        background-color: whitesmoke;
         opacity: 1;
         flex: 1;
         display: flex;
@@ -136,10 +136,19 @@ const Wrapper = styled.div`
         margin-bottom: 2.2rem;
         margin-left: 2rem;
         font-weight: 700;
-        }
-      .project__name,
-      .project__location,
-      .project__description {
+    }
+
+    .project__title{
+        font-size: 2rem;
+        color: var(--clr-black);
+        margin-top: 2.2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .project__name,
+    .project__location,
+    .project__description {
         font-size: 2rem;
         margin: 1.3rem 0rem;
         margin-left: 2rem;

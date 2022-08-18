@@ -1,13 +1,31 @@
-import SingleUserPageEn from "./SingleUserPage";
-import SingleProjectPageEn from "./SingleProjectPage";
-import ProjectsPageEn from "./ProjectsPage";
-import UsersPageEn from "./UsersPage";
-import HomePageEn from "./HomePage";
+import { lazy } from "react";
 
-export {
-  HomePageEn,
-  SingleUserPageEn,
-  SingleProjectPageEn,
-  ProjectsPageEn,
-  UsersPageEn,
-};
+export const HomePageEn = lazy(() =>
+import("./HomePage").then(({ default: HomePageEn }) => ({
+  default: HomePageEn,
+}))
+);
+
+export const UsersPageEn = lazy(() =>
+  import("./UsersPage").then(({ default: UsersPageEn }) => ({
+    default: UsersPageEn,
+  }))
+);
+
+export const SingleUserPageEn = lazy(() =>
+  import("./SingleUserPage").then(({ default: SingleUserPageEn }) => ({
+    default: SingleUserPageEn,
+  }))
+);
+
+export const ProjectsPageEn = lazy(() =>
+  import("./ProjectsPage").then(({ default: ProjectsPageEn }) => ({
+    default: ProjectsPageEn,
+  }))
+);
+
+export const SingleProjectPageEn = lazy(() =>
+  import("./SingleProjectPage").then(({ default: SingleProjectPageEn }) => ({
+    default: SingleProjectPageEn,
+  }))
+);

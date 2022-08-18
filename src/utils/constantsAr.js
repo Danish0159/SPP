@@ -60,7 +60,7 @@ export const categories = {
 };
 
 export const subCategories = {
-    Contractor: {
+    "مقاول": {
         "Electrical": [
             {
                 value_ar: "مقاول أعمال كهربائية (جهد متوسط)",
@@ -220,7 +220,7 @@ export const subCategories = {
             }
         ],
     },
-    Handyman: {
+    "عامل يدوي": {
         "Electrical": [
             {
                 value_ar: "الأعمال الكهربائية (متوسطة الجهد) الماهر",
@@ -292,7 +292,7 @@ export const subCategories = {
             }
         ]
     },
-    Designer: {
+    "مصمم": {
         "Building Designers":
             [
                 {
@@ -329,7 +329,7 @@ export const subCategories = {
                 }
             ]
     },
-    Consultant: {
+    "مستشار": {
         "Building Consultants":
             [
                 {
@@ -389,15 +389,15 @@ export const users = [
 ];
 
 export const countries = [
-    { value_ar: "المملكة العربية السعودية", value_en: "Saudi Arabia" },
+    { value_ar: "السعودية", value_en: "Saudia" },
     { value_ar: "پاکستان", value_en: "Pakistan" },
 ];
 
 export const pakCities = [
-    {
-        value_ar: "احمد ناگر چٹھہ",
-        value_en: "Ahmed Nager Chatha"
-    },
+    // {
+    //     value_ar: "احمد ناگر چٹھہ",
+    //     value_en: "Ahmed Nager Chatha"
+    // },
     {
         value_ar: "علی خان آباد",
         value_en: "Ali Khan Abad"
@@ -1399,10 +1399,10 @@ export const saudiCities = [
         value_ar: "خميس مشيط",
         value_en: "Khamīs Mushayt"
     },
-    {
-        value_ar: "مدينة الملك خالد العسكرية",
-        value_en: "King Khalīd Military City"
-    },
+    // {
+    //     value_ar: "مدينة الملك خالد العسكرية",
+    //     value_en: "King Khalīd Military City"
+    // },
     {
         value_ar: "مكة المكرمة",
         value_en: "Mecca"

@@ -5,7 +5,7 @@ import { countries, pakCities, saudiCities } from "../../utils/constantsEn";
 
 export default function Location(props) {
   const { conditionalFlag } = useSelector(
-    (state) => state.profile
+    (state) => state.profileEn
   );
   const {
     formField: { country, city },

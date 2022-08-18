@@ -39,7 +39,7 @@ const Wrapper = styled.section`
     color: var(--clr-black);
 }
  .subcatgories__title {
-    font-family: "Roboto", sans-serif;
+    
     font-weight: 700;
     color: var(--clr-blue-2);
     font-size: 2.5rem;

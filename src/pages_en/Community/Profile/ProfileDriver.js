@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { Footer } from "../../../components_en";
 import { Buttons } from "../../../components_en/Community/Profile";
 import { CardLayout } from '../../../Shared/styled'
-import { AddProject, PreviewProfile, PersonelInfo, PersonelProjects } from '../Profile'
+import { AddProject, PersonelInfo, PreviewProfile, PersonelProjects } from '../Profile';
 import { CardTitle } from '../../../Shared'
 import { useSelector } from "react-redux";
 import { NavbarCommunity } from '../../../components_en/Navigations'
 
 const ProfileDriver = () => {
   const { user } = useSelector(
-    (state) => state.profile
+    (state) => state.profileEn
   );
   const [step, setStep] = useState(0);
 

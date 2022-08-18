@@ -13,7 +13,7 @@ import Spinner from "../../../components_en/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles';
-import { deleteProjectEn, updateProjectEn } from '../../../features/profile/profileSlice';
+import { deleteProjectEn, updateProjectEn } from '../../../features_en/profile/profileSlice';
 
 
 const PersonelProjects = () => {
@@ -51,7 +51,7 @@ const PersonelProjects = () => {
     // Take Review end. 
 
     const { user, isLoading } = useSelector(
-        (state) => state.profile
+        (state) => state.profileEn
     );
     const dispatch = useDispatch();
 
@@ -104,15 +104,15 @@ const PersonelProjects = () => {
                 </div>
                 <div>
                     <h1 className='request__title'>Request a client testimonial</h1>
-                    <p className="card__subtitle">You can send the following link to the client to take a review for your project.</p>
+                    <p className="card__subtitle">Send the review page link to the client to take a review for this project just by clicking on the below button to automatically copy the link.</p>
                     <button onClick={() => {
                         toast.success("Copied to clipboard", {
                             position: "top-center",
                             autoClose: 300,
                             hideProgressBar: true,
                         });
-                        navigator.clipboard.writeText(`maqawal.com/Review/${user.profile._id}/${projectReviewId}`);
-                    }} className="request__link">maqawal.com/Review/{user.profile._id}{projectReviewId}</button>
+                        navigator.clipboard.writeText(`maqawalupdated.netlify.app/Review/${user.profile._id}/${projectReviewId}`);
+                    }} className="request__link">Click To Copy</button>
                 </div>
             </Wrapper>
         )
@@ -172,7 +172,6 @@ const PersonelProjects = () => {
                             accept="image/*"
                             name="heroImage"
                             multiple={true}
-                            maxFiles={6}
                             maxSize={10 * 1024 * 1024}
                         >
                             {({ getRootProps, getInputProps }) => (
@@ -186,8 +185,7 @@ const PersonelProjects = () => {
                                             select files <br />{" "}
                                             <p style={padding}>
                                                 {" "}
-                                                (6 files each of 10MB are the maximum number of
-                                                files you can drop here)
+                                                (Max file size allowed for each file is 10 Mb)
                                             </p>
                                         </p>
                                     )}

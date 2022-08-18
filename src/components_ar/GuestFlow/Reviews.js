@@ -14,37 +14,13 @@ const Reviews = ({ single, review, title, rating }) => {
             </p>
             <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>{title ? title : "لم يتم تقديم أي تعليقات"}</h1>
             <br />
-            <Rating precision={0.5} name="read-only" value={rating} style={{ fontSize: "1.9rem" }} readOnly />
+            <Rating sx={{direction: "ltr"}} precision={0.5} name="read-only" value={rating} style={{ fontSize: "1.9rem" }} readOnly />
           </div>
         </div>
       </Wrapper >
     );
   }
-  // Multiple Review For Single User.
-  return (
-    <Wrapper>
-      <div className="reviews__grid">
-        <div className="reviews__item">
-          <p className="reviews__paragraph">
-          وإيطالي وقوعها، دار بل, عل وتزويده الأرضية أخذ, ساعة والمانيا لكل لم. دنو أم ثمّة القوى الأمور, أدنى أعلنت يرتبط أم جعل. العاصمة وبالرغم أن شيء. كل هذه وبداية بالفشل تكتيكاً. جديدة الأجل يتسنّى كلا هو, جدول أمدها كل حول.
-          </p>
-          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>المخرج - مقاول</h1>
-        </div>
-        <div className="reviews__item">
-          <p className="reviews__paragraph">
-          وإيطالي وقوعها، دار بل, عل وتزويده الأرضية أخذ, ساعة والمانيا لكل لم. دنو أم ثمّة القوى الأمور, أدنى أعلنت يرتبط أم جعل. العاصمة وبالرغم أن شيء. كل هذه وبداية بالفشل تكتيكاً. جديدة الأجل يتسنّى كلا هو, جدول أمدها كل حول.
-          </p>
-          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>مدير - أورانج</h1>
-        </div>
-        <div className="reviews__item">
-          <p className="reviews__paragraph">
-          وإيطالي وقوعها، دار بل, عل وتزويده الأرضية أخذ, ساعة والمانيا لكل لم. دنو أم ثمّة القوى الأمور, أدنى أعلنت يرتبط أم جعل. العاصمة وبالرغم أن شيء. كل هذه وبداية بالفشل تكتيكاً. جديدة الأجل يتسنّى كلا هو, جدول أمدها كل حول.
-          </p>
-          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>المخرج - سبيدو</h1>
-        </div>
-      </div>
-    </Wrapper>
-  );
+  return null;
 };
 
 export default Reviews;

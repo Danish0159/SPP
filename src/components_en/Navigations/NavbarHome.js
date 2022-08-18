@@ -1,13 +1,8 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/logo3.png";
-import styled from "styled-components";
-import { Contractors, Handymen, Designers, Consultants } from '../GuestFlow/HomePage/categoriesData';
-import SearchIcon from '@mui/icons-material/Search';
-import noDataFound from '../../images/ndf.jpg';
 // Logout Drop Down.
 import Avatar from "@mui/material/Avatar";
-import HomeIcon from '@mui/icons-material/Home';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -15,10 +10,10 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../features/user/userSlice";
+import { logoutUser } from "../../features_en/user/userSlice";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 
-const NavbarHome = ({ setCategoriesDataH, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF }) => {
+const NavbarHome = () => {
 
   const user = getUserFromLocalStorage();
 
@@ -43,142 +38,11 @@ const NavbarHome = ({ setCategoriesDataH, setCategoriesDataC, setCategoriesDataD
 
 
   return (
-    <Wrapper>
-
-      <div className='navbar'>
-
-        <Link to="/">
-          <img className="navbar-logo" src={logo} alt="Logo" />
+    <div className="nav__parent">
+      <div className="nav__container">
+        <Link className="navbar__link" to="/">
+          <img className="navbar__logo" src={logo} alt="Logo" />
         </Link>
-
-        <div className='navbar-search'>
-          <input
-            className='search-input'
-            type="text"
-            placeholder='Search Category'
-            onChange={(e) => {
-
-              let updatedDataH = Handymen.filter((val) => {
-                if (e.target.value === "") {
-                  return val;
-                }
-                else if (e.target.value.length === 1 ? val.name.value_en.toLowerCase().startsWith(e.target.value.toLowerCase()) : val.name.value_en.toLowerCase().includes(e.target.value.toLowerCase())) {
-                  return val;
-                }
-                return false;
-              });
-
-              let updatedDataC = Contractors.filter((val) => {
-                if (e.target.value === "") {
-                  return val;
-                }
-                else if (e.target.value.length === 1 ? val.name.value_en.toLowerCase().startsWith(e.target.value.toLowerCase()) : val.name.value_en.toLowerCase().includes(e.target.value.toLowerCase())) {
-                  return val;
-                }
-                return false;
-              });
-
-              let updatedDataD = Designers.filter((val) => {
-                if (e.target.value === "") {
-                  return val;
-                }
-                else if (e.target.value.length === 1 ? val.name.value_en.toLowerCase().startsWith(e.target.value.toLowerCase()) : val.name.value_en.toLowerCase().includes(e.target.value.toLowerCase())) {
-                  return val;
-                }
-                return false;
-              });
-
-              let updatedDataCF = Consultants.filter((val) => {
-                if (e.target.value === "") {
-                  return val;
-                }
-                else if (e.target.value.length === 1 ? val.name.value_en.toLowerCase().startsWith(e.target.value.toLowerCase()) : val.name.value_en.toLowerCase().includes(e.target.value.toLowerCase())) {
-                  return val;
-                }
-                return false;
-              });
-
-
-              if (updatedDataH.length === 0) {
-                setCategoriesDataH([{
-                  img: noDataFound,
-                  name: {
-                    value_en: "No Data Found",
-                    value_ar: "No Data Found"
-                  },
-                  subCategories: [
-                    {
-                      value_en: "No Data Found",
-                      value_ar: "No Data Found"
-                    }
-                  ]
-                }])
-              }
-              else {
-                setCategoriesDataH(updatedDataH);
-              }
-
-              if (updatedDataC.length === 0) {
-                setCategoriesDataC([{
-                  img: noDataFound,
-                  name: {
-                    value_en: "No Data Found",
-                    value_ar: "No Data Found"
-                  },
-                  subCategories: [
-                    {
-                      value_en: "No Data Found",
-                      value_ar: "No Data Found"
-                    }
-                  ]
-                }])
-              }
-              else {
-                setCategoriesDataC(updatedDataC);
-              }
-
-              if (updatedDataD.length === 0) {
-                setCategoriesDataD([{
-                  img: noDataFound,
-                  name: {
-                    value_en: "No Data Found",
-                    value_ar: "No Data Found"
-                  },
-                  subCategories: [
-                    {
-                      value_en: "No Data Found",
-                      value_ar: "No Data Found"
-                    }
-                  ]
-                }])
-              }
-              else {
-                setCategoriesDataD(updatedDataD);
-              }
-
-              if (updatedDataCF.length === 0) {
-                setCategoriesDataCF([{
-                  img: noDataFound,
-                  name: {
-                    value_en: "No Data Found",
-                    value_ar: "No Data Found"
-                  },
-                  subCategories: [
-                    {
-                      value_en: "No Data Found",
-                      value_ar: "No Data Found"
-                    }
-                  ]
-                }])
-              }
-              else {
-                setCategoriesDataCF(updatedDataCF);
-              }
-            }}
-          />
-          <SearchIcon className='search-icon'></SearchIcon>
-        </div>
-
 
         {
           user ?
@@ -232,13 +96,6 @@ const NavbarHome = ({ setCategoriesDataH, setCategoriesDataC, setCategoriesDataD
               >
                 {user.profile ?
                   <>
-                    <Link to="/HomeFeed">
-                      <MenuItem>
-                        <HomeIcon sx={{
-                          width: 30, height: 30, ml: -0.5, mr: 1, color: "rgba(0, 0, 0, 0.39)",
-                        }} /> <span style={{ color: '#121212' }}>Feed</span>
-                      </MenuItem>
-                    </Link>
                     <Link to="/Profile">
                       <MenuItem>
                         <Avatar /> <span style={{ color: '#121212' }}>Profile</span>
@@ -266,70 +123,8 @@ const NavbarHome = ({ setCategoriesDataH, setCategoriesDataC, setCategoriesDataD
             </Link>
         }
       </div>
-    </Wrapper >
+    </div>
   );
 };
 
 export default NavbarHome;
-
-const Wrapper = styled.section`
-  
-
-.navbar {
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  height: 100px;
-  font-size: 1.5rem;
-  background-color: #424d83;
-}
-
-.navbar-logo {
-  height: 70px;
-  width: 145px;
-}
-
-.navbar-search {
-  font-size: 1.6rem;
-  color:rgb(120, 116, 116); 
-  font-weight: 600;
-  border: none;
-}
-
-.search-input {
-  padding: 0px 15px;
-  height: 45px;
-  width: 300px;
-  border-radius: 25px;
-  border: none;
-}
-@media only screen and (max-width: 950px) {
-  
-  .navbar-search {
-    display: none;
-  }
-
-  .navbar {
-    padding: 5px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 100px;
-    font-size: 3rem;
-    background-color: #424d83;
-  }
-  
-  
-}
-
-
-.search-icon {
-  color: rgb(120, 116, 116);
-  transform: scale(1.9);
-  margin-left: -3.13rem;
-}
-
-`;

@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import 'react-alice-carousel/lib/alice-carousel.css';
 import { NavbarHome } from '../../components_ar/Navigations';
 import { Contractors, Handymen, Designers, Consultants } from '../../components_ar/GuestFlow/HomePage/categoriesData';
 import { Location, RoleSubSections, Hero } from '../../components_ar/GuestFlow/HomePage'
-import { useDispatch, useSelector } from "react-redux";
-import { Footer, Spinner } from "../../components_ar";
+import { Footer } from "../../components_ar";
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { reset } from '../../features/guest/guestSlice';
-import { toast } from 'react-toastify';
 
 const HomePage = () => {
 
@@ -18,27 +14,18 @@ const HomePage = () => {
     const [categoriesDataCF, setCategoriesDataCF] = useState(Consultants); //C stands for Consultant Firms
 
     const history = useHistory();
-    const dispatch = useDispatch();
 
     const [country, setCountry] = useState("دولة");
     const [city, setCity] = useState("مدينة");
 
-
-
-    //State. (API Call IN RoleSubSections Component).
-    const { isLoading, isSuccess, isError } = useSelector(
-        (state) => state.guest
-    );
-
     useEffect(() => {
-        if (isError) {
-            toast.error(isError);
-            dispatch(reset());
+        let lang = localStorage.getItem('lang');
+
+        if(lang === "en")
+        {
+            history.replace('/');
         }
-        if (isSuccess) {
-            history.push("/Usersar");
-            dispatch(reset());
-        }
+
         const location = JSON.parse(localStorage.getItem("locationAr"));
         if (location) {
             setCountry(location.country);
@@ -48,16 +35,8 @@ const HomePage = () => {
             setCountry("دولة");
             setCity("مدينة");
         }
-        // eslint-disable-next-line
-    }, [isSuccess, isError]);
 
-    if (isLoading) {
-        return (
-            <div className="section-100vh">
-                <Spinner />;
-            </div>
-        );
-    }
+    }, [history])
 
     const HomeValues = {
         country, city, setCity, setCountry, setCategoriesDataH, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
@@ -65,25 +44,15 @@ const HomePage = () => {
 
     return (
         <>
-            <NavbarHome {...HomeValues}></NavbarHome>
+            <NavbarHome></NavbarHome>
             <Location {...HomeValues}></Location>
             <Hero></Hero>
 
-            <RoleSubSections
-                {...HomeValues}
-                id="Handymen"
-                role_en="Handyman"
-                role_ar="عامل يدوي"
-                roleData={Handymen}
-                roleCategories={categoriesDataH}
-                roleCategoriesUpdate={setCategoriesDataH}
-            ></RoleSubSections>
-            <Seperator></Seperator>
+            
             <RoleSubSections
                 {...HomeValues}
                 id="Contractors"
-                role_en="Contractor"
-                role_ar="مقاول"
+                role="مقاول"
                 roleData={Contractors}
                 roleCategories={categoriesDataC}
                 roleCategoriesUpdate={setCategoriesDataC}
@@ -91,9 +60,17 @@ const HomePage = () => {
             <Seperator></Seperator>
             <RoleSubSections
                 {...HomeValues}
+                id="Handymen"
+                role="عامل يدوي"
+                roleData={Handymen}
+                roleCategories={categoriesDataH}
+                roleCategoriesUpdate={setCategoriesDataH}
+            ></RoleSubSections>
+            <Seperator></Seperator>
+            <RoleSubSections
+                {...HomeValues}
                 id="Designers"
-                role_en="Designer"
-                role_ar="مصمم"
+                role="مصمم"
                 roleData={Designers}
                 roleCategories={categoriesDataD}
                 roleCategoriesUpdate={setCategoriesDataD}
@@ -102,8 +79,7 @@ const HomePage = () => {
             <RoleSubSections
                 {...HomeValues}
                 id="Consultants"
-                role_en="Consultant"
-                role_ar="مستشار"
+                role="مستشار"
                 roleData={Consultants}
                 roleCategories={categoriesDataCF}
                 roleCategoriesUpdate={setCategoriesDataCF}

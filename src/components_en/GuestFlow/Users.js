@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Table, Buttons } from "../GuestFlow";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchUsersEn, reset } from "../../features/guest/guestSlice";
+import { fetchUsersEn, reset } from "../../features_en/guest/guestSlice";
 import Spinner from "../Spinner";
 import styled from "styled-components";
 
@@ -12,7 +12,7 @@ const Users = () => {
   const history = useHistory();
 
   const { users, isLoading, isSuccess, isError } = useSelector(
-    (state) => state.guest
+    (state) => state.guestEn
   );
 
   const searchValues = JSON.parse(localStorage.getItem("searchValues"));
@@ -87,7 +87,7 @@ const Users = () => {
       <div className="users__left">
         {searchValues && <Buttons handleStep={handleStep} step={step}></Buttons>}
       </div>
-      <Table message="No Users Are Registerd In this Category" title="Search Results" flag={null}></Table>
+      <Table message="No Users Are Registered In this Sub-Category" title="Search Results" flag={null}></Table>
     </Wrapper>
   )
 };

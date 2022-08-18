@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Portfolio(props) {
   const { projectsFlag } = useSelector(
-    (state) => state.profile
+    (state) => state.profileAr
   );
 
   // Brute Force Solution (Optamize the Solution).
@@ -213,7 +213,6 @@ export default function Portfolio(props) {
                 accept="image/*"
                 name="heroImage"
                 multiple={true}
-                maxFiles={6}
                 maxSize={10 * 1024 * 1024}
               >
                 {({ getRootProps, getInputProps }) => (
@@ -226,8 +225,7 @@ export default function Portfolio(props) {
                         قم بسحب "وإفلات" ملفات الصور فقط هنا ، أو انقر لتحديد الملفات <br />{" "}
                         <small className="thumbPadding">
                           {" "}
-                          (الحد الأقصى لعدد الملفات هو 6 ملفات كل منها 10 ميجابايت
-                           الملفات التي يمكنك إسقاطها هنا)
+                          (الحد الأقصى لحجم الملف المسموح به لكل ملف هو 10 ميغا بايت)
                         </small>
                       </p>
                     )}

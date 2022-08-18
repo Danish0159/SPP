@@ -26,7 +26,7 @@ import {
 // redux/state
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { profileCreationAr, reset } from "../../features/profile/profileSlice";
+import { profileCreationAr, reset } from "../../features_ar/profile/profileSlice";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 const { formId, formField } = registrationFormModel;
@@ -72,7 +72,7 @@ const Driver = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { isLoading, isSuccess, } = useSelector(
-    (state) => state.profile
+    (state) => state.profileAr
   );
 
   useEffect(() => {
@@ -152,8 +152,9 @@ const Driver = () => {
       employmentHistory: {
           companyName: values.company,
           location: values.location,
-          description: values.description,
-        },
+          vision: values.vision,
+          socialPlatformLink: values.socialPlatformLink,
+      },
       portfolio: portfolioMapping,
       location_en: {
         country: values.country.value_en,
@@ -250,7 +251,7 @@ const Wrapper = styled.section`
 .error-p{
   font-size: 1.3rem;
   color: red;
-  font-family: "Nunito Sans", sans-serif;
+  
   height: 5px;
 }
 `;

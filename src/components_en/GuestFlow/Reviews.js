@@ -20,37 +20,7 @@ const Reviews = ({ single, review, title, rating }) => {
       </Wrapper >
     );
   }
-  // Multiple Review For Single User.
-  return (
-    <Wrapper>
-      <div className="reviews__grid">
-        <div className="reviews__item">
-          <p className="reviews__paragraph">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Distinctio,
-            blanditiis obcaecati, neque sint sequi accusamus minima
-          </p>
-          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Maqawal</h1>
-        </div>
-        <div className="reviews__item">
-          <p className="reviews__paragraph">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Distinctio,
-            blanditiis obcaecati, neque sint sequi accusamus minima
-          </p>
-          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Orange</h1>
-        </div>
-        <div className="reviews__item">
-          <p className="reviews__paragraph">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. culpa
-            deserunt, dolor ut veniam minus illo iusto ea totam veritatis.
-          </p>
-          <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>Director - Speedo</h1>
-        </div>
-      </div>
-    </Wrapper>
-  );
+  return null;
 };
 
 export default Reviews;

@@ -4,12 +4,12 @@ import { Reviews, Gallery, BackToProfile } from "../GuestFlow";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { fetchSingleProjectAr } from "../../features/guest/guestSlice";
+import { fetchSingleProjectAr } from "../../features_ar/guest/guestSlice";
 import { Rating } from "@mui/material";
 
 const SingleProject = () => {
   const dispatch = useDispatch();
-  const { single_project, isLoading, } = useSelector((state) => state.guest);
+  const { single_project, isLoading, } = useSelector((state) => state.guestAr);
 
   const { userId, id } = useParams();
   useEffect(() => {
@@ -29,7 +29,7 @@ const SingleProject = () => {
       <Wrapper>
         <BackToProfile
           avatar={single_project.data.profilePhoto}
-          name={single_project.data.user.name_ar}
+          name={single_project.data.employmentHistory_ar.companyName}
           role={single_project.data.user.role_ar}
           userId={userId}
         ></BackToProfile>
@@ -45,7 +45,7 @@ const SingleProject = () => {
           </p>
           {single_project.data.portfolio[0].description && <p className="project__subtitle">وصف المشروع: <span className="project__description">{single_project.data.portfolio[0].description}</span></p>}
           
-          {single_project.data.portfolio[0].noOfStars && <p className="project__subtitle">تقييم المشروع: <span className="project__stars"><Rating precision={0.5} name="read-only" value={single_project.data.portfolio[0].noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
+          {single_project.data.portfolio[0].noOfStars > 0 && <p className="project__subtitle">تقييم المشروع: <span className="project__description"><Rating sx={{direction: "ltr"}} precision={0.5} name="read-only" value={single_project.data.portfolio[0].noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
           </span></p>}
         </div>
 
@@ -58,7 +58,7 @@ const SingleProject = () => {
           <h3 className="section__title">مراجعة العميل</h3>
           <Reviews 
           review={single_project.data.portfolio[0].review ? single_project.data.portfolio[0].review : null} 
-          title={single_project.data.portfolio[0].reviwerTitle ? single_project.data.portfolio[0].reviwerTitle : null} 
+          title={single_project.data.portfolio[0].reviewerTitle ? single_project.data.portfolio[0].reviewerTitle : null} 
           rating={single_project.data.portfolio[0].noOfStars ? single_project.data.portfolio[0].noOfStars : null}
           single={true}>
           </Reviews>
@@ -79,23 +79,24 @@ const Wrapper = styled.section`
   }
   .project__title {
     font-size: 3rem;
-    margin-bottom:2.5rem ;
+    margin-bottom:2.5rem;
+    margin-right: 2rem;
     color: var(--clr-blue-2);
   }
   .project__subtitle{
     font-size: 2rem;
     color: var(--clr-black);
     margin-bottom: 2.2rem;
-    margin-left: 2rem;
+    margin-right: 2rem;
     font-weight: 700;
     }
-  .project__name,
-  .project__location,
-  .project__description,
-  .project__stars {
-    font-size: 2rem;
-    margin: 1.3rem 0rem;
-    margin-left: 2rem;
-    font-weight: 500;
-  }
+    .project__name,
+    .project__location,
+    .project__description,
+    .project__stars {
+      font-size: 2rem;
+      margin: 1.3rem 0rem;
+      margin-right: 1.5rem;
+      font-weight: 500;
+    }
 `;

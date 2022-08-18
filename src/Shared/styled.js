@@ -77,7 +77,7 @@ export const CardLayout = styled.div`
   }
   /* Drop Zone Text */
  .drop {
-  font-family: "Nunito Sans", sans-serif;
+  
   font-size: 1.5rem;
   color: var(--clr-black);
 }

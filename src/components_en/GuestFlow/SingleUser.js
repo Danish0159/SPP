@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Gallery } from ".";
-import { fetchSingleUserEn } from "../../features/guest/guestSlice";
+import { Gallery, Reviews } from ".";
+import { fetchSingleUserEn } from "../../features_en/guest/guestSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
@@ -11,7 +11,7 @@ import { Avatar, Rating } from "@mui/material";
 const SingleUser = () => {
   const dispatch = useDispatch();
   const { single_user, isLoading, } = useSelector(
-    (state) => state.guest
+    (state) => state.guestEn
   );
 
   const { id } = useParams();
@@ -42,12 +42,16 @@ const SingleUser = () => {
                 />
               </div>
               <h1 className="profile__name--title">
-                {single_user.data.user.user.name_en}
+                {single_user.data.user.employmentHistory_en.companyName}
               </h1>
               <p className="profile__name--subtitle">
-                {" "}
+                {single_user.data.user.employmentHistory_en.vision}
+              </p>
+
+              <p className="profile__name--subtitle">
                 {single_user.data.user.user.role_en}
               </p>
+
               <Link to="#" type="submit" className="blue-btn profile-btn disableButtonColor">
                 Message Now
               </Link>
@@ -55,32 +59,28 @@ const SingleUser = () => {
 
             {/* Content */}
             <div className="profile__content">
-              <h2 className="profile__content--title">Company Name:     <span className="profile__content--text">
+              <h2 className="profile__content--title">Company Name:<span className="profile__content--text">
                 {single_user.data.user.employmentHistory_en.companyName}
-              </span>
-              </h2>
-              <h2 className="profile__content--title">Location</h2>
-              <p className="profile__content--text">
-                {single_user.data.user.location_en.country},{" "}&nbsp;
+              </span></h2>
+
+
+              <h2 className="profile__content--title">Location:<span className="profile__content--text">
+                {single_user.data.user.location_en.country},&nbsp;
                 {
                   single_user.data.user.location_en.city.map((city, index) => {
                     return (
-                      <span key={index}>
-                        {city},&nbsp;
-                      </span>
+                      <small key={index}>
+                        {city}
+                      </small>
                     )
                   })
                 }
-              </p>
-              <h2 className="profile__content--title">Contact Number:&nbsp;
-                <span className="profile__content--text">
-                  <a href={"tel:" + single_user.data.user.phoneNumber}>
-                    {single_user.data.user.phoneNumber}
-                  </a>
-                </span>
-              </h2>
-              <h2 className="profile__content--title mbmt">
-                Number of Projects Completed: {single_user.data.noOfProjects}
+              </span></h2>
+
+              <h2 className="profile__content--title">Contact Number:<span className="profile__content--text">
+                {single_user.data.user.phoneNumber}
+              </span></h2>
+              <h2 className="profile__content--title">Projects Completed:<span className="profile__content--text">{single_user.data.noOfProjects}</span>
               </h2>
               <Link
                 to={`/Projects/${id}`}
@@ -98,6 +98,20 @@ const SingleUser = () => {
           </div>
         </div>
 
+        <div className="section__blue">
+          <h3 className="section__title">Client Reviews</h3>
+          {single_user.data.user.portfolio.map((project, index) => {
+            return (
+              <Reviews key={index}
+                review={project.review ? project.review : null}
+                title={project.reviewerTitle ? project.reviewerTitle : null}
+                rating={project.noOfStars ? project.noOfStars : null}
+                single={true}>
+              </Reviews>
+            )
+          })}
+        </div>
+
         <div className="section__white">
           <h3 className="section__title">Projects Gallery</h3>
           {single_user.data.user.portfolio.map((project, index) => {
@@ -113,10 +127,6 @@ const SingleUser = () => {
             )
           })}
         </div>
-        {/* <div className="section__blue">
-          <h3 className="section__title">Client Reviews</h3>
-          <Reviews single={false}></Reviews>
-        </div> */}
       </Wrapper>
     );
   }
@@ -127,9 +137,10 @@ export default SingleUser;
 
 const Wrapper = styled.section`
   .profile {
-    padding: 6rem 0rem;
-    @media only screen and (max-width: 800px) {
-      padding-bottom: 0rem;
+    padding: 6rem;
+    @media only screen and (max-width: 990px) {
+      padding: 0rem;
+
     }
   }
   .profile__grid {
@@ -163,12 +174,12 @@ const Wrapper = styled.section`
     margin-bottom: 1.2rem;
   }
   .profile__name--subtitle {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 600;
     color: var(--clr-black);
-    margin-bottom: 3.2rem;
-    @media only screen and (max-width: 800px) {
-      margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    @media only screen and (max-width: 990px) {
+      margin-bottom: 3.5rem;
     }
   }
   .profile-btn {
@@ -179,38 +190,61 @@ const Wrapper = styled.section`
   .profile__content {
     text-align: left;
     padding-top: 1.5rem;
-    padding-right: 2%;
     padding-bottom: 0.26rem;
-    padding-left: 20%;
-    @media only screen and (max-width: 800px) {
-      padding: 2rem 3rem;
+    padding-left: 25%;
+    @media only screen and (max-width: 990px) {
+      padding: 2rem 5rem;
+    }
+    @media only screen and (max-width: 500px) {
+      padding-left: 2rem;
+    }
+    @media only screen and (max-width: 350px) {
+      padding-left: 1.5rem;
     }
   }
   .profile__content--title {
     font-size: 2rem;
     color: var(--clr-black);
-    margin-bottom: 1.2rem;
+    margin-bottom: 2.5rem;
+    @media only screen and (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      
+    }
   }
+
+  .profile__content--title small {
+    border-right: 1px solid black;
+    padding-right: 5px;
+    margin-right: 5px;
+  }
+
+  .profile__content--title small:last-child {
+    border-right: none;
+  }
+
   .profile__content--text {
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 500;
     color: var(--clr-black);
-    margin-bottom: 2.2rem;
-  }
-  .mbmt{
-    margin-bottom: 2rem;
-    margin-top: 4rem;
-  }
+    margin-left: 1.5rem;
+    @media only screen and (max-width: 500px) {
+      margin-left: 0rem;
+    }
+  }  
   .profile__rating > p {
     color: yellow;
     font-size: 2.3rem;
   }
   .profile__rating {
-    margin-bottom: 70%;
+    margin-bottom: 50%;
     padding-left: 20%;
     text-align: left;
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 990px) {
       padding: 0rem 3rem;
+      margin-bottom: 5%;
     }
   }
   .parent{
