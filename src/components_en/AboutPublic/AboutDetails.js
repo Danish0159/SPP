@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DiamondIcon from "@mui/icons-material/Diamond";
-import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+// import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import AttractionsIcon from "@mui/icons-material/Attractions";
 
 const cardsData = [
