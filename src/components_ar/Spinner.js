@@ -3,26 +3,19 @@ import styled from "styled-components";
 function Spinner() {
   return (
     <Wrapper>
-      <div className="loadingSpinnerContainer">
         <div className="loadingSpinner"></div>
-      </div>
     </Wrapper>
   );
 }
 export default Spinner;
 
 const Wrapper = styled.div`
-.loadingSpinnerContainer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 5000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 .loadingSpinner {
   width: 64px;
   height: 64px;

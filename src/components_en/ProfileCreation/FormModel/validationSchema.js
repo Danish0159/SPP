@@ -7,10 +7,10 @@ const {
         experience,
         projects,
         employees,
-        company,
-        location,
+        name,
+        about,
         vision,
-        socialPlatformLink,
+        mission,
         projectName1,
         projectLocation1,
         projectDescription1,
@@ -57,19 +57,21 @@ export const validationSchema = [
     }),
 
     Yup.object().shape({
-        [company.name]: Yup.string("Enter Company Name").required(
-            `${company.requiredErrorMsg}`
+        [name.name]: Yup.string("Enter Name").required(
+            `${name.requiredErrorMsg} | Limit is 15 chars` 
         ),
 
-        [location.name]: Yup.string("Enter Location").required(
-            `${location.requiredErrorMsg}`
+        [about.name]: Yup.string("Enter About").required(
+            `${about.requiredErrorMsg} | Limit is 75 chars`
         ),
 
-        [vision.name]: Yup.string("Enter Company Vision").required(
-            `${vision.requiredErrorMsg}`
+        [vision.name]: Yup.string("Enter Vision").required(
+            `${vision.requiredErrorMsg} | Limit is 75 chars`
         ),
 
-        [socialPlatformLink.name]: Yup.string("Enter Social Platform Link")
+        [mission.name]: Yup.string("Enter Mission").required(
+            `${mission.requiredErrorMsg} | Limit is 75 chars`
+        ),
     }),
 
     Yup.object().shape({

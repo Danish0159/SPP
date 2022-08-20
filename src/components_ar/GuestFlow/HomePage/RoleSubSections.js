@@ -43,7 +43,7 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                             toast.error("الرجاء تحديد الدولة");
                                         }
                                         else {
-                                            const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: "subCategory" }
+                                            const searchValues = { user: role, category: val.name.value_ar.trim(), country: country, city: city, subCategory: "تصنيف فرعي" }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
                                             const location = { country: country, city: city };
                                             localStorage.setItem("locationAr", JSON.stringify(location));
@@ -69,7 +69,7 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                             toast.error("الرجاء تحديد الدولة");
                                         }
                                         else {
-                                        const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: e.target.value }
+                                        const searchValues = { user: role, category: val.name.value_ar, country: country, city: city, subCategory: e.target.value }
                                         localStorage.setItem("searchValues", JSON.stringify(searchValues));
                                         const location = { country: country, city: city };
                                         localStorage.setItem("locationAr", JSON.stringify(location));
@@ -82,7 +82,7 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
 
                                     {val.subCategories.map((item, index) => {
                                         return (
-                                            <option key={index} className='dropdown-item' value={item.value_en}>{item.value_ar}</option>
+                                            <option key={index} className='dropdown-item' value={item.value_ar}>{item.value_ar}</option>
                                         )
                                     })}
 
@@ -156,13 +156,12 @@ const Wrapper = styled.div`
     height: 200px;
     width: 240px;
     cursor: pointer;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    margin-top: 5px;
+    border-radius: 20px;
 }
 
 .bottom-img:hover {
     opacity: 0.7;
-    border-radius: 20px;
     transition-duration: 0.6s;
 }
 
@@ -171,7 +170,7 @@ const Wrapper = styled.div`
     padding: 5px;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin: 20px 0px;
     font-size: 18px;
 }
 
@@ -180,12 +179,16 @@ const Wrapper = styled.div`
 }
 
 @media screen and (max-width:650px) {
-    .selectcategory-top {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .bottom-dropdown {
+        width: 175px;
+        font-size: 1.2rem;
     }
-}
+    .bottom-img {
+        height: 175px;
+        width: 220px;
+        border-radius: 20px;
+
+    }
 
 @media screen and (max-width:550px) {
     .selectcategory .selectcategory-top .top-title {

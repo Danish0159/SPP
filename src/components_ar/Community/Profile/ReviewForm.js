@@ -1,22 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Rating, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles'
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../Spinner';
-import { reviewProjectAr } from '../../../features_ar/profile/profileSlice';
+import { reviewProjectAr, reset } from '../../../features_ar/profile/profileSlice';
+import swal from 'sweetalert';
+
 
 const ReviewForm = ({ User, userId, id }) => {
     const [name, setName] = useState("");
     const [title, setTitle] = useState("السابق. مدير التسويق");
     const [stars, setStars] = useState(0);
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState();
     const [review, setReview] = useState("");
 
     // State.
     const dispatch = useDispatch();
-    const { isLoading, } = useSelector(
+
+    const { isLoading, isSuccess } = useSelector(
         (state) => state.profileAr
     );
+
+    useEffect(() => {
+        if (isSuccess) {
+            swal({
+                title: "تم إرسال المراجعة",
+                icon: "success",
+            }).then(() => {
+                dispatch(reset());
+                window.location.replace("https://maqawalupdated.netlify.app/");
+
+            });
+        }
+        // eslint-disable-next-line
+    }, [isSuccess]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         //  API CALL.
@@ -74,7 +92,8 @@ const ReviewForm = ({ User, userId, id }) => {
             <p className="project__title">رقم الهاتف</p>
             <TextField
                 fullWidth
-                type="text"
+                sx={{direction: "ltr"}}
+                type="number"
                 name="text"
                 inputProps={{
                     style: styles.textField,
@@ -103,8 +122,10 @@ const ReviewForm = ({ User, userId, id }) => {
                 name="text"
                 inputProps={{
                     style: styles.desciption,
+                    maxLength: 75
                 }}
-                rows={5}
+                helperText={`${review.length}/${75}`}
+                rows={2}
                 multiline
                 value={review}
                 onChange={(e) => setReview(e.target.value)}

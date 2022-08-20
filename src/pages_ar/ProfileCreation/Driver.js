@@ -16,8 +16,8 @@ import {
 // Pages
 import {
   Category,
-  Experience,
-  Employement,
+  ExpertiseLevel,
+  About,
   Portfolio,
   Location,
   PhoneNumber,
@@ -34,7 +34,7 @@ const { formId, formField } = registrationFormModel;
 const steps = [
   "فئة",
   "مستوى الخبرة",
-  "تاريخ التوظيف",
+  "حول",
   "مَلَفّ",
   "موقع",
   "رقم الهاتف",
@@ -46,9 +46,9 @@ function _renderStepContent(step) {
     case 0:
       return <Category formField={formField} />;
     case 1:
-      return <Experience formField={formField} />;
+      return <ExpertiseLevel formField={formField} />;
     case 2:
-      return <Employement formField={formField} />;
+      return <About formField={formField} />;
     case 3:
       return <Portfolio formField={formField} />;
     case 4:
@@ -89,8 +89,8 @@ const Driver = () => {
       portfolioMapping.push(
         {
           projectName: values.projectName1,
-          location: values.projectLocation1,
-          description: values.projectDescription1,
+          projectLocation: values.projectLocation1,
+          projectDescription: values.projectDescription1,
           images: values.images.images1,
         }
       );
@@ -99,8 +99,8 @@ const Driver = () => {
       portfolioMapping.push(
         {
           projectName: values.projectName2,
-          location: values.projectLocation2,
-          description: values.projectDescription2,
+          projectLocation: values.projectLocation2,
+          projectDescription: values.projectDescription2,
           images: values.images.images2,
         }
       );
@@ -109,8 +109,8 @@ const Driver = () => {
       portfolioMapping.push(
         {
           projectName: values.projectName3,
-          location: values.projectLocation3,
-          description: values.projectDescription3,
+          projectLocation: values.projectLocation3,
+          projectDescription: values.projectDescription3,
           images: values.images.images3,
         }
       );
@@ -119,8 +119,8 @@ const Driver = () => {
       portfolioMapping.push(
         {
           projectName: values.projectName4,
-          location: values.projectLocation4,
-          description: values.projectDescription4,
+          projectLocation: values.projectLocation4,
+          projectDescription: values.projectDescription4,
           images: values.images.images4,
         }
       );
@@ -129,8 +129,8 @@ const Driver = () => {
       portfolioMapping.push(
         {
           projectName: values.projectName5,
-          location: values.projectLocation5,
-          description: values.projectDescription5,
+          projectLocation: values.projectLocation5,
+          projectDescription: values.projectDescription5,
           images: values.images.images5,
         }
       );
@@ -143,17 +143,16 @@ const Driver = () => {
       category_ar: values.category.value_ar,
       subCategory_en: values.subCategory.value_en,
       subCategory_ar: values.subCategory.value_ar,
-      phoneNumber: values.phone,
       expertiseLevel: {
         yearsOfExperience: values.experience,
         noOfProjects: values.projects,
         noOfEmployees: values.employees,
       },
-      employmentHistory: {
-          companyName: values.company,
-          location: values.location,
-          vision: values.vision,
-          socialPlatformLink: values.socialPlatformLink,
+      about: {
+          companyName: values.name,
+          companyAbout: values.about,
+          companyVision: values.vision,
+          companyMission: values.mission,
       },
       portfolio: portfolioMapping,
       location_en: {
@@ -164,11 +163,11 @@ const Driver = () => {
         country: values.country.value_ar,
         city: values.city.map((item) => item.value_ar),
       },
+      phoneNumber: values.phone,
       profilePhoto: values.image.src,
 
     };
 
-    console.log(payload);
     dispatch(profileCreationAr(payload));
     setActiveStep(activeStep + 1);
     actions.setSubmitting(false);
@@ -248,10 +247,15 @@ const Driver = () => {
 export default Driver;
 
 const Wrapper = styled.section`
+  overflow: hidden;
+  box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+  -webkit-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+  -moz-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+
 .error-p{
   font-size: 1.3rem;
   color: red;
-  
   height: 5px;
 }
+
 `;

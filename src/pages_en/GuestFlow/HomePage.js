@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavbarHome } from '../../components_en/Navigations';
-import { Contractors, Handymen, Designers, Consultants } from '../../components_en/GuestFlow/HomePage/categoriesData';
+import { Contractors, Maintenance, Designers, Consultants } from '../../components_en/GuestFlow/HomePage/categoriesData';
 import { Location, RoleSubSections, Hero } from '../../components_en/GuestFlow/HomePage'
 import { Footer } from "../../components_en";
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const HomePage = () => {
 
-    const [categoriesDataH, setCategoriesDataH] = useState(Handymen); // H stands for Handymen
+    const [categoriesDataM, setCategoriesDataM] = useState(Maintenance); // M stands for Maintenance
     const [categoriesDataC, setCategoriesDataC] = useState(Contractors); // C stands for Contractors
     const [categoriesDataD, setCategoriesDataD] = useState(Designers); // D stands for Designers 
     const [categoriesDataCF, setCategoriesDataCF] = useState(Consultants); //C stands for Consultant Firms
@@ -40,7 +40,7 @@ const HomePage = () => {
     }, [history])
 
     const HomeValues = {
-        country, city, setCity, setCountry, setCategoriesDataH, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
+        country, city, setCity, setCountry, setCategoriesDataM, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
     }
 
     return (
@@ -60,11 +60,11 @@ const HomePage = () => {
             <Seperator></Seperator>
             <RoleSubSections
                 {...HomeValues}
-                id="Handymen"
-                role="Handyman"
-                roleData={Handymen}
-                roleCategories={categoriesDataH}
-                roleCategoriesUpdate={setCategoriesDataH}
+                id="Maintenance"
+                role="Maintenance"
+                roleData={Maintenance}
+                roleCategories={categoriesDataM}
+                roleCategoriesUpdate={setCategoriesDataM}
             ></RoleSubSections>
             <Seperator></Seperator>
             <RoleSubSections

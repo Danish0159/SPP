@@ -73,6 +73,7 @@ const Login = () => {
             <label htmlFor="email">عنوان البريد الالكترونى</label>
             <TextField
               fullWidth
+              sx={{direction: "ltr"}}
               type="email"
               name="email"
               value={values.email}
@@ -87,6 +88,7 @@ const Login = () => {
             <label htmlFor="password">كلمة المرور</label>
             <TextField
               fullWidth
+              sx={{direction: "ltr"}}
               type="password"
               name="password"
               value={values.password}
@@ -119,14 +121,13 @@ const Login = () => {
 export default Login;
 
 const Wrapper = styled.section`
-  background-color: #424d83;
-  min-height: calc(100vh - 60px);
-  padding: 3rem 3rem 5rem 3rem;
-  display: flex;
-  align-items: center;
-  @media only screen and (max-width: 850px) {
-    padding: 3rem 2rem 5rem 2rem;
-  }
+background-color: #424d83;
+height: 100%;
+padding: 4rem 3rem;
+@media only screen and (max-width: 850px) {
+  padding: 6rem 2rem;
+}
+
   .login__grid {
     max-width: 108rem;
     margin: auto;
@@ -142,6 +143,7 @@ const Wrapper = styled.section`
       grid-gap: 6rem;
     }
   }
+  
   .login__div {
     width: 90%;
   }
@@ -149,6 +151,20 @@ const Wrapper = styled.section`
     width: 100%;
     display: block;
   }
+
+  @media only screen and (max-width: 600px) {
+
+    height: 100vh;
+
+    .login__div {
+      display: none;
+    }
+    .login__img {
+      display: none;
+    }
+
+  }
+
   form {
     background-color: white;
     padding: 2.6rem 6rem;

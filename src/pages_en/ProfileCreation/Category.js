@@ -8,6 +8,7 @@ export default function Category(props) {
   const {
     formField: { category, subCategory },
   } = props;
+  
   const { conditionalFlag } = useSelector(
     (state) => state.profileEn
   );
@@ -17,13 +18,13 @@ export default function Category(props) {
   const role = user.role_en;
 
   return (
-    <>
+    <div>
       <p className="card__subtitle">What are the main services you offer.</p>
       <SelectFieldSetConditional
         name={category.name}
         data={
           role === "Contractor" ? categories.Contractor :
-            role === "Handyman" ? categories.Handyman :
+            role === "Maintenance" ? categories.Maintenance :
               role === "Designer" ? categories.Designer :
                 role === "Consultant" ? categories.Consultant
                   : null
@@ -38,6 +39,6 @@ export default function Category(props) {
         data={subCategories[role][conditionalFlag]}
         fullWidth
       />
-    </>
+    </div>
   );
 }

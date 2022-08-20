@@ -6,19 +6,25 @@ const Buttons = ({ activeStep }) => {
   const steps = [
     "فئة",
     "مستوى الخبرة",
-    "تاريخ التوظيف",
+    "حول",
     "مَلَفّ",
     "موقع",
     "رقم الهاتف",
     "صورة الملف الشخصي",
   ];
+
   return (
     <Wrapper>
       <ButtonsWrapper>
+      <button
+          className="btn active step"
+        >
+          خطوة {activeStep + 1}
+        </button>
         {steps.map((label, index) => (
           <button
             key={label}
-            id={activeStep === null ? "hide-on-mobile" : ""}
+            id={activeStep === null ? "hide-on-mobile" : "hide-on-mobile"}
             className={index === activeStep ? "btn active" : "btn nonActive"}
           >
             {label}
@@ -42,6 +48,12 @@ const Wrapper = styled.section`
   .btn {
     color: white;
     width: 150px;
+  }
+  .step {
+    display: none;
+    @media only screen and (max-width: 850px) {
+      display: block;
+    }
   }
   #hide-on-mobile {
     @media only screen and (max-width: 850px) {

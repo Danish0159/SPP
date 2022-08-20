@@ -23,7 +23,7 @@ export default function Location(props) {
         name={city.name}
         data={
           conditionalFlag === "Pakistan" ? pakCities :
-            conditionalFlag === "Saudi Arabia" ? saudiCities : []}
+            conditionalFlag === "Saudia" ? saudiCities : []}
         fullWidth
       />
     </>

@@ -8,15 +8,15 @@ function Hero() {
       <div className="hero__grid">
 
         <div className='hero__left'>
-          <a href="#Handymen" className='hero__role'>عمالة</a>
+          <a href="#Maintenance" className='hero__role'>صيانة</a>
           <a href="#Contractors" className='hero__role'>المقاولون</a>
-          <a href="#Designers" className='hero__role'>المصممين</a>
-          <a href="#Consultants" className='hero__role'>استشاريون</a>
+          <a href="#Designers" className='hero__role'>المصممون</a>
+          <a href="#Consultants" className='hero__role'>ألاستشاريون</a>
         </div>
 
         <div className="hero__content">
-          <h2 className="hero__title">كل شيء بين يديك</h2>
-          <p className="hero__paragraph">ابحث عن أفضل خبراء البناء في منطقتك وتحقق من خبراتهم السابقة قبل التعاقد معهم.</p>
+          <h2 className="hero__title">كل شئ تحت سيطرتك</h2>
+          <p className="hero__paragraph">ابحث عن أفضل مجموعة من الخبراء في منطقتك والتحقيق من خبراتهم السابقة قبل التعاقد معهم.</p>
         </div>
 
         <figure className="hero__div">

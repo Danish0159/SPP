@@ -8,17 +8,18 @@ import ErrorPage from './utils/ErrorPage'
 import LinearProgress from '@mui/material/LinearProgress';
 
 // Public Pages. 
-import {
-  LoginPageEn,
-  SignupPageEn,
+import { 
+  LoginPageEn, 
+  SignupPageEn, 
   AboutPageEn,
-  PrivacyPolicyPageEn,
+  PrivacyPolicyPageEn 
 } from "./pages_en";
-import {
-  LoginPageAr,
-  SignupPageAr,
+
+import { 
+  LoginPageAr, 
+  SignupPageAr, 
   AboutPageAr,
-  PrivacyPolicyPageAr,
+  PrivacyPolicyPageAr 
 } from "./pages_ar";
 
 // Flow 1 (Guest Flow)
@@ -61,10 +62,11 @@ const App = () => {
         <Suspense fallback={<LinearProgress />}>
           <ThemeProvider theme={theme}>
             <Switch>
-              <Route exact path="/Services">
+
+              <Route exact path="/Policies">
                 <PrivacyPolicyPageEn></PrivacyPolicyPageEn>
               </Route>
-              <Route exact path="/Servicesar">
+              <Route exact path="/Policiesar">
                 <PrivacyPolicyPageAr></PrivacyPolicyPageAr>
               </Route>
 
@@ -107,6 +109,7 @@ const App = () => {
               <Route exact path="/">
                 <HomePageEn></HomePageEn>
               </Route>
+
 
               <Route exact path="/ar">
                 <HomePageAr></HomePageAr>
@@ -213,18 +216,12 @@ const App = () => {
               <Route exact path="*">
                 <ErrorPage></ErrorPage>
               </Route>
+
             </Switch>
           </ThemeProvider>
         </Suspense>
       </Router>
-      <ToastContainer
-        style={{
-          fontSize: "1.5rem",
-          width: "auto",
-          direction: "rtl",
-          fontFamily: "Font",
-        }}
-      ></ToastContainer>
+      <ToastContainer style={{ fontSize: "1.5rem", width: "auto", direction: "rtl", fontFamily: "Font" }}></ToastContainer>
     </>
   );
 };

@@ -49,11 +49,9 @@ const userSlice = createSlice({
       const user = {
         userId: payload.user._id,
         name_en: payload.user.name_en,
-        name_ar: payload.user.name_ar,
+        role_en: payload.user.role_en,
         token: payload.token,
         profile: payload.user.profile,
-        role_en: payload.user.role_en,
-        role_ar: payload.user.role_ar
       }
       state.user = user;
       addUserToLocalStorage(user);

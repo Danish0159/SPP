@@ -1,48 +1,54 @@
 import styled from "styled-components";
 
 export const CardLayout = styled.div`
+  position: relative;
    max-width: 100rem;
    margin: auto;
    padding: 5rem 2rem;
-   min-height: calc(100vh - 100px);
    display: grid;
    grid-template-columns: 2fr 8fr;
    align-items: center;
    grid-gap: 3rem;
    @media only screen and (max-width: 850px) {
     grid-template-columns: 1fr;
+    padding: 3rem 2rem;
+   grid-gap: 0rem;
+
   }
   .card {
-    box-shadow: 0 0 6px #888;
     min-height: 50vh;
+    position: relative;
+
   }
   .card__content {
-    padding: 2rem 4rem;
+    padding: 2rem;
   }
   .card__title {
     background-color: var(--clr-blue-2);
     color: #ffffff;
     padding: 1.2rem 2rem 1.2rem 2rem;
     font-size: 2rem;
+
   }
   .card__subtitle {
     font-size: 1.8rem;
     margin: 2rem 0rem;
+
   }
  .btn-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 1rem 0rem;
+    align-items: center;
     margin-top: 2rem;
   }
+  
   .card-btn {
     font-size: 1.6rem;
     border-radius: 25px;
-    /* OverRiding index.css styling */
     margin: 0.1rem;
     font-weight: 500;
   }
+  
   /////////////
   /* Thumbs */
   .thumbsContainer{
@@ -88,6 +94,7 @@ export const ButtonsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
  button {
     cursor: pointer;
     font-size: 1.7rem;

@@ -7,18 +7,29 @@ import { fetchSingleUserEn } from "../../features_en/guest/guestSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
+import Carousel from 'react-elastic-carousel';
+
 
 const SingleUser = () => {
+
   const dispatch = useDispatch();
+
+
   const { single_user, isLoading, } = useSelector(
     (state) => state.guestEn
   );
 
+  
+
+
   const { id } = useParams();
+
   useEffect(() => {
     dispatch(fetchSingleUserEn({ id }));
     // eslint-disable-next-line
   }, [id]);
+
+
 
   if (isLoading) {
     return (
@@ -42,15 +53,8 @@ const SingleUser = () => {
                 />
               </div>
               <h1 className="profile__name--title">
-                {single_user.data.user.employmentHistory_en.companyName}
+                {single_user.data.user.about_en.companyName}
               </h1>
-              <p className="profile__name--subtitle">
-                {single_user.data.user.employmentHistory_en.vision}
-              </p>
-
-              <p className="profile__name--subtitle">
-                {single_user.data.user.user.role_en}
-              </p>
 
               <Link to="#" type="submit" className="blue-btn profile-btn disableButtonColor">
                 Message Now
@@ -58,13 +62,24 @@ const SingleUser = () => {
             </div>
 
             {/* Content */}
+
             <div className="profile__content">
-              <h2 className="profile__content--title">Company Name:<span className="profile__content--text">
-                {single_user.data.user.employmentHistory_en.companyName}
+
+              <h1 className="profile__content--title details ">Company Details</h1>
+
+              <h2 className="profile__content--title">Role:<span className="profile__content--text">
+                {single_user.data.user.user.role_en}
               </span></h2>
 
+              <h2 className="profile__content--title">Category:<span className="profile__content--text">
+                {single_user.data.user.category_en}
+              </span></h2>
+              
+              <h2 className="profile__content--title">SubCategory:<span className="profile__content--text">
+                {single_user.data.user.subCategory_en}
+              </span></h2>
 
-              <h2 className="profile__content--title">Location:<span className="profile__content--text">
+              <h2 className="profile__content--title">Company Location:<span className="profile__content--text">
                 {single_user.data.user.location_en.country},&nbsp;
                 {
                   single_user.data.user.location_en.city.map((city, index) => {
@@ -80,36 +95,60 @@ const SingleUser = () => {
               <h2 className="profile__content--title">Contact Number:<span className="profile__content--text">
                 {single_user.data.user.phoneNumber}
               </span></h2>
-              <h2 className="profile__content--title">Projects Completed:<span className="profile__content--text">{single_user.data.noOfProjects}</span>
-              </h2>
+
+            </div>
+
+            {/* Rating */}
+            <div className="profile__rating">
+              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem", marginBottom: "1.5rem" }} readOnly />
+              <br />
               <Link
                 to={`/Projects/${id}`}
                 type="submit"
-                className="blue-btn profile-btn"
               >
-                View Projects Details
+                <h2 className="profile__content--title link">Projects Completed: {single_user.data.noOfProjects}
+                </h2>
               </Link>
-            </div>
-            {/* Rating */}
-            <div className="profile__rating">
-              <h2 className="profile__content--title">Rating</h2>
-              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem" }} readOnly />
+
             </div>
           </div>
         </div>
 
+        <div className="section__white">
+          <h3 className="section__title">About Us</h3>
+          <div className="about">
+            <div className="about__div">
+              <h3>About Company</h3>
+              <p>{single_user.data.user.about_en.companyAbout}</p>
+            </div>
+            <div className="about__div">
+              <h3>Company Vision</h3>
+              <p>{single_user.data.user.about_en.companyVision}</p>
+            </div>
+            <div className="about__div">
+              <h3>Company Mission</h3>
+              <p>{single_user.data.user.about_en.companyMission}</p>
+            </div>
+          </div>
+        </div>
+
+
         <div className="section__blue">
           <h3 className="section__title">Client Reviews</h3>
-          {single_user.data.user.portfolio.map((project, index) => {
-            return (
-              <Reviews key={index}
-                review={project.review ? project.review : null}
-                title={project.reviewerTitle ? project.reviewerTitle : null}
-                rating={project.noOfStars ? project.noOfStars : null}
-                single={true}>
-              </Reviews>
-            )
-          })}
+          <Carousel itemPosition="center" itemsToShow={1} itemsToScroll={1} pagination={false}>
+
+            {single_user.data.user.portfolio.map((project, index) => {
+              return (
+                <Reviews key={index}
+                  review={project.review ? project.review : null}
+                  title={project.reviewerTitle ? project.reviewerTitle : null}
+                  rating={project.noOfStars ? project.noOfStars : null}
+                  single={project.review ? true : false}>
+                </Reviews>
+              )
+            })}
+          </Carousel>
+
         </div>
 
         <div className="section__white">
@@ -136,6 +175,7 @@ const SingleUser = () => {
 export default SingleUser;
 
 const Wrapper = styled.section`
+
   .profile {
     padding: 6rem;
     @media only screen and (max-width: 990px) {
@@ -157,7 +197,8 @@ const Wrapper = styled.section`
     }
   }
   .profile__name {
-    /* border-right: 1px solid #424d83; */
+    border-right: 1px solid #424d83;
+    margin-top: 1rem;
     @media only screen and (max-width: 800px) {
       border-right: none;
     }
@@ -182,6 +223,7 @@ const Wrapper = styled.section`
       margin-bottom: 3.5rem;
     }
   }
+  
   .profile-btn {
     padding: 0.9rem 2.5rem;
     font-size: 1.7rem;
@@ -214,6 +256,9 @@ const Wrapper = styled.section`
       
     }
   }
+  .details {
+    text-align: center;
+  }
 
   .profile__content--title small {
     border-right: 1px solid black;
@@ -234,6 +279,12 @@ const Wrapper = styled.section`
       margin-left: 0rem;
     }
   }  
+
+  .link:hover {
+    border-bottom: 1px solid black;
+    color: blue;
+  }
+
   .profile__rating > p {
     color: yellow;
     font-size: 2.3rem;
@@ -241,10 +292,10 @@ const Wrapper = styled.section`
   .profile__rating {
     margin-bottom: 50%;
     padding-left: 20%;
-    text-align: left;
+    text-align: center;
     @media only screen and (max-width: 990px) {
       padding: 0rem 3rem;
-      margin-bottom: 5%;
+      margin-bottom: 2%;
     }
   }
   .parent{
@@ -256,4 +307,86 @@ const Wrapper = styled.section`
     font-size: 2.5rem;
     margin: 3rem 0rem; 
   }
+
+  .about {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .about__div {
+    width: 30%;
+    min-height: 25rem;
+    text-align: center;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0px 10px 24px 6px rgb(0 0 0 / 6%);
+  }
+
+  .about__div h3 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: blue;
+  }
+
+  .about__div p {
+    font-weight: 500;
+    font-size: 1.7rem;
+    padding-top: 1rem;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .about {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .about__div {
+      width: 65%;
+      margin: 2rem 0rem;
+    }
+    .about__div h3 {
+      font-size: 2rem;
+    }
+  
+    .about__div p {
+      font-size: 1.5rem;
+      padding-top: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    
+    .about__div {
+      width: 80%;
+      margin: 2rem 0rem;
+    }
+    
+  }
+
+  @media only screen and (max-width: 550px) {
+    
+    .about__div {
+      width: 85%;
+      margin: 2rem 0rem;
+    }
+    
+  }
+
+  .rec.rec-arrow {
+    background-color: #424d83;
+    color: white;
+  }
+
+  .rec.rec-arrow:disabled {
+    visibility: hidden;
+  }
+
+  .rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 1px lightgrey;
+}
+
   `;

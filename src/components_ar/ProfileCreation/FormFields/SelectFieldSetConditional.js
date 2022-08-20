@@ -20,7 +20,7 @@ function SelectFieldSetConditional(props) {
         }
     }
     function updateState() {
-        dispatch(updateConditionalFlag(selectedValue.value_en));
+        dispatch(updateConditionalFlag(selectedValue.value_ar));
     }
     // State.
     const dispatch = useDispatch();

@@ -42,7 +42,7 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                         sx={{ width: 56, height: 56, margin: "0px 5px" }}
                         alt="profile"
                       />
-                      <p className="search_name cell">{user.employmentHistory_en.companyName}</p>
+                      <p className="search_name cell">{user.about_en.companyName}</p>
                     </div>
                     {/* Cell2 */}
                     <p className="cell">
@@ -72,7 +72,7 @@ const Table = ({ data = [], title, flag, userId, message }) => {
                 <Link key={index} to={`/Projects/${userId}/${project._id}`}>
                   <div className="search__results">
                     <p className="cell">{project.projectName}</p>
-                    <p className="cell">{project.location}</p>
+                    <p className="cell">{project.projectLocation}</p>
                     <p className="cell">
                       <Rating precision={0.5} name="read-only" value={project.noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
                     </p>
@@ -98,7 +98,6 @@ const Table = ({ data = [], title, flag, userId, message }) => {
 
 export default Table;
 const Wrapper = styled.section`
-  min-height: calc(100vh - 100px);
   .search {
     max-width: 110rem;
     width: 100%;
@@ -169,7 +168,7 @@ const Wrapper = styled.section`
     }
     .search__title {
       text-align: center;
-      margin-top: 3rem;
+      margin-bottom: 0rem;
     }  
     .search__results > * {
       margin-bottom: 0.7rem;
@@ -177,6 +176,9 @@ const Wrapper = styled.section`
     }
     .search__columns {
       display: none;
+    }
+    .search__results {
+      border-bottom: 1px solid black;
     }
   }
 

@@ -47,7 +47,7 @@ const Wrapper = styled.section`
   }
 
   .backToProfile__grid {
-    padding: 6rem 4rem;
+    padding: 3rem 4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;

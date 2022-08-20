@@ -1,11 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import { NavbarWelcome } from "../components_ar/Navigations";
 import {
   AboutHero,
-  AboutCards,
+  // AboutCards,
   AboutDetails,
-  AboutNews,
 } from "../components_ar/AboutPublic";
 import { Footer } from "../components_ar";
 
@@ -17,16 +15,13 @@ const AboutPage = () => {
       <NavbarWelcome></NavbarWelcome>
       <AboutHero></AboutHero>
       <AboutDetails></AboutDetails>
-      <AboutCards
+      {/* <AboutCards
         title="التق بفريقنا"
         bgColor="true"
-      ></AboutCards>
-      <AboutNews></AboutNews>
+      ></AboutCards> */}
       <Footer></Footer>
     </main>
   );
 };
 
 export default AboutPage;
-
-const Wrapper = styled.section``;

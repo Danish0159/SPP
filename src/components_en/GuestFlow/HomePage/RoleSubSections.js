@@ -44,7 +44,7 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                             toast.error("Please Select the Country");
                                         }
                                         else {
-                                        const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: "subCategory" }
+                                        const searchValues = { user: role, category: val.name.value_en, country: country, city: city, subCategory: "subCategory" }
                                         localStorage.setItem("searchValues", JSON.stringify(searchValues));
                                         const location = { country: country, city: city };
                                         localStorage.setItem("locationEn", JSON.stringify(location));
@@ -69,7 +69,7 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                             toast.error("Please Select the Country");
                                         }
                                         else {
-                                        const searchValues = { user: role, category_en: val.name.value_en, category_ar: val.name.value_ar, country: country, city: city, subCategory: e.target.value }
+                                        const searchValues = { user: role, category: val.name.value_en, country: country, city: city, subCategory: e.target.value }
                                         localStorage.setItem("searchValues", JSON.stringify(searchValues));
                                         const location = { country: country, city: city };
                                         localStorage.setItem("locationEn", JSON.stringify(location));
@@ -139,21 +139,22 @@ const Wrapper = styled.div`
 .bottom-title {
     font-size: 2.25rem; 
     font-weight: 600;
+    text-align: center;
     color: grey;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .bottom-img {
     height: 200px;
     width: 240px;
     cursor: pointer;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 20px;
+    margin-top: 5px;
 }
 
 .bottom-img:hover {
     opacity: 0.7;
-    border-radius: 20px;
     transition-duration: 0.6s;
 }
 
@@ -162,7 +163,7 @@ const Wrapper = styled.div`
     padding: 5px;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin: 30px 0px;
     font-weight: 600;
     font-size: 1.4rem;
 }
@@ -173,11 +174,17 @@ const Wrapper = styled.div`
 }
 
 @media screen and (max-width:650px) {
-    .selectcategory-top {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .bottom-dropdown {
+        width: 175px;
+        font-size: 1.2rem;
     }
+    .bottom-img {
+        height: 175px;
+        width: 220px;
+        border-radius: 20px;
+
+    }
+    
 }
 
 @media screen and (max-width:550px) {

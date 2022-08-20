@@ -2,8 +2,8 @@ import { lazy } from "react";
 
 import DriverAr from "./Driver";
 import Category from "./Category";
-import Experience from "./Experience";
-import Employement from "./Employement";
+import ExpertiseLevel from "./ExpertiseLevel";
+import About from "./About";
 import Portfolio from "./Portfolio";
 import Location from "./Location";
 import ProfilePhoto from "./ProfilePhoto";
@@ -19,8 +19,8 @@ export const JoinUsAr = lazy(() =>
 export {
   DriverAr,
   Category,
-  Experience,
-  Employement,
+  ExpertiseLevel,
+  About,
   Portfolio,
   Location,
   PhoneNumber,

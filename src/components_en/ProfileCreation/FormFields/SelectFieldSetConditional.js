@@ -28,7 +28,7 @@ function SelectFieldSetConditional(props) {
         if (selectedValue) {
             updateState();
         }
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [selectedValue]);
 
     return (
@@ -37,7 +37,7 @@ function SelectFieldSetConditional(props) {
                 {...field}
                 value={selectedValue ? selectedValue : ""}
             >
-                {data && data?.map((item, index) => (
+                {data && data.map((item, index) => (
                     <MenuItem sx={styles.menu} key={index} value={item}>
                         {item.value_en}
                     </MenuItem>

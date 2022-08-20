@@ -142,6 +142,7 @@ const PersonelInfo = () => {
                         <p className="card__subtitle">البريد الإلكتروني</p>
                         <TextField
                             fullWidth
+                            sx={{ direction: "ltr" }}
                             className="update"
                             type="email"
                             name="email"
@@ -192,7 +193,7 @@ const PersonelInfo = () => {
                             value={categoryAr}
                             onChange={(e) => {
 
-                                let obj = categories[roleEn].find(item => item.value_ar === e.target.value);
+                                let obj = categories[roleAr].find(item => item.value_ar === e.target.value);
 
                                 setCategoryEn(obj.value_en);
                                 setCategoryAr(obj.value_ar);
@@ -201,7 +202,7 @@ const PersonelInfo = () => {
                             }}
                             required
                         >
-                            {categories[roleEn]?.map((user, index) => (
+                            {categories[roleAr]?.map((user, index) => (
                                 <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
                                     {user.value_ar}
                                 </MenuItem>
@@ -219,14 +220,14 @@ const PersonelInfo = () => {
                             value={subCategoryAr}
                             onChange={(e) => {
 
-                                let obj = subCategories[roleAr][categoryEn].find(item => item.value_ar === e.target.value);
+                                let obj = subCategories[roleAr][categoryAr].find(item => item.value_ar === e.target.value);
 
                                 setSubCategoryEn(obj.value_en);
                                 setSubCategoryAr(obj.value_ar);
                             }}
                             required
                         >
-                            {subCategories[roleAr][categoryEn]?.map((user, index) => (
+                            {subCategories[roleAr][categoryAr]?.map((user, index) => (
                                 <MenuItem sx={styles.menu} key={index} value={user.value_ar}>
                                     {user.value_ar}
                                 </MenuItem>
@@ -238,6 +239,7 @@ const PersonelInfo = () => {
                         <p className="card__subtitle">رقم الاتصال</p>
                         <TextField
                             fullWidth
+                            sx={{ direction: "ltr" }}
                             type="number"
                             className="update"
                             name="number"
@@ -309,6 +311,7 @@ export default PersonelInfo
 
 const Wrapper = styled.div`
 
+
 .profile__updatePhoto {
     display: flex;
     align-items: center;
@@ -318,42 +321,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     }
-}
-
-.profile__updateData {
-    @media only screen and (max-width: 630px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-}
-
-.update {
-    @media only screen and (max-width: 630px) {
-        width: 40rem;
-    }
-    @media only screen and (max-width: 520px) {
-        width: 35rem;
-    }
-    @media only screen and (max-width: 475px) {
-        width: 32rem;
-    }
-    @media only screen and (max-width: 440px) {
-        width: 27rem;
-    }
-    @media only screen and (max-width: 390px) {
-        width: 25rem;
-    }
-    @media only screen and (max-width: 365px) {
-        width: 22rem;
-    }
-    @media only screen and (max-width: 340px) {
-        width: 20rem;
-    }
-    @media only screen and (max-width: 320px) {
-        width: 18rem;
-    }
-   
 }
 
 .edit__div{

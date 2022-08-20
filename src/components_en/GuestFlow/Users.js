@@ -31,7 +31,7 @@ const Users = () => {
       }
       else {
         localStorage.setItem("searchValues", JSON.stringify(searchValues));
-        dispatch(fetchUsersEn({ user: searchValues.user, category: searchValues.category_en, subCategory: searchValues.subCategory, city: searchValues.city, country: searchValues.country }));
+        dispatch(fetchUsersEn({ user: searchValues.user, category: searchValues.category, subCategory: searchValues.subCategory, city: searchValues.city, country: searchValues.country }));
       }
     }
     // eslint-disable-next-line
@@ -44,7 +44,7 @@ const Users = () => {
       firstUpdate.current = false;
       return;
     }
-    dispatch(fetchUsersEn({ user: searchValues.user, category: searchValues.category_en, country: searchValues.country, city: searchValues.city, subCategory: step }));
+    dispatch(fetchUsersEn({ user: searchValues.user, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: step }));
 
     // eslint-disable-next-line
   }, [step])
@@ -65,7 +65,7 @@ const Users = () => {
         <div className="users__left">
           <Buttons handleStep={handleStep} step={step}></Buttons>
         </div>
-        <div className="section-100vh">
+        <div className="section-50vh-1200w">
           <Spinner />;
         </div>
       </Wrapper>
@@ -95,7 +95,6 @@ const Users = () => {
 export default Users;
 
 const Wrapper = styled.div`
- min-height: calc(100vh - 100px);
  padding: 3rem 2rem;
  display:grid;
  grid-template-columns: 1fr 2fr;

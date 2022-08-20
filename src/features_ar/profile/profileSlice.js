@@ -89,14 +89,15 @@ const profileSlice = createSlice({
     [updateProfileAr.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       toast.success(payload.message);
+
+      const oldUser = getUserFromLocalStorage();
+
       const user = {
         userId: payload.user._id,
-        name_en: payload.user.name_en,
         name_ar: payload.user.name_ar,
-        token: payload.token,
+        role_ar: payload.user.role_ar,
+        token: oldUser.token,
         profile: payload.user.profile,
-        role_en: payload.user.role_en,
-        role_ar: payload.user.role_ar
       }
       state.user = payload;
       addUserToLocalStorage(user);
@@ -137,7 +138,7 @@ const profileSlice = createSlice({
     },
     [addProjectAr.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      toast.success(payload.message);
+      state.isSuccess = true;
       state.user = payload;
     },
     [addProjectAr.rejected]: (state, { payload }) => {
@@ -150,11 +151,7 @@ const profileSlice = createSlice({
     },
     [reviewProjectAr.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      setTimeout(() => {
-        window.location.replace("https://maqawalupdated.netlify.app/");
-      }, 3000);
-      toast.success("تم تقديم الاستعراض الخاص بك.", {autoClose:2500});
-      
+      state.isSuccess = true;
     },
     [reviewProjectAr.rejected]: (state, { payload }) => {
       state.isLoading = false;

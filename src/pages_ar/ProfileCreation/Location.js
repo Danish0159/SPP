@@ -22,8 +22,8 @@ export default function Location(props) {
       <SelectMultiple
         name={city.name}
         data={
-          conditionalFlag === "Pakistan" ? pakCities :
-            conditionalFlag === "Saudi Arabia" ? saudiCities : []}
+          conditionalFlag === "پاکستان" ? pakCities :
+            conditionalFlag === "السعودية" ? saudiCities : []}
         fullWidth
       />
     </>

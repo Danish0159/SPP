@@ -30,7 +30,7 @@ const Projects = () => {
       <>
         <BackToProfile
           avatar={projects.data.projects.profilePhoto}
-          name={projects.data.projects.employmentHistory_ar.companyName}
+          name={projects.data.projects.about_ar.companyName}
           role={projects.data.projects.user.role_ar}
           userId={projects.data.projects._id}
         ></BackToProfile>

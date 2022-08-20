@@ -51,9 +51,9 @@ export const deleteProjectThunkAr = async ({ profileId, projectId }, thunkAPI) =
   }
 };
 
-export const updateProjectThunkAr = async ({ projectName, location, images, profileId, projectId }, thunkAPI) => {
+export const updateProjectThunkAr = async ({ projectName, projectLocation, images, profileId, projectId }, thunkAPI) => {
   try {
-    const resp = await customFetchProfile.patch(`/profile/updateprojectar/${profileId}/${projectId}`, { projectName, location, images });
+    const resp = await customFetchProfile.patch(`/profile/updateprojectar/${profileId}/${projectId}`, { projectName, projectLocation, images });
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {
@@ -62,9 +62,9 @@ export const updateProjectThunkAr = async ({ projectName, location, images, prof
   }
 };
 
-export const addProjectThunkAr = async ({ projectName, location, images, id }, thunkAPI) => {
+export const addProjectThunkAr = async ({ projectName, projectLocation, images, id }, thunkAPI) => {
   try {
-    const resp = await customFetchProfile.patch(`/profile/addprojectar/${id}`, { projectName, location, images });
+    const resp = await customFetchProfile.patch(`/profile/addprojectar/${id}`, { projectName, projectLocation, images });
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {

@@ -95,13 +95,11 @@ const NavbarHome = () => {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
                 {user.profile ?
-                  <>
                     <Link to="/Profilear">
                       <MenuItem sx={{direction: "ltr"}}>
                         <Avatar /> <span style={{ color: '#121212' }}>الملف الشخصي</span>
                       </MenuItem>
                     </Link>
-                  </>
                   :
                   <Link to="/JoinUsar">
                     <MenuItem sx={{direction: "ltr"}}>

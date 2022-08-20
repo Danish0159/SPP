@@ -58,7 +58,7 @@ const PreviewProfile = () => {
                                 <p className="profile__title">اسم المشروع</p>
                                 <p className="profile__subtitle">{project.projectName}</p>
                                 <p className="profile__title">موقع المشروع</p>
-                                <p className="profile__subtitle">{project.location}</p>
+                                <p className="profile__subtitle">{project.projectLocation}</p>
                                 <aside className='thumbsContainer'>
                                     {
                                         project.images.map((img, index) => {

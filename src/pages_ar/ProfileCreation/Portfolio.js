@@ -33,11 +33,14 @@ export default function Portfolio(props) {
     },
   } = props;
 
-  const [images1, setImages1] = useState([]);
-  const [images2, setImages2] = useState([]);
-  const [images3, setImages3] = useState([]);
-  const [images4, setImages4] = useState([]);
-  const [images5, setImages5] = useState([]);
+  const [...field] = useField(multiFiles.name);
+
+  const [images1, setImages1] = useState(() => field[0].value.images1 ? field[0].value.images1: []);
+  const [images2, setImages2] = useState(() => field[0].value.images2 ? field[0].value.images2 : []);
+  const [images3, setImages3] = useState(() => field[0].value.images3 ? field[0].value.images3 : []);
+  const [images4, setImages4] = useState(() => field[0].value.images4 ? field[0].value.images4 : []);
+  const [images5, setImages5] = useState(() => field[0].value.images5 ? field[0].value.images5 : []);
+
 
   const remove1 = () => {
     setImages1([]);
@@ -96,9 +99,6 @@ export default function Portfolio(props) {
       remove: remove5,
     },
   ]);
-
-  // Formik helpers.
-  const [...field] = useField(multiFiles.name);
 
   // Use Dropzone Hook.
   const { isDragActive, isDragAccept, isDragReject } = useDropzone();
@@ -175,14 +175,14 @@ export default function Portfolio(props) {
               fullWidth
               required
             />
-            <p className="card__subtitle">موقع</p>
+            <p className="card__subtitle">موقع المشروع</p>
             <InputField
               name={step.projectLocation.name}
               type="text"
               fullWidth
               required
             />
-            <p className="card__subtitle">وصف (اختياري)</p>
+            <p className="card__subtitle">وصف المشروع (اختياري)</p>
             <InputField
               inputProps={{ style: styles.desciption, }}
               name={step.projectDescription.name}

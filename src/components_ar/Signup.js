@@ -84,6 +84,7 @@ const Signup = () => {
             <label htmlFor="email">عنوان البريد الالكترونى</label>
             <TextField
               fullWidth
+              sx={{direction: "ltr"}}
               type="email"
               name="email"
               value={values.email}
@@ -98,6 +99,7 @@ const Signup = () => {
             <label htmlFor="password">كلمة المرور</label>
             <TextField
               fullWidth
+              sx={{direction: "ltr"}}
               type="password"
               name="password"
               value={values.password}
@@ -155,13 +157,12 @@ export default Signup;
 
 const Wrapper = styled.section`
   background-color: #424d83;
-  min-height: calc(100vh - 81px);
-  padding: 1rem 3rem 5rem 3rem;
-  display: flex;
-  align-items: center;
+  height: 100%;
+  padding: 3rem;
   @media only screen and (max-width: 850px) {
-    padding: 3rem 2rem 5rem 2rem;
+    padding: 4rem 2rem;
   }
+
   .signup__grid {
     max-width: 108rem;
     margin: auto;
@@ -184,6 +185,20 @@ const Wrapper = styled.section`
     width: 100%;
     display: block;
   }
+
+  @media only screen and (max-width: 600px) {
+
+    height: 100vh;
+    
+    .signup__div {
+      display: none;
+    }
+    .signup__img {
+      display: none;
+    }
+
+  }
+
   form {
     background-color: white;
     padding: 2.6rem 6rem;

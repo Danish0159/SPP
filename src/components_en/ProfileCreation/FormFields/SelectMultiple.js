@@ -21,6 +21,7 @@ function SelectMultiple({data, ...props}) {
         <>
             <Autocomplete
                 options={data}
+                value={field[0].value}
                 sx={{
                     '& .MuiAutocomplete-input, & .MuiInputLabel-root': {
                         fontSize: "1.8rem",

@@ -1,6 +1,25 @@
-import LoginPageEn from "./LoginPage";
-import SignupPageEn from "./SignupPage";
-import AboutPageEn from './AboutPage';
-import PrivacyPolicyPageEn from './PrivacyPolicyPage';
+import { lazy } from "react";
 
-export { LoginPageEn, SignupPageEn, AboutPageEn, PrivacyPolicyPageEn };
+export const LoginPageEn = lazy(() =>
+  import("./LoginPage").then(({ default: LoginPageEn }) => ({
+    default: LoginPageEn,
+  }))
+);
+
+export const SignupPageEn = lazy(() =>
+  import("./SignupPage").then(({ default: SignupPageEn }) => ({
+    default: SignupPageEn,
+  }))
+);
+
+export const AboutPageEn = lazy(() =>
+  import("./AboutPage").then(({ default: AboutPageEn }) => ({
+    default: AboutPageEn,
+  }))
+);
+
+export const PrivacyPolicyPageEn = lazy(() =>
+  import("./PrivacyPolicyPage").then(({ default: PrivacyPolicyPageEn }) => ({
+    default: PrivacyPolicyPageEn,
+  }))
+);

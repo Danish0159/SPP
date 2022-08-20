@@ -47,16 +47,17 @@ const ClientReview = () => {
                                 <p className="project__subtitle">Project Name: <span className="project__name">{single_project.data.portfolio[0].projectName}
                                 </span>
                                 </p>
-                                <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].location}
+                                <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].projectLocation}
                                 </span>
                                 </p>
-                                <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].description ? single_project.data.portfolio[0].description : null}
-                                </span></p>
+
+                                {single_project.data.portfolio[0].description && <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].projectDescription}</span></p>}
+                
                                 <p className="project__subtitle">Project Gallery: <span className="project__gallery">
                                 </span></p>
                                 <Gallery data={single_project.data.portfolio[0].images}></Gallery>
                             </div>
-                            <ReviewForm User={single_project.data.employmentHistory_en.companyName} userId={userId} id={id}></ReviewForm>
+                            <ReviewForm User={single_project.data.about_en.companyName} userId={userId} id={id}></ReviewForm>
                         </div>
                     </div>
                 </div>
@@ -73,7 +74,7 @@ export default ClientReview
 const Wrapper = styled.div`
     .review {
       display: flex;
-      min-height: 100vh;
+      min-height: 75vh;
     }
     @media only screen and (max-width:850px) {
     .review {
@@ -109,6 +110,7 @@ const Wrapper = styled.div`
         text-align:center;
     }
     .review__right {
+        position: relative;
         background-color: whitesmoke;
         opacity: 1;
         flex: 1;

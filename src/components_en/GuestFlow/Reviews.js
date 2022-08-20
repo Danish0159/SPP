@@ -7,15 +7,13 @@ const Reviews = ({ single, review, title, rating }) => {
   if (single) {
     return (
       <Wrapper>
-        <div className="reviews__grid max-restrict">
-          <div className="reviews__item">
-            <p className="reviews__paragraph">
-              {review}
-            </p>
-            <h1 style={{ fontSize: "1.5rem", marginTop: "1.4rem" }}>{title ? title : "No feedback given"}</h1>
-            <br />
-            <Rating precision={0.5} name="read-only" value={rating} style={{ fontSize: "1.9rem" }} readOnly />
-          </div>
+        <div className="review__item">
+          <h1 style={{ fontSize: "1.5rem", marginBottom: "1.4rem", textAlign: "center" }}>{title ? title : "No feedback given"}</h1>
+          <p className="review__paragraph">
+            {review}
+          </p>
+          <br />
+          <Rating precision={0.5} name="read-only" value={rating} style={{ fontSize: "1.9rem", textAlign: "center" }} readOnly />
         </div>
       </Wrapper >
     );
@@ -25,36 +23,36 @@ const Reviews = ({ single, review, title, rating }) => {
 
 export default Reviews;
 
-const Wrapper = styled.section`
-  .reviews__grid {
-    max-width: 110rem;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
-    grid-gap: 4rem;
-    margin-bottom: 1.5rem;
-  }
+const Wrapper = styled.section`  
 
-  @media only screen and (max-width: 1150px) {
-    .reviews__grid {
-      margin: 0rem 2rem;
-      margin-bottom: 4rem;
-      max-width: 100%;
-      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-    }
-  }
-  .reviews__item {
-    border-radius: 10px 10px 10px 10px;
-    background-color: #ffffff;
-    padding: 3rem 3rem;
+  .review__item {
+    max-width: 39rem;
+    min-height: 25rem;
+    text-align: center;
+    border-radius: 20px;
+    background-color: white;
+    padding: 2rem;
     box-shadow: 0px 10px 24px 6px rgb(0 0 0 / 6%);
   }
-  .reviews__paragraph {
+
+  .review__paragraph {
     font-size: 1.6rem;
     color: #2a2a2a;
+    width: 100%;
+    text-align: center;
   }
-  /* For Single Review. */
-  .max-restrict{
-    max-width:40rem;
+
+  @media only screen and (max-width: 1000px) {
+
+    .review__item h1 {
+      font-size: 1.3rem;
+    }
+
+    .review__paragraph {
+    font-size: 1.4rem;
+    }
+    
   }
+
+
 `;

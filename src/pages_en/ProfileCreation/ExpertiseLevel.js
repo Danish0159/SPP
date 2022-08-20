@@ -1,7 +1,7 @@
 import React from "react";
 import { InputField, InputFieldSetConditional } from "../../components_en/ProfileCreation/FormFields";
 
-export default function Experience(props) {
+export default function ExpertiseLevel(props) {
   const {
     formField: { experience, projects, employees },
   } = props;

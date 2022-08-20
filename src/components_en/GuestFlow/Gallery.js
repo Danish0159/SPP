@@ -44,11 +44,19 @@ const Wrapper = styled.section`
   }
   .portfolio__div {
     overflow: hidden;
+    height: 30rem;
+    border: 1px solid blue;
+    border-radius: 20px;
+    box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+  -webkit-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+  -moz-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+
   }
   .portfolio__div img {
-    width: 330px;
-    height: 300px;
+    height: 100%;
+    width: 100%;
     transition: all 0.3s ease-out;
     cursor: pointer;
+    
   }
 `;

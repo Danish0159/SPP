@@ -6,7 +6,7 @@ const Buttons = ({ activeStep }) => {
   const steps = [
     "Category",
     "Expertise Level",
-    "Employment History",
+    "About",
     "Portfolio",
     "Location",
     "Phone Number",
@@ -15,10 +15,15 @@ const Buttons = ({ activeStep }) => {
   return (
     <Wrapper>
       <ButtonsWrapper>
-        {steps.map((label, index) => (
+        <button
+          className="btn active step"
+        >
+          Step {activeStep + 1}
+        </button>
+        { steps.map((label, index) => (
           <button
             key={label}
-            id={activeStep === null ? "hide-on-mobile" : ""}
+            id={activeStep === null ? "hide-on-mobile" : "hide-on-mobile"}
             className={index === activeStep ? "btn active" : "btn nonActive"}
           >
             {label}
@@ -42,6 +47,12 @@ const Wrapper = styled.section`
   .btn {
     color: white;
     width: 150px;
+  }
+  .step {
+    display: none;
+    @media only screen and (max-width: 850px) {
+      display: block;
+    }
   }
   #hide-on-mobile {
     @media only screen and (max-width: 850px) {

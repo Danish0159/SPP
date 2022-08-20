@@ -8,7 +8,7 @@ const cardsData = [
   {
     id: 1,
     title: "Mission",
-    line: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+    line: "1. Our Mission is to make online presence easy for contractors. 2. Make contractors accountable for their work and help them promote their business. 3. Offer easy access to the clients to reach good contractors & firms.  4. Contractors can create and join relevant groups to share their experiences. 5. Offering easy and fast online agreement system.",
     icon: (
       <AttractionsIcon
         sx={{
@@ -21,7 +21,7 @@ const cardsData = [
   {
     id: 2,
     title: "Vision",
-    line: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum vesum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Vollit autem unde numquam nisi",
+    line: "Empowering Contractors and construction industry.",
     icon: (
       <DiamondIcon
         sx={{
@@ -31,25 +31,25 @@ const cardsData = [
       ></DiamondIcon>
     ),
   },
-  {
-    id: 3,
-    title: "History",
-    line: "Lorem ipsum, dolor sit amet consectetur adipisum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Volsicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
-    icon: (
-      <HistoryEduIcon
-        sx={{
-          width: 40,
-          height: 40,
-        }}
-      ></HistoryEduIcon>
-    ),
-  },
+  // {
+  //   id: 3,
+  //   title: "History",
+  //   line: "Lorem ipsum, dolor sit amet consectetur adipisum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Volsum, dolor sit amet consectetur adipisicing elit. Volsicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi",
+  //   icon: (
+  //     <HistoryEduIcon
+  //       sx={{
+  //         width: 40,
+  //         height: 40,
+  //       }}
+  //     ></HistoryEduIcon>
+  //   ),
+  // },
 ];
 
 function AboutDetails() {
   return (
     <Wrapper>
-      <div className="hero__grid">
+      {/* <div className="hero__grid">
         <h2 className="hero__title">
           Service Providers <br></br> Customed Only For You
         </h2>
@@ -59,11 +59,11 @@ function AboutDetails() {
             dolorum debitis consectetur reprehenderit non aliquam voluptates
           </p>
         </div>
-      </div>
-      {cardsData.map((card) => {
+      </div> */}
+      {cardsData.map((card, index) => {
         const { id, icon, title, line } = card;
         return (
-          <div className="content__grid">
+          <div key={index} className="content__grid">
             <div key={id} className="content__item">
               {icon}
               <h1 className="content__title">{title}</h1>
@@ -83,20 +83,23 @@ const Wrapper = styled.section`
   color: #424d83;
   min-height: 50vh;
   padding: 7rem 3rem;
-  .hero__grid {
-    max-width: 110rem;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    grid-gap: 4rem;
-  }
-  @media only screen and (max-width: 800px) {
-    .hero__grid {
-      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-      max-width: 100%;
-      grid-gap: 6rem;
-    }
-  }
+
+  // .hero__grid {
+  //   max-width: 110rem;
+  //   margin: auto;
+  //   display: grid;
+  //   grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  //   grid-gap: 4rem;
+  // }
+  // @media only screen and (max-width: 800px) {
+  //   .hero__grid {
+  //     grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  //     max-width: 100%;
+  //     grid-gap: 6rem;
+  //   }
+  // }
+
+
   .content__grid {
     max-width: 110rem;
     margin: auto;

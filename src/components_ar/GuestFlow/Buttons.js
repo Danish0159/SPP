@@ -8,12 +8,12 @@ const Buttons = ({ handleStep, step }) => {
   return (
     <Wrapper>
       <ButtonsWrapper>
-      <h2 className="subcatgories__title">{searchValues.category_ar} الفئات الفرعية</h2>
-      {subCategories[searchValues.user][searchValues.category_en].map((label, index) => (
+      <h2 className="subcatgories__title">{searchValues.category} الفئات الفرعية</h2>
+      {subCategories[searchValues.user][searchValues.category].map((label, index) => (
         <button
           key={index}
-          className={step === label.value_en ? "btn active" : "btn nonActive"}
-          onClick={() => handleStep(label.value_en)}
+          className={step === label.value_ar ? "btn active" : "btn nonActive"}
+          onClick={() => handleStep(label.value_ar)}
         >
           {label.value_ar}
         </button>
@@ -44,5 +44,7 @@ const Wrapper = styled.section`
     color: var(--clr-blue-2);
     font-size: 2.5rem;
     margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
   }
 `;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Footer } from "../../components_ar";
 import { Buttons } from "../../components_ar/ProfileCreation";
-import image from "../../images/join.jpg";
+import image from "../../images/join_cleanup.jpg";
 import { CardLayout } from '../../Shared/styled'
 import { NavbarProfileCreation } from "../../components_ar/Navigations";
 import { getUserFromLocalStorage } from "../../utils/localStorage";

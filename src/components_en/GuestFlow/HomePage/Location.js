@@ -14,13 +14,13 @@ const Location = ({ country, city, setCountry, setCity }) => {
     let title;
 
     if (localStorage.getItem("lang") === "en") {
-        title = "English";
+        title = "Language";
     }
     else if (localStorage.getItem("lang") === "ar") {
-        title = "العربية";
+        title = "اللغة";
     }
     else {
-        title = "English";
+        title = "Language";
     }
 
     return (

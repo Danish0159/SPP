@@ -20,7 +20,7 @@ const PersonelProjects = () => {
     // Update Project start.
     const [updateId, setUpdateId] = useState(false);
     const [projectName, setProjectName] = useState("");
-    const [location, setLocation] = useState("");
+    const [projectLocation, setProjectLocation] = useState("");
     const [images, setImages] = useState([]);
 
     const removeImages = () => {
@@ -69,7 +69,7 @@ const PersonelProjects = () => {
     function handleProjectUpdate(projectId) {
         const project = user.profile.portfolio.find((project) => project._id === projectId);
         setProjectName(project.projectName);
-        setLocation(project.location);
+        setProjectLocation(project.projectLocation);
         setImages(project.images);
         setUpdateId(projectId);
     }
@@ -81,7 +81,7 @@ const PersonelProjects = () => {
         dispatch(
             updateProjectEn({
                 projectName,
-                location,
+                projectLocation,
                 images,
                 profileId: user.profile._id,
                 projectId: updateId,
@@ -89,7 +89,7 @@ const PersonelProjects = () => {
         );
         // Reset form.
         setProjectName("");
-        setLocation("");
+        setProjectLocation("");
         setImages([]);
         setUpdateId(false);
     }
@@ -137,7 +137,7 @@ const PersonelProjects = () => {
                         onChange={(e) => setProjectName(e.target.value)}
                         required
                     />
-                    <p className="card__subtitle">Location</p>
+                    <p className="card__subtitle">Project Location</p>
                     <TextField
                         fullWidth
                         type="text"
@@ -145,8 +145,8 @@ const PersonelProjects = () => {
                         inputProps={{
                             style: styles.textField,
                         }}
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        value={projectLocation}
+                        onChange={(e) => setProjectLocation(e.target.value)}
                         required
                     />
                     <p className="card__subtitle">Project Files</p>
@@ -226,10 +226,12 @@ const PersonelProjects = () => {
                             <AccordionSummary
                                 expandIcon={
                                     <>
+                                        {!project.review &&
                                         <RateReviewIcon onClick={() => {
                                             setReview(true);
                                             setProjectReviewId(project._id);
                                         }} className="icons"></RateReviewIcon>
+                                        }
                                         <ModeEditOutlineOutlinedIcon onClick={() => handleProjectUpdate(project._id)} className="icons" />
                                         <DeleteIcon onClick={() => { handleDelete(project._id) }} className="icons" />
                                     </>
@@ -244,7 +246,7 @@ const PersonelProjects = () => {
                                     <p className="profile__title">Project Name</p>
                                     <p className="profile__subtitle">{project.projectName}</p>
                                     <p className="profile__title">Project Location</p>
-                                    <p className="profile__subtitle">{project.location}</p>
+                                    <p className="profile__subtitle">{project.projectLocation}</p>
                                     <aside className='thumbsContainer'>
                                         {
                                             project.images.map((img, index) => {

@@ -1,22 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Rating, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles'
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../Spinner';
-import { reviewProjectEn } from '../../../features_en/profile/profileSlice';
+import { reviewProjectEn, reset } from '../../../features_en/profile/profileSlice';
+import swal from 'sweetalert';
+
 
 const ReviewForm = ({ User, userId, id }) => {
     const [name, setName] = useState("");
     const [title, setTitle] = useState("Ex. Director of Marketing");
     const [stars, setStars] = useState(0);
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState();
     const [review, setReview] = useState("");
 
     // State.
     const dispatch = useDispatch();
-    const { isLoading, } = useSelector(
+    const { isLoading, isSuccess } = useSelector(
         (state) => state.profileEn
     );
+
+    useEffect(() => {
+        if (isSuccess) {
+            swal({
+                title: "Review Submitted",
+                icon: "success",
+            }).then(() => {
+                dispatch(reset());
+                window.location.replace("https://maqawalupdated.netlify.app/");
+
+            });
+        }
+        // eslint-disable-next-line
+    }, [isSuccess]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         //  API CALL.
@@ -44,7 +61,7 @@ const ReviewForm = ({ User, userId, id }) => {
         );
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <h1 className='section__title'>Help {User} with a testimonial</h1>
 
             <p className="project__title">Name</p>
@@ -74,7 +91,7 @@ const ReviewForm = ({ User, userId, id }) => {
             <p className="project__title">Phone Number</p>
             <TextField
                 fullWidth
-                type="text"
+                type="number"
                 name="text"
                 inputProps={{
                     style: styles.textField,
@@ -102,8 +119,10 @@ const ReviewForm = ({ User, userId, id }) => {
                 name="text"
                 inputProps={{
                     style: styles.desciption,
+                    maxLength: 75
                 }}
-                rows={5}
+                helperText={`${review.length}/${75}`}
+                rows={2}
                 multiline
                 value={review}
                 onChange={(e) => setReview(e.target.value)}

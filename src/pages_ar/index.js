@@ -1,6 +1,25 @@
-import LoginPageAr from "./LoginPage";
-import SignupPageAr from "./SignupPage";
-import AboutPageAr from "./AboutPage";
-import PrivacyPolicyPageAr from "./PrivacyPolicyPage";
+import { lazy } from "react";
 
-export { LoginPageAr, SignupPageAr, AboutPageAr, PrivacyPolicyPageAr};
+export const LoginPageAr = lazy(() =>
+  import("./LoginPage").then(({ default: LoginPageAr }) => ({
+    default: LoginPageAr,
+  }))
+);
+
+export const SignupPageAr = lazy(() =>
+  import("./SignupPage").then(({ default: SignupPageAr }) => ({
+    default: SignupPageAr,
+  }))
+);
+
+export const AboutPageAr = lazy(() =>
+  import("./AboutPage").then(({ default: AboutPageAr }) => ({
+    default: AboutPageAr,
+  }))
+);
+
+export const PrivacyPolicyPageAr = lazy(() =>
+  import("./PrivacyPolicyPage").then(({ default: PrivacyPolicyPageAr }) => ({
+    default: PrivacyPolicyPageAr,
+  }))
+);

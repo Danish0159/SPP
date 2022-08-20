@@ -8,7 +8,7 @@ function Hero() {
       <div className="hero__grid">
 
         <div className='hero__left'>
-          <a href="#Handymen" className='hero__role'>Handymen</a>
+          <a href="#Maintenance" className='hero__role'>Maintenance</a>
           <a href="#Contractors" className='hero__role'>Contractors</a>
           <a href="#Designers" className='hero__role'>Designers</a>
           <a href="#Consultants" className='hero__role'>Consultants</a>
@@ -16,7 +16,7 @@ function Hero() {
 
         <div className="hero__content">
           <h2 className="hero__title">Everything Is In Your Hands</h2>
-          <p className="hero__paragraph">Search for the best construction experts in your locality, and verify their previous experiences before contracting them.</p>
+          <p className="hero__paragraph">Search for the best construction experts in your locality, and verify their previous experiences before contacting them.</p>
         </div>
 
         <figure className="hero__div">

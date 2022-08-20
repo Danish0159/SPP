@@ -47,11 +47,14 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user && user.profile) {
-      history.push("/Profile");
-    } else if (user && !user.profile) {
+    // if (user && user.profile) {
+      // history.push("/Profile");
+    // } else if (user && !user.profile) {
+      if(user)
+      {
       history.push("/joinus");
-    }
+      }
+    // }
     // eslint-disable-next-line
   }, [user]);
 
@@ -120,13 +123,12 @@ export default Login;
 
 const Wrapper = styled.section`
   background-color: #424d83;
-  min-height: calc(100vh - 60px);
-  padding: 3rem 3rem 5rem 3rem;
-  display: flex;
-  align-items: center;
+  height: 100%;
+  padding: 4rem 3rem;
   @media only screen and (max-width: 850px) {
-    padding: 3rem 2rem 5rem 2rem;
+    padding: 6rem 2rem;
   }
+  
   .login__grid {
     max-width: 108rem;
     margin: auto;
@@ -149,6 +151,20 @@ const Wrapper = styled.section`
     width: 100%;
     display: block;
   }
+
+  @media only screen and (max-width: 600px) {
+
+    height: 100vh;
+
+    .login__div {
+      display: none;
+    }
+    .login__img {
+      display: none;
+    }
+
+  }
+
   form {
     background-color: white;
     padding: 2.6rem 6rem;

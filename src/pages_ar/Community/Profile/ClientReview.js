@@ -47,15 +47,15 @@ const ClientReview = () => {
                                 <p className="project__subtitle">اسم المشروع: <span className="project__name">{single_project.data.portfolio[0].projectName}
                                 </span>
                                 </p>
-                                <p className="project__subtitle">موقع المشروع: <span className="project__location">{single_project.data.portfolio[0].location}
+                                <p className="project__subtitle">موقع المشروع: <span className="project__location">{single_project.data.portfolio[0].projectLocation}
                                 </span>
                                 </p>
-                                {single_project.data.portfolio[0].description && <p className="project__subtitle">وصف المشروع: <span className="project__description">{single_project.data.portfolio[0].description}</span></p>}
+                                {single_project.data.portfolio[0].projectDescription && <p className="project__subtitle">وصف المشروع: <span className="project__description">{single_project.data.portfolio[0].projectDescription}</span></p>}
                                 <p className="project__subtitle">معرض المشروع: <span className="project__gallery">
                                 </span></p>
                                 <Gallery data={single_project.data.portfolio[0].images}></Gallery>
                             </div>
-                            <ReviewForm User={single_project.data.employmentHistory_ar.companyName} userId={userId} id={id}></ReviewForm>
+                            <ReviewForm User={single_project.data.about_ar.companyName} userId={userId} id={id}></ReviewForm>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ export default ClientReview
 const Wrapper = styled.div`
     .review {
       display: flex;
-      min-height: 100vh;
+      min-height: 75vh;
     }
     @media only screen and (max-width:850px) {
     .review {

@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components_en/Spinner";
 import { styles } from '../../../Shared/styles';
-import { addProjectEn } from "../../../features_en/profile/profileSlice";
+import { addProjectEn, reset } from "../../../features_en/profile/profileSlice";
+import swal from 'sweetalert';
 
-const AddProject = () => {
+
+const AddProject = ({ handleStep }) => {
+
+
     const [projectName, setProjectName] = useState("");
-    const [location, setLocation] = useState("");
+    const [projectLocation, setProjectLocation] = useState("");
     const [images, setImages] = useState([]);
 
     const removeImages = () => {
@@ -16,23 +20,40 @@ const AddProject = () => {
     };
     // state.
     const dispatch = useDispatch();
-    const { user, isLoading, } = useSelector(
+
+    const { user, isLoading, isSuccess, } = useSelector(
         (state) => state.profileEn
     );
+
+    useEffect(() => {
+        if (isSuccess) {
+            swal({
+                title: "Project Added",
+                icon: "success",
+            }).then(() => {
+                dispatch(reset());
+                handleStep(1);
+
+            });
+        }
+        // eslint-disable-next-line
+    }, [isSuccess]);
+
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         //  API CALL.
         dispatch(
             addProjectEn({
                 projectName,
-                location,
+                projectLocation,
                 images,
                 id: user.profile._id,
             })
         );
         // Reset form.
         setProjectName("");
-        setLocation("");
+        setProjectLocation("");
         setImages([]);
     };
 
@@ -74,7 +95,7 @@ const AddProject = () => {
                     onChange={(e) => setProjectName(e.target.value)}
                     required
                 />
-                <p className="card__subtitle">Location</p>
+                <p className="card__subtitle">Project Location</p>
                 <TextField
                     fullWidth
                     type="text"
@@ -82,8 +103,8 @@ const AddProject = () => {
                     inputProps={{
                         style: styles.textField,
                     }}
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
+                    value={projectLocation}
+                    onChange={(e) => setProjectLocation(e.target.value)}
                     required
                 />
                 <p className="card__subtitle">Project Files</p>

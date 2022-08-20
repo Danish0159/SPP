@@ -30,7 +30,7 @@ const ProfileDriver = () => {
       case 0: return <PersonelInfo></PersonelInfo>
       case 1: return <PersonelProjects></PersonelProjects>;
       case 2: return <PreviewProfile></PreviewProfile>;
-      case 3: return <AddProject></AddProject>
+      case 3: return <AddProject handleStep={handleStep} ></AddProject>
       default:
         return <div>لم يتم العثور على</div>;
     }
@@ -59,24 +59,33 @@ const ProfileDriver = () => {
 export default ProfileDriver;
 
 const Wrapper = styled.div`
-.profile__title {
-font-size: 1.7rem;
-font-weight: 600;
-margin-bottom: 0.9rem; 
-}
-.profile__subtitle {
-font-size: 1.5rem;
-margin-bottom: 2.5rem;
-}
-.profile__avatar {
-display:flex;
-align-items:center;
-justify-content:center;
-}
-.profile__portfolio {
-font-size: 2.3rem;
-font-weight: 700;
-margin: 2.5rem 0rem;
-color: #424d83;
-}
+  overflow: hidden;
+  box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+  -webkit-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+  -moz-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
+
+
+  .profile__title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 0.9rem; 
+  }
+  
+  .profile__subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .profile__avatar {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .profile__portfolio {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin: 2.5rem 0rem;
+    color: #424d83;
+  }
 `;

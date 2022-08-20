@@ -29,7 +29,7 @@ const SingleProject = () => {
       <Wrapper>
         <BackToProfile
           avatar={single_project.data.profilePhoto}
-          name={single_project.data.employmentHistory_en.companyName}
+          name={single_project.data.about_en.companyName}
           role={single_project.data.user.role_en}
           userId={userId}
         ></BackToProfile>
@@ -40,11 +40,11 @@ const SingleProject = () => {
           <p className="project__subtitle">Project Name: <span className="project__name">{single_project.data.portfolio[0].projectName}
           </span>
           </p>
-          <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].location}
+          <p className="project__subtitle">Project Location: <span className="project__location">{single_project.data.portfolio[0].projectLocation}
           </span>
           </p>
-          {single_project.data.portfolio[0].description && <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].description}</span></p>}
-          
+          {single_project.data.portfolio[0].description && <p className="project__subtitle">Project Description: <span className="project__description">{single_project.data.portfolio[0].projectDescription}</span></p>}
+
           {single_project.data.portfolio[0].noOfStars > 0 && <p className="project__subtitle">Project Rating: <span className="project__description"><Rating precision={0.5} name="read-only" value={single_project.data.portfolio[0].noOfStars} style={{ fontSize: "1.9rem" }} readOnly />
           </span></p>}
         </div>
@@ -56,11 +56,11 @@ const SingleProject = () => {
 
         <div className="section__white">
           <h3 className="section__title">Client Review</h3>
-          <Reviews 
-          review={single_project.data.portfolio[0].review ? single_project.data.portfolio[0].review : null} 
-          title={single_project.data.portfolio[0].reviewerTitle ? single_project.data.portfolio[0].reviewerTitle : null} 
-          rating={single_project.data.portfolio[0].noOfStars ? single_project.data.portfolio[0].noOfStars : null}
-          single={true}>
+          <Reviews
+            review={single_project.data.portfolio[0].review ? single_project.data.portfolio[0].review : null}
+            title={single_project.data.portfolio[0].reviewerTitle ? single_project.data.portfolio[0].reviewerTitle : null}
+            rating={single_project.data.portfolio[0].noOfStars ? single_project.data.portfolio[0].noOfStars : null}
+            single={single_project.data.portfolio[0].review ? true : false}>
           </Reviews>
         </div>
       </Wrapper >

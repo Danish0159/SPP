@@ -4,7 +4,7 @@ import { createTheme } from "@mui/material";
 //Global Styles.
 export const theme = createTheme({
     typography: {
-        fontFamily: ["Font"]
+        fontFamily: ["Font"],
     },
 });
 

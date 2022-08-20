@@ -18,6 +18,7 @@ const PersonelInfo = () => {
         (state) => state.profileEn
     );
 
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [roleEn, setRoleEn] = useState("");
@@ -312,6 +313,7 @@ export default PersonelInfo
 
 const Wrapper = styled.div`
 
+
 .profile__updatePhoto {
     display: flex;
     align-items: center;
@@ -321,42 +323,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     }
-}
-
-.profile__updateData {
-    @media only screen and (max-width: 630px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-}
-
-.update {
-    @media only screen and (max-width: 630px) {
-        width: 40rem;
-    }
-    @media only screen and (max-width: 520px) {
-        width: 35rem;
-    }
-    @media only screen and (max-width: 475px) {
-        width: 32rem;
-    }
-    @media only screen and (max-width: 440px) {
-        width: 27rem;
-    }
-    @media only screen and (max-width: 390px) {
-        width: 25rem;
-    }
-    @media only screen and (max-width: 365px) {
-        width: 22rem;
-    }
-    @media only screen and (max-width: 340px) {
-        width: 20rem;
-    }
-    @media only screen and (max-width: 320px) {
-        width: 18rem;
-    }
-   
 }
 
 .edit__div{

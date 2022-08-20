@@ -7,10 +7,10 @@ const {
         experience,
         projects,
         employees,
-        company,
-        location,
+        name,
+        about,
         vision,
-        socialPlatformLink,
+        mission,
         projectName1,
         projectLocation1,
         projectDescription1,
@@ -61,19 +61,22 @@ export const validationSchema = [
     }),
 
     Yup.object().shape({
-        [company.name]: Yup.string("أدخل اسم الشركة").required(
-            `${company.requiredErrorMsg}`
+        [name.name]: Yup.string("أدخل الاسم").required(
+            `${name.requiredErrorMsg} | الحد 15 حرفًا`
         ),
 
-        [location.name]: Yup.string("إدخال الدولة").required(
-            `${location.requiredErrorMsg}`
+        [about.name]: Yup.string("أدخل حول").required(
+            `${about.requiredErrorMsg} | الحد 75 حرفًا`
         ),
 
-        [vision.name]: Yup.string("أدخل رؤية الشركة").required(
-            `${vision.requiredErrorMsg}`
+        [vision.name]: Yup.string("أدخل فيجن").required(
+            `${vision.requiredErrorMsg} | الحد 75 حرفًا`
         ),
 
-        [socialPlatformLink.name]: Yup.string("أدخل رابط المنصة الاجتماعية")
+        [mission.name]: Yup.string("أدخل المهمة").required(
+            `${mission.requiredErrorMsg} | الحد 75 حرفًا`
+        ),
+
     }),
 
     Yup.object().shape({
@@ -113,7 +116,7 @@ export const validationSchema = [
         [phone.name]: Yup.string("أدخل رقم الهاتف")
             .matches(
                 /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-                "رقم الهاتف غير صالح ، التنسيق الصحيح +493367341920"
+                `${+493367341920} رقم الهاتف غير صالح ، التنسيق الصحيح`
             )
             .required(`${phone.requiredErrorMsg}`),
     }),

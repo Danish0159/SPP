@@ -7,8 +7,8 @@ export const categories = {
             value_en: "Electrical"
         },
         {
-            value_ar: "HVAC",
-            value_en: "HVAC"
+            value_ar: "تكيف و تبريد",
+            value_en: "Air Conditioning (HVAC)"
         },
         {
             value_ar: "السباكة",
@@ -19,42 +19,46 @@ export const categories = {
             value_en: "Civil Works"
         },
         {
-            value_ar: "إنهاء الأشغال",
-            value_en: "Finish Works"
+            value_ar: "مقاول المعماريون",
+            value_en: "Finishing Works Contractor"
         },
         {
-            value_ar: "مكافحة الحريق",
+            value_ar: "الدفاع المدني",
             value_en: "Fire Fighting"
         },
         {
-            value_ar: "إتمام تسليم المشروع",
-            value_en: "Complete Project Handover"
+            value_ar: "مقاول سلم مفتاح",
+            value_en: "Turn Key Project contractor"
         },
     ],
-    "Handyman": [
+    "Maintenance": [
         {
             value_ar: "الكهرباء",
             value_en: "Electrical"
         },
         {
-            value_ar: "HVAC",
-            value_en: "HVAC"
+            value_ar: "تكيف و تبريد",
+            value_en: "Air Conditioning (HVAC)"
         },
         {
             value_ar: "السباكة",
             value_en: "Plumbing"
-        }
+        },
+        {
+            value_ar: "الدفاع المدني",
+            value_en: "Fire Fighting"
+        },
     ],
     "Designer": [
         {
-            value_ar: "مصممي المباني",
-            value_en: "Building Designers"
+            value_ar: "المصممين",
+            value_en: "Designers"
         }
     ],
     "Consultant": [
         {
-            value_ar: "استشاريو البناء",
-            value_en: "Building Consultants"
+            value_ar: "الاستشاريين",
+            value_en: "Consultants"
         }
     ]
 };
@@ -63,245 +67,195 @@ export const subCategories = {
     "Contractor": {
         "Electrical": [
             {
-                value_ar: "مقاول أعمال كهربائية (جهد متوسط)",
-                value_en: "Electrical (Medium Voltage) Works Contractor"
+                value_ar: "مقاول الكهرباء ",
+                value_en: "Electrical  Contractor"
             },
             {
-                value_ar: "مقاول أعمال تيار منخفض (هاتف ، تاريخ ، تلفزيون)",
-                value_en: "Low Current (Telephone, date, TV) Works Contractor"
+                value_ar: "مقاول تركيب كاميرات مراقبة",
+                value_en: "Camera & CCTV Contractor"
             },
             {
-                value_ar: "مقاول تركيب كاميرات وكاميرات مراقبة",
-                value_en: "Camera and CCTV Installation Contractor"
+                value_ar: "مقاول أعمال سمارت هوم",
+                value_en: "Contractor Smart home system"
             },
             {
-                value_ar: "مقاول أعمال كهربائية (جهد عالي)",
-                value_en: "Electrical (High Voltage) Works Contractor"
-            },
-            {
-                value_ar: "مقاول اعمال كهربائية",
-                value_en: "All Electrical Works Contractor"
+                value_ar: "مقاول الكهرباء و السباكة",
+                value_en: "Contractor Plumbing & Electrical"
             }
         ],
-        "HVAC": [
+        "Air Conditioning (HVAC)": [
             {
-                value_ar: "مقاول تركيب مكيفات سبليت",
-                value_en: "Split AC Installation Contractor"
+                value_ar: "مقاول التكييف سبليت و شباك",
+                value_en: "Contractor AC (Split & Window)"
             },
             {
-                value_ar: "مقاول تركيب مكيفات الهواء المخفية والمغلفة",
-                value_en: "Concealed and Package AC installation Contractor"
+                value_ar: "مقاول مكيفات المخفي والمركزي",
+                value_en: "Contractor AC (Concealed and Package)"
             },
             {
-                value_ar: "مقاول تركيب VRV و VRF",
-                value_en: "VRV and VRF Installation Contractor"
-            },
-            {
-                value_ar: "مقاول تركيب المبردات",
-                value_en: "Chiller Instalation Contractor"
-            },
-            {
-                value_ar: "جميع مقاول أعمال HVAC",
-                value_en: "All HVAC Works Contractor"
+                value_ar: "جميع أنواع أعمال تكييف-تبريد  ",
+                value_en: "All Types of HVAC Works"
             }
         ],
         "Plumbing": [
             {
-                value_ar: "داخل مقاول أعمال السباكة",
-                value_en: "Inside Building, Plumbing Works Contractor"
+                value_ar: " مقاول أعمال السباكة (البناء)",
+                value_en: "Plumbing Contractor (Buildings)"
             },
             {
-                value_ar: "مقاول أعمال خط الصرف الصحي الرئيسي",
-                value_en: "Main sewer line works Contractor"
+                value_ar: "مقاول السباكة (لخطوط الصرف الصحي الرئيسية)",
+                value_en: "Plumbing Contractor (for main Sewerage lines)"
             },
             {
-                value_ar: "مقاول أعمال حمامات السباحة والجاكوزي والساونا",
-                value_en: "Swimming Pool, Jacuzzi and Sauna Works Contractor"
+                value_ar: "مقاول أعمال للمسابح والجاكوزي والساونا",
+                value_en: "Contractor (Swimming Pool, Jacuzzi and Sauna)"
             },
             {
-                value_ar: "مقاول أعمال رش الحدائق",
-                value_en: "Garden Sprinkler Works Contractor"
+                value_ar: "مقاول النافورة والشلال",
+                value_en: "Contractor (Fountains and Waterfall)"
             },
             {
-                value_ar: "مقاول أعمال أنابيب الري",
-                value_en: "Irrigation Piping Works Contractor"
+                value_ar: " أعمال ري مياه الحدائق و المزارع ",
+                value_en: "Contractor for Garden & Irrigation Piping"
             },
             {
-                value_ar: "مقاول أعمال السباكة",
-                value_en: "All Plumbing Works Contractor"
+                value_ar: "مقاول الكهرباء و السباكة",
+                value_en: "Contractor Plumbing & Electrical"
             }
         ],
         "Civil Works": [
             {
-                value_ar: "مقاول أعمال حديدية",
-                value_en: "Steel Works Contractor"
+                value_ar: "مقاول إنشائي ",
+                value_en: "Structural Contractor (Concrete)"
             },
             {
-                value_ar: "مقاول ابواب خشب للاعمال الخشبية",
-                value_en: "Shuttering Wood Works Contractor"
+                value_ar: "مقاول أعمال التلييس",
+                value_en: "Plaster Contractor"
             },
             {
-                value_ar: "مقاول أعمال السقالات",
-                value_en: "Scaffolding Works Contractor"
-            },
-            {
-                value_ar: "مقاول أعمال خرسانية",
-                value_en: "Concrete Works Contractor"
-            },
-            {
-                value_ar: "مقاول أعمال الجبس",
-                value_en: "Plaster Works Contractor"
-            },
-            {
-                value_ar: "مقاول أعمال البناء",
+                value_ar: "مقاول أعمال البلوك",
                 value_en: "Block Works Contractor"
             },
             {
-                value_ar: "جميع مقاول الأشغال المدنية",
-                value_en: "All Civil Works Contractor"
+                value_ar: "مقاول أعمال العازل",
+                value_en: "Water-proofing & Insulation Contractor"
+            },
+            {
+                value_ar: "مقاول أعمال حداد",
+                value_en: "Steel Works Contractor"
+            },
+            {
+                value_ar: "جمع أعمال مقاول إنشائي",
+                value_en: "Complete Structural Contractor(Grey)"
             }
         ],
-        "Finish Works": [
+        "Finishing Works Contractor": [
             {
-                value_ar: "مقاول أعمال الديكور للأبواب والأبواب الحديدية",
-                value_en: "Steel Doors and Doors Decoration Works Contractor"
+                value_ar: "أعمال الأبواب والشباك",
+                value_en: "Doors and Windows Works"
             },
             {
-                value_ar: "مقاول أعمال نوافذ الألمنيوم",
-                value_en: "Aluminium Windows Works Contractor"
+                value_ar: "مقاول تركيب مصعاعد",
+                value_en: "Elevator Installation Contractor"
             },
             {
-                value_ar: "مقاول أعمال الأبواب الخشبية",
-                value_en: "Wooden Doors Works Contractor"
+                value_ar: "مقاول الزجاج والكلادنج ",
+                value_en: "Cladding & Glass Contractor"
+            },
+            {
+                value_ar: "مقاول أعمال الخشبية",
+                value_en: "Wooden Works Contractor"
             },
             {
                 value_ar: "مقاول أعمال زجاج",
                 value_en: "Glass Works Contractor"
             },
             {
-                value_ar: "مقاول أعمال الدهان",
+                value_ar: "مقاول أعمال الدهانات",
                 value_en: "Paint Works Contractor"
             },
             {
-                value_ar: "مقاول أعمال الجبس والجبس",
-                value_en: "Gypsum and Gypsumboards Works Contractor"
-            },
-            {
-                value_ar: "مقاول أعمال السقف",
+                value_ar: "مقاول أعمال السقف ",
                 value_en: "Ceiling Works Contractor"
             },
             {
-                value_ar: "مقاول أعمال ورق الجدران",
-                value_en: "Wallpaper Works Contractor"
+                value_ar: "مقاول الجبس بورد",
+                value_en: "Gypsumboard Contractor"
             },
             {
-                value_ar: "جميع مقاول أعمال التشطيب",
-                value_en: "All Finish Works Contractor"
+                value_ar: "مقاول بلاط ورخام",
+                value_en: "Tiles & Marble Contractor"
+            },
+            {
+                value_ar: " مقاول جمع أعمال تشطيب",
+                value_en: "Complete finishing works Contractors"
             }
         ],
         "Fire Fighting": [
             {
-                value_ar: "مقاول أنابيب مكافحة الحرائق",
-                value_en: "Firefighting Piping Contractor"
-            },
-            {
-                value_ar: "مقاول تركيب أجهزة إنذار الحريق",
-                value_en: "Fire Alarm Installation Contractor"
-            },
-            {
-                value_ar: "مقاول أعمال مكافحة الحريق",
-                value_en: "All Firefighting Works Contractor"
+                value_ar: "جميع انطمة انذار الحريق",
+                value_en: "Firefighting Contractor"
             }
         ],
-        "Complete Project Handover": [
+        "Turn Key Project contractor": [
             {
-                value_ar: "مقاول تسليم المشروع الكامل",
-                value_en: "Complete Project Handover Contractor"
+                value_ar: "مقاولون سلم مفتاح",
+                value_en: "Turn Key Project contractor"
             }
         ],
     },
-    "Handyman": {
+    "Maintenance": {
         "Electrical": [
             {
-                value_ar: "الأعمال الكهربائية (متوسطة الجهد) الماهر",
-                value_en: "Electrical (Medium Voltage) Works Handyman"
+                value_ar: "صيانة الكهرباء عام ",
+                value_en: "General Electrical  Maintenance"
             },
             {
-                value_ar: "تيار منخفض (هاتف ، تاريخ ، تلفزيون) يعمل بارع",
-                value_en: "Low Current (Telephone, date, TV) Works Handyman"
-            },
-            {
-                value_ar: "عامل تركيب الكاميرا وكاميرات المراقبة",
-                value_en: "Camera and CCTV Installation Handyman"
-            },
-            {
-                value_ar: "العامل الماهر في الأعمال الكهربائية (الجهد العالي)",
-                value_en: "Electrical (High Voltage) Works Handyman"
-            },
-            {
-                value_ar: "جميع اعمال الكهرباء الماهر",
-                value_en: "All Electrical Works Handyman"
+                value_ar: " صيانة كاميرات مراقبة",
+                value_en: "Camera & CCTV Maintenance"
             }
         ],
         "Plumbing": [
             {
-                value_ar: "داخل المبنى ، أعمال السباكة العامل الماهر",
-                value_en: "Inside Building, Plumbing Works Handyman"
+                value_ar: " صيانة أعمال السباكة (البناء)",
+                value_en: "Plumbing Maintenance (Buildings)"
             },
             {
-                value_ar: "خط الصرف الصحي الرئيسي يعمل بارع",
-                value_en: "Main sewer line works Handyman"
-            },
-            {
-                value_ar: "أحواض السباحة والجاكوزي والساونا العامل الماهر",
-                value_en: "Swimming Pool, Jacuzzi and Sauna Works Handyman"
-            },
-            {
-                value_ar: "عامل بارع في أعمال رش الحدائق",
-                value_en: "Garden Sprinkler Works Handyman"
-            },
-            {
-                value_ar: "بارع في أعمال أنابيب الري",
-                value_en: "Irrigation Piping Works Handyman"
-            },
-            {
-                value_ar: "جميع اعمال السباكة العامل الماهر",
-                value_en: "All Plumbing Works Handyman"
+                value_ar: "صيانة مضخات المياه",
+                value_en: "Water Pumps Maintenance"
             }
         ],
-        "HVAC": [
+        "Air Conditioning (HVAC)": [
             {
-                value_ar: "عامل تركيب مكيفات سبليت",
-                value_en: "Split AC Installation Handyman"
+                value_ar: "صيانة التكييف سبليت و شباك",
+                value_en: "Maintenance AC (Split & Window)"
             },
             {
-                value_ar: "تركيب مكيفات مخفي وعبوات بارع",
-                value_en: "Concealed and Package AC installation Handyman"
+                value_ar: "صيانة مكيفات المخفي والمركزي",
+                value_en: "Maintenance AC (Concealed and Package)"
             },
             {
-                value_ar: "عامل تركيب VRV و VRF",
-                value_en: "VRV and VRF Installation Handyman"
-            },
-            {
-                value_ar: "عامل تركيب مبرد",
-                value_en: "Chiller Instalation Handyman"
-            },
-            {
-                value_ar: "جميع عمال HVAC الماهر",
-                value_en: "All HVAC Works Handyman"
+                value_ar: " صيانة جميع أنواع تكييف-تبريد",
+                value_en: "Maintenance of all types of AC"
             }
-        ]
+        ],
+        "Fire Fighting": [
+            {
+                value_ar: "صيانة مضخات الحريق وإنذار الحريق",
+                value_en: "Maintenance for Firepumps and Firealarms"
+            }
+        ],
     },
     "Designer": {
-        "Building Designers":
+        "Designers":
             [
                 {
-                    value_ar: "مصمم الهياكل المدنية",
-                    value_en: "Civil Structures Designer"
+                    value_ar: "مصمم الإنشائي",
+                    value_en: "Structural Designer"
                 },
                 {
-                    value_ar: "مصمم أعمال التشطيبات",
-                    value_en: "Finishing Works Designer"
+                    value_ar: "مصمم معماري",
+                    value_en: "Architectural Designer"
                 },
                 {
                     value_ar: "مصمم أنظمة ميكانيكية",
@@ -312,67 +266,48 @@ export const subCategories = {
                     value_en: "Electrical Systems Designer"
                 },
                 {
-                    value_ar: "مصمم اعمال سباكة",
-                    value_en: "Plumbing Works Designer"
-                },
-                {
-                    value_ar: "مصمم أنظمة التكييف",
-                    value_en: "HVAC Systems Designer"
-                },
-                {
                     value_ar: "مصمم أنظمة مكافحة الحرائق",
                     value_en: "Firefighting Systems Designer"
                 },
                 {
-                    value_ar: "جميع أعمال البناء ومصمم النظم",
-                    value_en: "All Building Works and Systems Designer"
+                    value_ar: "تصميم كامل لجميع الأنظمة",
+                    value_en: "All Systems Designer"
                 }
             ]
     },
     "Consultant": {
-        "Building Consultants":
+        "Consultants":
             [
                 {
-                    value_ar: "مستشار الهياكل المدنية",
-                    value_en: "Civil Structures Consultant"
+                    value_ar: "استشاري إنشائي",
+                    value_en: "Structural Consultant"
                 },
                 {
-                    value_ar: "استشاري أعمال التشطيبات",
-                    value_en: "Finishing Works Consultant"
+                    value_ar: "استشاري معماري",
+                    value_en: "Architechural Consultant"
                 },
                 {
-                    value_ar: "مستشار أنظمة ميكانيكية",
-                    value_en: "Mechanical Systems Consultant"
+                    value_ar: "استشاري ميكانيكية",
+                    value_en: "Mechanical Consultant"
                 },
                 {
-                    value_ar: "استشاري نظم كهربائية",
-                    value_en: "Electrical Systems Consultant"
+                    value_ar: "استشاري كهربائية",
+                    value_en: "Electrical Consultant"
                 },
                 {
-                    value_ar: "استشاري اعمال السباكة",
-                    value_en: "Plumbing Works Consultant"
-                },
-                {
-                    value_ar: "استشاري أنظمة التكييف",
-                    value_en: "HVAC Systems Consultant"
-                },
-                {
-                    value_ar: "استشاري انظمة مكافحة الحريق",
-                    value_en: "Firefighting Systems Consultant"
-                },
-                {
-                    value_ar: "جميع أعمال البناء واستشاري الأنظمة",
-                    value_en: "All Building Works and Systems Consultant"
+                    value_ar: "استشارات كاملة للبناء ",
+                    value_en: "Complete Consultancy for building"
                 }
             ]
     }
 };
 
 
+
 export const users = [
     {
-        value_ar: "عامل يدوي",
-        value_en: "Handyman",
+        value_ar: "صيانة",
+        value_en: "Maintenance",
     },
     {
         value_ar: "مقاول",
@@ -383,7 +318,7 @@ export const users = [
         value_en: "Designer",
     },
     {
-        value_ar: "مستشار",
+        value_ar: "استشاري",
         value_en: "Consultant",
     }
 ];
@@ -394,14 +329,6 @@ export const countries = [
 ];
 
 export const pakCities = [
-    // {
-    //     value_ar: "احمد ناگر چٹھہ",
-    //     value_en: "Ahmed Nager Chatha"
-    // },
-    {
-        value_ar: "علی خان آباد",
-        value_en: "Ali Khan Abad"
-    },
     {
         value_ar: "علی پور",
         value_en: "Alipur"
@@ -475,10 +402,6 @@ export const pakCities = [
         value_en: "Burewala"
     },
     {
-        value_ar: "بندہ داؤد شاہ",
-        value_en: "Banda Daud Shah"
-    },
-    {
         value_ar: "بنوں",
         value_en: "Bannu"
     },
@@ -547,8 +470,8 @@ export const pakCities = [
         value_en: "Darya Khan"
     },
     {
-        value_ar: "ڈیرہ غازی خان",
-        value_en: "Dera Ghazi Khan"
+        value_ar: "ڈی جی خان",
+        value_en: "D.G. Khan"
     },
     {
         value_ar: "دھولر",
@@ -575,8 +498,8 @@ export const pakCities = [
         value_en: "Dargai"
     },
     {
-        value_ar: "ڈیرہ اسماعیل خان",
-        value_en: "Dera Ismail Khan"
+        value_ar: "ڈی آئی خان",
+        value_en: "D.I. Khan"
     },
     {
         value_ar: "دوآبہ",
@@ -795,20 +718,8 @@ export const pakCities = [
         value_en: "Kohlu"
     },
     {
-        value_ar: "قلعہ عبداللہ",
-        value_en: "Killa Abdullah"
-    },
-    {
-        value_ar: "قلعہ سیف اللہ",
-        value_en: "Killa Saifullah"
-    },
-    {
         value_ar: "کالاباغ",
         value_en: "Kalabagh"
-    },
-    {
-        value_ar: "کرور لال عیسن",
-        value_en: "Karor Lal Esan"
     },
     {
         value_ar: "قصور",
@@ -862,7 +773,6 @@ export const pakCities = [
         value_ar: "لاٹامبر",
         value_en: "Latamber"
     },
-
     {
         value_ar: "لاہور",
         value_en: "Lahore"
@@ -1081,10 +991,6 @@ export const pakCities = [
         value_en: "Qaimpur"
     },
     {
-        value_ar: "قلعہ دیدار سنگھ",
-        value_en: "Qila Didar Singh"
-    },
-    {
         value_ar: "قمبر",
         value_en: "Qambar"
     },
@@ -1125,8 +1031,8 @@ export const pakCities = [
         value_en: "Rajanpu"
     },
     {
-        value_ar: "رحیم یار خان",
-        value_en: "Rahim Yar Khan"
+        value_ar: "رحیم یار",
+        value_en: "Rahim Yar"
     },
     {
         value_ar: "راولپنڈی",
@@ -1273,24 +1179,24 @@ export const pakCities = [
         value_en: "Taxila"
     },
     {
-        value_ar: "ٹوبہ ٹیک سنگھ",
-        value_en: "Toba Tek Singh"
+        value_ar: "ٹوبہ ٹیک ",
+        value_en: "Toba Tek"
     },
     {
         value_ar: "تنگوانی",
         value_en: "Tangwani"
     },
     {
-        value_ar: "ٹنڈو آدم خان",
-        value_en: "Tando Adam Khan"
+        value_ar: "ٹنڈو آدم",
+        value_en: "Tando Adam"
     },
     {
-        value_ar: "ٹنڈو اللہ یار",
+        value_ar: "ٹنڈو اللہیار",
         value_en: "Tando Allahyar"
     },
     {
-        value_ar: "ٹنڈو محمد خان",
-        value_en: "Tando Muhammad Khan"
+        value_ar: "ٹنڈو محمد",
+        value_en: "Tando Muhammad"
     },
     {
         value_ar: "ٹھٹھہ",

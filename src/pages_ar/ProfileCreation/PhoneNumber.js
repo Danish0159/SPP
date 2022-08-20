@@ -11,7 +11,8 @@ export default function PhoneNumber(props) {
       <p className="card__subtitle">أضف رقم هاتفك</p>
       <InputField
         name={phone.name}
-        type="text"
+        type="number"
+        sx={{direction: "ltr"}}
         fullWidth
       />
       <p className="card__subtitle">

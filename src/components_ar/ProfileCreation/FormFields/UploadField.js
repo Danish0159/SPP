@@ -16,6 +16,7 @@ const UploadField = ({
         name="uploader"
         title={label}
         type={"file"}
+        accept="image/png, image/gif, image/jpeg"
         style={{
           display: "flex",
           color: isError ? "red" : "var(--main-color)",

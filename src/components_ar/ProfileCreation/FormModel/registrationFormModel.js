@@ -21,20 +21,21 @@ export const registrationFormModel = {
       name: "employees",
       requiredErrorMsg: "مطلوب موظفين",
     },
-    company: {
-      name: "company",
-      requiredErrorMsg: "مطلوب شركة",
+    name: {
+      name: "name",
+      requiredErrorMsg: "مطلوب اسم",
     },
-    location: {
-      name: "location",
-      requiredErrorMsg: "الموقع مطلوب",
+    about: {
+      name: "about",
+      requiredErrorMsg: "حول مطلوب",
     },
     vision: {
       name: "vision",
       requiredErrorMsg: "الرؤية المطلوبة",
     },
-    socialPlatformLink: {
-      name: "socialPlatformLink",
+    mission: {
+      name: "mission",
+      requiredErrorMsg: "المهمة مطلوبة",
     },
     projectName1: {
       name: "projectName1",

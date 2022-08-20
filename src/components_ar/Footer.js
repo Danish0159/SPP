@@ -17,9 +17,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="footer__right">
-          <a href="/ar">معلومات عنا</a>
+          <a href="/Aboutar">معلومات عنا</a>
+          <a href="/Policiesar">سياساتنا</a>
           <a href="/ar">اتصل بنا</a>
-          <a href="/ar">سياساتنا</a>
           <br />
         </div>
       </div>

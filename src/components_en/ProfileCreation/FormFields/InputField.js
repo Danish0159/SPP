@@ -5,6 +5,7 @@ import { TextField } from "@mui/material";
 import { styles } from "../../../Shared/styles";
 
 export default function InputField(props) {
+
   const { errorText, type, ...rest } = props;
   const [field, meta] = useField(props);
 
@@ -18,7 +19,8 @@ export default function InputField(props) {
   return (
     <>
       <TextField
-        inputProps={{ style: styles.textField, min: props.min }}
+        inputProps={{ style: styles.textField, min: props.min, maxLength: props.limit
+        }}
         type={type}
         error={meta.touched && meta.error && true}
         {...field}

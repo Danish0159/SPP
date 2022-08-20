@@ -18,7 +18,8 @@ export default function InputField(props) {
   return (
     <>
       <TextField
-        inputProps={{ style: styles.textField, min: props.min }}
+        inputProps={{ style: styles.textField, min: props.min, maxLength: props.limit
+        }}
         type={type}
         error={meta.touched && meta.error && true}
         {...field}
