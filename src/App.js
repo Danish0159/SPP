@@ -6,7 +6,6 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from './Shared/styles';
 import ErrorPage from './utils/ErrorPage'
 import LinearProgress from '@mui/material/LinearProgress';
-// Some Test Comment.
 // Public Pages. 
 import {
   LoginPageEn,
