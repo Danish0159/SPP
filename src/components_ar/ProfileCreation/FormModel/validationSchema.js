@@ -11,30 +11,12 @@ const {
         about,
         vision,
         mission,
-        projectName1,
-        projectLocation1,
-        projectDescription1,
-        projectName2,
-        projectLocation2,
-        projectDescription2,
-        projectName3,
-        projectLocation3,
-        projectDescription3,
-        projectName4,
-        projectLocation4,
-        projectDescription4,
-        projectName5,
-        projectLocation5,
-        projectDescription5,
         country,
         city,
         phone,
         image,
     },
 } = registrationFormModel;
-
-const FILE_SIZE = 10 * 1024 * 1024; // ~= 10 MB
-const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const validationSchema = [
     Yup.object().shape({
@@ -52,7 +34,7 @@ export const validationSchema = [
             .required(`${experience.requiredErrorMsg}`),
 
         [projects.name]: Yup.number()
-            .min(1, "يجب إضافة مشروع واحد على الأقل").max(5, "يمكن إضافة 5 مشاريع كحد أقصى.")
+            .min(0, "الحد الأدنى للقيمة 0.")
             .required(`${projects.requiredErrorMsg}`),
 
         [employees.name]: Yup.number()
@@ -62,41 +44,20 @@ export const validationSchema = [
 
     Yup.object().shape({
         [name.name]: Yup.string("أدخل الاسم").required(
-            `${name.requiredErrorMsg} | الحد 15 حرفًا`
+            `${name.requiredErrorMsg}`
         ),
 
         [about.name]: Yup.string("أدخل حول").required(
-            `${about.requiredErrorMsg} | الحد 75 حرفًا`
+            `${about.requiredErrorMsg}`
         ),
 
         [vision.name]: Yup.string("أدخل فيجن").required(
-            `${vision.requiredErrorMsg} | الحد 75 حرفًا`
+            `${vision.requiredErrorMsg}`
         ),
 
         [mission.name]: Yup.string("أدخل المهمة").required(
-            `${mission.requiredErrorMsg} | الحد 75 حرفًا`
+            `${mission.requiredErrorMsg}`
         ),
-
-    }),
-
-    Yup.object().shape({
-        [projectName1.name]: Yup.string("أدخل اسم المشروع"),
-        [projectName2.name]: Yup.string("أدخل اسم المشروع"),
-        [projectName3.name]: Yup.string("أدخل اسم المشروع"),
-        [projectName4.name]: Yup.string("أدخل اسم المشروع"),
-        [projectName5.name]: Yup.string("أدخل اسم المشروع"),
-
-        [projectLocation1.name]: Yup.string("أدخل موقع المشروع"),
-        [projectLocation2.name]: Yup.string("أدخل موقع المشروع"),
-        [projectLocation3.name]: Yup.string("أدخل موقع المشروع"),
-        [projectLocation4.name]: Yup.string("أدخل موقع المشروع"),
-        [projectLocation5.name]: Yup.string("أدخل موقع المشروع"),
-        // Optional Description.
-        [projectDescription1.name]: Yup.string("أدخل وصف المشروع"),
-        [projectDescription2.name]: Yup.string("أدخل وصف المشروع"),
-        [projectDescription3.name]: Yup.string("أدخل وصف المشروع"),
-        [projectDescription4.name]: Yup.string("أدخل وصف المشروع"),
-        [projectDescription5.name]: Yup.string("أدخل وصف المشروع"),
 
     }),
 
@@ -105,41 +66,23 @@ export const validationSchema = [
             `${country.requiredErrorMsg}`
         ),
 
-        // skills: array().required('At least one skill is required')
-
         [city.name]: Yup.array().min(1, `${city.requiredErrorMsg}`).required(
             `${city.requiredErrorMsg}`
         ),
     }),
 
     Yup.object().shape({
-        [phone.name]: Yup.string("أدخل رقم الهاتف")
-            .matches(
-                /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-                `${+493367341920} رقم الهاتف غير صالح ، التنسيق الصحيح`
-            )
-            .required(`${phone.requiredErrorMsg}`),
+        [phone.name]: Yup.string().required(`${phone.requiredErrorMsg}`)
+            .matches(/^[0-9]+$/, "يجب أن يتكون من أرقام فقط")
+            .min(10, 'يجب أن يكون 10 رقمًا بالضبط')
+            .max(11, 'يجب أن يكون 11 رقمًا بالضبط')
     }),
+
 
     // Image Upload.
     Yup.object().shape({
-        [image.name]: Yup.mixed()
-            .required("مطلوب ملف")
-            .test(
-                "isEmpty",
-                `${image.requiredErrorMsg}`,
-                (value) => value && value.file
-            )
-            .test(
-                "fileSize",
-                "الملف كبير جدًا",
-                (value) => value && value.file && value.file.size <= FILE_SIZE
-            )
-            .test(
-                "fileFormat",
-                "صيغة غير مدعومة",
-                (value) =>
-                    value && value.file && SUPPORTED_FORMATS.includes(value.file.type)
-            ),
+        [image.name]: Yup.string("اختر صورة").required(
+            `${image.requiredErrorMsg}`
+        ),
     }),
 ];

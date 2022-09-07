@@ -62,7 +62,7 @@ const PrivacyPolicyPage = () => {
               <p class="privacy__paragraph">
                 {" "}
                 <strong>Company</strong> (referred to as either "the Company",
-                "We", "Us" or "Our" in this Agreement) refers to Maqawal,
+                "We", "Us" or "Our" in this Agreement) refers to Mahnty,
                 Property No.(XIII-CC-51/BB/YY/KK), Street No.9, Centeral
                 Manchester,
               </p>
@@ -126,8 +126,8 @@ const PrivacyPolicyPage = () => {
             <li class="privacy__li">
               <p class="privacy__paragraph">
                 {" "}
-                <strong>Website</strong> refers to maqawal.com, accessible from
-                <a href="https://www.maqawal.com/">www.maqawal.com</a>
+                <strong>Website</strong> refers to Mahnty.com, accessible from
+                <a href="https://www.mahnty.com/">www.mahnty.com</a>
               </p>
             </li>
             <li class="privacy__li">
@@ -638,7 +638,7 @@ const PrivacyPolicyPage = () => {
 
           <ul class="privacy__ul">
             <li class="privacy__li">
-              <p class="privacy__paragraph">By email: zubair@maqawal.com</p>
+              <p class="privacy__paragraph">By email: zubair@mahnty.com</p>
             </li>
           </ul>
         </div>

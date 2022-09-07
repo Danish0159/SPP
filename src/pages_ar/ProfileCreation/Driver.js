@@ -5,7 +5,7 @@ import { Footer, Spinner } from "../../components_ar";
 import { Buttons } from "../../components_ar/ProfileCreation";
 import { CardLayout } from '../../Shared/styled';
 import { CardTitle } from "../../Shared";
-import { NavbarWelcome } from '../../components_ar/Navigations'
+import { NavbarProfileCreation } from '../../components_en/Navigations';
 
 // Form Model.
 import {
@@ -18,7 +18,6 @@ import {
   Category,
   ExpertiseLevel,
   About,
-  Portfolio,
   Location,
   PhoneNumber,
   ProfilePhoto,
@@ -29,44 +28,25 @@ import { Redirect, useHistory } from "react-router-dom";
 import { profileCreationAr, reset } from "../../features_ar/profile/profileSlice";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 
-const { formId, formField } = registrationFormModel;
 
-const steps = [
-  "فئة",
-  "مستوى الخبرة",
-  "حول",
-  "مَلَفّ",
-  "موقع",
-  "رقم الهاتف",
-  "صورة الملف الشخصي",
-];
-
-function _renderStepContent(step) {
-  switch (step) {
-    case 0:
-      return <Category formField={formField} />;
-    case 1:
-      return <ExpertiseLevel formField={formField} />;
-    case 2:
-      return <About formField={formField} />;
-    case 3:
-      return <Portfolio formField={formField} />;
-    case 4:
-      return <Location formField={formField} />;
-    case 5:
-      return <PhoneNumber formField={formField} />;
-    case 6:
-      return <ProfilePhoto formField={formField} />;
-    default:
-      return <div>لم يتم العثور على</div>;
-  }
-}
 
 const Driver = () => {
+
+  const { formId, formField } = registrationFormModel;
+
+  const steps = [
+    "فئة",
+    "مستوى الخبرة",
+    "حول",
+    "موقع",
+    "رقم الهاتف",
+    "صورة الملف الشخصي",
+  ];
+
+  const [check, setCheck] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
-  const [portfolioMapping] = useState([]);
 
   // Redux State.
   const dispatch = useDispatch();
@@ -83,62 +63,32 @@ const Driver = () => {
     // eslint-disable-next-line
   }, [isSuccess]);
 
+  function _renderStepContent(step) {
+    switch (step) {
+      case 0:
+        return <Category formField={formField} />;
+      case 1:
+        return <ExpertiseLevel formField={formField} />;
+      case 2:
+        return <About formField={formField} />;
+      case 3:
+        return <Location formField={formField} />;
+      case 4:
+        return <PhoneNumber formField={formField} />;
+      case 5:
+        return <ProfilePhoto formField={formField} setCheck={setCheck} />;
+      default:
+        return <div>لم يتم العثور على</div>;
+    }
+  }
+
   async function _submitForm(values, actions) {
-    //Optimze the solution.
-    if (values.projectName1) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName1,
-          projectLocation: values.projectLocation1,
-          projectDescription: values.projectDescription1,
-          images: values.images.images1,
-        }
-      );
-    }
-    if (values.projectName2) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName2,
-          projectLocation: values.projectLocation2,
-          projectDescription: values.projectDescription2,
-          images: values.images.images2,
-        }
-      );
-    }
-    if (values.projectName3) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName3,
-          projectLocation: values.projectLocation3,
-          projectDescription: values.projectDescription3,
-          images: values.images.images3,
-        }
-      );
-    }
-    if (values.projectName4) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName4,
-          projectLocation: values.projectLocation4,
-          projectDescription: values.projectDescription4,
-          images: values.images.images4,
-        }
-      );
-    }
-    if (values.projectName5) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName5,
-          projectLocation: values.projectLocation5,
-          projectDescription: values.projectDescription5,
-          images: values.images.images5,
-        }
-      );
-    }
+
     const user = getUserFromLocalStorage();
 
     const payload = {
       userId: user.userId,
+      role: user.role_ar,
       category_en: values.category.value_en,
       category_ar: values.category.value_ar,
       subCategory_en: values.subCategory.value_en,
@@ -149,12 +99,11 @@ const Driver = () => {
         noOfEmployees: values.employees,
       },
       about: {
-          companyName: values.name,
-          companyAbout: values.about,
-          companyVision: values.vision,
-          companyMission: values.mission,
+        companyName: values.name,
+        companyAbout: values.about,
+        companyVision: values.vision,
+        companyMission: values.mission,
       },
-      portfolio: portfolioMapping,
       location_en: {
         country: values.country.value_en,
         city: values.city.map((item) => item.value_en),
@@ -164,7 +113,7 @@ const Driver = () => {
         city: values.city.map((item) => item.value_ar),
       },
       phoneNumber: values.phone,
-      profilePhoto: values.image.src,
+      profilePhoto: values.image,
 
     };
 
@@ -193,7 +142,7 @@ const Driver = () => {
 
   return (
     <main>
-      <NavbarWelcome></NavbarWelcome>
+      <NavbarProfileCreation></NavbarProfileCreation>
       <CardLayout>
         <Buttons activeStep={activeStep}></Buttons>
 
@@ -207,7 +156,7 @@ const Driver = () => {
                 validationSchema={currentValidationSchema}
                 onSubmit={_handleSubmit}
               >
-                {({ isSubmitting }) => (
+                {() => (
                   <Form id={formId}>
                     <CardTitle steps={steps} activeStep={activeStep}></CardTitle>
                     <div className="card__content">
@@ -219,16 +168,28 @@ const Driver = () => {
                           </button>
                         )}
                         <div>
+                        {isLastStep ?
                           <button
                             className="blue-btn card-btn"
-                            disabled={isSubmitting}
+                            disabled={check}
+                            style={check ? { backgroundColor: "whitesmoke", color: "lightgrey", cursor: "not-allowed" } : null}
                             type="submit"
                             variant="contained"
                             color="primary"
                           >
-                            {isLastStep ? "مكتمل" : "التالي"}
+                            مكتمل
                           </button>
-                          {/* {isSubmitting && <CircularProgress size={24} />} */}
+                          :
+                          <button
+                            className="blue-btn card-btn"
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                          >
+                            التالي
+                          </button>
+
+                        }
                         </div>
                       </div>
                     </div>

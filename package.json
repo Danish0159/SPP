@@ -9,6 +9,7 @@
     "@mui/material": "^5.4.1",
     "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.25.0",
+    "compress.js": "^1.2.2",
     "formik": "^2.2.9",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",

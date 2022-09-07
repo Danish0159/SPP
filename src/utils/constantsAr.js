@@ -8,7 +8,7 @@ export const categories = {
         },
         {
             value_ar: "تكيف و تبريد",
-            value_en: "Air Conditioning (HVAC)"
+            value_en: "HVAC"
         },
         {
             value_ar: "السباكة",
@@ -19,16 +19,16 @@ export const categories = {
             value_en: "Civil Works"
         },
         {
-            value_ar: "مقاول المعماريون",
-            value_en: "Finishing Works Contractor"
+            value_ar: "أعمال التشطيبات",
+            value_en: "Finishing Works"
         },
         {
             value_ar: "الدفاع المدني",
             value_en: "Fire Fighting"
         },
         {
-            value_ar: "مقاول سلم مفتاح",
-            value_en: "Turn Key Project contractor"
+            value_ar: "مشروع تسليم المفتاح",
+            value_en: "Turn Key Project"
         },
     ],
     "صيانة": [
@@ -38,7 +38,7 @@ export const categories = {
         },
         {
             value_ar: "تكيف و تبريد",
-            value_en: "Air Conditioning (HVAC)"
+            value_en: "HVAC"
         },
         {
             value_ar: "السباكة",
@@ -76,7 +76,7 @@ export const subCategories = {
             },
             {
                 value_ar: "مقاول أعمال سمارت هوم",
-                value_en: "Contractor Smart home system"
+                value_en: "Contractor Smart Home System"
             },
             {
                 value_ar: "مقاول الكهرباء و السباكة",
@@ -104,7 +104,7 @@ export const subCategories = {
             },
             {
                 value_ar: "مقاول السباكة (لخطوط الصرف الصحي الرئيسية)",
-                value_en: "Plumbing Contractor (for main Sewerage lines)"
+                value_en: "Plumbing Contractor (For Main Sewerage lines)"
             },
             {
                 value_ar: "مقاول أعمال للمسابح والجاكوزي والساونا",
@@ -116,7 +116,7 @@ export const subCategories = {
             },
             {
                 value_ar: " أعمال ري مياه الحدائق و المزارع ",
-                value_en: "Contractors for Garden & Irrigation Piping"
+                value_en: "Contractor for Garden & Irrigation Piping"
             },
             {
                 value_ar: "مقاول الكهرباء و السباكة",
@@ -149,7 +149,7 @@ export const subCategories = {
                 value_en: "Complete Structural Contractor (Grey)"
             }
         ],
-        "مقاول المعماريون": [
+        "أعمال التشطيبات": [
             {
                 value_ar: "أعمال الأبواب والشباك",
                 value_en: "Doors and Windows Works"
@@ -188,7 +188,7 @@ export const subCategories = {
             },
             {
                 value_ar: " مقاول جمع أعمال تشطيب",
-                value_en: "Complete finishing works Contractor"
+                value_en: "Complete Finishing Works Contractor"
             }
         ],
         "الدفاع المدني": [
@@ -197,10 +197,10 @@ export const subCategories = {
                 value_en: "Firefighting Contractor"
             }
         ],
-        "مقاول سلم مفتاح": [
+        "مشروع تسليم المفتاح": [
             {
                 value_ar: "مقاول سلم مفتاح",
-                value_en: "Turn Key Project contractor"
+                value_en: "Turn Key Project Contractor"
             }
         ],
     },
@@ -218,7 +218,7 @@ export const subCategories = {
         "السباكة": [
             {
                 value_ar: " صيانة أعمال السباكة (البناء)",
-                value_en: "Plumbing Maintenance(Buildings)"
+                value_en: "Plumbing Maintenance (Buildings)"
             },
             {
                 value_ar: "صيانة مضخات المياه",
@@ -296,7 +296,7 @@ export const subCategories = {
                 },
                 {
                     value_ar: "استشارات كاملة للبناء ",
-                    value_en: "Complete Consultancy for building"
+                    value_en: "Complete Consultancy for Building"
                 }
             ]
     }

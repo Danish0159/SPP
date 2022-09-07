@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import loginImage from "../images/Login.png";
+import loginImage from "../images/login.png";
 import { TextField } from "@mui/material";
 import { styles } from '../Shared/styles';
 import { loginUserAr } from "../features_ar/user/userSlice";

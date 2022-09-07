@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../images/logo3.png";
+import logo from "../../images/logo.png";
 // Logout
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";

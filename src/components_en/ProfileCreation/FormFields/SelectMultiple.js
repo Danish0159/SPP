@@ -5,11 +5,10 @@ import { Autocomplete, TextField } from "@mui/material";
 import styled from "styled-components";
 
 
-function SelectMultiple({data, ...props}) {
-   
+function SelectMultiple({ data, ...props }) {
+
     const [...field] = useField(props);
     const isError = field[1].error && field[1].touched && true;
-
 
     function _renderHelperText() {
         if (isError) {
@@ -30,14 +29,20 @@ function SelectMultiple({data, ...props}) {
                 ListboxProps={{
                     sx: { fontSize: "1.8rem" },
                 }}
-                onChange={(event,item) => field[2].setValue(item, true) }
-                getOptionLabel={(option) => option.value_en }
+                onChange={(event, item) => {
+                    if (item.length <= 5) {
+                        field[2].setValue(item, true)
+                    }
+                }
+                }
+                getOptionLabel={(option) => option.value_en}
                 multiple
                 renderInput={props => (
                     <Wrapper>
                         <TextField
-                        {...props}
-                    />
+                            {...props}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>Max 5 cities are allowed</p>}
+                        />
                     </Wrapper>
                 )}
             />

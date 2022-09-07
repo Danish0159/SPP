@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "../../images/Login.png";
+import Image from "../../images/login.png";
 
 function AboutHero() {
   return (
@@ -12,7 +12,7 @@ function AboutHero() {
         <div className="hero__content">
           <h2 className="hero__title">About Us</h2>
           <p className="hero__paragraph">
-            Maqawal is a Construction Specialist Platform developed to
+            Mahnty is a Construction Specialist Platform developed to
             revolutionise the construction industry. We are into connecting the
             people who are looking for construction experts ranging from
             maintenance to huge projects with the highly rated experts in their

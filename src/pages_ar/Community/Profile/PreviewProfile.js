@@ -34,49 +34,53 @@ const PreviewProfile = () => {
                     {user.profile.location_ar.country},&nbsp;
                     {user.profile.location_ar.city.map((city, index) => {
                         return (
-                            <small key={index}>
-                                {city}
-                            </small>
+                            <span key={index} className="pipe" > {city} </span>
                         )
                     })
                     }
                 </p>
             </div>
             <h2 className='profile__portfolio'>مَلَفّ</h2>
-            {user.profile.portfolio.map((project, index) => {
-                return (
-                    <Accordion key={index}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <p className="profile__title">{project.projectName}</p>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <div className="preview__portfolio">
-                                <p className="profile__title">اسم المشروع</p>
-                                <p className="profile__subtitle">{project.projectName}</p>
-                                <p className="profile__title">موقع المشروع</p>
-                                <p className="profile__subtitle">{project.projectLocation}</p>
-                                <aside className='thumbsContainer'>
-                                    {
-                                        project.images.map((img, index) => {
-                                            return (
-                                                <div key={index} className='thumb'>
-                                                    <div className='thumbInner'>
-                                                        <img alt="img" src={img} className='img' />
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </aside>
-                            </div>
-                        </AccordionDetails>
-                    </Accordion>
-                )
-            })}
+            {user.profile.portfolio.length === 0 ? null :
+                <>
+                    {user.profile.portfolio.map((project, index) => {
+                        return (
+                            <Accordion key={index}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                >
+                                    <p className="profile__title">{project.projectName}</p>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <div className="preview__portfolio">
+                                        <p className="profile__title">اسم المشروع</p>
+                                        <p className="profile__subtitle">{project.projectName}</p>
+                                        <p className="profile__title">موقع المشروع</p>
+                                        <p className="profile__subtitle">{project.projectLocation}</p>
+                                        <p className="profile__title">وصف المشروع</p>
+                                        <p className="profile__subtitle">{project.projectDescription}</p>
+                                        <aside className='thumbsContainer'>
+                                            {
+                                                project.images.map((img, index) => {
+                                                    return (
+                                                        <div key={index} className='thumb'>
+                                                            <div className='thumbInner'>
+                                                                <img alt="img" src={img} className='img' />
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </aside>
+                                    </div>
+                                </AccordionDetails>
+                            </Accordion>
+                        )
+                    })}
+                </>
+            }
         </Wrapper>
     )
 }
@@ -84,21 +88,27 @@ const PreviewProfile = () => {
 export default PreviewProfile
 
 const Wrapper = styled.div`
-margin-top: 1.3rem;
-.preview__info{
-    margin-top: 3rem;
-}
-.preview__portfolio{
-margin: 2rem 0rem;
-}
-.profile__subtitle small {
-    border-left: 1px solid black;
-    padding-left: 5px;
-    margin-left: 5px;
-}
 
-.profile__subtitle small:last-child {
-    border-left: none;
-}
+    margin-top: 1.3rem;
+
+    .preview__info {
+        margin-top: 3rem;
+    }
+
+    .profile__title {
+        font-size: 2rem;
+    }
+
+    .profile__subtitle {
+        font-size: 1.8rem;
+    }
+    
+    .preview__portfolio {
+        margin: 2rem 0rem;
+    }
+    
+    .pipe:not(:empty) ~ .pipe:not(:empty):before {
+        content: "| ";
+    }
 
 `;

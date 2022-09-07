@@ -5,6 +5,8 @@ import { Location, RoleSubSections, Hero } from '../../components_en/GuestFlow/H
 import { Footer } from "../../components_en";
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
+
 
 const HomePage = () => {
 
@@ -20,10 +22,12 @@ const HomePage = () => {
 
 
     useEffect(() => {
+
+
+
         let lang = localStorage.getItem('lang');
 
-        if(lang === "ar")
-        {
+        if (lang === "ar") {
             history.replace('/ar');
         }
 
@@ -33,11 +37,15 @@ const HomePage = () => {
             setCity(location.city);
         }
         else {
-            setCountry("Country");
-            setCity("City");
+            swal({
+                title: "Select Country and City",
+                icon: "success",
+                text: "For Searching Best Construction Experts In Your Locality"
+            })
         }
 
     }, [history])
+
 
     const HomeValues = {
         country, city, setCity, setCountry, setCategoriesDataM, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
@@ -91,6 +99,8 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
 
 const Seperator = () => {
     return (

@@ -25,12 +25,17 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                     <h1 className='top-title'>{role}</h1>
                 </div>
 
-                <Carousel breakPoints={breakPoints} pagination={false}>
+                <Carousel breakPoints={breakPoints} 
+                showArrows={matchMedia("(min-width: 1000px)").matches ? true : false}  
+                enableSwipe={matchMedia("(max-width: 1000px)").matches ? true : false}
+                pagination={matchMedia("(max-width: 1000px)").matches ? true : false} 
+                style={{margin: "3rem 0rem", padding: "0rem 1rem"}} 
+                >
                     {roleCategories.map((val, key) => {
                         return (
                             <div className='selectcategory-bottom' key={key}>
 
-                                <h3 className='bottom-title'>{val.name.value_en}</h3>
+                                <h1 className='bottom-title'>{val.name.value_en}</h1>
 
                                 <img
                                     onClick={() => {
@@ -44,18 +49,17 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                             toast.error("Please Select the Country");
                                         }
                                         else {
-                                        const searchValues = { user: role, category: val.name.value_en, country: country, city: city, subCategory: "subCategory" }
-                                        localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                        const location = { country: country, city: city };
-                                        localStorage.setItem("locationEn", JSON.stringify(location));
-                                        history.push("/Users");
+                                            const searchValues = { role: role, category: val.name.value_en, country: country, city: city, subCategory: "All SubCategories" }
+                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
+                                            const location = { country: country, city: city };
+                                            localStorage.setItem("locationEn", JSON.stringify(location));
+                                            history.push("/Users");
                                         }
                                     }}
                                     className='bottom-img'
                                     src={val.img}
                                     alt=''
                                 />
-
                                 <select
                                     className="bottom-dropdown"
                                     onChange={(e) => {
@@ -69,64 +73,51 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                             toast.error("Please Select the Country");
                                         }
                                         else {
-                                        const searchValues = { user: role, category: val.name.value_en, country: country, city: city, subCategory: e.target.value }
-                                        localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                        const location = { country: country, city: city };
-                                        localStorage.setItem("locationEn", JSON.stringify(location));
-                                        history.push("/Users");
+                                            const searchValues = { role: role, category: val.name.value_en, country: country, city: city, subCategory: e.target.value }
+                                            localStorage.setItem("searchValues", JSON.stringify(searchValues));
+                                            const location = { country: country, city: city };
+                                            localStorage.setItem("locationEn", JSON.stringify(location));
+                                            history.push("/Users");
                                         }
                                     }}
                                 >
-                                    <option className='dropdown-item' hidden>Select Sub-Category</option>
-
+                                    <option hidden>Select SubCategory</option>
+                                    <option disabled className='dropdown-itemspace'></option>
                                     {val.subCategories.map((item, index) => {
                                         return (
-                                            <option key={index} className='dropdown-item' value={item.value_en}>{item.value_en}</option>
+                                            <option key={index} className='dropdown-item' value={item.value_en}>
+                                                {item.value_en}
+                                            </option>
                                         )
                                     })}
-
+                                    <option disabled className='dropdown-itemspace'></option>
                                 </select>
 
                             </div>
                         )
                     })}
                 </Carousel>
-            </div>
-        </Wrapper>
+            </div >
+        </Wrapper >
     )
 }
 
 export default RoleSubSections
 
 const Wrapper = styled.div`
+
 .selectcategory {
     background-color: white;
-    padding: 0px 25px;
     width: 100%;
-    max-width: 150rem;
-    margin: auto auto 25px auto;
-}
-
-.selectcategory-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 25px 0px;
-    margin-bottom: 4rem;
-}
-
-.selectcategory-top>* {
-    margin: .5rem 0rem;
 }
 
 .selectcategory-top .top-title {
     
-    font-weight: 800;
-    font-size: 4rem;
+    font-weight: 600;
+    font-size: 3.5rem;
     color: rgb(51, 50, 50);
     text-align: center;
-    margin-right: 1rem
+    padding-top: 1rem;
 }
 
 .selectcategory-bottom {
@@ -136,12 +127,11 @@ const Wrapper = styled.div`
     justify-content: center;
 }
 
-.bottom-title {
-    font-size: 2.25rem; 
+.selectcategory-bottom .bottom-title {
     font-weight: 600;
+    font-size: 2rem;
     text-align: center;
-    color: grey;
-    margin-bottom: 10px;
+    color: #424d83;
     width: 100%;
 }
 
@@ -150,7 +140,7 @@ const Wrapper = styled.div`
     width: 240px;
     cursor: pointer;
     border-radius: 20px;
-    margin-top: 5px;
+    border: 1px solid blue;
 }
 
 .bottom-img:hover {
@@ -163,35 +153,22 @@ const Wrapper = styled.div`
     padding: 5px;
     text-align: center;
     cursor: pointer;
-    margin: 30px 0px;
+    margin-top: 1rem;
     font-weight: 600;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
 }
 
 .dropdown-item {
     text-align: center;
     font-size: 1.6rem;
+    font-weight: 700;
 }
 
-@media screen and (max-width:650px) {
-    .bottom-dropdown {
-        width: 175px;
-        font-size: 1.2rem;
-    }
-    .bottom-img {
-        height: 175px;
-        width: 220px;
-        border-radius: 20px;
-
-    }
-    
+.dropdown-itemspace {
+    font-size: 8px;
 }
 
-@media screen and (max-width:550px) {
-    .selectcategory .selectcategory-top .top-title {
-        font-size: 3.5rem;
-    }
-}
 
 .rec.rec-arrow {
     background-color: #424d83;
@@ -205,6 +182,32 @@ const Wrapper = styled.div`
 .rec-carousel-item:focus {
     outline: none;
     box-shadow: inset 0 0 1px 1px lightgrey;
+}
+
+@media screen and (max-width:1000px) {
+    .dropdown-itemspace {
+        display: none;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .bottom-dropdown {
+        width: 175px;
+        font-size: 1.2rem;
+    }
+    .bottom-img {
+        height: 175px;
+        width: 220px;
+        border-radius: 20px;
+    }
+    
+}
+
+@media screen and (max-width:550px) {
+    .selectcategory .selectcategory-top .top-title {
+        font-size: 3.2rem;
+    }
+    
 }
 
 `

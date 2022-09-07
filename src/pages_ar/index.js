@@ -18,8 +18,8 @@ export const AboutPageAr = lazy(() =>
   }))
 );
 
-export const PrivacyPolicyPageAr = lazy(() =>
-  import("./PrivacyPolicyPage").then(({ default: PrivacyPolicyPageAr }) => ({
-    default: PrivacyPolicyPageAr,
+export const ContactPageAr = lazy(() =>
+  import("./ContactPage").then(({ default: ContactPageAr }) => ({
+    default: ContactPageAr,
   }))
 );

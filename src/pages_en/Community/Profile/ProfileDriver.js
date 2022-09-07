@@ -29,7 +29,7 @@ const ProfileDriver = () => {
   function _renderStepContent(step) {
     switch (step) {
       case 0: return <PersonelInfo></PersonelInfo>
-      case 1: return <PersonelProjects></PersonelProjects>;
+      case 1: return <PersonelProjects handleStep={handleStep} ></PersonelProjects>;
       case 2: return <PreviewProfile></PreviewProfile>;
       case 3: return <AddProject handleStep={handleStep} ></AddProject>
       default:

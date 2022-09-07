@@ -8,24 +8,35 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import CancelIcon from '@mui/icons-material/Cancel';
-import RateReviewIcon from '@mui/icons-material/RateReview';
 import Spinner from "../../../components_en/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
 import { styles } from '../../../Shared/styles';
 import { deleteProjectEn, updateProjectEn } from '../../../features_en/profile/profileSlice';
+import Compress from 'compress.js';
+import axios from "axios";
+import CircularProgress from '@mui/material/CircularProgress';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 
-const PersonelProjects = () => {
+const PersonelProjects = ({ handleStep }) => {
     // Update Project start.
+
+    const compress = new Compress();
+
+    const [wait, setWait] = useState(false);
+
     const [updateId, setUpdateId] = useState(false);
     const [projectName, setProjectName] = useState("");
     const [projectLocation, setProjectLocation] = useState("");
+    const [projectDescription, setProjectDescription] = useState("");
     const [images, setImages] = useState([]);
 
     const removeImages = () => {
         setImages([]);
     };
+
+
     const { isDragActive, isDragAccept, isDragReject } = useDropzone();
     const style = React.useMemo(
         () => ({
@@ -36,14 +47,9 @@ const PersonelProjects = () => {
         }),
         [isDragActive, isDragReject, isDragAccept]
     );
-    const thumbs = images.map((image, index) => (
-        <div className="thumb" key={index}>
-            <div className="thumbInner">
-                <img alt="selected" src={image} className="img" />
-            </div>
-        </div>
-    ));
+
     // Update project end.
+
 
     // Take Review. 
     const [review, setReview] = useState(false);
@@ -70,6 +76,7 @@ const PersonelProjects = () => {
         const project = user.profile.portfolio.find((project) => project._id === projectId);
         setProjectName(project.projectName);
         setProjectLocation(project.projectLocation);
+        setProjectDescription(project.projectDescription);
         setImages(project.images);
         setUpdateId(projectId);
     }
@@ -82,6 +89,7 @@ const PersonelProjects = () => {
             updateProjectEn({
                 projectName,
                 projectLocation,
+                projectDescription,
                 images,
                 profileId: user.profile._id,
                 projectId: updateId,
@@ -90,6 +98,7 @@ const PersonelProjects = () => {
         // Reset form.
         setProjectName("");
         setProjectLocation("");
+        setProjectDescription("");
         setImages([]);
         setUpdateId(false);
     }
@@ -111,7 +120,7 @@ const PersonelProjects = () => {
                             autoClose: 300,
                             hideProgressBar: true,
                         });
-                        navigator.clipboard.writeText(`maqawalupdated.netlify.app/Review/${user.profile._id}/${projectReviewId}`);
+                        navigator.clipboard.writeText(`mahnty.netlify.app/Review/${user.profile._id}/${projectReviewId}`);
                     }} className="request__link">Click To Copy</button>
                 </div>
             </Wrapper>
@@ -132,7 +141,9 @@ const PersonelProjects = () => {
                         name="text"
                         inputProps={{
                             style: styles.textField,
+                            maxLength: 50
                         }}
+                        helperText={<p style={{ fontSize: "1.5rem" }}>{projectName.length}/{50}</p>}
                         value={projectName}
                         onChange={(e) => setProjectName(e.target.value)}
                         required
@@ -144,33 +155,63 @@ const PersonelProjects = () => {
                         name="text"
                         inputProps={{
                             style: styles.textField,
+                            maxLength: 30
                         }}
+                        helperText={<p style={{ fontSize: "1.5rem" }}>{projectLocation.length}/{30}</p>}
                         value={projectLocation}
                         onChange={(e) => setProjectLocation(e.target.value)}
+                        required
+                    />
+                    <p className="card__subtitle">Project Description</p>
+                    <TextField
+                        fullWidth
+                        type="text"
+                        name="text"
+                        inputProps={{
+                            style: styles.desciption,
+                            maxLength: 200
+                        }}
+                        helperText={<p style={{ fontSize: "1.5rem" }}>{projectDescription.length}/{200}</p>}
+                        rows={3}
+                        multiline
+                        value={projectDescription}
+                        onChange={(e) => setProjectDescription(e.target.value)}
                         required
                     />
                     <p className="card__subtitle">Project Files</p>
                     <div className="form-group">
                         <Dropzone
                             onDrop={(acceptedFiles) => {
-                                // Read files and update src state.
-                                acceptedFiles.map((file) => {
-                                    let reader = new FileReader();
-                                    reader.readAsDataURL(file);
+                                setWait(true);
+                                compress.compress(acceptedFiles, {
+                                    size: 1,
+                                    quality: 0.7,
+                                    maxHeight: 1080,
+                                    maxWidth: 1080,
+                                }).then((data) => {
 
-                                    reader.onload = () => {
-                                        setImages((images) => [...images, reader.result]);
-                                    };
+                                    data.map((image) => {
+                                        const base64str = image.data;
+                                        const imgExt = image.ext;
+                                        const file = Compress.convertBase64ToFile(base64str, imgExt);
 
-                                    reader.onerror = function () {
-                                        alert(reader.error);
-                                    };
+                                        const formData = new FormData();
 
-                                    return null;
+                                        formData.append("file", file);
+                                        formData.append("upload_preset", "kae4qxnj");
+
+                                        axios.post("https://api.cloudinary.com/v1_1/mahnty/image/upload", formData).then((Response) => {
+                                            setImages((images) => [...images, Response.data.secure_url]);
+                                        })
+
+                                        return null;
+                                    })
+
                                 });
                             }}
                             accept="image/*"
                             name="heroImage"
+                            maxFiles={6}
                             multiple={true}
                             maxSize={10 * 1024 * 1024}
                         >
@@ -181,20 +222,37 @@ const PersonelProjects = () => {
                                         <p className="drop">Drop the files here ...</p>
                                     ) : (
                                         <p className="drop">
-                                            Drag 'n' drop only image files here, or click to
-                                            select files <br />{" "}
-                                            <p style={padding}>
-                                                {" "}
-                                                (Max file size allowed for each file is 10 Mb)
-                                            </p>
+                                            Drag 'n' Drop Only Image Files Here, or Click to
+                                            Select Files
+                                            <br />
+                                            (Min 1 Image file and Max 6 Image Files)
                                         </p>
                                     )}
                                 </div>
                             )}
                         </Dropzone>
-                        <aside className='thumbsContainer'>
-                            {thumbs}
-                        </aside>
+                        {images.length > 0 &&
+                            <aside className='thumbsContainer'>
+                                {
+                                    images.map((image, index) => {
+                                        return (
+                                            <div className="thumb" key={index}>
+                                                <div className="thumbInner">
+                                                    <img alt="selected" src={image} className="img" />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </aside>
+                        }
+
+                        {wait &&
+                            <aside className='thumbsContainer' style={{ display: images.length > 0 ? "none" : "block" }}>
+                                <div style={{ textAlign: "center", width: "100%" }}><CircularProgress style={{ height: "5rem", width: "5rem" }} /></div>
+                            </aside>
+                        }
+
                         {images.length > 0 &&
                             <Button
                                 sx={styles.removeBtn}
@@ -204,13 +262,16 @@ const PersonelProjects = () => {
                                 Remove Images
                             </Button>
                         }
+
                         <button
-                            style={{ marginTop: '2rem' }}
+                            style={images.length > 0 ? { marginTop: "3rem" } : { marginTop: "3rem", backgroundColor: "whitesmoke", color: "lightgrey", cursor: "not-allowed" }}
                             className="blue-btn card-btn"
                             type="submit"
+                            disabled={images.length > 0 ? false : true}
                         >
-                            UPDATE
+                            UPDATE PROJECT
                         </button>
+
                     </div>
                 </form>
             </Wrapper>
@@ -227,10 +288,10 @@ const PersonelProjects = () => {
                                 expandIcon={
                                     <>
                                         {!project.review &&
-                                        <RateReviewIcon onClick={() => {
-                                            setReview(true);
-                                            setProjectReviewId(project._id);
-                                        }} className="icons"></RateReviewIcon>
+                                            <p onClick={() => {
+                                                setReview(true);
+                                                setProjectReviewId(project._id);
+                                            }} className="icons">Review</p>
                                         }
                                         <ModeEditOutlineOutlinedIcon onClick={() => handleProjectUpdate(project._id)} className="icons" />
                                         <DeleteIcon onClick={() => { handleDelete(project._id) }} className="icons" />
@@ -247,6 +308,8 @@ const PersonelProjects = () => {
                                     <p className="profile__subtitle">{project.projectName}</p>
                                     <p className="profile__title">Project Location</p>
                                     <p className="profile__subtitle">{project.projectLocation}</p>
+                                    <p className="profile__title">Project Description</p>
+                                    <p className="profile__subtitle">{project.projectDescription}</p>
                                     <aside className='thumbsContainer'>
                                         {
                                             project.images.map((img, index) => {
@@ -265,6 +328,22 @@ const PersonelProjects = () => {
                         </Accordion>
                     )
                 })}
+
+                <div className="profile__addproject" >
+                    <button
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginTop: "2rem"
+                        }}
+                        className="blue-btn card-btn"
+                        onClick={() => handleStep(3)}
+                    >
+                        Add Project <AddOutlinedIcon fontSize="large" />
+                    </button>
+                </div>
+
             </Wrapper>
         )
     }
@@ -273,6 +352,7 @@ const PersonelProjects = () => {
 export default PersonelProjects
 
 const Wrapper = styled.div`
+
 .edit__div {
     display:flex;
     align-items:center;
@@ -280,6 +360,7 @@ const Wrapper = styled.div`
     padding-bottom:0px;
     justify-content:flex-end;
 }
+
 .edit__icon {
     color: #656565;
     font-size: 35px;
@@ -289,13 +370,17 @@ const Wrapper = styled.div`
     padding: 6px;
     cursor: pointer;
 }
+
 .icons {
     font-size: 20px;
     margin-right: 8px;
+    align: center;
 }
+
 .request__title {
     font-size: 2.7rem;
 }
+
 .request__link {
     background-color:#424d83;
     color: rgb(255, 255, 255);;
@@ -306,6 +391,14 @@ const Wrapper = styled.div`
     cursor: pointer;
     margin-top: 2rem;
 }
+
+.profile__addproject {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 `;
 
 
@@ -336,8 +429,4 @@ const acceptStyle = {
 
 const rejectStyle = {
     borderColor: "#ff1744",
-};
-
-const padding = {
-    padding: "10px 0px",
 };

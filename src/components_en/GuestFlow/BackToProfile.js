@@ -10,7 +10,7 @@ const BackToProfile = ({ avatar, name, role, userId }) => {
           <div className="backToProfile__profile">
             <Avatar
               src={avatar}
-              sx={{ width: 130, height: 130 }}
+              sx={{ width: 130, height: 130, border: "1px solid blue" }}
               alt="Avatar"
             />
             <div className="BackToProfile__content">
@@ -91,7 +91,7 @@ const Wrapper = styled.section`
   }
 
   .BackToProfile-subtitle {
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--clr-black);
     @media only screen and (max-width: 800px) {

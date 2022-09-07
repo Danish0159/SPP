@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCommunityUserEn, updateProfileEn } from '../../../features_en/profile/profileSlice';
 import Spinner from "../../../components_en/Spinner";
 import { styles } from '../../../Shared/styles';
-import { categories, subCategories } from "../../../utils/constantsEn"
+import { categories, subCategories } from "../../../utils/constantsEn";
 
 const PersonelInfo = () => {
 
@@ -17,7 +17,6 @@ const PersonelInfo = () => {
     const { user, isLoading } = useSelector(
         (state) => state.profileEn
     );
-
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -29,6 +28,11 @@ const PersonelInfo = () => {
     const [categoryAr, setCategoryAr] = useState("");
     const [subCategoryEn, setSubCategoryEn] = useState("");
     const [subCategoryAr, setSubCategoryAr] = useState("");
+    const [companyName, setCompanyName] = useState("");
+    const [companyAbout, setCompanyAbout] = useState("");
+    const [companyVision, setCompanyVision] = useState("");
+    const [companyMission, setCompanyMission] = useState("");
+
 
     // state.
     const dispatch = useDispatch();
@@ -41,19 +45,6 @@ const PersonelInfo = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //  API CALL.
-        console.log({
-            profilePhoto,
-            name,
-            email,
-            phoneNumber,
-            roleEn,
-            roleAr,
-            categoryEn,
-            categoryAr,
-            subCategoryEn,
-            subCategoryAr,
-            id: user.profile._id
-        });
 
         dispatch(
             updateProfileEn({
@@ -67,6 +58,10 @@ const PersonelInfo = () => {
                 category_ar: categoryAr,
                 subCategory_en: subCategoryEn,
                 subCategory_ar: subCategoryAr,
+                companyName: companyName,
+                companyAbout: companyAbout,
+                companyVision: companyVision,
+                companyMission: companyMission,
                 id: user.profile._id
             })
         );
@@ -83,6 +78,10 @@ const PersonelInfo = () => {
         setCategoryAr("");
         setSubCategoryEn("");
         setSubCategoryAr("");
+        setCompanyName("");
+        setCompanyAbout("");
+        setCompanyVision("");
+        setCompanyMission("");
 
     };
 
@@ -122,13 +121,14 @@ const PersonelInfo = () => {
                 </div>
 
                 <div className="profile__updateData">
+
                     <div>
                         <p className="card__subtitle">Name</p>
                         <TextField
                             fullWidth
                             type="text"
                             className="update"
-                            name="text"
+                            name="name"
                             inputProps={{
                                 style: styles.textField,
                             }}
@@ -151,6 +151,86 @@ const PersonelInfo = () => {
                             }}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">Company Name</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 50
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyName.length}/{50}</p>}
+                            rows={1}
+                            multiline
+                            value={companyName}
+                            onChange={(e) => setCompanyName(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">About Company</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 200
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyAbout.length}/{200}</p>}
+                            rows={3}
+                            multiline
+                            value={companyAbout}
+                            onChange={(e) => setCompanyAbout(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">Company Vision</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 200
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyVision.length}/{200}</p>}
+                            rows={3}
+                            multiline
+                            value={companyVision}
+                            onChange={(e) => setCompanyVision(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">Company Mission</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 200
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyMission.length}/{200}</p>}
+                            rows={3}
+                            multiline
+                            value={companyMission}
+                            onChange={(e) => setCompanyMission(e.target.value)}
                             required
                         />
                     </div>
@@ -281,6 +361,10 @@ const PersonelInfo = () => {
                         setRoleAr(user.user.role_ar);
                         setNumber(user.profile.phoneNumber);
                         setProfilePhoto(user.profile.profilePhoto);
+                        setCompanyName(user.profile.about_en.companyName);
+                        setCompanyAbout(user.profile.about_en.companyAbout);
+                        setCompanyVision(user.profile.about_en.companyVision);
+                        setCompanyMission(user.profile.about_en.companyMission);
 
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
@@ -292,18 +376,37 @@ const PersonelInfo = () => {
                         alt="Avatar"
                     />
                 </div>
+
                 <p className="personel__title">Name</p>
                 <p className="personel__subtitle">{user?.user.name_en}</p>
+
                 <p className="personel__title">Email</p>
                 <p className="personel__subtitle">{user?.user.email}</p>
+
+                <p className="personel__title">Company Name</p>
+                <p className="personel__subtitle">{user?.profile.about_en.companyName}</p>
+
+                <p className="personel__title">About Company</p>
+                <p className="personel__subtitle">{user?.profile.about_en.companyAbout}</p>
+
+                <p className="personel__title">Company Vision</p>
+                <p className="personel__subtitle">{user?.profile.about_en.companyVision}</p>
+
+                <p className="personel__title">Company Mission</p>
+                <p className="personel__subtitle">{user?.profile.about_en.companyMission}</p>
+
                 <p className="personel__title">Number</p>
                 <p className="personel__subtitle">{user?.profile.phoneNumber}</p>
+
                 <p className="personel__title">Role</p>
                 <p className="personel__subtitle">{user?.user.role_en}</p>
+
                 <p className="personel__title">Category</p>
                 <p className="personel__subtitle">{user?.profile.category_en}</p>
+
                 <p className="personel__title">Sub-Category</p>
                 <p className="personel__subtitle">{user?.profile.subCategory_en}</p>
+                
             </Wrapper>
         )
     }
@@ -332,6 +435,7 @@ const Wrapper = styled.div`
     padding-bottom:0px;
     justify-content:flex-end;
 }
+
 .edit__icon{
     color: #656565;
     font-size: 35px;
@@ -341,6 +445,7 @@ const Wrapper = styled.div`
     padding: 6px;
     cursor: pointer;
 }
+
 .personel__title {
     font-size: 20px;
     margin: 5px 0px;
@@ -348,8 +453,10 @@ const Wrapper = styled.div`
     font-weight: 600;
     
 }
+
 .personel__subtitle {
     font-size: 18px;
     padding: 4px;
 }
+
 `;

@@ -8,18 +8,32 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
 import { Avatar, Rating } from "@mui/material";
 import Carousel from 'react-elastic-carousel';
+import details from '../../images/details.png';
+import DetailsIcon from '@mui/icons-material/Details';
+import NearMeOutlinedIcon from '@mui/icons-material/NearMeOutlined';
+import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
+import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
 
 
 const SingleUser = () => {
 
   const dispatch = useDispatch();
 
+  let breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 568, itemsToShow: 1 },
+    { width: 800, itemsToShow: 2 },
+    { width: 1024, itemsToShow: 3 },
+    { width: 1300, itemsToShow: 4 },
+    { width: 1400, itemsToShow: 5 },
+    { width: 1750, itemsToShow: 6 },
+  ]
+
+
 
   const { single_user, isLoading, } = useSelector(
     (state) => state.guestEn
   );
-
-  
 
 
   const { id } = useParams();
@@ -28,7 +42,6 @@ const SingleUser = () => {
     dispatch(fetchSingleUserEn({ id }));
     // eslint-disable-next-line
   }, [id]);
-
 
 
   if (isLoading) {
@@ -48,7 +61,7 @@ const SingleUser = () => {
               <div className="profile__name--avatar">
                 <Avatar
                   src={single_user.data.user.profilePhoto}
-                  sx={{ width: 130, height: 130 }}
+                  sx={{ width: 130, height: 130, border: "1px solid blue" }}
                   alt="Avatar"
                 />
               </div>
@@ -65,36 +78,56 @@ const SingleUser = () => {
 
             <div className="profile__content">
 
-              <h1 className="profile__content--title details ">Company Details</h1>
+              <div className="profile__content--details">
 
-              <h2 className="profile__content--title">Role:<span className="profile__content--text">
-                {single_user.data.user.user.role_en}
-              </span></h2>
+                <img src={details} className="details__icon " alt="" />
+                <p className="details__text">Its a construction expert providing its services as a <b>{single_user.data.user.user.role_en}</b> in the <b>{single_user.data.user.category_en}</b> works.
+                </p>
 
-              <h2 className="profile__content--title">Category:<span className="profile__content--text">
-                {single_user.data.user.category_en}
-              </span></h2>
-              
-              <h2 className="profile__content--title">SubCategory:<span className="profile__content--text">
-                {single_user.data.user.subCategory_en}
-              </span></h2>
+              </div>
 
-              <h2 className="profile__content--title">Company Location:<span className="profile__content--text">
-                {single_user.data.user.location_en.country},&nbsp;
-                {
-                  single_user.data.user.location_en.city.map((city, index) => {
-                    return (
-                      <small key={index}>
-                        {city}
-                      </small>
-                    )
-                  })
-                }
-              </span></h2>
+              <div className="profile__content--details">
 
-              <h2 className="profile__content--title">Contact Number:<span className="profile__content--text">
-                {single_user.data.user.phoneNumber}
-              </span></h2>
+                <DetailsIcon className="details__icon" />
+                {single_user.data.user.expertiseLevel.yearsOfExperience === 0 ?
+                  <p className="details__text">
+                    It has just started providing its services with a work force of <b>{single_user.data.user.expertiseLevel.noOfEmployees}</b> {single_user.data.user.expertiseLevel.noOfEmployees === 1 ? "employee" : "employees"}.
+                  </p> :
+                  <p className="details__text">
+                    It has been providing its services for around <b>{single_user.data.user.expertiseLevel.yearsOfExperience}</b> {single_user.data.user.expertiseLevel.yearsOfExperience === 1 ? "year" : "years"} with a work force of <b>{single_user.data.user.expertiseLevel.noOfEmployees}</b> {single_user.data.user.expertiseLevel.noOfEmployees === 1 ? "employee" : "employees"}.
+                  </p>}
+
+
+              </div>
+
+              <div className="profile__content--details" >
+
+                <NearMeOutlinedIcon className="details__icon" />
+                <p className="details__text" >
+                  Its service areas in <b>{single_user.data.user.location_en.country}</b> are
+                  {
+                    single_user.data.user.location_en.city.map((city, index) => {
+                      return (
+                        <span key={index} className="pipe">
+                          <b> {city} </b>
+                        </span>
+                      )
+                    })
+                  }.
+                </p>
+
+              </div>
+
+
+              <div className="profile__content--details">
+
+                <CallOutlinedIcon className="details__icon" />
+                <p className="details__text">
+                  For contact dial <b>{single_user.data.user.phoneNumber}</b>.
+                </p>
+
+              </div>
+
 
             </div>
 
@@ -106,8 +139,8 @@ const SingleUser = () => {
                 to={`/Projects/${id}`}
                 type="submit"
               >
-                <h2 className="profile__content--title link">Projects Completed: {single_user.data.noOfProjects}
-                </h2>
+                <p className="rating__link">Projects Completed: {single_user.data.noOfProjects}
+                </p>
               </Link>
 
             </div>
@@ -115,7 +148,7 @@ const SingleUser = () => {
         </div>
 
         <div className="section__white">
-          <h3 className="section__title">About Us</h3>
+          <h3 className="section__title">About</h3>
           <div className="about">
             <div className="about__div">
               <h3>About Company</h3>
@@ -132,40 +165,50 @@ const SingleUser = () => {
           </div>
         </div>
 
+        {single_user.data.user.portfolio.length === 0 ? null :
+          single_user.data.user.portfolio.find(project => project.review && true) &&
+          <div className="section__blue">
+            <h3 className="section__title">Client Reviews</h3>
+            <Carousel breakPoints={breakPoints}
+              showArrows={matchMedia("(min-width: 1000px)").matches ? true : false}
+              enableSwipe={matchMedia("(max-width: 1000px)").matches ? true : false}
+              pagination={matchMedia("(max-width: 1000px)").matches ? true : false}
+            >
 
-        <div className="section__blue">
-          <h3 className="section__title">Client Reviews</h3>
-          <Carousel itemPosition="center" itemsToShow={1} itemsToScroll={1} pagination={false}>
+              {single_user.data.user.portfolio.map((project, index) => {
+                return (
+                  <Reviews key={index}
+                    review={project.review ? project.review : null}
+                    title={project.reviewerTitle ? project.reviewerTitle : null}
+                    cname={project.reviewerName ? project.reviewerName : null}
+                    pname={project.projectName ? project.projectName : null}
+                    rating={project.noOfStars ? project.noOfStars : null}
+                    single={project.review ? true : false}>
+                  </Reviews>
+                )
+              })}
+            </Carousel>
+          </div>
+        }
 
+        {single_user.data.user.portfolio.length === 0 ? null :
+          <div className="section__white">
+            <h3 className="section__title">Projects Gallery</h3>
             {single_user.data.user.portfolio.map((project, index) => {
               return (
-                <Reviews key={index}
-                  review={project.review ? project.review : null}
-                  title={project.reviewerTitle ? project.reviewerTitle : null}
-                  rating={project.noOfStars ? project.noOfStars : null}
-                  single={project.review ? true : false}>
-                </Reviews>
+                <div key={index}>
+                  <div className="project">
+                    <h1 className="project-name"><BeenhereOutlinedIcon className="details__icon" style={{ marginRight: "2rem" }} />{project.projectName}</h1>
+                  </div>
+                  <Gallery data={[
+                    ...project.images,
+                  ]}></Gallery>
+                </div>
               )
             })}
-          </Carousel>
+          </div>
+        }
 
-        </div>
-
-        <div className="section__white">
-          <h3 className="section__title">Projects Gallery</h3>
-          {single_user.data.user.portfolio.map((project, index) => {
-            return (
-              <div key={index}>
-                <div className="parent">
-                  <h1 className="project-name">{project.projectName}</h1>
-                </div>
-                <Gallery data={[
-                  ...project.images,
-                ]}></Gallery>
-              </div>
-            )
-          })}
-        </div>
       </Wrapper>
     );
   }
@@ -175,53 +218,43 @@ const SingleUser = () => {
 export default SingleUser;
 
 const Wrapper = styled.section`
-
   .profile {
-    padding: 6rem;
+    padding: 2rem;
     @media only screen and (max-width: 990px) {
-      padding: 0rem;
-
+      padding: 2rem 0rem;
     }
   }
+
   .profile__grid {
-    max-width: 120rem;
-    margin: auto;
-    width: 100%;
     display: grid;
     grid-template-columns: 2fr 3fr 2fr;
     text-align: center;
     align-items: center;
     @media only screen and (max-width: 990px) {
       grid-template-columns: 1fr;
-      grid-gap: 3rem;
     }
   }
+
   .profile__name {
+    padding: 1rem;
     border-right: 1px solid #424d83;
-    margin-top: 1rem;
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 990px) {
       border-right: none;
+      margin-bottom: 2rem;
     }
   }
+
   .profile__name--avatar {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 2rem;
   }
+
   .profile__name--title {
-    font-size: 2.3rem;
+    font-size: 2rem;
     color: var(--clr-black);
-    margin-bottom: 1.2rem;
-  }
-  .profile__name--subtitle {
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: var(--clr-black);
-    margin-bottom: 3rem;
-    @media only screen and (max-width: 990px) {
-      margin-bottom: 3.5rem;
-    }
+    margin-bottom: 1rem;
   }
   
   .profile-btn {
@@ -229,99 +262,77 @@ const Wrapper = styled.section`
     font-size: 1.7rem;
     margin: 0;
   }
+
   .profile__content {
-    text-align: left;
-    padding-top: 1.5rem;
-    padding-bottom: 0.26rem;
-    padding-left: 25%;
+    padding: 1rem;
     @media only screen and (max-width: 990px) {
-      padding: 2rem 5rem;
+      margin-bottom: 2rem;
     }
-    @media only screen and (max-width: 500px) {
-      padding-left: 2rem;
-    }
-    @media only screen and (max-width: 350px) {
-      padding-left: 1.5rem;
-    }
-  }
-  .profile__content--title {
-    font-size: 2rem;
-    color: var(--clr-black);
-    margin-bottom: 2.5rem;
-    @media only screen and (max-width: 500px) {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      justify-content: center;
-      
-    }
-  }
-  .details {
-    text-align: center;
   }
 
-  .profile__content--title small {
-    border-right: 1px solid black;
-    padding-right: 5px;
-    margin-right: 5px;
+  .profile__content--details {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
 
-  .profile__content--title small:last-child {
-    border-right: none;
-  }
-
-  .profile__content--text {
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--clr-black);
-    margin-left: 1.5rem;
-    @media only screen and (max-width: 500px) {
-      margin-left: 0rem;
-    }
-  }  
-
-  .link:hover {
-    border-bottom: 1px solid black;
+  .details__icon {
+    height: 4.5rem;
+    width: 4.5rem;
     color: blue;
   }
 
-  .profile__rating > p {
-    color: yellow;
-    font-size: 2.3rem;
+  .details__text {
+    font-size: 1.8rem;
+    color: var(--clr-black);
+    text-align: left;
+    margin-left: 2rem;
   }
+
+  .pipe:not(:empty) ~ .pipe:not(:empty):before {
+    content: "| ";
+  }
+
   .profile__rating {
-    margin-bottom: 50%;
-    padding-left: 20%;
-    text-align: center;
     @media only screen and (max-width: 990px) {
-      padding: 0rem 3rem;
-      margin-bottom: 2%;
+      margin-bottom: 2rem;
     }
   }
-  .parent{
+  .rating__link {
+    width: 100%;
+    font-size: 2rem;
+    color: blue;
+  }
+
+  .project{
     width: 100%;
     max-width: 110rem;
     margin: auto;
   }
+
   .project-name{
     font-size: 2.5rem;
     margin: 3rem 0rem; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem; 
   }
 
   .about {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: stretch;
   }
 
   .about__div {
     width: 30%;
-    min-height: 25rem;
     text-align: center;
-    border: 1px solid whitesmoke;
+    border: 1px solid #349feb;
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0px 10px 24px 6px rgb(0 0 0 / 6%);
+    box-shadow: 0px 8px 20px 4px rgb(0 0 0 / 6%);
   }
 
   .about__div h3 {
@@ -343,10 +354,12 @@ const Wrapper = styled.section`
       justify-content: center;
       align-items: center;
     }
+
     .about__div {
       width: 65%;
       margin: 2rem 0rem;
     }
+
     .about__div h3 {
       font-size: 2rem;
     }
@@ -387,6 +400,17 @@ const Wrapper = styled.section`
   .rec-carousel-item:focus {
     outline: none;
     box-shadow: inset 0 0 1px 1px lightgrey;
-}
+  }
+
+  .section__white {
+    padding: 3rem 2rem;
+    @media only screen and (min-width: 990px) {
+      padding: 1.5rem;
+    }
+  }
+
+  .section__title {
+    margin-bottom: 3.5rem;
+  }
 
   `;

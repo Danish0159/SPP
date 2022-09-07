@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from "styled-components";
-import logo from '../../../images/logo3.png'
+import logo from '../../../images/logo.png'
 import Spinner from '../../../components_ar/Spinner';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,7 +35,8 @@ const ClientReview = () => {
                             <img className="review__left--logo" src={logo} alt="Logo" />
                         </Link>
                         <div className="review__left--content">
-                            <p className='review__left--text'>مجتمع حيث يمكنك العثور على المقاولين والمصممين والشركات. طريقة لتعلم وإبراز مهاراتك.
+                            <p className='review__left--text'>
+                                تقوم مهنتى بربط المقاول والمصممين في جميع أنحاء العالم بينما تساعد الناس في العثور على أفضل المقاول والمصممين الذين يبحثون عنهم.
                             </p>
                         </div>
                     </div>
@@ -74,11 +75,7 @@ const Wrapper = styled.div`
       display: flex;
       min-height: 75vh;
     }
-    @media only screen and (max-width:850px) {
-    .review {
-        flex-direction: column;
-    }
-    }
+   
     .review__left {
      position: sticky;
      top: 0;
@@ -95,6 +92,18 @@ const Wrapper = styled.div`
          padding: 2rem;
      }
     }
+
+    @media only screen and (max-width:850px) {
+        .review {
+            flex-direction: column;
+        }
+        .review__left {
+            position: relative;
+            top: 0;
+            z-index: 0;
+        }
+    }
+
     .review__left--logo {
        height: 6rem;
        @media only screen and (max-width: 850px) {

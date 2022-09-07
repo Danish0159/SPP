@@ -5,7 +5,7 @@ import { Footer, Spinner } from "../../components_en";
 import { Buttons } from "../../components_en/ProfileCreation";
 import { CardLayout } from '../../Shared/styled';
 import { CardTitle } from "../../Shared";
-import { NavbarProfileCreation } from '../../components_en/Navigations'
+import { NavbarProfileCreation } from '../../components_en/Navigations';
 
 // Form Model.
 import {
@@ -18,7 +18,6 @@ import {
   Category,
   ExpertiseLevel,
   About,
-  Portfolio,
   Location,
   PhoneNumber,
   ProfilePhoto,
@@ -29,44 +28,26 @@ import { Redirect, useHistory } from "react-router-dom";
 import { profileCreationEn, reset } from "../../features_en/profile/profileSlice";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 
-const { formId, formField } = registrationFormModel;
 
-const steps = [
-  "Category",
-  "Expertise Level",
-  "About",
-  "Portfolio",
-  "Location",
-  "Phone Number",
-  "Profile Photo",
-];
 
-function _renderStepContent(step) {
-  switch (step) {
-    case 0:
-      return <Category formField={formField} />;
-    case 1:
-      return <ExpertiseLevel formField={formField} />;
-    case 2:
-      return <About formField={formField} />;
-    case 3:
-      return <Portfolio formField={formField} />;
-    case 4:
-      return <Location formField={formField} />;
-    case 5:
-      return <PhoneNumber formField={formField} />;
-    case 6:
-      return <ProfilePhoto formField={formField} />;
-    default:
-      return <div>Not Found</div>;
-  }
-}
 
 const Driver = () => {
+
+  const { formId, formField } = registrationFormModel;
+
+  const steps = [
+    "Category",
+    "Expertise Level",
+    "About",
+    "Location",
+    "Phone Number",
+    "Profile Photo",
+  ];
+
+  const [check, setCheck] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
-  const [portfolioMapping] = useState([]);
 
   // Redux State.
   const dispatch = useDispatch();
@@ -81,64 +62,36 @@ const Driver = () => {
       dispatch(reset());
     }
     // eslint-disable-next-line
-  }, [isSuccess]);
+  }, [isSuccess, history]);
+
+
+  function _renderStepContent(step) {
+
+    switch (step) {
+      case 0:
+        return <Category formField={formField} />;
+      case 1:
+        return <ExpertiseLevel formField={formField} />;
+      case 2:
+        return <About formField={formField} />;
+      case 3:
+        return <Location formField={formField} />;
+      case 4:
+        return <PhoneNumber formField={formField} />;
+      case 5:
+        return <ProfilePhoto formField={formField} setCheck={setCheck} />;
+      default:
+        return <div>Not Found</div>;
+    }
+  }
 
   async function _submitForm(values, actions) {
-    //Optimze the solution.
-    if (values.projectName1) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName1,
-          projectLocation: values.projectLocation1,
-          projectDescription: values.projectDescription1,
-          images: values.images.images1,
-        }
-      );
-    }
-    if (values.projectName2) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName2,
-          projectLocation: values.projectLocation2,
-          projectDescription: values.projectDescription2,
-          images: values.images.images2,
-        }
-      );
-    }
-    if (values.projectName3) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName3,
-          projectLocation: values.projectLocation3,
-          projectDescription: values.projectDescription3,
-          images: values.images.images3,
-        }
-      );
-    }
-    if (values.projectName4) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName4,
-          projectLocation: values.projectLocation4,
-          projectDescription: values.projectDescription4,
-          images: values.images.images4,
-        }
-      );
-    }
-    if (values.projectName5) {
-      portfolioMapping.push(
-        {
-          projectName: values.projectName5,
-          projectLocation: values.projectLocation5,
-          projectDescription: values.projectDescription5,
-          images: values.images.images5,
-        }
-      );
-    }
+
     const user = getUserFromLocalStorage();
 
     const payload = {
       userId: user.userId,
+      role: user.role_en,
       category_en: values.category.value_en,
       category_ar: values.category.value_ar,
       subCategory_en: values.subCategory.value_en,
@@ -154,7 +107,6 @@ const Driver = () => {
         companyVision: values.vision,
         companyMission: values.mission,
       },
-      portfolio: portfolioMapping,
       location_en: {
         country: values.country.value_en,
         city: values.city.map((item) => item.value_en),
@@ -164,7 +116,7 @@ const Driver = () => {
         city: values.city.map((item) => item.value_ar),
       },
       phoneNumber: values.phone,
-      profilePhoto: values.image.src,
+      profilePhoto: values.image,
 
     };
 
@@ -191,6 +143,7 @@ const Driver = () => {
     return <Spinner />;
   }
 
+
   return (
     <main>
       <NavbarProfileCreation></NavbarProfileCreation>
@@ -207,7 +160,7 @@ const Driver = () => {
                 validationSchema={currentValidationSchema}
                 onSubmit={_handleSubmit}
               >
-                {({ isSubmitting }) => (
+                {() => (
                   <Form id={formId}>
                     <CardTitle steps={steps} activeStep={activeStep}></CardTitle>
                     <div className="card__content">
@@ -218,16 +171,28 @@ const Driver = () => {
                             BACK
                           </button>
                         )}
+                        {isLastStep ?
                           <button
                             className="blue-btn card-btn"
-                            disabled={isSubmitting}
+                            disabled={check}
+                            style={check ? { backgroundColor: "whitesmoke", color: "lightgrey", cursor: "not-allowed" } : null}
                             type="submit"
                             variant="contained"
                             color="primary"
                           >
-                            {isLastStep ? "COMPLETE" : "NEXT"}
+                            COMPLETE
                           </button>
-                          {/* {isSubmitting && <CircularProgress size={24} />} */}
+                          :
+                          <button
+                            className="blue-btn card-btn"
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                          >
+                            NEXT
+                          </button>
+
+                        }
                       </div>
                     </div>
                   </Form>
@@ -238,7 +203,7 @@ const Driver = () => {
         </Wrapper>
       </CardLayout>
       <Footer></Footer>
-    </main>
+    </main >
   );
 };
 

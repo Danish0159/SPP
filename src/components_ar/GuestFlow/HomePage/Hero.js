@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import HeroImage from "../../../images/HeroImage.jpg";
+import HeroImage from "../../../images/hero.jpg";
 
 function Hero() {
   return (
@@ -8,8 +8,8 @@ function Hero() {
       <div className="hero__grid">
 
         <div className='hero__left'>
-          <a href="#Maintenance" className='hero__role'>صيانة</a>
           <a href="#Contractors" className='hero__role'>المقاولون</a>
+          <a href="#Maintenance" className='hero__role'>صيانة</a>
           <a href="#Designers" className='hero__role'>المصممون</a>
           <a href="#Consultants" className='hero__role'>ألاستشاريون</a>
         </div>

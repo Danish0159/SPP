@@ -5,6 +5,7 @@ import { Location, RoleSubSections, Hero } from '../../components_ar/GuestFlow/H
 import { Footer } from "../../components_ar";
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const HomePage = () => {
 
@@ -32,8 +33,11 @@ const HomePage = () => {
             setCity(location.city);
         }
         else {
-            setCountry("دولة");
-            setCity("مدينة");
+            swal({
+                title: "حدد الدولة والمدينة",
+                icon: "success",
+                text: "للبحث عن أفضل خبراء البناء في منطقتك"
+            })
         }
 
     }, [history])

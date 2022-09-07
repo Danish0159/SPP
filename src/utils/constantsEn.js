@@ -8,7 +8,7 @@ export const categories = {
         },
         {
             value_ar: "تكيف و تبريد",
-            value_en: "Air Conditioning (HVAC)"
+            value_en: "HVAC"
         },
         {
             value_ar: "السباكة",
@@ -19,16 +19,16 @@ export const categories = {
             value_en: "Civil Works"
         },
         {
-            value_ar: "مقاول المعماريون",
-            value_en: "Finishing Works Contractor"
+            value_ar: "أعمال التشطيبات",
+            value_en: "Finishing Works"
         },
         {
             value_ar: "الدفاع المدني",
             value_en: "Fire Fighting"
         },
         {
-            value_ar: "مقاول سلم مفتاح",
-            value_en: "Turn Key Project contractor"
+            value_ar: "مشروع تسليم المفتاح",
+            value_en: "Turn Key Project"
         },
     ],
     "Maintenance": [
@@ -38,7 +38,7 @@ export const categories = {
         },
         {
             value_ar: "تكيف و تبريد",
-            value_en: "Air Conditioning (HVAC)"
+            value_en: "HVAC"
         },
         {
             value_ar: "السباكة",
@@ -76,14 +76,14 @@ export const subCategories = {
             },
             {
                 value_ar: "مقاول أعمال سمارت هوم",
-                value_en: "Contractor Smart home system"
+                value_en: "Contractor Smart Home System"
             },
             {
                 value_ar: "مقاول الكهرباء و السباكة",
                 value_en: "Contractor Plumbing & Electrical"
             }
         ],
-        "Air Conditioning (HVAC)": [
+        "HVAC": [
             {
                 value_ar: "مقاول التكييف سبليت و شباك",
                 value_en: "Contractor AC (Split & Window)"
@@ -104,7 +104,7 @@ export const subCategories = {
             },
             {
                 value_ar: "مقاول السباكة (لخطوط الصرف الصحي الرئيسية)",
-                value_en: "Plumbing Contractor (for main Sewerage lines)"
+                value_en: "Plumbing Contractor (For Main Sewerage lines)"
             },
             {
                 value_ar: "مقاول أعمال للمسابح والجاكوزي والساونا",
@@ -146,10 +146,10 @@ export const subCategories = {
             },
             {
                 value_ar: "جمع أعمال مقاول إنشائي",
-                value_en: "Complete Structural Contractor(Grey)"
+                value_en: "Complete Structural Contractor (Grey)"
             }
         ],
-        "Finishing Works Contractor": [
+        "Finishing Works": [
             {
                 value_ar: "أعمال الأبواب والشباك",
                 value_en: "Doors and Windows Works"
@@ -188,7 +188,7 @@ export const subCategories = {
             },
             {
                 value_ar: " مقاول جمع أعمال تشطيب",
-                value_en: "Complete finishing works Contractors"
+                value_en: "Complete Finishing Works Contractor"
             }
         ],
         "Fire Fighting": [
@@ -197,10 +197,10 @@ export const subCategories = {
                 value_en: "Firefighting Contractor"
             }
         ],
-        "Turn Key Project contractor": [
+        "Turn Key Project": [
             {
-                value_ar: "مقاولون سلم مفتاح",
-                value_en: "Turn Key Project contractor"
+                value_ar: "مقاول سلم مفتاح",
+                value_en: "Turn Key Project Contractor"
             }
         ],
     },
@@ -225,7 +225,7 @@ export const subCategories = {
                 value_en: "Water Pumps Maintenance"
             }
         ],
-        "Air Conditioning (HVAC)": [
+        "HVAC": [
             {
                 value_ar: "صيانة التكييف سبليت و شباك",
                 value_en: "Maintenance AC (Split & Window)"
@@ -296,7 +296,7 @@ export const subCategories = {
                 },
                 {
                     value_ar: "استشارات كاملة للبناء ",
-                    value_en: "Complete Consultancy for building"
+                    value_en: "Complete Consultancy for Building"
                 }
             ]
     }
@@ -324,8 +324,8 @@ export const users = [
 ];
 
 export const countries = [
-    { value_ar: "السعودية", value_en: "Saudia" },
     { value_ar: "پاکستان", value_en: "Pakistan" },
+    { value_ar: "السعودية", value_en: "Saudia" },
 ];
 
 export const pakCities = [

@@ -8,7 +8,7 @@ const cardsData = [
   {
     id: 1,
     title: "Mission",
-    line: "1. Our Mission is to make online presence easy for contractors. 2. Make contractors accountable for their work and help them promote their business. 3. Offer easy access to the clients to reach good contractors & firms.  4. Contractors can create and join relevant groups to share their experiences. 5. Offering easy and fast online agreement system.",
+    line: ['1. Our Mission is to make online presence easy for contractors', '2. Make contractors accountable for their work and help them promote their business.', '3. Offer easy access to the clients to reach good contractors & firms.', '4. Contractors can create and join relevant groups to share their experiences.', '5. Offering easy and fast online agreement system.'],
     icon: (
       <AttractionsIcon
         sx={{
@@ -21,7 +21,7 @@ const cardsData = [
   {
     id: 2,
     title: "Vision",
-    line: "Empowering Contractors and construction industry.",
+    line: ["Empowering Contractors and construction industry."],
     icon: (
       <DiamondIcon
         sx={{
@@ -67,7 +67,11 @@ function AboutDetails() {
             <div key={id} className="content__item">
               {icon}
               <h1 className="content__title">{title}</h1>
-              <p className="content__paragraph">{line} </p>
+              {line.map((item, index) => {
+                return (
+                  <p key={index} className="content__paragraph">{item}</p>
+                )
+              })}
             </div>
           </div>
         );

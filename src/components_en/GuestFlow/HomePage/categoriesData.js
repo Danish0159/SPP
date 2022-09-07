@@ -4,7 +4,7 @@ import plumbingc from '../../../images/Contractors/p.jpg';
 import civilworks from '../../../images/Contractors/cw.jpg';
 import finishworks from '../../../images/Contractors/fw.jpg';
 import firefightingc from '../../../images/Contractors/ff.jpg';
-import cphc from '../../../images/Contractors/cphc.jpg';
+import tkp from '../../../images/Contractors/tkp.jpg';
 import hvacm from '../../../images/Maintenance/hvac.jpg';
 import electricalm from '../../../images/Maintenance/e.jpg';
 import plumbingm from '../../../images/Maintenance/p.jpg';
@@ -32,7 +32,7 @@ export const Contractors = [
             },
             {
                 value_ar: "مقاول أعمال سمارت هوم",
-                value_en: "Contractor Smart home system"
+                value_en: "Contractor Smart Home System"
             },
             {
                 value_ar: "مقاول الكهرباء و السباكة",
@@ -44,7 +44,7 @@ export const Contractors = [
         img: hvacc,
         name: {
             value_ar: "تكيف و تبريد",
-            value_en: "Air Conditioning (HVAC)"
+            value_en: "HVAC"
         },
         subCategories: [
             {
@@ -74,7 +74,7 @@ export const Contractors = [
             },
             {
                 value_ar: "مقاول السباكة (لخطوط الصرف الصحي الرئيسية)",
-                value_en: "Plumbing Contractor(for main Sewerage lines)"
+                value_en: "Plumbing Contractor (For Main Sewerage lines)"
             },
             {
                 value_ar: "مقاول أعمال للمسابح والجاكوزي والساونا",
@@ -82,7 +82,7 @@ export const Contractors = [
             },
             {
                 value_ar: "مقاول النافورة والشلال",
-                value_en: "Contracto (Fountains and Waterfall)"
+                value_en: "Contractor (Fountains and Waterfall)"
             },
             {
                 value_ar: " أعمال ري مياه الحدائق و المزارع ",
@@ -103,7 +103,7 @@ export const Contractors = [
         subCategories: [
             {
                 value_ar: "مقاول إنشائي ",
-                value_en: "Structural Contractor(Concrete)"
+                value_en: "Structural Contractor (Concrete)"
             },
             {
                 value_ar: "مقاول أعمال التلييس",
@@ -123,15 +123,15 @@ export const Contractors = [
             },
             {
                 value_ar: "جمع أعمال مقاول إنشائي",
-                value_en: "Complete Structural Contractor(Grey)"
+                value_en: "Complete Structural Contractor (Grey)"
             }
         ]
     },
     {
         img: finishworks,
         name: {
-            value_ar: "مقاول المعماريون",
-            value_en: "Finishing Works Contractor"
+            value_ar: "أعمال التشطيبات",
+            value_en: "Finishing Works"
         },
         subCategories: [
             {
@@ -172,7 +172,7 @@ export const Contractors = [
             },
             {
                 value_ar: " مقاول جمع أعمال تشطيب",
-                value_en: "Complete finishing works Contractor"
+                value_en: "Complete Finishing Works Contractor"
             }
         ]
     },
@@ -190,15 +190,15 @@ export const Contractors = [
         ]
     },
     {
-        img: cphc,
+        img: tkp,
         name: {
-            value_ar: "مقاول سلم مفتاح",
-            value_en: "Turn Key Project contractor"
+            value_ar: "مشروع تسليم المفتاح",
+            value_en: "Turn Key Project"
         },
         subCategories: [
             {
                 value_ar: "مقاول سلم مفتاح",
-                value_en: "Turn Key Project contractor"
+                value_en: "Turn Key Project Contractor"
             }
         ]
     }
@@ -244,7 +244,7 @@ export const Maintenance = [
         img: hvacm,
         name: {
             value_ar: "تكيف و تبريد",
-            value_en: "Air-Conditioning (HVAC)"
+            value_en: "HVAC"
         },
         subCategories: [
             {
@@ -338,7 +338,7 @@ export const Consultants = [
             },
             {
                 value_ar: "استشارات كاملة للبناء ",
-                value_en: "Complete Consultancy for building"
+                value_en: "Complete Consultancy for Building"
             }
         ]
     }

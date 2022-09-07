@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { at } from "lodash";
 import { useField } from "formik";
 import { TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { updateProjectsFlag } from "../../../features_en/profile/profileSlice";
 import { styles } from '../../../Shared/styles';
 
 export default function InputFieldSetConditional(props) {
@@ -17,26 +15,11 @@ export default function InputFieldSetConditional(props) {
         }
     }
 
-    function updateState(value) {
-        dispatch(updateProjectsFlag(value));
-    }
-
-    // State.
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        if (field.value) {
-            updateState(field.value);
-        }
-        // eslint-disable-next-line
-    }, [field.value])
-
     return (
         <>
             <TextField
-                inputProps={{ style: styles.textField, min: 1 }}
+                inputProps={{ style: styles.textField, min: 0 }}
                 type={type}
-                error={meta.touched && meta.error && true}
                 {...field}
                 {...rest}
             />

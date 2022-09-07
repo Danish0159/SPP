@@ -18,8 +18,8 @@ export const AboutPageEn = lazy(() =>
   }))
 );
 
-export const PrivacyPolicyPageEn = lazy(() =>
-  import("./PrivacyPolicyPage").then(({ default: PrivacyPolicyPageEn }) => ({
-    default: PrivacyPolicyPageEn,
+export const ContactPageEn = lazy(() =>
+  import("./ContactPage").then(({ default: ContactPageEn }) => ({
+    default: ContactPageEn,
   }))
 );

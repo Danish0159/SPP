@@ -8,8 +8,9 @@ import swal from 'sweetalert';
 
 
 const ReviewForm = ({ User, userId, id }) => {
+
     const [name, setName] = useState("");
-    const [title, setTitle] = useState("Ex. Director of Marketing");
+    const [title, setTitle] = useState("");
     const [stars, setStars] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState();
     const [review, setReview] = useState("");
@@ -27,7 +28,7 @@ const ReviewForm = ({ User, userId, id }) => {
                 icon: "success",
             }).then(() => {
                 dispatch(reset());
-                window.location.replace("https://maqawalupdated.netlify.app/");
+                window.location.replace("https://mahnty.netlify.app/");
 
             });
         }
@@ -69,9 +70,12 @@ const ReviewForm = ({ User, userId, id }) => {
                 fullWidth
                 type="text"
                 name="text"
+                placeholder='John'
                 inputProps={{
                     style: styles.textField,
+                    maxLength: 20
                 }}
+                helperText={<p style={{ fontSize: "1.5rem" }}>{name.length}/{20}</p>}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -81,9 +85,12 @@ const ReviewForm = ({ User, userId, id }) => {
                 fullWidth
                 type="text"
                 name="text"
+                placeholder='Ex. Director of Marketing'
                 inputProps={{
                     style: styles.textField,
+                    maxLength: 20
                 }}
+                helperText={<p style={{ fontSize: "1.5rem" }}>{title.length}/{20}</p>}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
@@ -91,13 +98,24 @@ const ReviewForm = ({ User, userId, id }) => {
             <p className="project__title">Phone Number</p>
             <TextField
                 fullWidth
-                type="number"
-                name="text"
+                type="tel"
+                name="number"
                 inputProps={{
                     style: styles.textField,
+                    maxLength: 11
                 }}
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={(e) => {
+                    let regExp = /[a-zA-Z]/g;
+
+                    if (regExp.test(e.target.value)) {
+                        /* do something if letters are found in your string */
+                        console.log("Letters are not allowed")
+                    } else {
+                        /* do something if letters are not found in your string */
+                        setPhoneNumber(e.target.value)
+                    }
+                }}
                 required
             />
             <p className="project__title">Rating</p>
@@ -117,12 +135,13 @@ const ReviewForm = ({ User, userId, id }) => {
                 fullWidth
                 type="text"
                 name="text"
+                placeholder='Thank you so much for a job well done.'
                 inputProps={{
                     style: styles.desciption,
-                    maxLength: 75
+                    maxLength: 100
                 }}
-                helperText={`${review.length}/${75}`}
-                rows={2}
+                helperText={<p style={{ fontSize: "1.5rem" }}>{review.length}/{100}</p>}
+                rows={3}
                 multiline
                 value={review}
                 onChange={(e) => setReview(e.target.value)}

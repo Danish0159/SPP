@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from "styled-components";
-import logo from '../../../images/logo3.png'
+import logo from '../../../images/logo.png'
 import Spinner from '../../../components_en/Spinner';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,7 +35,7 @@ const ClientReview = () => {
                             <img className="review__left--logo" src={logo} alt="Logo" />
                         </Link>
                         <div className="review__left--content">
-                            <p className='review__left--text'>A community of where you can find contractors, designers and companies. A way to Learn and Excel your Skills.
+                            <p className='review__left--text'>Mahnty is connecting the contractor and designers worldwide while helping people to find the best contractor and designers they are looking for.
                             </p>
                         </div>
                     </div>
@@ -76,11 +76,7 @@ const Wrapper = styled.div`
       display: flex;
       min-height: 75vh;
     }
-    @media only screen and (max-width:850px) {
-    .review {
-        flex-direction: column;
-    }
-    }
+    
     .review__left {
      position: sticky;
      top: 0;
@@ -94,8 +90,18 @@ const Wrapper = styled.div`
      align-items:center;
      justify-content:center;
      @media only screen and (max-width: 850px) {
-         padding: 2rem;
+        padding: 2rem;
      }
+    }
+    @media only screen and (max-width:850px) {
+        .review {
+            flex-direction: column;
+        }
+        .review__left {
+            position: relative;
+            top: 0;
+            z-index: 0;
+        }
     }
     .review__left--logo {
        height: 6rem;

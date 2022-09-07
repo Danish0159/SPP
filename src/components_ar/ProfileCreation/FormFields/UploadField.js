@@ -23,7 +23,6 @@ const UploadField = ({
         }}
         {...props}
       />
-      {/* {isError && <FormHelperText>{errors[field.name]}</FormHelperText>} */}
     </>
   );
 };

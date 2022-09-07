@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import logo from "../../images/logo3.png";
+import logo from "../../images/logo.png";
 // Logout Drop Down.
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";

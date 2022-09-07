@@ -7,8 +7,11 @@ import image from "../../images/join.jpg";
 import { CardLayout } from '../../Shared/styled'
 import { NavbarProfileCreation } from "../../components_en/Navigations";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
+
 const JoinUs = () => {
+
   const user = getUserFromLocalStorage();
+
   return (
     <main>
       <NavbarProfileCreation></NavbarProfileCreation>
@@ -23,7 +26,7 @@ const JoinUs = () => {
               <p className="join__title">Join Us</p>
               {user && <p className="join__subTitle">Hi {user.name_en},</p>}
               <p className="join__passage">
-                Thanks for your interest in Maqawal as the world's largest talent platform, we connect millions of businesses with independent contractors and designers like you.
+                Thanks for your interest in Mahnty as the world's largest talent platform, we connect millions of businesses with independent contractors and designers like you.
               </p>
               <p className="join__subTitle">
                 To get started, all you need to do is fill out a profile

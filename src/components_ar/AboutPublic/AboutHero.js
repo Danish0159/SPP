@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "../../images/Login.png";
+import Image from "../../images/login.png";
 
 function AboutHero() {
   return (
@@ -12,7 +12,7 @@ function AboutHero() {
         <div className="hero__content">
           <h2 className="hero__title">معلومات عنا</h2>
           <p className="hero__paragraph">
-            مقاول عبارة عن منصة متخصصة في البناء تم تطويرها لإحداث ثورة في صناعة
+            مهنتي عبارة عن منصة متخصصة في البناء تم تطويرها لإحداث ثورة في صناعة
             البناء والتشييد. نحن نعمل على ربط الأشخاص الذين يبحثون عن خبراء
             إنشاءات تتراوح من الصيانة إلى المشاريع الضخمة مع الخبراء ذوي التصنيف
             العالي في منطقتهم. من ناحية أخرى ، نقدم منصة حيث يمكن لخبراء الصناعة

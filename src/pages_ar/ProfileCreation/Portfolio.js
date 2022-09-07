@@ -174,6 +174,7 @@ export default function Portfolio(props) {
               type="text"
               fullWidth
               required
+              style={styles.textField}
             />
             <p className="card__subtitle">موقع المشروع</p>
             <InputField
@@ -181,15 +182,16 @@ export default function Portfolio(props) {
               type="text"
               fullWidth
               required
+              style={styles.textField}
             />
             <p className="card__subtitle">وصف المشروع (اختياري)</p>
             <InputField
-              inputProps={{ style: styles.desciption, }}
               name={step.projectDescription.name}
               type="text"
+              fullWidth
               rows={3}
               multiline
-              fullWidth
+              style={styles.desciption}
             />
             <p className="card__subtitle">ملفات المشروع</p>
             <div className="form-group">
@@ -213,16 +215,17 @@ export default function Portfolio(props) {
                 accept="image/*"
                 name="heroImage"
                 multiple={true}
+                maxFiles={6}
                 maxSize={10 * 1024 * 1024}
               >
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: "dropzone", style })}>
                     <input {...getInputProps()} />
                     {isDragActive ? (
-                      <p className="drop">Drop the files here ...</p>
+                      <p className="drop">قم بإسقاط الملفات هنا ...</p>
                     ) : (
                       <p className="drop">
-                        قم بسحب "وإفلات" ملفات الصور فقط هنا ، أو انقر لتحديد الملفات <br />{" "}
+                       اسحب 6 ملفات صور فقط هنا ، أو انقر لتحديد الملفات <br />{" "}
                         <small className="thumbPadding">
                           {" "}
                           (الحد الأقصى لحجم الملف المسموح به لكل ملف هو 10 ميغا بايت)

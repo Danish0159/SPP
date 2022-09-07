@@ -7,7 +7,6 @@ const Buttons = ({ activeStep }) => {
     "Category",
     "Expertise Level",
     "About",
-    "Portfolio",
     "Location",
     "Phone Number",
     "Profile Photo",
@@ -15,12 +14,15 @@ const Buttons = ({ activeStep }) => {
   return (
     <Wrapper>
       <ButtonsWrapper>
-        <button
-          className="btn active step"
-        >
-          Step {activeStep + 1}
-        </button>
-        { steps.map((label, index) => (
+        {activeStep === null ? null :
+          <button
+            className="btn active"
+            id="show-on-mobile"
+          >
+            Step {activeStep + 1}
+          </button>
+        }
+        {steps.map((label, index) => (
           <button
             key={label}
             id={activeStep === null ? "hide-on-mobile" : "hide-on-mobile"}
@@ -48,7 +50,7 @@ const Wrapper = styled.section`
     color: white;
     width: 150px;
   }
-  .step {
+  #show-on-mobile {
     display: none;
     @media only screen and (max-width: 850px) {
       display: block;

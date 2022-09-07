@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../images/logo3.png";
+import logo from "../images/logo.png";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 const Footer = () => {
   return (
     <Wrapper>
@@ -11,16 +15,17 @@ const Footer = () => {
             <img className="navbar__logo" src={logo} alt="Logo" />
           </Link>
           <p className="footer__paragraph">
-            Maqawal is connecting the contractor and designers
-            <br /> worldwide while helping people to find the best contractor
-            <br /> and designers they are looking for.
+            Mahnty is connecting the contractor and designers worldwide while helping people to find the best contractor and designers they are looking for.
           </p>
         </div>
         <div className="footer__right">
-          <a href="/About">About Us</a>
-          <a href="/Policies">Our Policies</a>
-          <a href="/">Contact Us</a>
-          <br />
+          <a href="/About" >About Us</a>
+          <a href="/ContactUs" >Contact Us</a>
+          <div className="icons__container">
+          <a href="https://instagram.com/mahnty_int?igshid=NmNmNjAwNzg=" ><InstagramIcon className="social__icon" /></a>
+          <a href="https://web.facebook.com/mahnty.int/" ><FacebookIcon className="social__icon" /></a>
+          <a href="https://www.linkedin.com/company/mahnty" ><LinkedInIcon className="social__icon" /></a>
+          </div>
         </div>
       </div>
     </Wrapper>
@@ -52,6 +57,7 @@ const Wrapper = styled.footer`
   }
   .footer__paragraph {
     font-size: 1.5rem;
+    width: 80%;
     line-height: 1.6;
     @media only screen and (max-width: 900px) {
       margin-bottom: 2rem;
@@ -70,4 +76,18 @@ const Wrapper = styled.footer`
       height: 4.2rem;
     }
   }
+
+  .icons__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social__icon {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+
 `;

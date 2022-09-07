@@ -10,6 +10,8 @@ export default function Location(props) {
   const {
     formField: { country, city },
   } = props;
+
+
   return (
     <>
       <p className="card__subtitle">Country</p>

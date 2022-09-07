@@ -57,7 +57,7 @@ const PrivacyPolicyPage = () => {
               <p class="privacy__paragraph">
                 {" "}
                 <strong>شركة</strong> (يشار إليها باسم "الشركة" ، تشير كلمة "نحن" 
-                أو "نحن" أو "خاصتنا" في هذه الاتفاقية) إلى مقاول ، رقم العقار
+                أو "نحن" أو "خاصتنا" في هذه الاتفاقية) إلى مهنتي ، رقم العقار
                 (XIII-CC-51 / BB / YY / KK) ، شارع رقم 9 ، سنترال مانشستر ،
               </p>
             </li>
@@ -117,9 +117,9 @@ const PrivacyPolicyPage = () => {
             <li class="privacy__li">
               <p class="privacy__paragraph">
                 {" "}
-                <strong>موقع الكتروني</strong> يشير إلى maqawal.com ، يمكن
+                <strong>موقع الكتروني</strong> يشير إلى Mahnty.com ، يمكن
                 الوصول إليه من
-                <a href="https://www.maqawal.com/">www.maqawal.com</a>
+                <a href="https://www.mahnty.com/">www.mahnty.com</a>
               </p>
             </li>
             <li class="privacy__li">
@@ -608,7 +608,7 @@ const PrivacyPolicyPage = () => {
             <li class="privacy__li">
               <p class="privacy__paragraph">
                 {" "}
-                بالبريد الإلكتروني: zubair@maqawal.com{" "}
+                بالبريد الإلكتروني: zubair@mahnty.com{" "}
               </p>
             </li>
           </ul>

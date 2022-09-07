@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import loginImage from "../images/Login.png";
+import loginImage from "../images/login.png";
 import { TextField } from "@mui/material";
 import { styles } from '../Shared/styles';
 import { loginUserEn } from "../features_en/user/userSlice";
@@ -47,14 +47,11 @@ const Login = () => {
   };
 
   useEffect(() => {
-    // if (user && user.profile) {
-      // history.push("/Profile");
-    // } else if (user && !user.profile) {
-      if(user)
-      {
+    if (user && user.profile) {
+      history.push("/Profile");
+    } else if (user && !user.profile) {
       history.push("/joinus");
-      }
-    // }
+    }
     // eslint-disable-next-line
   }, [user]);
 

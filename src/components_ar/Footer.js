@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../images/logo3.png";
+import logo from "../images/logo.png";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 const Footer = () => {
   return (
     <Wrapper>
@@ -11,16 +15,17 @@ const Footer = () => {
             <img className="navbar__logo" src={logo} alt="Logo" />
           </Link>
           <p className="footer__paragraph">
-            مقاول دوت كوم يربط المقاول والمصممين
-            <br /> في جميع أنحاء العالم مع مساعدة الناس في العثور على أفضل مقاول
-            <br /> والمصممين الذين يبحثون عنهم.
+          تقوم مهنتى بربط المقاول والمصممين في جميع أنحاء العالم بينما تساعد الناس في العثور على أفضل المقاول والمصممين الذين يبحثون عنهم.
           </p>
         </div>
         <div className="footer__right">
           <a href="/Aboutar">معلومات عنا</a>
-          <a href="/Policiesar">سياساتنا</a>
-          <a href="/ar">اتصل بنا</a>
-          <br />
+          <a href="/ContactUsar">اتصل بنا</a>
+          <div className="icons__container">
+          <a href="https://instagram.com/mahnty_int?igshid=NmNmNjAwNzg=" ><InstagramIcon className="social__icon" /></a>
+          <a href="https://web.facebook.com/mahnty.int/" ><FacebookIcon className="social__icon" /></a>
+          <a href="https://www.linkedin.com/company/mahnty" ><LinkedInIcon className="social__icon" /></a>
+          </div>
         </div>
       </div>
     </Wrapper>
@@ -52,11 +57,14 @@ const Wrapper = styled.footer`
   }
   .footer__paragraph {
     font-size: 1.5rem;
+    width: 80%;
     line-height: 1.6;
     @media only screen and (max-width: 900px) {
       margin-bottom: 2rem;
     }
   }
+
+  
   .footer__right a {
     color: white;
     display: block;
@@ -70,4 +78,18 @@ const Wrapper = styled.footer`
       height: 4.2rem;
     }
   }
+
+  .icons__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social__icon {
+    font-size: 2.5rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+
 `;

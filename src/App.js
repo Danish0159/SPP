@@ -8,18 +8,18 @@ import ErrorPage from './utils/ErrorPage'
 import LinearProgress from '@mui/material/LinearProgress';
 
 // Public Pages. 
-import { 
-  LoginPageEn, 
-  SignupPageEn, 
+import {
+  LoginPageEn,
+  SignupPageEn,
   AboutPageEn,
-  PrivacyPolicyPageEn 
+  ContactPageEn
 } from "./pages_en";
 
-import { 
-  LoginPageAr, 
-  SignupPageAr, 
+import {
+  LoginPageAr,
+  SignupPageAr,
   AboutPageAr,
-  PrivacyPolicyPageAr 
+  ContactPageAr
 } from "./pages_ar";
 
 // Flow 1 (Guest Flow)
@@ -63,11 +63,16 @@ const App = () => {
           <ThemeProvider theme={theme}>
             <Switch>
 
-              <Route exact path="/Policies">
-                <PrivacyPolicyPageEn></PrivacyPolicyPageEn>
+              <Route exact path="/ContactUs">
+                <ContactPageEn></ContactPageEn>
               </Route>
-              <Route exact path="/Policiesar">
-                <PrivacyPolicyPageAr></PrivacyPolicyPageAr>
+
+              <Route exact path="/ContactUsar">
+                <ContactPageAr></ContactPageAr>
+              </Route>
+
+              <Route exact path="/About">
+                <AboutPageEn></AboutPageEn>
               </Route>
 
               <Route exact path="/About">
@@ -221,7 +226,7 @@ const App = () => {
           </ThemeProvider>
         </Suspense>
       </Router>
-      <ToastContainer style={{ fontSize: "1.5rem", width: "auto", direction: "rtl", fontFamily: "Font" }}></ToastContainer>
+      <ToastContainer></ToastContainer>
     </>
   );
 };

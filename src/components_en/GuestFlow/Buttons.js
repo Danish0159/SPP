@@ -2,22 +2,40 @@ import React from "react";
 import styled from "styled-components";
 import { subCategories } from "../../utils/constantsEn";
 import { ButtonsWrapper } from "../../Shared/styled";
+import { useDispatch } from "react-redux";
+import { fetchUsersEn } from "../../features_en/guest/guestSlice";
 
-const Buttons = ({ handleStep, step }) => {
+const Buttons = () => {
+
+  const dispatch = useDispatch();
+
   const searchValues = JSON.parse(localStorage.getItem("searchValues"));
+
   return (
     <Wrapper>
       <ButtonsWrapper>
-      <h2 className="subcatgories__title">{searchValues.category} SubCategories</h2>
-      {subCategories[searchValues.user][searchValues.category].map((label, index) => (
+        <h2 className="subcatgories__title">{searchValues.category} SubCategories</h2>
         <button
-          key={index}
-          className={step === label.value_en ? "btn active" : "btn nonActive"}
-          onClick={() => handleStep(label.value_en)}
+          className={searchValues.subCategory === "All SubCategories" ? "btn active" : "btn nonActive"}
+          onClick={(e) => {
+            localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: "All SubCategories" }));
+            dispatch(fetchUsersEn({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: "All SubCategories"}));
+          }}
         >
-          {label.value_en}
+          All SubCategories
         </button>
-      ))}
+        {subCategories[searchValues.role][searchValues.category].map((label, index) => (
+          <button
+            key={index}
+            className={searchValues.subCategory === label.value_en ? "btn active" : "btn nonActive"}
+            onClick={(e) => {
+              localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: label.value_en }));
+              dispatch(fetchUsersEn({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: label.value_en }));
+            }}
+          >
+            {label.value_en}
+          </button>
+        ))}
       </ButtonsWrapper>
     </Wrapper>
   );

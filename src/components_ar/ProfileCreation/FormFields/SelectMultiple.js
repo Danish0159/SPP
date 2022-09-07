@@ -30,13 +30,19 @@ function SelectMultiple({data, ...props}) {
                 ListboxProps={{
                     sx: { fontSize: "1.8rem" },
                 }}
-                onChange={(event,item) => field[2].setValue(item, true) }
+                onChange={(event, item) => {
+                    if (item.length <= 5) {
+                        field[2].setValue(item, true)
+                    }
+                }
+                }
                 getOptionLabel={(option) => option.value_ar }
                 multiple
                 renderInput={props => (
                     <Wrapper>
                         <TextField
                         {...props}
+                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>يسمح بحد أقصى 5 مدن</p>}
                     />
                     </Wrapper>
                 )}

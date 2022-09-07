@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useLocation, useHistory } from "react-router-dom";
 import { countries, pakCities, saudiCities } from '../../../utils/constantsEn';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import LanguageIcon from '@mui/icons-material/Language';
 
 
 const Location = ({ country, city, setCountry, setCity }) => {
@@ -11,25 +12,13 @@ const Location = ({ country, city, setCountry, setCity }) => {
 
     const history = useHistory();
 
-    let title;
-
-    if (localStorage.getItem("lang") === "en") {
-        title = "Language";
-    }
-    else if (localStorage.getItem("lang") === "ar") {
-        title = "اللغة";
-    }
-    else {
-        title = "Language";
-    }
-
     return (
         <Wrapper>
             <div className="location">
                 <div className='location-dropdown'>
-                    <label>{country} <ArrowDropDownIcon className='icon' color="action" /></label>
+                    <label>{country} <ArrowDropDownIcon className='dropdown-icon' color="action" /></label>
                     <select onChange={(e) => setCountry(e.target.value)}>
-                        <option hidden>{country}</option>
+                        <option hidden></option>
                         {countries.map((item, index) => {
                             return (
                                 <option key={index} value={item.value_en} >
@@ -41,9 +30,9 @@ const Location = ({ country, city, setCountry, setCity }) => {
                 </div>
 
                 <div className='location-dropdown'>
-                    <label>{city} <ArrowDropDownIcon className='icon' color="action" /></label>
+                    <label>{city} <ArrowDropDownIcon className='dropdown-icon' color="action" /></label>
                     <select onChange={(e) => setCity(e.target.value)}>
-                        <option hidden>{city}</option>
+                        <option hidden></option>
                         {country === "Pakistan"
                             ? pakCities.map((item, index) => (
                                 <option key={index} value={item.value_en}>
@@ -60,7 +49,7 @@ const Location = ({ country, city, setCountry, setCity }) => {
                 </div>
 
                 <div className='language-dropdown'>
-                    <label>{title} <ArrowDropDownIcon className='icon' color="action" /></label>
+                    <label><LanguageIcon className='globe-icon' /> English <ArrowDropDownIcon className='dropdown-icon' color="action" /></label>
                     <select
                         onChange={(e) => {
 
@@ -69,10 +58,6 @@ const Location = ({ country, city, setCountry, setCity }) => {
                             if (e.target.value === "العربية") {
                                 item = "ar";
                             }
-                            else if (e.target.value === "English") {
-                                item = "en";
-                            }
-
 
                             if (item === "ar") {
 
@@ -98,7 +83,7 @@ const Location = ({ country, city, setCountry, setCity }) => {
                             }
                         }}
                     >
-                        <option hidden>{title}</option>
+                        <option hidden></option>
                         <option>English</option>
                         <option>العربية</option>
                     </select>
@@ -173,9 +158,12 @@ const Wrapper = styled.div`
 .language-dropdown label{
     position: absolute;
     width: auto;
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
-    color: #0303fc;
+    color: #2c36f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .language-dropdown select {
@@ -195,8 +183,13 @@ const Wrapper = styled.div`
     text-align: center;
 }
 
-.icon {
+.dropdown-icon {
     font-size: 2.2rem;
+}
+
+.globe-icon {
+    font-size: 4rem;
+    color: grey;
 }
 
 
@@ -205,11 +198,17 @@ const Wrapper = styled.div`
     .location-dropdown select, .location-dropdown label {
         font-size: 1.9rem;
     }
-    .language-dropdown select, .language-dropdown label {
+    .language-dropdown select {
         font-size: 1.9rem;
     }
-    .icon {
+    .language-dropdown label {
+        font-size: 1.75rem;
+    }
+    .dropdown-icon {
         font-size: 1.4rem;
+    }
+    .globe-icon {
+        font-size: 2.6rem;
     }
 }
 
@@ -220,11 +219,17 @@ const Wrapper = styled.div`
     .location-dropdown select, .location-dropdown label {
         font-size: 1.5rem;
     }
-    .language-dropdown select, .language-dropdown label {
+    .language-dropdown select {
           font-size: 1.5rem;
     }
-    .icon {
+    .language-dropdown label {
+        font-size: 1.3rem;
+    }
+    .dropdown-icon {
         font-size: 1.1rem;
+    }
+    .globe-icon {
+        font-size: 2rem;
     }
     
 }

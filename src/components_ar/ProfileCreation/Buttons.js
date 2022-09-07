@@ -7,20 +7,21 @@ const Buttons = ({ activeStep }) => {
     "فئة",
     "مستوى الخبرة",
     "حول",
-    "مَلَفّ",
     "موقع",
     "رقم الهاتف",
     "صورة الملف الشخصي",
   ];
-
   return (
     <Wrapper>
       <ButtonsWrapper>
-      <button
-          className="btn active step"
-        >
-          خطوة {activeStep + 1}
-        </button>
+        {activeStep === null ? null :
+          <button
+            className="btn active"
+            id="show-on-mobile"
+          >
+            خطوة {activeStep + 1}
+          </button>
+        }
         {steps.map((label, index) => (
           <button
             key={label}
@@ -49,7 +50,7 @@ const Wrapper = styled.section`
     color: white;
     width: 150px;
   }
-  .step {
+  #show-on-mobile {
     display: none;
     @media only screen and (max-width: 850px) {
       display: block;

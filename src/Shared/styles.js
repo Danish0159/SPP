@@ -14,7 +14,7 @@ export const styles = {
         fontSize: "1.8rem",
         fontWeight: "400",
         padding: "12px 14px",
-        color: "#2a2a2a"
+        color: "#2a2a2a",
     },
     desciption: {
         fontSize: "1.8rem",

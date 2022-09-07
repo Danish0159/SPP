@@ -2,22 +2,40 @@ import React from "react";
 import styled from "styled-components";
 import { subCategories } from "../../utils/constantsAr";
 import { ButtonsWrapper } from "../../Shared/styled";
+import { useDispatch } from "react-redux";
+import { fetchUsersAr } from "../../features_ar/guest/guestSlice";
 
-const Buttons = ({ handleStep, step }) => {
+const Buttons = () => {
+
+  const dispatch = useDispatch();
+
   const searchValues = JSON.parse(localStorage.getItem("searchValues"));
+
   return (
     <Wrapper>
       <ButtonsWrapper>
-      <h2 className="subcatgories__title">{searchValues.category} الفئات الفرعية</h2>
-      {subCategories[searchValues.user][searchValues.category].map((label, index) => (
+        <h2 className="subcatgories__title">{searchValues.category} الفئات الفرعية</h2>
         <button
-          key={index}
-          className={step === label.value_ar ? "btn active" : "btn nonActive"}
-          onClick={() => handleStep(label.value_ar)}
+          className={searchValues.subCategory === "جميع الفئات الفرعية" ? "btn active" : "btn nonActive"}
+          onClick={(e) => {
+            localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: "جميع الفئات الفرعية" }));
+            dispatch(fetchUsersAr({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: "جميع الفئات الفرعية"}));
+          }}
         >
-          {label.value_ar}
+          جميع الفئات الفرعية
         </button>
-      ))}
+        {subCategories[searchValues.role][searchValues.category].map((label, index) => (
+          <button
+            key={index}
+            className={searchValues.subCategory === label.value_ar ? "btn active" : "btn nonActive"}
+            onClick={(e) => {
+              localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: label.value_ar }));
+              dispatch(fetchUsersAr({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: label.value_ar }));
+            }}
+          >
+            {label.value_ar}
+          </button>
+        ))}
       </ButtonsWrapper>
     </Wrapper>
   );

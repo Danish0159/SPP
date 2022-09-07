@@ -28,6 +28,10 @@ const PersonelInfo = () => {
     const [categoryAr, setCategoryAr] = useState("");
     const [subCategoryEn, setSubCategoryEn] = useState("");
     const [subCategoryAr, setSubCategoryAr] = useState("");
+    const [companyName, setCompanyName] = useState("");
+    const [companyAbout, setCompanyAbout] = useState("");
+    const [companyVision, setCompanyVision] = useState("");
+    const [companyMission, setCompanyMission] = useState("");
 
     // state.
     const dispatch = useDispatch();
@@ -40,19 +44,6 @@ const PersonelInfo = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //  API CALL.
-        console.log({
-            profilePhoto,
-            name,
-            email,
-            phoneNumber,
-            roleEn,
-            roleAr,
-            categoryEn,
-            categoryAr,
-            subCategoryEn,
-            subCategoryAr,
-            id: user.profile._id
-        });
 
         dispatch(
             updateProfileAr({
@@ -66,6 +57,10 @@ const PersonelInfo = () => {
                 category_ar: categoryAr,
                 subCategory_en: subCategoryEn,
                 subCategory_ar: subCategoryAr,
+                companyName: companyName,
+                companyAbout: companyAbout,
+                companyVision: companyVision,
+                companyMission: companyMission,
                 id: user.profile._id
             })
         );
@@ -82,6 +77,10 @@ const PersonelInfo = () => {
         setCategoryAr("");
         setSubCategoryEn("");
         setSubCategoryAr("");
+        setCompanyName("");
+        setCompanyAbout("");
+        setCompanyVision("");
+        setCompanyMission("");
 
     };
 
@@ -151,6 +150,86 @@ const PersonelInfo = () => {
                             }}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">اسم الشركة</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 50
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyName.length}/{50}</p>}
+                            rows={1}
+                            multiline
+                            value={companyName}
+                            onChange={(e) => setCompanyName(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">عن الشركة</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 200
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyAbout.length}/{200}</p>}
+                            rows={3}
+                            multiline
+                            value={companyAbout}
+                            onChange={(e) => setCompanyAbout(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">رؤية الشركة</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 200
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyVision.length}/{200}</p>}
+                            rows={3}
+                            multiline
+                            value={companyVision}
+                            onChange={(e) => setCompanyVision(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <p className="card__subtitle">مهمة الشركة</p>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            name="text"
+                            className="update"
+                            inputProps={{
+                                style: styles.desciption,
+                                maxLength: 200
+                            }}
+                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyMission.length}/{200}</p>}
+                            rows={3}
+                            multiline
+                            value={companyMission}
+                            onChange={(e) => setCompanyMission(e.target.value)}
                             required
                         />
                     </div>
@@ -279,6 +358,10 @@ const PersonelInfo = () => {
                         setRoleAr(user.user.role_ar);
                         setNumber(user.profile.phoneNumber);
                         setProfilePhoto(user.profile.profilePhoto);
+                        setCompanyName(user.profile.about_ar.companyName);
+                        setCompanyAbout(user.profile.about_ar.companyAbout);
+                        setCompanyVision(user.profile.about_ar.companyVision);
+                        setCompanyMission(user.profile.about_ar.companyMission);
 
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
@@ -290,18 +373,37 @@ const PersonelInfo = () => {
                         alt="Avatar"
                     />
                 </div>
+
                 <p className="personel__title">اسم</p>
                 <p className="personel__subtitle">{user?.user.name_ar}</p>
+
                 <p className="personel__title">البريد الإلكتروني</p>
                 <p className="personel__subtitle">{user?.user.email}</p>
+
+                <p className="personel__title">اسم الشركة</p>
+                <p className="personel__subtitle">{user?.profile.about_ar.companyName}</p>
+
+                <p className="personel__title">عن الشركة</p>
+                <p className="personel__subtitle">{user?.profile.about_ar.companyAbout}</p>
+
+                <p className="personel__title">رؤية الشركة</p>
+                <p className="personel__subtitle">{user?.profile.about_ar.companyVision}</p>
+
+                <p className="personel__title">مهمة الشركة</p>
+                <p className="personel__subtitle">{user?.profile.about_ar.companyMission}</p>
+
                 <p className="personel__title">رقم الاتصال</p>
                 <p className="personel__subtitle">{user?.profile.phoneNumber}</p>
+
                 <p className="personel__title">وظيفة</p>
                 <p className="personel__subtitle">{user?.user.role_ar}</p>
+
                 <p className="personel__title">فئة</p>
                 <p className="personel__subtitle">{user?.profile.category_ar}</p>
+
                 <p className="personel__title">تصنيف فرعي</p>
                 <p className="personel__subtitle">{user?.profile.subCategory_ar}</p>
+
             </Wrapper>
         )
     }
@@ -330,6 +432,7 @@ const Wrapper = styled.div`
     padding-bottom:0px;
     justify-content:flex-end;
 }
+
 .edit__icon{
     color: #656565;
     font-size: 35px;
@@ -339,6 +442,7 @@ const Wrapper = styled.div`
     padding: 6px;
     cursor: pointer;
 }
+
 .personel__title {
     font-size: 20px;
     margin: 5px 0px;
@@ -346,6 +450,7 @@ const Wrapper = styled.div`
     font-weight: 600;
     
 }
+
 .personel__subtitle {
     font-size: 18px;
     padding: 4px;
