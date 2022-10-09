@@ -1,56 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
+import { TextField, Button, InputAdornment } from "@mui/material";
+import { styles } from '../Shared/Styles';
+import { useFormik } from "formik";
+import * as yup from "yup";
+import EmailIcon from '@mui/icons-material/Email';
+import KeyIcon from '@mui/icons-material/Key';
 import Spinner from "./Spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import loginImage from "../images/login.png";
-import { TextField } from "@mui/material";
-import { styles } from '../Shared/styles';
-import { loginUserEn } from "../features_en/user/userSlice";
+import { loginUserEn } from '../features_en/user/userSlice';
 import { getUserFromLocalStorage } from "../utils/localStorage";
 
-const initialState = {
-  email: "",
-  password: "",
-};
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid Email Format').required('Required*'),
+  password: yup.string().required('Required*'),
+});
 
-const Login = () => {
-  const [values, setValues] = useState(initialState);
+const Signin = () => {
+
+  const user = getUserFromLocalStorage();
+
   const { isLoading } = useSelector(
     (state) => state.userEn
   );
-  const user = getUserFromLocalStorage();
 
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: ""
+    },
+    validationSchema: schema,
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnMount: true,
+  });
 
-    setValues({ ...values, [name]: value });
-  };
+  const onSignInSubmit = () => {
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const { email, password, } = values;
-    if (!email || !password) {
-      toast.error('Please fill out all fields');
-      return;
-    }
-    if (password.length < 8) {
-      toast.error("Password is too short - should be 8 chars minimum.");
-      return;
-    }
-    dispatch(loginUserEn({ email, password, }));
+    dispatch(loginUserEn({ email: formik.values.email, password: formik.values.password }));
+
   };
 
   useEffect(() => {
     if (user && user.profile) {
       history.push("/Profile");
     } else if (user && !user.profile) {
-      history.push("/joinus");
+      history.push("/Joinus");
     }
     // eslint-disable-next-line
   }, [user]);
@@ -58,158 +57,143 @@ const Login = () => {
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
     <Wrapper>
-      <div className="login__grid">
-        <figure className="login__div">
-          <img className="login__img" src={loginImage} alt="login-img" />
-        </figure>
+      <div className="signin__grid">
 
-        <form onSubmit={onSubmit} className="login__form">
-          <h2 className="login__title">Welcome</h2>
-          <p className="login__subTitle">Please login to your account.</p>
+        <h2 className="signin__title" >Sign In</h2>
 
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <TextField
-              fullWidth
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              inputProps={{
-                style: styles.textField,
-              }}
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="name">Email Address</label>
+          <TextField
+            fullWidth
+            autoComplete="off"
+            type="text"
+            name="email"
+            placeholder="e.g., example@gmail.com"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            inputProps={{
+              style: styles.textField,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <EmailIcon sx={{ color: "blue", fontSize: "3.5rem", borderRight: "1px solid grey", paddingRight: "10px" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {formik.touched.email && formik.errors.email ? <p className="error">{formik.errors.email}</p> : null}
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <TextField
-              fullWidth
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              inputProps={{
-                style: styles.textField,
-              }}
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="name">Password</label>
+          <TextField
+            fullWidth
+            autoComplete="off"
+            type="password"
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            inputProps={{
+              style: styles.textField,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <KeyIcon sx={{ color: "blue", fontSize: "3.5rem", borderRight: "1px solid grey", paddingRight: "10px" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {formik.touched.password && formik.errors.password ? <p className="error">{formik.errors.password}</p> : null}
+        </div>
 
-          <button
-            type="submit"
-            className="blue-btn submit-button"
-          >
-            LOGIN
-          </button>
-          <p className="login__dont">
-            Don’t have an account?
-            <span className="login__register">
-              {" "}
-              <Link to="/Signup"><u>Register Now</u></Link>{" "}
-            </span>
-          </p>
-        </form>
+        <Button
+          className={!formik.isValid ? "signin__btndisabled" : "signin__btnactive"}
+          variant="contained"
+          disabled={!formik.isValid}
+          onClick={onSignInSubmit}
+        >
+          Log In
+        </Button>
+
       </div>
+
     </Wrapper>
   );
 };
 
-export default Login;
+export default Signin;
 
 const Wrapper = styled.section`
-  background-color: #424d83;
+
   height: 100%;
-  padding: 4rem 3rem;
-  @media only screen and (max-width: 850px) {
-    padding: 6rem 2rem;
-  }
-  
-  .login__grid {
-    max-width: 108rem;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    grid-gap: 6rem;
-    align-items: center;
-  }
-  @media only screen and (max-width: 850px) {
-    .login__grid {
-      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-      max-width: 100%;
-      grid-gap: 6rem;
-    }
-  }
-  .login__div {
-    width: 90%;
-  }
-  .login__img {
-    width: 100%;
-    display: block;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
-  @media only screen and (max-width: 600px) {
-
-    height: 100vh;
-
-    .login__div {
-      display: none;
-    }
-    .login__img {
-      display: none;
-    }
-
-  }
-
-  form {
-    background-color: white;
-    padding: 2.6rem 6rem;
-    border-radius: 20px;
-    width: 100%;
-    @media only screen and (max-width: 1000px) {
-      padding: 2.6rem 4rem;
-    }
-    @media only screen and (max-width: 850px) {
-      padding: 2.6rem 2rem;
-    }
-  }
-  .login__title {
-    
-    font-size: 3.6rem;
-    font-weight: 900;
-    color: var(--clr-black);
-    margin-bottom: 0.5rem;
-  }
-  .login__subTitle {
-    font-size: 2rem;
-    color: var(--clr-black);
-    margin-bottom: 3.5rem;
-  }
-  label {
+  .signin__grid {
+    margin: 2rem 0rem;
+    border: 1px solid lightgrey;
+    padding: 1rem 2rem 4rem 2rem;
+    border-radius: 15px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    color: #2a2a2a;
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
   }
+
+  @media only screen and (max-width: 500px) {
+    .signin__grid {
+      border: none;
+      border-radius: 0px;
+    }
+  }
+
   .form-group {
-    margin: 0 auto 1.25rem auto;
-    padding: 0.25rem;
+    margin: 2rem;
+    width: 100%;
   }
-  .login__dont {
+
+  .form-group label {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: "#2a2a2a"
+  }
+
+  .signin__title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #424d83;
     text-align: center;
-    margin-top: 1.8rem;
-    font-size: 1.8rem;
   }
-  .login__register {
-    color: var(--clr-blue-2);
+
+  .signin__btnactive {
+    font-size: 1.5rem;
+    width: 15rem;
+    font-weight: 500;
+    color: white;
+    background-color: #424d83;
+    border-radius: 20px;
   }
-  .error-p {
-    padding: 0px 0px 0px 3px;
-    margin: 0px;
-    font-size: 15px;
+
+  .signin__btndisabled {
+    font-size: 1.5rem;
+    width: 15rem;
+    font-weight: 900;
+    color: grey;
+    background-color: whitesmoke;
+    border-radius: 20px;
+  }
+
+  .error {
+    margin-top: 0.5rem;
     color: red;
-    height: 5px;
   }
+ 
 `;

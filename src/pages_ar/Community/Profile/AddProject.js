@@ -3,7 +3,7 @@ import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components_en/Spinner";
-import { styles } from '../../../Shared/styles';
+import { styles } from '../../../Shared/Styles';
 import { addProjectAr, reset } from "../../../features_ar/profile/profileSlice";
 import swal from 'sweetalert';
 import Compress from 'compress.js';
@@ -94,7 +94,7 @@ const AddProject = ({ handleStep }) => {
                             style: styles.textField,
                             maxLength: 50
                         }}
-                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>{projectName.length}/{50}</p>}
+                        helperText={<small className="helper">{projectName.length}/{50}</small>}
                         value={projectName}
                         onChange={(e) => setProjectName(e.target.value)}
                         required
@@ -108,7 +108,7 @@ const AddProject = ({ handleStep }) => {
                             style: styles.textField,
                             maxLength: 30
                         }}
-                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>{projectLocation.length}/{30}</p>}
+                        helperText={<small className="helper">{projectLocation.length}/{30}</small>}
                         value={projectLocation}
                         onChange={(e) => setProjectLocation(e.target.value)}
                         required
@@ -122,7 +122,7 @@ const AddProject = ({ handleStep }) => {
                             style: styles.desciption,
                             maxLength: 200
                         }}
-                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>{projectDescription.length}/{200}</p>}
+                        helperText={<small className="helper">{projectDescription.length}/{200}</small>}
                         rows={3}
                         multiline
                         value={projectDescription}

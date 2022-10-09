@@ -18,7 +18,8 @@ const initialState = {
   user: null,
   isLoading: false,
   isSuccess: false,
-  conditionalFlag: null,
+  regionFlag: null,
+  categoryFlag: null,
   projectsFlag: null,
 };
 
@@ -38,8 +39,11 @@ const profileSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
     },
-    updateConditionalFlag: (state, { payload }) => {
-      state.conditionalFlag = payload;
+    updateRegionFlag: (state, { payload }) => {
+      state.regionFlag = payload;
+    },
+    updateCategoryFlag: (state, { payload }) => {
+      state.categoryFlag = payload;
     },
   },
   extraReducers: {
@@ -57,13 +61,15 @@ const profileSlice = createSlice({
 
       toast.success(payload.message);
 
-      state.conditionalFlag = null;
+      state.regionFlag = null;
+      state.categoryFlag = null;
     },
     [profileCreationAr.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
 
-      state.conditionalFlag = null;
+      state.regionFlag = null;
+      state.categoryFlag = null;
     },
 
     [getCommunityUserAr.pending]: (state) => {
@@ -92,6 +98,7 @@ const profileSlice = createSlice({
         userId: payload.user._id,
         name_ar: payload.user.name_ar,
         role_ar: payload.user.role_ar,
+        phoneNumber: payload.user.phoneNumber,
         token: oldUser.token,
         profile: payload.user.profile,
       }
@@ -153,10 +160,9 @@ const profileSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     },
-
-
+    
   },
 });
 
-export const { reset, updateConditionalFlag } = profileSlice.actions;
+export const { reset, updateCategoryFlag, updateRegionFlag } = profileSlice.actions;
 export default profileSlice.reducer;

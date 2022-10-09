@@ -11,7 +11,7 @@ export const theme = createTheme({
 // Material UI
 export const styles = {
     textField: {
-        fontSize: "1.8rem",
+        fontSize: "1.5rem",
         fontWeight: "400",
         padding: "12px 14px",
         color: "#2a2a2a",
@@ -23,7 +23,7 @@ export const styles = {
         lineHeight: "1.2",
     },
     select: {
-        fontSize: "1.8rem",
+        fontSize: "1.5rem",
         fontWeight: "400",
         color: "#2a2a2a",
     },
@@ -42,5 +42,10 @@ export const styles = {
         color: "#424d83",
         fontSize: "1.6rem",
         fontWeight: "600",
+    },
+    uploadBtn: {
+        fontSize: "1.3rem",
+        fontWeight: "500",
+        margin: "0.5rem"
     },
 }

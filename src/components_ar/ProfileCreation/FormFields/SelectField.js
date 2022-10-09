@@ -1,45 +1,44 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { at } from "lodash";
-import { useField } from "formik";
-import { FormControl, Select, MenuItem } from "@mui/material";
-import { styles } from '../../../Shared/styles';
+import { Select, MenuItem } from "@mui/material";
+import { useController } from "react-hook-form";
+import { styles } from "../../../Shared/Styles";
 
 function SelectField(props) {
-  const { label, data, ...rest } = props;
-  const [field, meta] = useField(props);
-  const { value: selectedValue } = field;
-  const [touched, error] = at(meta, "touched", "error");
-  const isError = touched && error && true;
-  function _renderHelperText() {
-    if (isError) {
-      return <p className="error-p">{error}</p>;
-    }
-  }
+
+  const {
+    field: { onChange, name, value },
+    fieldState: { error }
+  } = useController({
+    name: props.name,
+    control: props.control,
+    rules: {
+      required: true
+    },
+    defaultValue: ""
+  });
+
+  console.log("select field");
 
   return (
-    <FormControl {...rest} error={isError}>
-      <Select sx={styles.select}
-        {...field}
-        value={selectedValue ? selectedValue : ""}
+    <>
+      <Select
+        fullWidth
+        name={name}
+        value={value}
+        onChange={onChange}
+        style={styles.select}
+        error={error && true}
       >
-        {data && data?.map((item, index) => (
-          <MenuItem sx={styles.menu} key={index} value={item}>
+        {props.data && props.data.map((item, index) => (
+          <MenuItem sx={styles.menu} key={index} value={item.value_ar}>
             {item.value_ar}
           </MenuItem>
         ))}
       </Select>
-      {_renderHelperText()}
-    </FormControl>
-  );
-}
-
-SelectField.defaultProps = {
-  data: [],
+      {error && error.type === "required" ? <small className="error">مطلوب</small> : null}
+    </>
+  )
 };
 
-SelectField.propTypes = {
-  data: PropTypes.array.isRequired,
-};
 
 export default SelectField;

@@ -39,23 +39,23 @@ const Table = ({ data = [], title, flag, userId, message }) => {
               return (
                 <Link key={index} to={`/Usersar/${user._id}`}>
                   <div className="search__results">
-                    <p className="cell" id="special">
+                    <div className="cell" id="special">
                       <Avatar
-                        src={user.profilePhoto}
+                        src={user.photo}
                         sx={{ width: 56, height: 56, border: "1px solid blue", marginLeft: "1rem" }}
                         alt="profile"
                       />
-                      {user.about_ar.companyName}
-                    </p>
-                    <p className="cell">
-                      {user.location_ar.country},&nbsp;
+                      {user.about_ar.name}
+                    </div>
+                    <div className="cell">
+                      {location.region},&nbsp;
                       {
-                        user.location_ar.city.find((city)=> city === location.city && city)
+                        location.city
                       }
-                    </p>
-                    <p className="cell">
+                    </div>
+                    <div className="cell">
                       <Rating precision={0.5} name="read-only" value={user.stars} style={{ fontSize: "1.9rem", direction: "ltr" }} readOnly />
-                    </p>
+                    </div>
                   </div>
                 </Link>
               );
@@ -66,11 +66,11 @@ const Table = ({ data = [], title, flag, userId, message }) => {
               return (
                 <Link key={index} to={`/Projectsar/${userId}/${project._id}`}>
                   <div className="search__results">
-                    <p className="cell">{project.projectName}</p>
-                    <p className="cell">{project.projectLocation}</p>
-                    <p className="cell">
+                    <div className="cell">{project.projectName}</div>
+                    <div className="cell">{project.projectLocation}</div>
+                    <div className="cell">
                       <Rating precision={0.5} name="read-only" value={project.noOfStars} style={{ fontSize: "1.9rem", direction: "ltr" }} readOnly />
-                    </p>
+                    </div>
                   </div>
                 </Link>
               );
@@ -117,6 +117,7 @@ const Wrapper = styled.section`
   .search__columns {
     display: grid;
     text-align: center;
+    align-items: center;
     grid-template-columns: 3fr 3fr 3fr;
   }
 

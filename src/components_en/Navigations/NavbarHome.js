@@ -43,7 +43,7 @@ const NavbarHome = () => {
         <Link className="navbar__link" to="/">
           <img className="navbar__logo" src={logo} alt="Logo" />
         </Link>
-
+        
         {
           user ?
             <>
@@ -95,11 +95,11 @@ const NavbarHome = () => {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
                 {user.profile ?
-                    <Link to="/Profile">
-                      <MenuItem>
-                        <Avatar /> <span style={{ color: '#121212' }}>Profile</span>
-                      </MenuItem>
-                    </Link>
+                  <Link to="/Profile">
+                    <MenuItem>
+                      <Avatar /> <span style={{ color: '#121212' }}>Profile</span>
+                    </MenuItem>
+                  </Link>
                   :
                   <Link to="/JoinUs">
                     <MenuItem>

@@ -9,6 +9,9 @@ const NavbarSignUp = () => {
         <Link className="navbar__link" to="/ar">
           <img className="navbar__logo" src={logo} alt="Logo" />
         </Link>
+        <Link to="/Loginar" className="btn-small">
+          تسجيل الدخول
+        </Link>
       </div>
     </div>
   );

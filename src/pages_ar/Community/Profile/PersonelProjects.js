@@ -11,7 +11,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import Spinner from "../../../components_ar/Spinner";
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
-import { styles } from '../../../Shared/styles';
+import { styles } from '../../../Shared/Styles';
 import { deleteProjectAr, updateProjectAr } from '../../../features_ar/profile/profileSlice';
 import Compress from 'compress.js';
 import axios from "axios";
@@ -118,7 +118,7 @@ const PersonelProjects = ({ handleStep }) => {
                             autoClose: 300,
                             hideProgressBar: true,
                         });
-                        navigator.clipboard.writeText(`mahnty.netlify.app/Reviewar/${user.profile._id}/${projectReviewId}`);
+                        navigator.clipboard.writeText(`mahntysa.netlify.app/Reviewar/${user.profile._id}/${projectReviewId}`);
                     }} className="request__link">انقر لنسخ</button>
 
                 </div>
@@ -142,7 +142,7 @@ const PersonelProjects = ({ handleStep }) => {
                             style: styles.textField,
                             maxLength: 50
                         }}
-                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>{projectName.length}/{50}</p>}
+                        helperText={<small className="helper">{projectName.length}/{50}</small>}
                         value={projectName}
                         onChange={(e) => setProjectName(e.target.value)}
                         required
@@ -156,7 +156,7 @@ const PersonelProjects = ({ handleStep }) => {
                             style: styles.textField,
                             maxLength: 30
                         }}
-                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>{projectLocation.length}/{30}</p>}
+                        helperText={<small className="helper">{projectLocation.length}/{30}</small>}
                         value={projectLocation}
                         onChange={(e) => setProjectLocation(e.target.value)}
                         required
@@ -170,7 +170,7 @@ const PersonelProjects = ({ handleStep }) => {
                             style: styles.desciption,
                             maxLength: 200
                         }}
-                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>{projectDescription.length}/{200}</p>}
+                        helperText={<small className="helper">{projectDescription.length}/{200}</small>}
                         rows={3}
                         multiline
                         value={projectDescription}

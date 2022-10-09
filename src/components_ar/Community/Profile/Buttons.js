@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonsWrapper } from "../../../Shared/styled";
+import { ButtonsWrapper } from "../../../Shared/CardLayout";
 
 const Buttons = ({ handleStep, step }) => {
   const steps = [

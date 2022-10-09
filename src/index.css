@@ -21,7 +21,6 @@ Global Styles
 * {
   margin: 0;
   padding: 0;
-  
 }
 
 *,
@@ -78,7 +77,12 @@ p {
   letter-spacing: 0.5px;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: Font;
   letter-spacing: 0.5px;
 }
@@ -208,19 +212,22 @@ Navigation Styles
 .nav__container {
   max-width: 119rem;
   margin: auto;
-  padding: 2rem 2rem;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .navbar__logo {
-  height: 6rem;
+  height: 70px;
+  width: 150px;
 }
 
 @media only screen and (max-width: 850px) {
   .navbar__logo {
-    height: 4.2rem;
+    height: 60px;
+    width: 130px;
+    ;
   }
 }
 

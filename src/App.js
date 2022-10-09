@@ -3,22 +3,25 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
-import { theme } from './Shared/styles';
+import { theme } from './Shared/Styles';
 import ErrorPage from './utils/ErrorPage'
 import LinearProgress from '@mui/material/LinearProgress';
+
 // Public Pages. 
 import {
   LoginPageEn,
   SignupPageEn,
   AboutPageEn,
-  ContactPageEn
+  ContactPageEn,
+  VerifyPageEn
 } from "./pages_en";
 
 import {
   LoginPageAr,
   SignupPageAr,
   AboutPageAr,
-  ContactPageAr
+  ContactPageAr,
+  VerifyPageAr
 } from "./pages_ar";
 
 // Flow 1 (Guest Flow)
@@ -50,8 +53,8 @@ import { ProfileDriverEn, ClientReviewEn } from "./pages_en/Community/Profile";
 import { ProfileDriverAr, ClientReviewAr } from "./pages_ar/Community/Profile";
 
 // Private Routes.
-import { PrivateWithOutProfileEn, PrivateWithProfileEn, PrivateWithUserEn } from "./pages_en/ProtectedRoutes";
-import { PrivateWithOutProfileAr, PrivateWithProfileAr, PrivateWithUserAr } from "./pages_ar/ProtectedRoutes";
+import { PrivateWithOutProfileEn, PrivateWithProfileEn, PrivateWithUserEn, PrivateWithOutUserEn } from "./pages_en/ProtectedRoutes";
+import { PrivateWithOutProfileAr, PrivateWithProfileAr, PrivateWithUserAr, PrivateWithOutUserAr } from "./pages_ar/ProtectedRoutes";
 
 const App = () => {
 
@@ -101,11 +104,23 @@ const App = () => {
                 component={SignupPageEn}
               ></PrivateWithUserEn>
 
+              <PrivateWithOutUserEn
+                exact
+                path="/Verify"
+                component={VerifyPageEn}
+              ></PrivateWithOutUserEn>
+
               <PrivateWithUserAr
                 exact
                 path="/Signupar"
                 component={SignupPageAr}
               ></PrivateWithUserAr>
+
+              <PrivateWithOutUserAr
+                exact
+                path="/Verifyar"
+                component={VerifyPageAr}
+              ></PrivateWithOutUserAr>
 
               {/* ----------------------------------------------- */}
               {/* Guest Flow (Public) */}

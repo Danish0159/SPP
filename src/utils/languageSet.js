@@ -9,21 +9,27 @@ const languageSet = () => {
 
     if (lang === 'ar') {
 
-      document.title = "منصة أخصائي البناء";
+      document.title = 'منصة أخصائي البناء';
 
-      document.body.dir = "rtl";
+      document.body.dir = 'rtl';
 
     }
-    else if(lang === "en")
-    {
-      document.title = "Construction Specialist Platform";
+    else if (lang === 'en') {
+      document.title = 'Construction Specialist Platform';
 
-      document.body.dir = "ltr";
+      document.body.dir = 'ltr';
     }
   }
   else {
 
     let userLanguage = window.navigator.userLanguage || window.navigator.language;
+
+    if (userLanguage.includes('en')) {
+      userLanguage = 'en';
+    }
+    else if (userLanguage.includes('ar')) {
+      userLanguage = 'ar';
+    }
 
     localStorage.setItem('lang', userLanguage);
 
@@ -32,8 +38,7 @@ const languageSet = () => {
 
       document.body.dir = "rtl";
     }
-    else if(userLanguage === "en")
-    {
+    else if (userLanguage === "en") {
       document.title = "Construction Specialist Platform";
 
       document.body.dir = "ltr";

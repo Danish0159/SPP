@@ -18,7 +18,7 @@ const Users = () => {
 
   useEffect(() => {
 
-    dispatch(fetchUsersAr({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: searchValues.subCategory }));
+    dispatch(fetchUsersAr({ role: searchValues.role, category: searchValues.category, region: searchValues.region, city: searchValues.city, subCategory: searchValues.subCategory }));
     // eslint-disable-next-line
   }, []);
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import logo from "../images/logo.png";
-import { styles } from "../Shared/styles";
+import { styles } from "../Shared/Styles";
 import swal from 'sweetalert';
 
 
@@ -35,7 +35,7 @@ const ContactPage = () => {
           icon: "success",
           text: "سيتواصل معك فريق الدعم قريبًا."
         }).then(() => {
-          window.location.replace("https://mahnty.netlify.app/");
+          window.location.replace("https://mahntysa.netlify.app/");
         })
       )
       .catch((error) => toast.error(error));

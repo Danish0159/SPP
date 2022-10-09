@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Footer } from "../../../components_ar";
 import { Buttons } from "../../../components_ar/Community/Profile";
-import { CardLayout } from '../../../Shared/styled'
+import { CardLayout } from '../../../Shared/CardLayout';
 import { AddProject, PreviewProfile, PersonelInfo, PersonelProjects } from '../Profile'
 import { CardTitle } from '../../../Shared'
 import { useSelector } from "react-redux";
@@ -87,5 +87,10 @@ const Wrapper = styled.div`
     font-weight: 700;
     margin: 2.5rem 0rem;
     color: #424d83;
+  }
+
+  .helper {
+    font-size: 1.5rem;
+    float: right;
   }
 `;

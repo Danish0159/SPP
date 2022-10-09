@@ -4,11 +4,13 @@ import styled from "styled-components";
 import { Footer } from "../../components_ar";
 import { Buttons } from "../../components_ar/ProfileCreation";
 import image from "../../images/join_cleanup.jpg";
-import { CardLayout } from '../../Shared/styled'
+import { CardLayout } from '../../Shared/CardLayout';
 import { NavbarProfileCreation } from "../../components_ar/Navigations";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 const JoinUs = () => {
+
   const user = getUserFromLocalStorage();
+
   return (
     <main>
       <NavbarProfileCreation></NavbarProfileCreation>
@@ -23,7 +25,7 @@ const JoinUs = () => {
               <p className="join__title">انضم إلينا</p>
               {user && <p className="join__subTitle">أهلاً {user.name_ar},</p>}
               <p className="join__passage">
-              نشكرك على اهتمامك بـمهنتى باعتبارها أكبر منصة للمواهب في العالم ، فنحن نربط ملايين الشركات بمقاولين ومصممين مستقلين مثلك.
+                نشكرك على اهتمامك بـمهنتى باعتبارها أكبر منصة للمواهب في العالم ، فنحن نربط ملايين الشركات بمقاولين ومصممين مستقلين مثلك.
               </p>
               <p className="join__subTitle">
                 للبدء ، كل ما عليك فعله هو ملء ملف تعريف

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { Select, TextField, MenuItem, Avatar } from '@mui/material';
-import { users } from "../../../utils/constantsEn";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from "react-redux";
 import { getCommunityUserEn, updateProfileEn } from '../../../features_en/profile/profileSlice';
 import Spinner from "../../../components_en/Spinner";
-import { styles } from '../../../Shared/styles';
-import { categories, subCategories } from "../../../utils/constantsEn";
+import { styles } from '../../../Shared/Styles';
+import { roles, categories, subCategories } from "../../../utils/constantsEn";
 
 const PersonelInfo = () => {
 
@@ -18,20 +17,19 @@ const PersonelInfo = () => {
         (state) => state.profileEn
     );
 
-    const [name, setName] = useState("");
+    const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [roleEn, setRoleEn] = useState("");
     const [roleAr, setRoleAr] = useState("");
-    const [phoneNumber, setNumber] = useState("");
-    const [profilePhoto, setProfilePhoto] = useState("");
     const [categoryEn, setCategoryEn] = useState("");
     const [categoryAr, setCategoryAr] = useState("");
     const [subCategoryEn, setSubCategoryEn] = useState("");
     const [subCategoryAr, setSubCategoryAr] = useState("");
     const [companyName, setCompanyName] = useState("");
-    const [companyAbout, setCompanyAbout] = useState("");
+    const [companyAddress, setCompanyAddress] = useState("");
     const [companyVision, setCompanyVision] = useState("");
-    const [companyMission, setCompanyMission] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
+    const [profilePhoto, setProfilePhoto] = useState("");
 
 
     // state.
@@ -48,40 +46,38 @@ const PersonelInfo = () => {
 
         dispatch(
             updateProfileEn({
-                profilePhoto,
-                name,
+                id: user.profile._id,
+                userName,
                 email,
-                phoneNumber,
-                role_en: roleEn,
-                role_ar: roleAr,
-                category_en: categoryEn,
-                category_ar: categoryAr,
-                subCategory_en: subCategoryEn,
-                subCategory_ar: subCategoryAr,
-                companyName: companyName,
-                companyAbout: companyAbout,
-                companyVision: companyVision,
-                companyMission: companyMission,
-                id: user.profile._id
+                roleEn,
+                roleAr,
+                categoryEn,
+                categoryAr,
+                subCategoryEn,
+                subCategoryAr,
+                companyName,
+                companyAddress,
+                companyVision,
+                contactNumber,
+                profilePhoto,
             })
         );
 
         setUpdate(false);
         // Reset form.
-        setName("");
+        setUserName("");
         setEmail("");
         setRoleEn("");
         setRoleAr("");
-        setNumber("");
-        setProfilePhoto("");
         setCategoryEn("");
         setCategoryAr("");
         setSubCategoryEn("");
         setSubCategoryAr("");
         setCompanyName("");
-        setCompanyAbout("");
+        setCompanyAddress("");
         setCompanyVision("");
-        setCompanyMission("");
+        setContactNumber("");
+        setProfilePhoto("");
 
     };
 
@@ -110,12 +106,7 @@ const PersonelInfo = () => {
                         name="myImage"
                         style={{ width: "90px" }}
                         onChange={(event) => {
-                            var file = event.target.files[0];
-                            var reader = new FileReader();
-                            reader.onload = function (event) {
-                                setProfilePhoto(event.target.result);
-                            };
-                            reader.readAsDataURL(file);
+
                         }}
                     />
                 </div>
@@ -123,7 +114,7 @@ const PersonelInfo = () => {
                 <div className="profile__updateData">
 
                     <div>
-                        <p className="card__subtitle">Name</p>
+                        <p className="card__subtitle">User Name</p>
                         <TextField
                             fullWidth
                             type="text"
@@ -132,8 +123,8 @@ const PersonelInfo = () => {
                             inputProps={{
                                 style: styles.textField,
                             }}
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
                             required
                         />
                     </div>
@@ -166,7 +157,7 @@ const PersonelInfo = () => {
                                 style: styles.desciption,
                                 maxLength: 50
                             }}
-                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyName.length}/{50}</p>}
+                            helperText={<small className="helper">{companyName.length}/{50}</small>}
                             rows={1}
                             multiline
                             value={companyName}
@@ -176,7 +167,7 @@ const PersonelInfo = () => {
                     </div>
 
                     <div>
-                        <p className="card__subtitle">About Company</p>
+                        <p className="card__subtitle">Company Address</p>
                         <TextField
                             fullWidth
                             type="text"
@@ -184,13 +175,11 @@ const PersonelInfo = () => {
                             className="update"
                             inputProps={{
                                 style: styles.desciption,
-                                maxLength: 200
                             }}
-                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyAbout.length}/{200}</p>}
-                            rows={3}
+                            rows={1}
                             multiline
-                            value={companyAbout}
-                            onChange={(e) => setCompanyAbout(e.target.value)}
+                            value={companyAddress}
+                            onChange={(e) => setCompanyAddress(e.target.value)}
                             required
                         />
                     </div>
@@ -206,7 +195,7 @@ const PersonelInfo = () => {
                                 style: styles.desciption,
                                 maxLength: 200
                             }}
-                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyVision.length}/{200}</p>}
+                            helperText={<small className="helper">{companyVision.length}/{200}</small>}
                             rows={3}
                             multiline
                             value={companyVision}
@@ -216,28 +205,7 @@ const PersonelInfo = () => {
                     </div>
 
                     <div>
-                        <p className="card__subtitle">Company Mission</p>
-                        <TextField
-                            fullWidth
-                            type="text"
-                            name="text"
-                            className="update"
-                            inputProps={{
-                                style: styles.desciption,
-                                maxLength: 200
-                            }}
-                            helperText={<p style={{ fontSize: "1.5rem" }}>{companyMission.length}/{200}</p>}
-                            rows={3}
-                            multiline
-                            value={companyMission}
-                            onChange={(e) => setCompanyMission(e.target.value)}
-                            required
-                        />
-                    </div>
-
-
-                    <div>
-                        <p className="card__subtitle">Role</p>
+                        <p className="card__subtitle">Service Role</p>
                         <Select
                             sx={styles.select}
                             fullWidth
@@ -245,7 +213,7 @@ const PersonelInfo = () => {
                             value={roleEn}
                             onChange={(e) => {
 
-                                let obj = users.find(item => item.value_en === e.target.value);
+                                let obj = roles.find(item => item.value_en === e.target.value);
 
                                 setRoleEn(obj.value_en);
                                 setRoleAr(obj.value_ar);
@@ -256,9 +224,9 @@ const PersonelInfo = () => {
                             }}
                             required
                         >
-                            {users.map((user, index) => (
-                                <MenuItem sx={styles.menu} key={index} value={user.value_en}>
-                                    {user.value_en}
+                            {roles.map((role, index) => (
+                                <MenuItem sx={styles.menu} key={index} value={role.value_en}>
+                                    {role.value_en}
                                 </MenuItem>
                             ))}
                         </Select>
@@ -266,7 +234,7 @@ const PersonelInfo = () => {
 
 
                     <div>
-                        <p className="card__subtitle">Category</p>
+                        <p className="card__subtitle">Service Category</p>
                         <Select
                             sx={styles.select}
                             fullWidth
@@ -293,7 +261,7 @@ const PersonelInfo = () => {
 
 
                     <div>
-                        <p className="card__subtitle">Sub-Category</p>
+                        <p className="card__subtitle">Service Sub-Category</p>
                         <Select
                             sx={styles.select}
                             fullWidth
@@ -321,17 +289,28 @@ const PersonelInfo = () => {
                         <p className="card__subtitle">Contact Number</p>
                         <TextField
                             fullWidth
-                            type="number"
+                            type="tel"
                             className="update"
                             name="number"
                             inputProps={{
                                 style: styles.textField,
+                                maxLength: 10
                             }}
-                            value={phoneNumber}
-                            onChange={(e) => setNumber(e.target.value)}
+                            value={contactNumber}
+                            onChange={(e) => {
+
+                                let regExp = /^[0-9]*$/;
+
+                                if (regExp.test(e.target.value)) {
+                                    setContactNumber(e.target.value)
+                                } else {
+                                    console.log("Only numbers are allowed");
+                                }
+                            }}
                             required
                         />
                     </div>
+
 
 
                     <button
@@ -351,62 +330,58 @@ const PersonelInfo = () => {
                 <div className='edit__div'>
                     <ModeEditOutlineOutlinedIcon onClick={() => {
                         setUpdate(true)
-                        setCategoryEn(user.profile.category_en);
-                        setCategoryAr(user.profile.category_ar);
-                        setSubCategoryEn(user.profile.subCategory_en);
-                        setSubCategoryAr(user.profile.subCategory_ar);
-                        setName(user.user.name_en);
+                        setUserName(user.user.name_en);
                         setEmail(user.user.email);
-                        setRoleEn(user.user.role_en);
-                        setRoleAr(user.user.role_ar);
-                        setNumber(user.profile.phoneNumber);
-                        setProfilePhoto(user.profile.profilePhoto);
-                        setCompanyName(user.profile.about_en.companyName);
-                        setCompanyAbout(user.profile.about_en.companyAbout);
-                        setCompanyVision(user.profile.about_en.companyVision);
-                        setCompanyMission(user.profile.about_en.companyMission);
+                        setRoleEn(user.profile.service_en.role);
+                        setRoleAr(user.profile.service_ar.role);
+                        setCategoryEn(user.profile.service_en.category);
+                        setCategoryAr(user.profile.service_ar.category);
+                        setSubCategoryEn(user.profile.service_en.subCategory);
+                        setSubCategoryAr(user.profile.service_ar.subCategory);
+                        setCompanyName(user.profile.about_en.name);
+                        setCompanyAddress(user.profile.about_en.address);
+                        setCompanyVision(user.profile.about_en.vision);
+                        setContactNumber(user.profile.contact_en.number);
+                        setProfilePhoto(user.profile.photo);
 
                     }} className="edit__icon"></ModeEditOutlineOutlinedIcon>
                 </div>
                 <div className="personel__avatar">
                     <Avatar
                         style={{ marginBottom: "4rem" }}
-                        src={user?.profile.profilePhoto}
+                        src={user?.profile.photo}
                         sx={{ width: 100, height: 100, }}
                         alt="Avatar"
                     />
                 </div>
 
-                <p className="personel__title">Name</p>
+                <p className="personel__title">User Name</p>
                 <p className="personel__subtitle">{user?.user.name_en}</p>
 
                 <p className="personel__title">Email</p>
                 <p className="personel__subtitle">{user?.user.email}</p>
 
                 <p className="personel__title">Company Name</p>
-                <p className="personel__subtitle">{user?.profile.about_en.companyName}</p>
+                <p className="personel__subtitle">{user?.profile.about_en.name}</p>
 
-                <p className="personel__title">About Company</p>
-                <p className="personel__subtitle">{user?.profile.about_en.companyAbout}</p>
+                <p className="personel__title">Company Address</p>
+                <p className="personel__subtitle">{user?.profile.about_en.address}</p>
 
                 <p className="personel__title">Company Vision</p>
-                <p className="personel__subtitle">{user?.profile.about_en.companyVision}</p>
+                <p className="personel__subtitle">{user?.profile.about_en.vision}</p>
 
-                <p className="personel__title">Company Mission</p>
-                <p className="personel__subtitle">{user?.profile.about_en.companyMission}</p>
+                <p className="personel__title">Contact Number</p>
+                <p className="personel__subtitle">{user?.profile.contact_en.number}</p>
 
-                <p className="personel__title">Number</p>
-                <p className="personel__subtitle">{user?.profile.phoneNumber}</p>
+                <p className="personel__title">Service Role</p>
+                <p className="personel__subtitle">{user?.profile.service_en.role}</p>
 
-                <p className="personel__title">Role</p>
-                <p className="personel__subtitle">{user?.user.role_en}</p>
+                <p className="personel__title">Service Category</p>
+                <p className="personel__subtitle">{user?.profile.service_en.category}</p>
 
-                <p className="personel__title">Category</p>
-                <p className="personel__subtitle">{user?.profile.category_en}</p>
+                <p className="personel__title">Service Sub-Category</p>
+                <p className="personel__subtitle">{user?.profile.service_en.subCategory}</p>
 
-                <p className="personel__title">Sub-Category</p>
-                <p className="personel__subtitle">{user?.profile.subCategory_en}</p>
-                
             </Wrapper>
         )
     }
@@ -415,7 +390,6 @@ const PersonelInfo = () => {
 export default PersonelInfo
 
 const Wrapper = styled.div`
-
 
 .profile__updatePhoto {
     display: flex;

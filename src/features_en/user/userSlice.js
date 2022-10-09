@@ -50,6 +50,7 @@ const userSlice = createSlice({
         userId: payload.user._id,
         name_en: payload.user.name_en,
         role_en: payload.user.role_en,
+        phoneNumber: payload.user.phoneNumber,
         token: payload.token,
         profile: payload.user.profile,
       }
@@ -66,3 +67,5 @@ const userSlice = createSlice({
 
 export const { logoutUser, reset } = userSlice.actions;
 export default userSlice.reducer;
+
+

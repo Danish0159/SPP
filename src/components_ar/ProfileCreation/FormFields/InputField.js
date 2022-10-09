@@ -1,30 +1,50 @@
 import React from "react";
-import { at } from "lodash";
-import { useField } from "formik";
 import { TextField } from "@mui/material";
+import { useController } from "react-hook-form";
 
-export default function InputField(props) {
-  const { errorText, type, style, min, limit, ...rest } = props;
-  const [field, meta] = useField(props);
+function InputField(props) {
 
-  function _renderHelperText() {
-    const [touched, error] = at(meta, "touched", "error");
-    if (touched && error) {
-      return <p className="error-p">{error}</p>;
-    }
-  }
+  const {
+    field: { onChange, name, value },
+    fieldState: { error }
+  } = useController({
+    name: props.name,
+    control: props.control,
+    rules: {
+      required: true,
+      pattern: props.pattern,
+      min: props.min,
+      minLength: props.minLength
+    },
+    defaultValue: "",
+  });
+
+  console.log("input field");
 
   return (
     <>
       <TextField
-        inputProps={{ style: style, min: min, maxLength: limit
+        fullWidth
+        multiline={props.multiline}
+        rows={props.rows}
+        name={name}
+        type={props.type}
+        value={value}
+        onChange={onChange}
+        inputProps={{
+          maxLength: props.limit,
+          style: props.style
         }}
-        helperText= {limit && <p style={{fontSize: "1.5rem", textAlign:"right"}}>{field.value.length}/{limit}</p>}
-        type={type}
-        {...field}
-        {...rest}
+        helperText={props.limit && <small className="helper">{value.length}/{props.limit}</small>}
+        error={(error) && (error.type === "required" || error.type === "pattern" || error.type === "min") && true}
+        focused={error && error.type === "minLength" && true}
       />
-      {_renderHelperText()}
+      {error && error.type === "required" ? <small className="error">مطلوب</small> : null}
+      {error && error.type === "pattern" ? <small className="error">يسمح فقط بالأرقام</small> : null}
+      {error && error.type === "min" ? <small className="error">الحد الأدنى للقيمة 0 مسموح به</small> : null}
+      {error && error.type === "minLength" ? <small className="info">يجب أن يكون عدد الأرقام {props.minLength} بالضبط</small> : null}
     </>
-  );
-}
+  )
+};
+
+export default InputField;

@@ -1,27 +1,39 @@
-// https://codesandbox.io/s/react-formik-material-ui-autocomplete-9wqfq?file=/src/Component.tsx
 import React from "react";
-import { useField } from 'formik'
 import { Autocomplete, TextField } from "@mui/material";
 import styled from "styled-components";
+import { useController } from "react-hook-form";
 
 
-function SelectMultiple({data, ...props}) {
-   
-    const [...field] = useField(props);
-    const isError = field[1].error && field[1].touched && true;
+function SelectMultiple(props) {
 
+    const {
+        field: { onChange, name, value },
+        fieldState: { error }
+    } = useController({
+        name: props.name,
+        control: props.control,
+        rules: {
+            required: true,
+        },
+        defaultValue: [],
+    });
 
-    function _renderHelperText() {
-        if (isError) {
-            return <p className="error-p">{field[1].error}</p>;
-        }
-    }
+    console.log("select multiple");
 
     return (
         <>
             <Autocomplete
-                options={data}
-                value={field[0].value}
+                multiple
+                name={name}
+                value={value}
+                onChange={(event, item) => {
+                    if (item.length <= 3) {
+                        onChange(item);
+                    }
+                }
+                }
+                options={props.data}
+                getOptionLabel={(option) => option.value_ar}
                 sx={{
                     '& .MuiAutocomplete-input, & .MuiInputLabel-root': {
                         fontSize: "1.8rem",
@@ -30,24 +42,17 @@ function SelectMultiple({data, ...props}) {
                 ListboxProps={{
                     sx: { fontSize: "1.8rem" },
                 }}
-                onChange={(event, item) => {
-                    if (item.length <= 5) {
-                        field[2].setValue(item, true)
-                    }
-                }
-                }
-                getOptionLabel={(option) => option.value_ar }
-                multiple
-                renderInput={props => (
+                renderInput={params => (
                     <Wrapper>
                         <TextField
-                        {...props}
-                        helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>يسمح بحد أقصى 5 مدن</p>}
-                    />
+                            {...params}
+                            helperText={<small className="helper">يسمح بحد أقصى 3 مدن</small>}
+                            error={error && true}
+                        />
                     </Wrapper>
                 )}
             />
-            {_renderHelperText()}
+            {error && error.type === "required" ? <small className="error">مطلوب</small> : null}
         </>
     );
 }

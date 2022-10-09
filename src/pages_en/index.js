@@ -12,6 +12,12 @@ export const SignupPageEn = lazy(() =>
   }))
 );
 
+export const VerifyPageEn = lazy(() =>
+  import("./VerifyPage").then(({ default: VerifyPageEn }) => ({
+    default: VerifyPageEn,
+  }))
+);
+
 export const AboutPageEn = lazy(() =>
   import("./AboutPage").then(({ default: AboutPageEn }) => ({
     default: AboutPageEn,

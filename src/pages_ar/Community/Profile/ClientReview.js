@@ -161,5 +161,10 @@ const Wrapper = styled.div`
         margin: 1.3rem 0rem;
         margin-left: 2rem;
         font-weight: 500;
-      }
+    }
+
+    .helper {
+        font-size: 1.5rem;
+        float: right;
+    }
 `;

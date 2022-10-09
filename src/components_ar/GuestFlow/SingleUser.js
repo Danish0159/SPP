@@ -6,13 +6,15 @@ import { Gallery, Reviews } from ".";
 import { fetchSingleUserAr } from "../../features_ar/guest/guestSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { Avatar, Rating } from "@mui/material";
+import { Avatar, Button, Rating } from "@mui/material";
 import Carousel from 'react-elastic-carousel';
 import details from '../../images/details.png';
 import DetailsIcon from '@mui/icons-material/Details';
 import NearMeOutlinedIcon from '@mui/icons-material/NearMeOutlined';
 import PhoneEnabledOutlinedIcon from '@mui/icons-material/PhoneEnabledOutlined';
 import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import GppBadIcon from '@mui/icons-material/GppBad';
 
 
 const SingleUser = () => {
@@ -59,13 +61,13 @@ const SingleUser = () => {
             <div className="profile__name">
               <div className="profile__name--avatar">
                 <Avatar
-                  src={single_user.data.user.profilePhoto}
+                  src={single_user.data.user.photo}
                   sx={{ width: 130, height: 130, border: "1px solid blue" }}
                   alt="Avatar"
                 />
               </div>
               <h1 className="profile__name--title">
-                {single_user.data.user.about_ar.companyName}
+                {single_user.data.user.about_ar.name}
               </h1>
 
               <Link to="#" type="submit" className="blue-btn profile-btn disableButtonColor">
@@ -80,7 +82,7 @@ const SingleUser = () => {
               <div className="profile__content--details">
 
                 <img src={details} className="details__icon " alt="" />
-                <p className="details__text">إنه خبير بناء يقدم خدماته بصفته أ <b>{single_user.data.user.user.role_ar}</b> في ال <b>{single_user.data.user.category_ar}</b> يعمل.
+                <p className="details__text">إنه خبير بناء يقدم خدماته بصفته أ <b>{single_user.data.user.service_ar.role}</b> في ال <b>{single_user.data.user.service_ar.category}</b> يعمل .
                 </p>
 
               </div>
@@ -88,12 +90,12 @@ const SingleUser = () => {
               <div className="profile__content--details">
 
                 <DetailsIcon className="details__icon" />
-                {single_user.data.user.expertiseLevel.yearsOfExperience === 0 ?
+                {single_user.data.user.experience.experience === 0 ?
                   <p className="details__text">
-                    لقد بدأت للتو في تقديم خدماتها بقوة عاملة تبلغ <b>{single_user.data.user.expertiseLevel.noOfEmployees}</b> {single_user.data.user.expertiseLevel.noOfEmployees === 1 ? "موظف" : "الموظفين"}.
+                    لقد بدأت للتو في تقديم خدماتها بقوة عاملة تبلغ <b>{single_user.data.user.resource.manpower}</b> {single_user.data.user.resource.manpower === 1 ? "موظف" : "الموظفين"} .
                   </p> :
                   <p className="details__text">
-                    لقد تم تقديم خدماتها في جميع أنحاء <b>{single_user.data.user.expertiseLevel.yearsOfExperience}</b> {single_user.data.user.expertiseLevel.yearsOfExperience === 1 ? "عام" : "سنوات"} مع قوة عمل تبلغ <b>{single_user.data.user.expertiseLevel.noOfEmployees}</b> {single_user.data.user.expertiseLevel.noOfEmployees === 1 ? "موظف" : "الموظفين"}.
+                    لقد تم تقديم خدماتها في جميع أنحاء <b>{single_user.data.user.experience.experience}</b> {single_user.data.user.experience.experience === 1 ? "عام" : "سنوات"} مع قوة عمل تبلغ <b>{single_user.data.user.resource.manpower}</b> {single_user.data.user.resource.manpower === 1 ? "موظف" : "الموظفين"} .
                   </p>}
 
 
@@ -103,9 +105,9 @@ const SingleUser = () => {
 
                 <NearMeOutlinedIcon className="details__icon" />
                 <p className="details__text" >
-                  مناطق خدمتها في <b>{single_user.data.user.location_ar.country}</b> نكون
+                  مناطق خدمتها في <b>{single_user.data.user.service_ar.region}</b> نكون
                   {
-                    single_user.data.user.location_ar.city.map((city, index) => {
+                    single_user.data.user.service_ar.city.map((city, index) => {
                       return (
                         <span key={index} className="pipe">
                           <b> {city} </b>
@@ -121,7 +123,7 @@ const SingleUser = () => {
 
                 <PhoneEnabledOutlinedIcon className="details__icon" />
                 <p className="details__text">
-                  للاتصال الهاتفي <b>{single_user.data.user.phoneNumber}</b>.
+                  للاتصال الهاتفي <b>{single_user.data.user.contact_ar.number}</b> .
                 </p>
 
               </div>
@@ -130,14 +132,21 @@ const SingleUser = () => {
 
             {/* Rating */}
             <div className="profile__rating">
-              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem", marginBottom: "1.5rem", direction: "ltr" }} readOnly />
+              <h1 className="profile__rating--verification">
+                {single_user.data.user.crnVerified ? "تم التحقق" : "لم يتم التحقق منه"}
+                {single_user.data.user.crnVerified ? <VerifiedUserIcon color="success" sx={{ fontSize: "5rem" }} /> : <GppBadIcon color="error" sx={{ fontSize: "5rem" }} />}
+              </h1>
+              <br />
+              <br />
+              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem", direction: "ltr" }} readOnly />
+              <br />
+              <br />
               <br />
               <Link
                 to={`/Projectsar/${id}`}
                 type="submit"
               >
-                <p className="rating__link">المشاريع المنجزة: {single_user.data.noOfProjects}
-                </p>
+                <Button className="rating__link" variant="contained" >المشاريع المنجزة</Button>
               </Link>
 
             </div>
@@ -148,16 +157,8 @@ const SingleUser = () => {
           <h3 className="section__title">حول</h3>
           <div className="about">
             <div className="about__div">
-              <h3>عن الشركة</h3>
-              <p>{single_user.data.user.about_ar.companyAbout}</p>
-            </div>
-            <div className="about__div">
               <h3>رؤية الشركة</h3>
-              <p>{single_user.data.user.about_ar.companyVision}</p>
-            </div>
-            <div className="about__div">
-              <h3>مهمة الشركة</h3>
-              <p>{single_user.data.user.about_ar.companyMission}</p>
+              <p>{single_user.data.user.about_ar.vision}</p>
             </div>
           </div>
         </div>
@@ -296,10 +297,17 @@ const Wrapper = styled.section`
       margin-bottom: 2rem;
     }
   }
+
   .rating__link {
-    width: 100%;
+    width: 80%;
     font-size: 2rem;
-    color: blue;
+  }
+
+  .profile__rating--verification {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .project{

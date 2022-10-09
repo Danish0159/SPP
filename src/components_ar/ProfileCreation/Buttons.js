@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonsWrapper } from "../../Shared/styled";
+import { ButtonsWrapper } from "../../Shared/CardLayout";
 
 const Buttons = ({ activeStep }) => {
+
   const steps = [
-    "فئة",
-    "مستوى الخبرة",
     "حول",
-    "موقع",
-    "رقم الهاتف",
-    "صورة الملف الشخصي",
+    "خبرة",
+    "الموارد",
+    "خدمة",
+    "اتصال",
+    "صورة",
   ];
+  
   return (
     <Wrapper>
       <ButtonsWrapper>

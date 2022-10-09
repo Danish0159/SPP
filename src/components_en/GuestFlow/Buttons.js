@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { subCategories } from "../../utils/constantsEn";
-import { ButtonsWrapper } from "../../Shared/styled";
+import { ButtonsWrapper } from "../../Shared/CardLayout";
 import { useDispatch } from "react-redux";
 import { fetchUsersEn } from "../../features_en/guest/guestSlice";
 
@@ -18,8 +18,8 @@ const Buttons = () => {
         <button
           className={searchValues.subCategory === "All SubCategories" ? "btn active" : "btn nonActive"}
           onClick={(e) => {
-            localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: "All SubCategories" }));
-            dispatch(fetchUsersEn({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: "All SubCategories"}));
+            localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, region: searchValues.region, city: searchValues.city, subCategory: "All SubCategories" }));
+            dispatch(fetchUsersEn({ role: searchValues.role, category: searchValues.category, region: searchValues.region, city: searchValues.city, subCategory: "All SubCategories"}));
           }}
         >
           All SubCategories
@@ -29,8 +29,8 @@ const Buttons = () => {
             key={index}
             className={searchValues.subCategory === label.value_en ? "btn active" : "btn nonActive"}
             onClick={(e) => {
-              localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: label.value_en }));
-              dispatch(fetchUsersEn({ role: searchValues.role, category: searchValues.category, country: searchValues.country, city: searchValues.city, subCategory: label.value_en }));
+              localStorage.setItem("searchValues", JSON.stringify({ role: searchValues.role, category: searchValues.category, region: searchValues.region, city: searchValues.city, subCategory: label.value_en }));
+              dispatch(fetchUsersEn({ role: searchValues.role, category: searchValues.category, region: searchValues.region, city: searchValues.city, subCategory: label.value_en }));
             }}
           >
             {label.value_en}

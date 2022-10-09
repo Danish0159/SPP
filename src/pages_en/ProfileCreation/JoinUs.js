@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Footer } from "../../components_en";
 import { Buttons } from "../../components_en/ProfileCreation";
 import image from "../../images/join.jpg";
-import { CardLayout } from '../../Shared/styled'
+import { CardLayout } from '../../Shared/CardLayout'
 import { NavbarProfileCreation } from "../../components_en/Navigations";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 
@@ -13,7 +13,7 @@ const JoinUs = () => {
   const user = getUserFromLocalStorage();
 
   return (
-    <main>
+    <>
       <NavbarProfileCreation></NavbarProfileCreation>
       <CardLayout>
         <Buttons activeStep={null}></Buttons>
@@ -39,7 +39,7 @@ const JoinUs = () => {
         </Wrapper>
       </CardLayout>
       <Footer></Footer>
-    </main >
+    </>
   );
 };
 
@@ -53,6 +53,7 @@ const Wrapper = styled.section`
       height: 240px;
     }
   }
+  
   .join__content {
     padding: 3rem 2rem;
   }

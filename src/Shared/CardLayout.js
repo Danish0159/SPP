@@ -12,29 +12,31 @@ export const CardLayout = styled.div`
    @media only screen and (max-width: 850px) {
     grid-template-columns: 1fr;
     padding: 3rem 2rem;
-   grid-gap: 0rem;
-
+    grid-gap: 0rem;
   }
+
   .card {
     min-height: 50vh;
     position: relative;
-
   }
+
   .card__content {
     padding: 2rem;
   }
+
   .card__title {
     background-color: var(--clr-blue-2);
     color: #ffffff;
     padding: 1.2rem 2rem 1.2rem 2rem;
     font-size: 2rem;
-
   }
+
   .card__subtitle {
     font-size: 1.8rem;
     margin: 2rem 0rem;
 
   }
+
  .btn-container {
     display: flex;
     justify-content: space-between;
@@ -49,14 +51,15 @@ export const CardLayout = styled.div`
     font-weight: 500;
   }
   
-  /////////////
   /* Thumbs */
+
   .thumbsContainer{
     display: flex;
     flex-direction:row;
     flex-wrap: wrap;
     margin-top: 16px;
   }
+
   .thumb{
     display: inline-flex;
     border-radius:2px;
@@ -68,25 +71,30 @@ export const CardLayout = styled.div`
     padding: 4px;
     box-sizing:border-box;
   }
+
   .thumbInner{
     display:flex;
     min-width:0px;
     overflow:hidden ;
   }
+
   .img{
     display: block;
     width: auto;
     height: 100%;
   }
+
   .thumbPadding {
     padding: 10px 0px;
   }
+
   /* Drop Zone Text */
+
  .drop {
-  
   font-size: 1.5rem;
   color: var(--clr-black);
-}
+  }
+  
 `;
 
 export const ButtonsWrapper = styled.div`

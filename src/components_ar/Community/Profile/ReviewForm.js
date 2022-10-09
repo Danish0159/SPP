@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Rating, TextField } from '@mui/material';
-import { styles } from '../../../Shared/styles'
+import { styles } from '../../../Shared/Styles'
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../Spinner';
 import { reviewProjectAr, reset } from '../../../features_ar/profile/profileSlice';
@@ -28,7 +28,7 @@ const ReviewForm = ({ User, userId, id }) => {
                 icon: "success",
             }).then(() => {
                 dispatch(reset());
-                window.location.replace("https://mahnty.netlify.app/");
+                window.location.replace("https://mahntysa.netlify.app/");
 
             });
         }
@@ -75,7 +75,7 @@ const ReviewForm = ({ User, userId, id }) => {
                     style: styles.textField,
                     maxLength: 20
                 }}
-                helperText={<p style={{ fontSize: "1.5rem" }}>{name.length}/{20}</p>}
+                helperText={<small className="helper">{name.length}/{20}</small>}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -90,7 +90,7 @@ const ReviewForm = ({ User, userId, id }) => {
                     style: styles.textField,
                     maxLength: 20
                 }}
-                helperText={<p style={{ fontSize: "1.5rem" }}>{title.length}/{20}</p>}
+                helperText={<small className="helper">{title.length}/{20}</small>}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
@@ -98,23 +98,20 @@ const ReviewForm = ({ User, userId, id }) => {
             <p className="project__title">رقم الهاتف</p>
             <TextField
                 fullWidth
-                style={{direction: "ltr"}}
                 type="tel"
                 name="number"
                 inputProps={{
                     style: styles.textField,
-                    maxLength: 11
+                    maxLength: 10
                 }}
                 value={phoneNumber}
                 onChange={(e) => {
-                    let regExp = /[a-zA-Z]/g;
+                    let regExp = /^[0-9]*$/;
 
                     if (regExp.test(e.target.value)) {
-                        /* do something if letters are found in your string */
-                        console.log("Letters are not allowed")
+                        setPhoneNumber(e.target.value);
                     } else {
-                        /* do something if letters are not found in your string */
-                        setPhoneNumber(e.target.value)
+                        console.log("Only numbers are allowed");
                     }
                 }}
                 required
@@ -122,7 +119,7 @@ const ReviewForm = ({ User, userId, id }) => {
             <p className="project__title">تقييم</p>
             <Rating
                 value={stars}
-                sx={{direction: "ltr"}}
+                sx={{ direction: "ltr" }}
                 name="simple-controlled"
                 onChange={(event, newValue) => {
                     setStars(newValue);
@@ -142,7 +139,7 @@ const ReviewForm = ({ User, userId, id }) => {
                     style: styles.desciption,
                     maxLength: 100
                 }}
-                helperText={<p style={{ fontSize: "1.5rem", textAlign: "right" }}>{review.length}/{100}</p>}
+                helperText={<small className="helper">{review.length}/{100}</small>}
                 rows={3}
                 multiline
                 value={review}

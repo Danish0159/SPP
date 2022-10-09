@@ -6,6 +6,7 @@ import { Footer } from "../../components_en";
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
+import { regions, albahahCities, aljawfCities, alqaseemCities, aseerCities, easternregionCities, hailCities, jazanCities, meccaCities, medinaCities, najranCities, northernbordersCities, riyadhCities, taboukCities } from '../../utils/constantsEn';
 
 
 const HomePage = () => {
@@ -17,13 +18,11 @@ const HomePage = () => {
 
     const history = useHistory();
 
-    const [country, setCountry] = useState("Country");
+    const [region, setRegion] = useState("Region");
     const [city, setCity] = useState("City");
 
 
     useEffect(() => {
-
-
 
         let lang = localStorage.getItem('lang');
 
@@ -31,14 +30,66 @@ const HomePage = () => {
             history.replace('/ar');
         }
 
-        const location = JSON.parse(localStorage.getItem("locationEn"));
-        if (location) {
-            setCountry(location.country);
-            setCity(location.city);
+        const locationAr = JSON.parse(localStorage.getItem("locationAr"));
+        const locationEn = JSON.parse(localStorage.getItem("locationEn"));
+
+        if (locationAr) {
+            let regionSelected = regions.find(item => item.value_ar === locationAr.region);
+
+            let citySelected;
+
+            if (regionSelected.value_ar === "الباحة") {
+                citySelected = albahahCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "الجوف") {
+                citySelected = aljawfCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "القصيم") {
+                citySelected = alqaseemCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "عسير") {
+                citySelected = aseerCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "المنطقة الشرقية") {
+                citySelected = easternregionCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "حائل") {
+                citySelected = hailCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "جازان") {
+                citySelected = jazanCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "مكة المكرمة") {
+                citySelected = meccaCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "المدينة المنورة") {
+                citySelected = medinaCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "نجران") {
+                citySelected = najranCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "الحدود الشمالية") {
+                citySelected = northernbordersCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "الرياض") {
+                citySelected = riyadhCities.find(item => item.value_ar === locationAr.city)
+            }
+            else if (regionSelected.value_ar === "تبوك") {
+                citySelected = taboukCities.find(item => item.value_ar === locationAr.city)
+            }
+
+            setRegion(regionSelected ? regionSelected.value_en : "Region");
+            setCity(citySelected ? citySelected.value_en : "City");
+
+            localStorage.setItem("locationEn", JSON.stringify({ region: regionSelected ? regionSelected.value_en : "Region", city: citySelected ? citySelected.value_en : "City" }));
+        }
+        else if (locationEn) {
+            setRegion(locationEn ? locationEn.region : "Region");
+            setCity(locationEn ? locationEn.city : "City");
         }
         else {
             swal({
-                title: "Select Country and City",
+                title: "Select Region and City",
                 icon: "success",
                 text: "For Searching Best Construction Experts In Your Locality"
             })
@@ -48,7 +99,7 @@ const HomePage = () => {
 
 
     const HomeValues = {
-        country, city, setCity, setCountry, setCategoriesDataM, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
+        region, city, setRegion, setCity, setCategoriesDataM, setCategoriesDataC, setCategoriesDataD, setCategoriesDataCF,
     }
 
     return (

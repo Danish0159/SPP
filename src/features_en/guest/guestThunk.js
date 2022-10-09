@@ -1,9 +1,9 @@
 import { customFetch } from '../../utils/axios';
 import { checkStatus, checkError } from '../../utils/helpers';
 
-export const fetchUsersThunkEn = async ({ role, category, country, city, subCategory }, thunkAPI) => {
+export const fetchUsersThunkEn = async ({ role, category, region, city, subCategory }, thunkAPI) => {
   try {
-    const resp = await customFetch.get(`/public/searchen?role=${role}&category=${category}&country=${country}&city=${city}&subCategory=${subCategory}`);
+    const resp = await customFetch.get(`/public/searchen?role=${role}&category=${category}&region=${region}&city=${city}&subCategory=${subCategory}`);
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {

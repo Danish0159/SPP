@@ -15,24 +15,24 @@ const PreviewProfile = () => {
         <Wrapper>
             <div className="profile__avatar">
                 <Avatar
-                    src={user.profile.profilePhoto}
+                    src={user.profile.photo}
                     sx={{ width: 100, height: 100 }}
                     alt="Avatar"
                 />
             </div>
             <div className="preview__info">
-                <p className="profile__title">اسم</p>
+                <p className="profile__title">اسم االمستخدم</p>
                 <p className="profile__subtitle">{user.user.name_ar}</p>
                 <p className="profile__title">البريد الإلكتروني</p>
                 <p className="profile__subtitle">{user.user.email}</p>
-                <p className="profile__title">وظيفة</p>
-                <p className="profile__subtitle">{user.user.role_ar}</p>
+                <p className="profile__title">دور الخدمة</p>
+                <p className="profile__subtitle">{user.profile.service_ar.role}</p>
                 <p className="profile__title">رقم الاتصال</p>
-                <p className="profile__subtitle">{user.profile.phoneNumber}</p>
-                <p className="profile__title">موقع</p>
+                <p className="profile__subtitle">{user.profile.contact_ar.number}</p>
+                <p className="profile__title">موقع الخدمة</p>
                 <p className="profile__subtitle">
-                    {user.profile.location_ar.country},&nbsp;
-                    {user.profile.location_ar.city.map((city, index) => {
+                    {user.profile.service_ar.region},&nbsp;
+                    {user.profile.service_ar.city.map((city, index) => {
                         return (
                             <span key={index} className="pipe" > {city} </span>
                         )

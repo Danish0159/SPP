@@ -12,6 +12,12 @@ export const SignupPageAr = lazy(() =>
   }))
 );
 
+export const VerifyPageAr = lazy(() =>
+  import("./VerifyPage").then(({ default: VerifyPageAr }) => ({
+    default: VerifyPageAr,
+  }))
+);
+
 export const AboutPageAr = lazy(() =>
   import("./AboutPage").then(({ default: AboutPageAr }) => ({
     default: AboutPageAr,

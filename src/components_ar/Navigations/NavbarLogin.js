@@ -9,7 +9,7 @@ const NavbarLogin = () => {
         <Link className="navbar__link" to="/ar">
           <img className="navbar__logo" src={logo} alt="Logo" />
         </Link>
-        <Link to="/Signupar" className="btn-small btn-nav">
+        <Link to="/Signupar" className="btn-small">
           سجل الان
         </Link>
       </div>

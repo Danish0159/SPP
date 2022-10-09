@@ -15,7 +15,6 @@ function Hero() {
         </div>
 
         <div className="hero__content">
-          <h2 className="hero__title">Everything Is In Your Hands</h2>
           <p className="hero__paragraph">Search for the best construction experts in your locality, and verify their previous experiences before contacting them.</p>
         </div>
 
@@ -34,12 +33,6 @@ const Wrapper = styled.section`
   color: #ffffff;
   display: flex;
   align-items: center;
-
-  .hero__title {
-    
-    font-weight: 700;
-    font-size: 3.5rem;
-  }
 
   .hero__grid {
     max-width: 135rem;

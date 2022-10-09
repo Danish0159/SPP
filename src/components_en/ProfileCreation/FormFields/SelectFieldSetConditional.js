@@ -1,59 +1,57 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { at } from "lodash";
-import { useField } from "formik";
 import { useDispatch } from "react-redux";
-import { updateConditionalFlag } from "../../../features_en/profile/profileSlice";
-import { FormControl, Select, MenuItem } from "@mui/material";
-import { styles } from '../../../Shared/styles';
+import { Select, MenuItem } from "@mui/material";
+import { useController } from "react-hook-form";
+import { styles } from "../../../Shared/Styles";
 
 function SelectFieldSetConditional(props) {
 
-    const { label, data, ...rest } = props;
-    const [field, meta] = useField(props);
-    const { value: selectedValue } = field;
-    const [touched, error] = at(meta, "touched", "error");
-    const isError = touched && error && true;
-    function _renderHelperText() {
-        if (isError) {
-            return <p className="error-p">{error}</p>;
-        }
-    }
-    function updateState() {
-        dispatch(updateConditionalFlag(selectedValue.value_en));
-    }
-    // State.
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (selectedValue) {
-            updateState();
-        }
-        // eslint-disable-next-line
-    }, [selectedValue]);
+    const {
+        field: { onChange, name, value },
+        fieldState: { error }
+    } = useController({
+        name: props.name,
+        control: props.control,
+        rules: {
+            required: true
+        },
+        defaultValue: ""
+    });
 
-    return (
-        <FormControl {...rest} error={isError}>
-            <Select sx={styles.select}
-                {...field}
-                value={selectedValue ? selectedValue : ""}
-            >
-                {data && data.map((item, index) => (
-                    <MenuItem sx={styles.menu} key={index} value={item}>
-                        {item.value_en}
-                    </MenuItem>
-                ))}
-            </Select>
-            {_renderHelperText()}
-        </FormControl>
-    );
+const dispatch = useDispatch();
+
+function updateState() {
+    dispatch(props.updateConditionalFlag(value));
 }
 
-SelectFieldSetConditional.defaultProps = {
-    data: [],
-};
+useEffect(() => {
+    if (value) {
+        updateState();
+    }
+    // eslint-disable-next-line
+}, [value]);
 
-SelectFieldSetConditional.propTypes = {
-    data: PropTypes.array.isRequired,
+console.log("select field conditional");
+
+return (
+    <>
+        <Select
+            fullWidth
+            name={name}
+            value={value}
+            onChange={onChange}
+            style={styles.select}
+            error={error && true}
+        >
+            {props.data && props.data.map((item, index) => (
+                <MenuItem sx={styles.menu} key={index} value={item.value_en}>
+                    {item.value_en}
+                </MenuItem>
+            ))}
+        </Select>
+        {error && error.type === "required" ? <small className="error">Required</small> : null}
+    </>
+)
 };
 
 export default SelectFieldSetConditional;

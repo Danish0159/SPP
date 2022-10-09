@@ -1,26 +1,25 @@
 import React from "react";
 import { InputField } from "../../components_ar/ProfileCreation/FormFields";
-import { styles } from "../../Shared/styles";
+import { styles } from "../../Shared/Styles";
 
+export default function About({ control }) {
 
-export default function About(props) {
-  const {
-    formField: { name, about, vision, mission },
-  } = props;
-
+  console.log("about");
 
   return (
-    <>
-      <main>
-        <p className="card__subtitle">اسم الشركة</p>
-        <InputField name={name.name} type="text" limit={50} fullWidth multiline rows={1}  style={styles.desciption} />
-        <p className="card__subtitle">عن الشركة</p>
-        <InputField name={about.name} type="text" limit={200} fullWidth multiline rows={3} style={styles.desciption} />
-        <p className="card__subtitle">رؤية الشركة</p>
-        <InputField name={vision.name} type="text" limit={200} fullWidth multiline rows={3} style={styles.desciption} />
-        <p className="card__subtitle">مهمة الشركة</p>
-        <InputField name={mission.name} type="text" limit={200} fullWidth multiline rows={3} style={styles.desciption} />
-      </main>
-    </>
+    <div>
+      <p className="card__subtitle">اسم الشركة :</p>
+      <InputField name="name" control={control} type="text" limit={50} multiline={true} rows={1} style={styles.desciption} />
+      <p className="card__subtitle">عنوان الشركة :</p>
+      <InputField name="address" control={control} type="text" multiline={true} rows={1} style={styles.desciption} />
+      <p className="card__subtitle">سنة تأسيس الشركة :</p>
+      <InputField name="establishmentYear" control={control} type="text" limit={4} pattern={/^[0-9]*$/} min={0} minLength={4} style={styles.textField} />
+      <p className="card__subtitle">رقم تسجيل الشركة :</p>
+      <InputField name="registrationNumber" control={control} type="text" multiline={true} rows={1} style={styles.desciption} />
+      <p className="card__subtitle">رؤية الشركة :</p>
+      <InputField name="vision" control={control} type="text" limit={200} multiline={true} rows={3} style={styles.desciption} />
+      <p className="card__subtitle">أعلى قيمة نقدية تأخذها الشركة في المشروع :</p>
+      <InputField name="highestMonetaryValue" control={control} type="text" multiline={true} rows={1} style={styles.desciption} />
+    </div>
   );
 }

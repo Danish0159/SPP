@@ -1,12 +1,12 @@
 import { lazy } from "react";
 
 import DriverEn from "./Driver";
-import Category from "./Category";
-import ExpertiseLevel from "./ExpertiseLevel";
 import About from "./About";
-import Location from "./Location";
-import ProfilePhoto from "./ProfilePhoto";
-import PhoneNumber from "./PhoneNumber";
+import Experience from "./Experience";
+import Resource from "./Resource";
+import Service from "./Service";
+import Contact from "./Contact";
+import Photo from "./Photo";
 
 export const JoinUsEn = lazy(() =>
   import("./JoinUs").then(({ default: JoinUsEn }) => ({
@@ -16,10 +16,10 @@ export const JoinUsEn = lazy(() =>
 
 export {
   DriverEn,
-  Category,
-  ExpertiseLevel,
   About,
-  Location,
-  PhoneNumber,
-  ProfilePhoto,
+  Experience,
+  Resource,
+  Service,
+  Contact,
+  Photo,
 };

@@ -6,13 +6,15 @@ import { Gallery, Reviews } from ".";
 import { fetchSingleUserEn } from "../../features_en/guest/guestSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner";
-import { Avatar, Rating } from "@mui/material";
+import { Avatar, Button, Rating } from "@mui/material";
 import Carousel from 'react-elastic-carousel';
 import details from '../../images/details.png';
 import DetailsIcon from '@mui/icons-material/Details';
 import NearMeOutlinedIcon from '@mui/icons-material/NearMeOutlined';
 import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import GppBadIcon from '@mui/icons-material/GppBad';
 
 
 const SingleUser = () => {
@@ -60,13 +62,13 @@ const SingleUser = () => {
             <div className="profile__name">
               <div className="profile__name--avatar">
                 <Avatar
-                  src={single_user.data.user.profilePhoto}
+                  src={single_user.data.user.photo}
                   sx={{ width: 130, height: 130, border: "1px solid blue" }}
                   alt="Avatar"
                 />
               </div>
               <h1 className="profile__name--title">
-                {single_user.data.user.about_en.companyName}
+                {single_user.data.user.about_en.name}
               </h1>
 
               <Link to="#" type="submit" className="blue-btn profile-btn disableButtonColor">
@@ -81,7 +83,7 @@ const SingleUser = () => {
               <div className="profile__content--details">
 
                 <img src={details} className="details__icon " alt="" />
-                <p className="details__text">Its a construction expert providing its services as a <b>{single_user.data.user.user.role_en}</b> in the <b>{single_user.data.user.category_en}</b> works.
+                <p className="details__text">Its a construction expert providing its services as a <b>{single_user.data.user.service_en.role}</b> in the <b>{single_user.data.user.service_en.category}</b> works .
                 </p>
 
               </div>
@@ -89,12 +91,12 @@ const SingleUser = () => {
               <div className="profile__content--details">
 
                 <DetailsIcon className="details__icon" />
-                {single_user.data.user.expertiseLevel.yearsOfExperience === 0 ?
+                {single_user.data.user.experience.experience === 0 ?
                   <p className="details__text">
-                    It has just started providing its services with a work force of <b>{single_user.data.user.expertiseLevel.noOfEmployees}</b> {single_user.data.user.expertiseLevel.noOfEmployees === 1 ? "employee" : "employees"}.
+                    It has just started providing its services with a work force of <b>{single_user.data.user.resource.manpower}</b> {single_user.data.user.resource.manpower === 1 ? "employee" : "employees"} .
                   </p> :
                   <p className="details__text">
-                    It has been providing its services for around <b>{single_user.data.user.expertiseLevel.yearsOfExperience}</b> {single_user.data.user.expertiseLevel.yearsOfExperience === 1 ? "year" : "years"} with a work force of <b>{single_user.data.user.expertiseLevel.noOfEmployees}</b> {single_user.data.user.expertiseLevel.noOfEmployees === 1 ? "employee" : "employees"}.
+                    It has been providing its services for around <b>{single_user.data.user.experience.experience}</b> {single_user.data.user.experience.experience === 1 ? "year" : "years"} with a work force of <b>{single_user.data.user.resource.manpower}</b> {single_user.data.user.resource.manpower === 1 ? "employee" : "employees"} .
                   </p>}
 
 
@@ -104,9 +106,9 @@ const SingleUser = () => {
 
                 <NearMeOutlinedIcon className="details__icon" />
                 <p className="details__text" >
-                  Its service areas in <b>{single_user.data.user.location_en.country}</b> are
+                  Its service areas in <b>{single_user.data.user.service_en.region}</b> are
                   {
-                    single_user.data.user.location_en.city.map((city, index) => {
+                    single_user.data.user.service_en.city.map((city, index) => {
                       return (
                         <span key={index} className="pipe">
                           <b> {city} </b>
@@ -123,7 +125,7 @@ const SingleUser = () => {
 
                 <CallOutlinedIcon className="details__icon" />
                 <p className="details__text">
-                  For contact dial <b>{single_user.data.user.phoneNumber}</b>.
+                  For contact dial <b>{single_user.data.user.contact_en.number}</b> .
                 </p>
 
               </div>
@@ -133,14 +135,22 @@ const SingleUser = () => {
 
             {/* Rating */}
             <div className="profile__rating">
-              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem", marginBottom: "1.5rem" }} readOnly />
+              <h1 className="profile__rating--verification">
+                {single_user.data.user.crnVerified ? "Verified" : "Not-Verified"}
+                {single_user.data.user.crnVerified ? <VerifiedUserIcon color="success" sx={{ fontSize: "5rem" }} /> : <GppBadIcon color="error" sx={{ fontSize: "5rem" }} />}
+              </h1>
+              <br />
+              <br />
+              <Rating precision={0.5} name="read-only" value={single_user.data.user.stars} style={{ fontSize: "2.6rem" }} readOnly />
+              <br />
+              <br />
               <br />
               <Link
                 to={`/Projects/${id}`}
                 type="submit"
               >
-                <p className="rating__link">Projects Completed: {single_user.data.noOfProjects}
-                </p>
+                <Button className="rating__link" variant="contained" >Projects Completed
+                </Button>
               </Link>
 
             </div>
@@ -151,16 +161,8 @@ const SingleUser = () => {
           <h3 className="section__title">About</h3>
           <div className="about">
             <div className="about__div">
-              <h3>About Company</h3>
-              <p>{single_user.data.user.about_en.companyAbout}</p>
-            </div>
-            <div className="about__div">
               <h3>Company Vision</h3>
-              <p>{single_user.data.user.about_en.companyVision}</p>
-            </div>
-            <div className="about__div">
-              <h3>Company Mission</h3>
-              <p>{single_user.data.user.about_en.companyMission}</p>
+              <p>{single_user.data.user.about_en.vision}</p>
             </div>
           </div>
         </div>
@@ -300,9 +302,15 @@ const Wrapper = styled.section`
     }
   }
   .rating__link {
-    width: 100%;
+    width: 80%;
     font-size: 2rem;
-    color: blue;
+  }
+
+  .profile__rating--verification {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .project{

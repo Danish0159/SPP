@@ -1,154 +1,255 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import { MenuItem, TextField, Button, InputAdornment } from "@mui/material";
+import { roles } from "../utils/constantsAr";
+import { styles } from '../Shared/Styles';
+import { useFormik } from "formik";
+import * as yup from "yup";
+import axios from "axios";
+import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
+import KeyIcon from '@mui/icons-material/Key';
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import PhoneIcon from '@mui/icons-material/Phone';
 import Spinner from "./Spinner";
-import { toast } from "react-toastify";
-import { Link, useHistory } from "react-router-dom";
-import signupImage from "../images/signup.png";
-import { FormControl, MenuItem, Select, TextField } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { registerUserAr, reset } from '../features_ar/user/userSlice';
-import { users } from "../utils/constantsAr";
-import { styles } from '../Shared/styles';
 
-const initialState = {
-  name: "",
-  email: "",
-  password: "",
-  role: "",
-};
+const schema = yup.object().shape({
+  name: yup.string().required('مطلوب*'),
+  email: yup.string().email('تنسيق بريد إلكتروني غير صالح').required('مطلوب*'),
+  password: yup.string().min(8, 'قصير جدًا - يجب ألا يقل عن 8 أحرف').required('مطلوب*'),
+  role: yup.string().required('مطلوب*'),
+  phoneNumber: yup.string().min(10, 'يجب أن يكون 10 رقمًا بالضبط').required('مطلوب*')
+});
 
 const Signup = () => {
-  const [values, setValues] = useState(initialState);
-  const { isLoading, isSuccess, } = useSelector(
-    (state) => state.userAr
-  );
 
-  const dispatch = useDispatch();
+  const formValues = JSON.parse(localStorage.getItem("formValues"));
+
+  const [emailExist, setEmailExist] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const history = useHistory();
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  let initialValues;
 
-    setValues({ ...values, [name]: value });
+  if (formValues) {
+    initialValues = {
+      name: formValues.name,
+      email: formValues.email,
+      password: formValues.password,
+      role: formValues.role,
+      phoneNumber: formValues.phoneNumber
+    }
+  }
+  else {
+    initialValues = {
+      name: "",
+      email: "",
+      password: "",
+      role: "",
+      phoneNumber: ""
+    }
+  }
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: schema,
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnMount: true,
+  });
+
+  const onSignUpSubmit = () => {
+
+    localStorage.setItem("formValues", JSON.stringify(formik.values));
+
+    history.push('/Verifyar');
+
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const { name, email, password, role } = values;
-    if (!name || !email || !password || !role) {
-      toast.error('يرجى ملء جميع الحقول');
-      return;
-    }
-    if (password.length < 8) {
-      toast.error("كلمة المرور قصيرة جدًا - يجب ألا تقل عن 8 أحرف.");
-      return;
-    }
-    dispatch(registerUserAr({ name, email, password, role, }));
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
-      history.push("/Loginar");
-      dispatch(reset());
-    }
-    // eslint-disable-next-line
-  }, [isSuccess]);
-
-  if (isLoading) {
+  if (loading) {
     return <Spinner />;
   }
+
   return (
     <Wrapper>
       <div className="signup__grid">
-        <figure className="signup__div">
-          <img className="signup__img" src={signupImage} alt="SignUp" />
-        </figure>
-        <form onSubmit={onSubmit} className="signup__form">
-          <h2 className="signup__title">سجل الان</h2>
 
-          <div className="form-group">
-            <label htmlFor="name">الاسم الكامل</label>
-            <TextField
-              fullWidth
-              type="text"
-              name="name"
-              value={values.name}
-              onChange={handleChange}
-              inputProps={{
-                style: styles.textField,
-              }}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">عنوان البريد الالكترونى</label>
-            <TextField
-              fullWidth
-              sx={{direction: "ltr"}}
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              inputProps={{
-                style: styles.textField,
-              }}
-            />
-          </div>
+        <h2 className="signup__title" >اشتراك</h2>
 
-          <div className="form-group">
-            <label htmlFor="password">كلمة المرور</label>
-            <TextField
-              fullWidth
-              sx={{direction: "ltr"}}
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              inputProps={{
-                style: styles.textField,
-              }}
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="name">الاسم الكامل</label>
+          <TextField
+            fullWidth
+            autoComplete="off"
+            type="text"
+            name="name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            inputProps={{
+              style: styles.textField,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PersonIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {formik.touched.name && formik.errors.name ? <p className="error">{formik.errors.name}</p> : null}
+        </div>
+        <div className="form-group">
+          <label htmlFor="name">عنوان البريد الالكترونى</label>
+          <TextField
+            fullWidth
+            autoComplete="off"
+            type="text"
+            name="email"
+            placeholder="على سبيل المثال ، example@gmail.com"
+            value={formik.values.email}
+            onChange={(e) => {
+              if (emailExist) {
+                setEmailExist(false);
+              }
+              formik.handleChange(e);
+            }}
+            onBlur={formik.handleBlur}
+            inputProps={{
+              style: styles.textField,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <EmailIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {formik.touched.email && formik.errors.email ? <p className="error">{formik.errors.email}</p> : null}
+          {emailExist && <p className="error emailexists">البريد الالكتروني موجود بالفعل</p>}
+        </div>
 
-          <div className="form-group">
-            <label htmlFor="password">سجل باسم</label>
-            <FormControl fullWidth>
-              <Select
-                type="text"
-                name="role"
-                value={values.role}
-                onChange={handleChange}
-                sx={styles.select}
-              >
-                {users.map((user, index) => (
-                  <MenuItem
-                    sx={styles.menu}
-                    key={index} value={user.value_ar}>
-                    {user.value_ar}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
+        <div className="form-group">
+          <label htmlFor="name">كلمة المرور</label>
+          <TextField
+            fullWidth
+            autoComplete="off"
+            type="password"
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            inputProps={{
+              style: styles.textField,
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <KeyIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {formik.touched.password && formik.errors.password ? <p className="error">{formik.errors.password}</p> : null}
+        </div>
 
-          <button
-            type="submit"
-            className="blue-btn submit-button"
+        <div className="form-group">
+          <label htmlFor="name">دور الخدمة</label>
+          <TextField
+            fullWidth
+            select
+            autoComplete="off"
+            name="role"
+            value={formik.values.role}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            SelectProps={{
+              style: {
+                fontSize: "1.5rem",
+                fontWeight: "400",
+                color: "#2a2a2a",
+              }
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <MiscellaneousServicesIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px" }} />
+                </InputAdornment>
+              ),
+            }}
           >
-            سجل الان
-          </button>
+            {roles.map((role, index) => (
+              <MenuItem
+                sx={styles.menu}
+                key={index} value={role.value_ar}>
+                {role.value_ar}
+              </MenuItem>
+            ))}
+          </TextField>
+          {formik.touched.role && formik.errors.role ? <p className="error">{formik.errors.role}</p> : null}
+        </div>
 
-          <p className="signup__dont">
-            هل لديك حساب؟
-            <span className="signup__register">
-              {" "}
-              <Link to="/Loginar">
-                <u>تسجيل الدخول الآن</u>
-              </Link>{" "}
-            </span>
-          </p>
-        </form>
+        <div className="form-group">
+          <label htmlFor="name">رقم الهاتف</label>
+          <TextField
+            fullWidth
+            autoComplete="off"
+            type="tel"
+            name="phoneNumber"
+            placeholder="على سبيل المثال ، 0523451759"
+            value={formik.values.phoneNumber}
+            onChange={(e) => {
+
+              let regExp = /^[0-9]*$/;
+
+              if (regExp.test(e.target.value)) {
+                formik.handleChange(e);
+              } else {
+                console.log("Only numbers are allowed");
+              }
+            }}
+            onBlur={formik.handleBlur}
+            inputProps={{
+              style: styles.textField,
+              maxLength: 10
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PhoneIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {formik.touched.phoneNumber && formik.errors.phoneNumber ? <p className="error">{formik.errors.phoneNumber}</p> : null}
+        </div>
+
+        <Button
+          className={!formik.isValid ? "signup__btndisabled" : "signup__btnactive"}
+          variant="contained"
+          disabled={!formik.isValid}
+          onClick={() => {
+            setLoading(true);
+            axios.post('https://backendsaudia.herokuapp.com/api/user/checkemail', { email: formik.values.email }).then((response) => {
+              if (response.data.status === "FAILED") {
+                setLoading(false);
+                setEmailExist(true);
+              }
+              else if (response.data.status === "SUCCESS") {
+                setLoading(false);
+                onSignUpSubmit();
+              }
+            })
+          }}
+        >
+          يسجل
+        </Button>
+
       </div>
+
     </Wrapper>
   );
 };
@@ -156,111 +257,74 @@ const Signup = () => {
 export default Signup;
 
 const Wrapper = styled.section`
-  background-color: #424d83;
+
   height: 100%;
-  padding: 3rem;
-  @media only screen and (max-width: 850px) {
-    padding: 4rem 2rem;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
   .signup__grid {
-    max-width: 108rem;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    grid-gap: 6rem;
-    align-items: center;
-  }
-  @media only screen and (max-width: 850px) {
-    .signup__grid {
-      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-      max-width: 100%;
-      grid-gap: 6rem;
-    }
-  }
-  .signup__div {
-    width: 90%;
-  }
-  .signup__img {
-    width: 100%;
-    display: block;
-  }
-
-  @media only screen and (max-width: 600px) {
-
-    height: 100vh;
-    
-    .signup__div {
-      display: none;
-    }
-    .signup__img {
-      display: none;
-    }
-
-  }
-
-  form {
-    background-color: white;
-    padding: 2.6rem 6rem;
-    border-radius: 20px;
-    width: 100%;
-    @media only screen and (max-width: 1000px) {
-      padding: 2.6rem 4rem;
-    }
-    @media only screen and (max-width: 850px) {
-      padding: 2.6rem 2rem;
-    }
-  }
-  .signup__title {
-    
-    font-size: 3.6rem;
-    font-weight: 900;
-    color: var(--clr-black);
-    margin-bottom: 2rem;
-  }
-
-  label {
+    margin: 2rem 0rem;
+    border: 1px solid lightgrey;
+    padding: 1rem 2rem;
+    border-radius: 15px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    color: #2a2a2a;
-    font-size: 1.8rem;
-    margin-bottom: 0.2rem;
   }
+
+  @media only screen and (max-width: 500px) {
+    .signup__grid {
+      border: none;
+      border-radius: 0px;
+    }
+  }
+
   .form-group {
-    margin: 0 auto 1.25rem auto;
-    padding: 0.25rem;
-  }
-  .form-control {
-    display: block;
+    margin: 2rem;
     width: 100%;
-    height: 2.5rem;
-    padding: 0.375rem 0.7rem;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    border: none;
-    border-bottom: 1px solid #ced4da;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
-  .form-control:focus {
-    border-color: #80bdff;
-    outline: 0;
-  }
-  .signup__dont {
-    text-align: center;
-    margin-top: 2rem;
+
+  .form-group label {
     font-size: 1.8rem;
+    font-weight: 400;
+    color: "#2a2a2a"
   }
-  .signup__register {
-    color: var(--clr-blue-2);
+
+  .signup__title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #424d83;
+    text-align: center;
   }
-  .error-p {
-    padding: 0px 0px 0px 3px;
-    margin: 0px;
-    font-size: 15px;
+
+  .signup__btnactive {
+    font-size: 1.8rem;
+    width: 15rem;
+    font-weight: 500;
+    color: white;
+    background-color: #424d83;
+    border-radius: 20px;
+  }
+
+  .signup__btndisabled {
+    font-size: 1.8rem;
+    width: 15rem;
+    font-weight: 900;
+    color: grey;
+    background-color: whitesmoke;
+    border-radius: 20px;
+  }
+
+  .error {
+    margin-top: 0.8rem;
     color: red;
-    height: 5px;
   }
+
+  .error emailexists {
+    margin-top: 0.8rem;
+    color: blue;
+  }
+ 
 `;

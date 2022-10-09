@@ -29,9 +29,9 @@ const SingleProject = () => {
     return (
       <Wrapper>
         <BackToProfile
-          avatar={single_project.data.profilePhoto}
-          name={single_project.data.about_en.companyName}
-          role={single_project.data.user.role_en}
+          avatar={single_project.data.photo}
+          name={single_project.data.about_en.name}
+          role={single_project.data.service_en.role}
           userId={userId}
         ></BackToProfile>
 

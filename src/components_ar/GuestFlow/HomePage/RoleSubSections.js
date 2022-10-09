@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
+const RoleSubSections = ({ id, role, region, city, roleCategories }) => {
 
     const history = useHistory();
 
@@ -38,19 +38,19 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
 
                                 <img
                                     onClick={() => {
-                                        if (city === "مدينة" && country === "دولة") {
+                                        if (city === "مدينة" && region === "منطقة") {
                                             toast.error("يرجى تحديد كل من الدولة والمدينة");
                                         }
                                         else if (city === "مدينة") {
                                             toast.error("يرجى تحديد المدينة أيضًا");
                                         }
-                                        else if (country === "دولة") {
+                                        else if (region === "منطقة") {
                                             toast.error("الرجاء تحديد الدولة");
                                         }
                                         else {
-                                            const searchValues = { role: role, category: val.name.value_ar.trim(), country: country, city: city, subCategory: "جميع الفئات الفرعية" }
+                                            const searchValues = { role: role, category: val.name.value_ar.trim(), region: region, city: city, subCategory: "جميع الفئات الفرعية" }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            const location = { country: country, city: city };
+                                            const location = { region: region, city: city };
                                             localStorage.setItem("locationAr", JSON.stringify(location));
                                             history.push("/Usersar");
                                         }
@@ -64,19 +64,19 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                     className="bottom-dropdown"
                                     onChange={(e) => {
 
-                                        if (city === "مدينة" && country === "دولة") {
+                                        if (city === "مدينة" && region === "منطقة") {
                                             toast.error("يرجى تحديد كل من الدولة والمدينة");
                                         }
                                         else if (city === "مدينة") {
                                             toast.error("يرجى تحديد المدينة أيضًا");
                                         }
-                                        else if (country === "دولة") {
+                                        else if (region === "منطقة") {
                                             toast.error("الرجاء تحديد الدولة");
                                         }
                                         else {
-                                            const searchValues = { role: role, category: val.name.value_ar, country: country, city: city, subCategory: e.target.value }
+                                            const searchValues = { role: role, category: val.name.value_ar, region: region, city: city, subCategory: e.target.value }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            const location = { country: country, city: city };
+                                            const location = { region: region, city: city };
                                             localStorage.setItem("locationAr", JSON.stringify(location));
                                             history.push("/Usersar");
                                         }

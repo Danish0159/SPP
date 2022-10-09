@@ -30,10 +30,10 @@ const Projects = () => {
     return (
       <Wrapper>
         <BackToProfile
-          avatar={projects.data.projects.profilePhoto}
-          name={projects.data.projects.about_ar.companyName}
-          role={projects.data.projects.user.role_ar}
-          userId={projects.data.projects._id}
+         avatar={projects.data.projects.photo}
+         name={projects.data.projects.about_ar.name}
+         role={projects.data.projects.service_ar.role}
+         userId={projects.data.projects._id}
         ></BackToProfile>
 
         {projects.data.projects.portfolio.length === 0 ?

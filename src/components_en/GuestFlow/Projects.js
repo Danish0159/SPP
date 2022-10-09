@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 
 const Projects = () => {
+
   const dispatch = useDispatch();
   const { projects, isLoading, } = useSelector(
     (state) => state.guestEn
@@ -31,9 +32,9 @@ const Projects = () => {
     return (
       <Wrapper>
         <BackToProfile
-          avatar={projects.data.projects.profilePhoto}
-          name={projects.data.projects.about_en.companyName}
-          role={projects.data.projects.user.role_en}
+          avatar={projects.data.projects.photo}
+          name={projects.data.projects.about_en.name}
+          role={projects.data.projects.service_en.role}
           userId={projects.data.projects._id}
         ></BackToProfile>
 

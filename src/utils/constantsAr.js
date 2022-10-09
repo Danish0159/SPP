@@ -304,7 +304,7 @@ export const subCategories = {
 
 
 
-export const users = [
+export const roles = [
     {
         value_ar: "صيانة",
         value_en: "Maintenance",
@@ -323,992 +323,35 @@ export const users = [
     }
 ];
 
-export const countries = [
-    { value_ar: "السعودية", value_en: "Saudia" },
-    { value_ar: "پاکستان", value_en: "Pakistan" },
-];
-
-export const pakCities = [
-    {
-        value_ar: "علی پور",
-        value_en: "Alipur"
-    },
-    {
-        value_ar: "عارف والا",
-        value_en: "Arifwala"
-    },
-    {
-        value_ar: "اٹک",
-        value_en: "Attock"
-    },
-    {
-        value_ar: "ایبٹ آباد",
-        value_en: "Abbottabad"
-    },
-    {
-        value_ar: "ادیزئی",
-        value_en: "Adezai"
-    },
-    {
-        value_ar: "الپوری",
-        value_en: "Alpuri"
-    },
-    {
-        value_ar: "اکوڑہ خٹک",
-        value_en: "Akora Khattak"
-    },
-    {
-        value_ar: "ایوبیہ",
-        value_en: "Ayubia"
-    },
-    {
-        value_ar: "آواران",
-        value_en: "Awaran"
-    },
-    {
-        value_ar: "بھارکن",
-        value_en: "Bharkan"
-    },
-    {
-        value_ar: "بھیرا",
-        value_en: "Bhera"
-    },
-    {
-        value_ar: "بھلوال",
-        value_en: "Bhalwal"
-    },
-    {
-        value_ar: "بدین",
-        value_en: "Badin"
-    },
-    {
-        value_ar: "بھرکان",
-        value_en: "Bhirkan"
-    },
-    {
-        value_ar: "بہاولنگر",
-        value_en: "Bahawalnagar"
-    },
-    {
-        value_ar: "بہاولپور",
-        value_en: "Bahawalpur"
-    },
-    {
-        value_ar: "بھکر",
-        value_en: "Bhakkar"
-    },
-    {
-        value_ar: "بورے والا",
-        value_en: "Burewala"
-    },
-    {
-        value_ar: "بنوں",
-        value_en: "Bannu"
-    },
-    {
-        value_ar: "بتخیلہ",
-        value_en: "Batkhela"
-    },
-    {
-        value_ar: "بٹگرام",
-        value_en: "Battagram"
-    },
-    {
-        value_ar: "بیروٹ",
-        value_en: "Birote"
-    },
-    {
-        value_ar: "چکدرہ",
-        value_en: "Chakdara"
-    },
-    {
-        value_ar: "چارسدہ",
-        value_en: "Charsadda"
-    },
-    {
-        value_ar: "چترال",
-        value_en: "Chitral"
-    },
-    {
-        value_ar: "چلیانوالہ",
-        value_en: "Chillianwala"
-    },
-    {
-        value_ar: "چکوال",
-        value_en: "Chakwal"
-    },
-    {
-        value_ar: "چک",
-        value_en: "Chak"
-    },
-    {
-        value_ar: "چیچہ وطنی",
-        value_en: "Chichawatni"
-    },
-    {
-        value_ar: "چنیوٹ",
-        value_en: "Chiniot"
-    },
-    {
-        value_ar: "چشتیاں",
-        value_en: "Chishtian"
-    },
-    {
-        value_ar: "چاغی",
-        value_en: "Chagai"
-    },
-    {
-        value_ar: "ڈیرہ بگٹی",
-        value_en: "Dera Bugti"
-    },
-    {
-        value_ar: "ڈسکہ",
-        value_en: "Daska"
-    },
-    {
-        value_ar: "دریا خان",
-        value_en: "Darya Khan"
-    },
-    {
-        value_ar: "ڈی جی خان",
-        value_en: "D.G. Khan"
-    },
-    {
-        value_ar: "دھولر",
-        value_en: "Dhaular"
-    },
-    {
-        value_ar: "دادو",
-        value_en: "Dadu"
-    },
-    {
-        value_ar: "ڈیگری",
-        value_en: "Digri"
-    },
-    {
-        value_ar: "ڈپلو",
-        value_en: "Diplo"
-    },
-    {
-        value_ar: "ڈگر",
-        value_en: "Daggar"
-    },
-    {
-        value_ar: "درگئی",
-        value_en: "Dargai"
-    },
-    {
-        value_ar: "ڈی آئی خان",
-        value_en: "D.I. Khan"
-    },
-    {
-        value_ar: "دوآبہ",
-        value_en: "Doaba"
-    },
-    {
-        value_ar: "ڈائر",
-        value_en: "Dir"
-    },
-    {
-        value_ar: "دروش",
-        value_en: "Drosh"
-    },
-    {
-        value_ar: "ڈوکری",
-        value_en: "Dokri"
-    },
-    {
-        value_ar: "دینا",
-        value_en: "Dina"
-    },
-    {
-        value_ar: "ڈنگا",
-        value_en: "Dinga"
-    },
-    {
-        value_ar: "دیپالپور",
-        value_en: "Dipalpur"
-    },
-    {
-        value_ar: "فیصل آباد",
-        value_en: "Faisalabad"
-    },
-    {
-        value_ar: "فیروز والا",
-        value_en: "Ferozewala"
-    },
-    {
-        value_ar: "فتح جھنگ",
-        value_en: "Fateh Jhang"
-    },
-    {
-        value_ar: "گکھڑ منڈی",
-        value_en: "Ghakhar Mandi"
-    },
-    {
-        value_ar: "گوجرہ",
-        value_en: "Gojra"
-    },
-    {
-        value_ar: "گوجرانوالہ",
-        value_en: "Gujranwala"
-    },
-    {
-        value_ar: "گجرات",
-        value_en: "Gujrat"
-    },
-    {
-        value_ar: "گوجر خان",
-        value_en: "Gujar Khan"
-    },
-    {
-        value_ar: "گوادر",
-        value_en: "Gwadar"
-    },
-    {
-        value_ar: "گھوٹکی",
-        value_en: "Ghotki"
-    },
-    {
-        value_ar: "ہالہ",
-        value_en: "Haala"
-    },
-    {
-        value_ar: "حیدرآباد",
-        value_en: "Hyderabad"
-    },
-    {
-        value_ar: "ہرنائی",
-        value_en: "Harnai"
-    },
-    {
-        value_ar: "حافظ آباد",
-        value_en: "Hafizabad"
-    },
-    {
-        value_ar: "ہارون آباد",
-        value_en: "Haroonabad"
-    },
-    {
-        value_ar: "حاصل پور",
-        value_en: "Hasilpur"
-    },
-    {
-        value_ar: "حویلی لکھا",
-        value_en: "Haveli Lakha"
-    },
-    {
-        value_ar: "ہنگو",
-        value_en: "Hangu"
-    },
-    {
-        value_ar: "ہری پور",
-        value_en: "Haripur"
-    },
-    {
-        value_ar: "اسلام کوٹ",
-        value_en: "Islamkot"
-    },
-    {
-        value_ar: "اسلام آباد",
-        value_en: "Islamabad"
-    },
-    {
-        value_ar: "جٹوئی",
-        value_en: "Jatoi"
-    },
-    {
-        value_ar: "جلالپور",
-        value_en: "Jalalpur"
-    },
-    {
-        value_ar: "جٹاں",
-        value_en: "Jattan"
-    },
-    {
-        value_ar: "جام پور",
-        value_en: "Jampur"
-    },
-    {
-        value_ar: "جڑانوالہ",
-        value_en: "Jaranwala"
-    },
-    {
-        value_ar: "جھنگ",
-        value_en: "Jhang"
-    },
-    {
-        value_ar: "جہلم",
-        value_en: "Jhelum"
-    },
-    {
-        value_ar: "جعفرآباد",
-        value_en: "Jafarabad"
-    },
-    {
-        value_ar: "جھل مگسی",
-        value_en: "Jhal Magsi"
-    },
-    {
-        value_ar: "جوہرآباد",
-        value_en: "Jauharabad"
-    },
-    {
-        value_ar: "جیکب آباد",
-        value_en: "Jacobabad"
-    },
-    {
-        value_ar: "جامشور",
-        value_en: "Jamshor"
-    },
-    {
-        value_ar: "جنگ شاہی",
-        value_en: "Jungshahi"
-    },
-    {
-        value_ar: "کندھ کوٹ",
-        value_en: "Kandhkot"
-    },
-    {
-        value_ar: "کنڈیارو",
-        value_en: "Kandiaro"
-    },
-    {
-        value_ar: "کراچی",
-        value_en: "Karachi"
-    },
-    {
-        value_ar: "کشمور",
-        value_en: "Kashmore"
-    },
-    {
-        value_ar: "کیٹی بندر",
-        value_en: "Keti Bandar"
-    },
-    {
-        value_ar: "خیرپور",
-        value_en: "Khairpur"
-    },
-    {
-        value_ar: "کوٹری",
-        value_en: "Kotri"
-    },
-    {
-        value_ar: "کچی",
-        value_en: "Kacchi"
-    },
-    {
-        value_ar: "قلات",
-        value_en: "Kalat"
-    },
-    {
-        value_ar: "کیچ",
-        value_en: "Kech"
-    },
-    {
-        value_ar: "خاران",
-        value_en: "Kharan"
-    },
-    {
-        value_ar: "خضدار",
-        value_en: "Khuzdar"
-    },
-    {
-        value_ar: "کوہلو",
-        value_en: "Kohlu"
-    },
-    {
-        value_ar: "کالاباغ",
-        value_en: "Kalabagh"
-    },
-    {
-        value_ar: "قصور",
-        value_en: "Kasur"
-    },
-    {
-        value_ar: "کمالیہ",
-        value_en: "Kamalia"
-    },
-    {
-        value_ar: "کموک",
-        value_en: "Kamoke"
-    },
-    {
-        value_ar: "خانیوال",
-        value_en: "Khanewal"
-    },
-    {
-        value_ar: "خانپور",
-        value_en: "Khanpur"
-    },
-    {
-        value_ar: "کھاریاں",
-        value_en: "Kharian"
-    },
-    {
-        value_ar: "خوشاب",
-        value_en: "Khushab"
-    },
-    {
-        value_ar: "کوٹ ادو",
-        value_en: "Kot Addu"
-    },
-    {
-        value_ar: "کرک",
-        value_en: "Karak"
-    },
-    {
-        value_ar: "کوہاٹ",
-        value_en: "Kohat"
-    },
-    {
-        value_ar: "کولچی",
-        value_en: "kulachi"
-    },
-    {
-        value_ar: "لکی مروت",
-        value_en: "Lakki Marwat"
-    },
-    {
-        value_ar: "لاٹامبر",
-        value_en: "Latamber"
-    },
-    {
-        value_ar: "لاہور",
-        value_en: "Lahore"
-    },
-    {
-        value_ar: "لالاموسا",
-        value_en: "Lalamusa"
-    },
-    {
-        value_ar: "لیہ",
-        value_en: "Layyah"
-    },
-    {
-        value_ar: "لیاقت پور",
-        value_en: "Liaquat Pur"
-    },
-    {
-        value_ar: "لودھراں",
-        value_en: "Lodhran"
-    },
-    {
-        value_ar: "لسبیلہ",
-        value_en: "Lasbela"
-    },
-    {
-        value_ar: "لہری",
-        value_en: "Lehri"
-    },
-
-    {
-        value_ar: "لورالائی",
-        value_en: "Loralai"
-    },
-    {
-        value_ar: "لاڑکانہ",
-        value_en: "Larkana"
-    },
-    {
-        value_ar: "مٹیاری",
-        value_en: "Matiari"
-    },
-    {
-        value_ar: "مہر",
-        value_en: "Mehar"
-    },
-    {
-        value_ar: "میرپور خاص",
-        value_en: "Mirpur Khas"
-    },
-    {
-        value_ar: "مٹھانی",
-        value_en: "Mithani"
-    },
-    {
-        value_ar: "مٹھی",
-        value_en: "Mithi"
-    },
-    {
-        value_ar: "محراب پور",
-        value_en: "Mehrabpur"
-    },
-    {
-        value_ar: "مورو",
-        value_en: "Moro"
-    },
-    {
-        value_ar: "مستونگ",
-        value_en: "Mastung"
-    },
-    {
-        value_ar: "موسی خیل",
-        value_en: "Musakhel"
-    },
-    {
-        value_ar: "ملکوال",
-        value_en: "Malakwal"
-    },
-    {
-        value_ar: "ماموری",
-        value_en: "Mamoori"
-    },
-    {
-        value_ar: "میلسی",
-        value_en: "Mailsi"
-    },
-    {
-        value_ar: "منڈی بہاؤالدین",
-        value_en: "Mandi Bahauddin"
-    },
-    {
-        value_ar: "میاں چنوں",
-        value_en: "Mian Channu"
-    },
-    {
-        value_ar: "میانوالی",
-        value_en: "Mianwali"
-    },
-    {
-        value_ar: "مری",
-        value_en: "Muree"
-    },
-    {
-        value_ar: "ملتان",
-        value_en: "Multan"
-    },
-    {
-        value_ar: "مریدکے",
-        value_en: "Muridke"
-    },
-    {
-        value_ar: "میانوالی بنگلہ",
-        value_en: "Mianwali Bangla"
-    },
-    {
-        value_ar: "مظفر گڑھ",
-        value_en: "Muzaffargarh"
-    },
-    {
-        value_ar: "مدین",
-        value_en: "Madyan"
-    },
-    {
-        value_ar: "مانسہرہ",
-        value_en: "Mansehra"
-    },
-    {
-        value_ar: "مردان",
-        value_en: "Mardan"
-    },
-    {
-        value_ar: "مستوج",
-        value_en: "Mastuj"
-    },
-    {
-        value_ar: "مینگورہ",
-        value_en: "Mingora"
-    },
-    {
-        value_ar: "نوشہرہ",
-        value_en: "Nowsehra"
-    },
-    {
-        value_ar: "نارووال",
-        value_en: "Narowal"
-    },
-    {
-        value_ar: "ننکانہ صاحب",
-        value_en: "Nankana Sahib"
-    },
-    {
-        value_ar: "نصیر آباد",
-        value_en: "Nasirabad"
-    },
-    {
-        value_ar: "نشکی",
-        value_en: "Nushki"
-    },
-    {
-        value_ar: "نگرپارکر",
-        value_en: "Nagarparkar"
-    },
-    {
-        value_ar: "ناؤڈیرو",
-        value_en: "Naudero"
-    },
-    {
-        value_ar: "نوشہرو فیروز",
-        value_en: "Naushahro Feroze"
-    },
-    {
-        value_ar: "نوشرہ",
-        value_en: "Naushara"
-    },
-    {
-        value_ar: "نواب شاہ",
-        value_en: "Nawabshah"
-    },
-    {
-        value_ar: "ناظم آباد",
-        value_en: "Nazimabad"
-    },
-    {
-        value_ar: "اوکاڑہ",
-        value_en: "Okara"
-    },
-    {
-        value_ar: "پاکپتن",
-        value_en: "Pakpattan"
-    },
-    {
-        value_ar: "پتوکی",
-        value_en: "Pattoki"
-    },
-    {
-        value_ar: "پیر محل",
-        value_en: "Pir Mahal"
-    },
-    {
-        value_ar: "پہاڑ پور",
-        value_en: "Paharpur"
-    },
-    {
-        value_ar: "پبی",
-        value_en: "Pabbi"
-    },
-    {
-        value_ar: "پشاور",
-        value_en: "Peshawar"
-    },
-    {
-        value_ar: "کوئٹہ",
-        value_en: "Quetta"
-    },
-    {
-        value_ar: "قیم پور",
-        value_en: "Qaimpur"
-    },
-    {
-        value_ar: "قمبر",
-        value_en: "Qambar"
-    },
-    {
-        value_ar: "قاسم آباد",
-        value_en: "Qasimabad"
-    },
-    {
-        value_ar: "رانی پور",
-        value_en: "Ranipur"
-    },
-    {
-        value_ar: "رتوڈیرو",
-        value_en: "Ratodero"
-    },
-    {
-        value_ar: "روہڑی",
-        value_en: "Rohri"
-    },
-    {
-        value_ar: "رینالہ خورد",
-        value_en: "Renala Khurd"
-    },
-    {
-        value_ar: "ربوہ",
-        value_en: "Rabwah"
-    },
-    {
-        value_ar: "راجو خانانی",
-        value_en: "Rajo Khanani"
-    },
-    {
-        value_ar: "رائے ونڈ",
-        value_en: "Raiwind"
-    },
-    {
-        value_ar: "راجنپو",
-        value_en: "Rajanpu"
-    },
-    {
-        value_ar: "رحیم یار",
-        value_en: "Rahim Yar"
-    },
-    {
-        value_ar: "راولپنڈی",
-        value_en: "Rawalpindi"
-    },
-    {
-        value_ar: "صادق آباد",
-        value_en: "Sadiqabad"
-    },
-    {
-        value_ar: "صفدرآباد",
-        value_en: "Safdarabad"
-    },
-    {
-        value_ar: "ساہیوال",
-        value_en: "Sahiwal"
-    },
-    {
-        value_ar: "سانگلہ ہل",
-        value_en: "Sangla Hill"
-    },
-    {
-        value_ar: "سرائے عالمگیر",
-        value_en: "Sarai Alamgir"
-    },
-    {
-        value_ar: "سرگودھا",
-        value_en: "Sargodha"
-    },
-    {
-        value_ar: "شکر گڑھ",
-        value_en: "Shakargarh"
-    },
-    {
-        value_ar: "شیخوپورہ",
-        value_en: "Sheikhupura"
-    },
-    {
-        value_ar: "سیالکوٹ",
-        value_en: "Sialkot"
-    },
-    {
-        value_ar: "سوہاوا",
-        value_en: "Sohawa"
-    },
-    {
-        value_ar: "سویاں والا",
-        value_en: "Soianwala"
-    },
-    {
-        value_ar: "سیرانوالی",
-        value_en: "Siranwali"
-    },
-    {
-        value_ar: "سیدو شریف",
-        value_en: "Saidu Sharif"
-    },
-    {
-        value_ar: "شورکوٹ",
-        value_en: "Shorkot"
-    },
-    {
-        value_ar: "شیرانی",
-        value_en: "Sherani"
-    },
-    {
-        value_ar: "سبی",
-        value_en: "Sibi"
-    },
-    {
-        value_ar: "صحبت پور",
-        value_en: "Sohbatpur"
-    },
-    {
-        value_ar: "شیوا اڈا",
-        value_en: "Shewa Adda"
-    },
-    {
-        value_ar: "صوابی",
-        value_en: "Swabi"
-    },
-    {
-        value_ar: "سوات",
-        value_en: "Swat"
-    },
-    {
-        value_ar: "سکرند",
-        value_en: "Sakrand"
-    },
-    {
-        value_ar: "سانگھڑ",
-        value_en: "Sanghar"
-    },
-    {
-        value_ar: "شاہبندر",
-        value_en: "Shahbandar"
-    },
-    {
-        value_ar: "شہداد کوٹ",
-        value_en: "Shahdadkot"
-    },
-    {
-        value_ar: "شہداد پور",
-        value_en: "Shahdadpur"
-    },
-    {
-        value_ar: "شاہ پور چاکر",
-        value_en: "Shahpur Chakar"
-    },
-    {
-        value_ar: "شکارپور",
-        value_en: "Shikarpaur"
-    },
-    {
-        value_ar: "سکھر",
-        value_en: "Sukkur"
-    },
-    {
-        value_ar: "تنگی",
-        value_en: "Tangi"
-    },
-    {
-        value_ar: "ٹینک",
-        value_en: "Tank"
-    },
-    {
-        value_ar: "تھال",
-        value_en: "Thall"
-    },
-    {
-        value_ar: "تیمرگرہ",
-        value_en: "Timergara"
-    },
-    {
-        value_ar: "ٹورڈر",
-        value_en: "Tordher"
-    },
-    {
-        value_ar: "تلاگنگ",
-        value_en: "Talagang"
-    },
-    {
-        value_ar: "ٹیکسلا",
-        value_en: "Taxila"
-    },
-    {
-        value_ar: "ٹوبہ ٹیک ",
-        value_en: "Toba Tek"
-    },
-    {
-        value_ar: "تنگوانی",
-        value_en: "Tangwani"
-    },
-    {
-        value_ar: "ٹنڈو آدم",
-        value_en: "Tando Adam"
-    },
-    {
-        value_ar: "ٹنڈو اللہیار",
-        value_en: "Tando Allahyar"
-    },
-    {
-        value_ar: "ٹنڈو محمد",
-        value_en: "Tando Muhammad"
-    },
-    {
-        value_ar: "ٹھٹھہ",
-        value_en: "Thatta"
-    },
-    {
-        value_ar: "عمرکوٹ",
-        value_en: "Umerkot"
-    },
-    {
-        value_ar: "وہاڑی",
-        value_en: "Vehari"
-    },
-    {
-        value_ar: "واہ چھاؤنی",
-        value_en: "Wah Cantonment"
-    },
-    {
-        value_ar: "وزیرآباد",
-        value_en: "Wazirabad"
-    },
-    {
-        value_ar: "واشوک",
-        value_en: "Washuk"
-    },
-    {
-        value_ar: "وارہ",
-        value_en: "Warah"
-    },
-    {
-        value_ar: "ژوب",
-        value_en: "Zhob"
-    },
-    {
-        value_ar: "زیارت",
-        value_en: "Ziarat"
-    },
-];
-
-export const saudiCities = [
-    {
-        value_ar: "أبها",
-        value_en: "Abhā"
-    },
-    {
-        value_ar: "بقيق",
-        value_en: "Abqaiq"
-    },
+export const regions = [
     {
         value_ar: "الباحة",
-        value_en: "Al-Baḥah"
-    },
-    {
-        value_ar: "الدمام",
-        value_en: "Al-Dammām"
-    },
-    {
-        value_ar: "الهفوف",
-        value_en: "Al-Hufūf"
+        value_en: "Al-Bahah"
     },
     {
         value_ar: "الجوف",
         value_en: "Al-Jawf"
     },
     {
-        value_ar: "الخرج (الواحة)",
-        value_en: "Al-Kharj (oasis)"
+        value_ar: "القصيم",
+        value_en: "Al-Qaseem"
     },
     {
-        value_ar: "الخبر",
-        value_en: "Al-Khubar"
+        value_ar: "عسير",
+        value_en: "Aseer"
     },
     {
-        value_ar: "القعف",
-        value_en: "Al-Qaṭīf"
+        value_ar: "المنطقة الشرقية",
+        value_en: "Eastern Region"
     },
     {
-        value_ar: "الصيف",
-        value_en: "Al-Ṭaʾif"
+        value_ar: "حائل",
+        value_en: "Ḥā'il"
     },
     {
-        value_ar: "عرعر",
-        value_en: "ʿArʿar"
+        value_ar: "جازان",
+        value_en: "Jazan"
     },
-    {
-        value_ar: "بريدة",
-        value_en: "Buraydah"
-    },
-    {
-        value_ar: "الظهران",
-        value_en: "Dhahran"
-    },
-    {
-        value_ar: "وابل",
-        value_en: "Ḥāʾil"
-    },
-    {
-        value_ar: "جدة",
-        value_en: "Jiddah"
-    },
-    {
-        value_ar: "جزان",
-        value_en: "Jīzān"
-    },
-    {
-        value_ar: "خميس مشيط",
-        value_en: "Khamīs Mushayt"
-    },
-    // {
-    //     value_ar: "مدينة الملك خالد العسكرية",
-    //     value_en: "King Khalīd Military City"
-    // },
     {
         value_ar: "مكة المكرمة",
         value_en: "Mecca"
@@ -1322,24 +365,1044 @@ export const saudiCities = [
         value_en: "Najrān"
     },
     {
-        value_ar: "رأس تنورة",
-        value_en: "Ras Tanura"
+        value_ar: "الحدود الشمالية",
+        value_en: "Northern Borders"
     },
     {
         value_ar: "الرياض",
         value_en: "Riyadh"
     },
     {
+        value_ar: "تبوك",
+        value_en: "Tabouk"
+    }
+];
+
+export const albahahCities = [
+    {
+        value_ar: "العقيق",
+        value_en: "Al-'Aqīq"
+    },
+    {
+        value_ar: "الباحة",
+        value_en: "Al-Bāḥah"
+    },
+    {
+        value_ar: "المخواة",
+        value_en: "Al-Makhwāh"
+    },
+    {
+        value_ar: "المندق",
+        value_en: "Al-Mandaq"
+    },
+    {
+        value_ar: "بلجرشي",
+        value_en: "Baljurashī"
+    },
+    {
+        value_ar: "قلوة",
+        value_en: "Qilwah"
+    }
+];
+
+export const aljawfCities = [
+    {
+        value_ar: "الفياض",
+        value_en: "Al-Fayāḍ"
+    },
+    {
+        value_ar: "الحديثة",
+        value_en: "Al-Ḥadīthah"
+    },
+    {
+        value_ar: "العيساوية",
+        value_en: "Al-'Isāwīyah"
+    },
+    {
+        value_ar: "القريات",
+        value_en: "Al-Qurayyāt"
+    },
+    {
+        value_ar: "الجندل",
+        value_en: "al-Jandal"
+    },
+    {
         value_ar: "سكاكا",
         value_en: "Sakākā"
     },
     {
-        value_ar: "تابوك",
+        value_ar: "صوير",
+        value_en: "Ṣuwayr"
+    },
+    {
+        value_ar: "طبرجل",
+        value_en: "Ṭubarjal"
+    }
+];
+
+export const alqaseemCities = [
+    {
+        value_ar: "الدليمية",
+        value_en: "Ad-Dulaymiyah"
+    },
+    {
+        value_ar: "الذيبية",
+        value_en: "Adh-Dhībiyah"
+    },
+    {
+        value_ar: "عين بن فهيد",
+        value_en: "'Aīn Bin Fuhaīd"
+    },
+    {
+        value_ar: "البدائع",
+        value_en: "Al-Badā'i'a"
+    },
+    {
+        value_ar: "البكيرية",
+        value_en: "Al-Bukayriyah"
+    },
+    {
+        value_ar: "الفويلق",
+        value_en: "Al-Fuwayliq"
+    },
+    {
+        value_ar: "الخبراء",
+        value_en: "Al-Khubarā'"
+    },
+    {
+        value_ar: "المليداء",
+        value_en: "Al-Malīdā'"
+    },
+    {
+        value_ar: "المذنب",
+        value_en: "Al-Midhnab"
+    },
+    {
+        value_ar: "القوارة",
+        value_en: "Al-Quwārah"
+    },
+    {
+        value_ar: "الرس",
+        value_en: "Ar-Rass"
+    },
+    {
+        value_ar: "الشماسية",
+        value_en: "Ash-Shimāiyah"
+    },
+    {
+        value_ar: "بريدة",
+        value_en: "Buraydah"
+    },
+    {
+        value_ar: "دخنة",
+        value_en: "Dakhnah"
+    },
+    {
+        value_ar: "هجرة",
+        value_en: "Hijrat"
+    },
+    {
+        value_ar: "قبة",
+        value_en: "Qibah"
+    },
+    {
+        value_ar: "رياض الخبراء",
+        value_en: "Riyāḍ al-Khabrā'"
+    },
+    {
+        value_ar: "عنيزة",
+        value_en: "'Unaīzah"
+    },
+    {
+        value_ar: "عيون الجواء",
+        value_en: "'Uyūn al-Jiwā'"
+    }
+];
+
+export const aseerCities = [
+    {
+        value_ar: "أبها",
+        value_en: "Abhā"
+    },
+    {
+        value_ar: "أحد رفيدة",
+        value_en: "Aḥad Rāfidah"
+    },
+    {
+        value_ar: "الاثنين",
+        value_en: "Al-Ithnayn"
+    },
+    {
+        value_ar: "المجاردة",
+        value_en: "Al-Majāridah"
+    },
+    {
+        value_ar: "العلاية",
+        value_en: "Al-'Ulāyah"
+    },
+    {
+        value_ar: "النماص",
+        value_en: "An-Nimāṣ"
+    },
+    {
+        value_ar: "بحر ابوسكينة",
+        value_en: "Baḥr Abū Sukaynah"
+    },
+    {
+        value_ar: "بيشة",
+        value_en: "Bīshah"
+    },
+    {
+        value_ar: "فرعه طريب",
+        value_en: "Fir'ah Ṭarīb"
+    },
+    {
+        value_ar: "خميس مشيط",
+        value_en: "Khamīs Mushaīṭ"
+    },
+    {
+        value_ar: "محايل",
+        value_en: "Muḥā'yil"
+    },
+    {
+        value_ar: "سراة عبيدة",
+        value_en: "Sarāt 'Abīdah"
+    },
+    {
+        value_ar: "تبالة",
+        value_en: "Tabalah"
+    },
+    {
+        value_ar: "تنومة",
+        value_en: "Tanūmah"
+    },
+    {
+        value_ar: "تثليث",
+        value_en: "Tathlīth"
+    },
+    {
+        value_ar: "ظهران الجنوب",
+        value_en: "Ẓahrān al-Janūb"
+    }
+];
+
+export const easternregionCities = [
+    {
+        value_ar: "بقيق",
+        value_en: "Abqaīq"
+    },
+    {
+        value_ar: "العضيلية",
+        value_en: "Aḍ-'Ḍaīliyah"
+    },
+    {
+        value_ar: "الدمام",
+        value_en: "Ad-Dammām"
+    },
+    {
+        value_ar: "الذيبية",
+        value_en: "Adh-Dhībiyah"
+    },
+    {
+        value_ar: "العوامية",
+        value_en: "Al-'Awāmiyah"
+    },
+    {
+        value_ar: "الأوجام",
+        value_en: "Al-'Awjām"
+    },
+    {
+        value_ar: "البطالية",
+        value_en: "Al-Baṭaliyah"
+    },
+    {
+        value_ar: "البطحاء",
+        value_en: "Al-Baṭḥā'"
+    },
+    {
+        value_ar: "الفضول",
+        value_en: "Al-Fuḍūl"
+    },
+    {
+        value_ar: "الحوطة",
+        value_en: "Al-Ḥawaṭah"
+    },
+    {
+        value_ar: "الهفوف",
+        value_en: "Al-Hufūf"
+    },
+    {
+        value_ar: "الحليلة",
+        value_en: "Al-Ḥulaylah"
+    },
+    {
+        value_ar: "الجفر",
+        value_en: "Al-Jafr"
+    },
+    {
+        value_ar: "الجارودية",
+        value_en: "Al-Jārūdiyah"
+    },
+    {
+        value_ar: "الجش",
+        value_en: "Al-Jish"
+    },
+    {
+        value_ar: "الجشة",
+        value_en: "Al-Jishah"
+    },
+    {
+        value_ar: "الجبيل",
+        value_en: "Al-Jubaīl"
+    },
+    {
+        value_ar: "الجرن",
+        value_en: "Al-Jurn"
+    },
+    {
+        value_ar: "الخفجي",
+        value_en: "Al-Khafjī"
+    },
+    {
+        value_ar: "الخبر",
+        value_en: "Al-Khubar"
+    },
+    {
+        value_ar: "الخويلدية",
+        value_en: "Al-Khuwaīldiyah	"
+    },
+    {
+        value_ar: "الكلابية",
+        value_en: "Al-Kulābiyah"
+    },
+    {
+        value_ar: "المنصورة",
+        value_en: "Al-Manṣūrah"
+    },
+    {
+        value_ar: "المراح",
+        value_en: "Al-Marāḥ"
+    },
+    {
+        value_ar: "المركز",
+        value_en: "Al-Markaz"
+    },
+    {
+        value_ar: "الملاحة",
+        value_en: "Al-Milāḥah"
+    },
+    {
+        value_ar: "المنيزلة",
+        value_en: "Al-Munaīzilah"
+    },
+    {
+        value_ar: "المطيرفى",
+        value_en: "Al-Muṭayrifī"
+    },
+    {
+        value_ar: "القيصومة",
+        value_en: "Al-Qaīṣūmah"
+    },
+    {
+        value_ar: "القارة",
+        value_en: "Al-Qārah"
+    },
+    {
+        value_ar: "القطيف",
+        value_en: "Al-Qaṭīf"
+    },
+    {
+        value_ar: "القديح",
+        value_en: "Al-Qudaīḥ"
+    },
+    {
+        value_ar: "القرين",
+        value_en: "Al-Qurīn"
+    },
+    {
+        value_ar: "العمران",
+        value_en: "Al-'Umrān"
+    },
+    {
+        value_ar: "العيون",
+        value_en: "Al-'Uyūn"
+    },
+    {
+        value_ar: "عنك",
+        value_en: "'Ank"
+    },
+    {
+        value_ar: "النابية",
+        value_en: "An-Nābiyah"
+    },
+    {
+        value_ar: "النعيرية",
+        value_en: "An-Nu'ayriyah"
+    },
+    {
+        value_ar: "الرميلة",
+        value_en: "Ar-Rumaīlah"
+    },
+    {
+        value_ar: "الشقيق",
+        value_en: "Ash-Shaqīq"
+    },
+    {
+        value_ar: "السفانية",
+        value_en: "As-Safāniyah"
+    },
+    {
+        value_ar: "الثقبة",
+        value_en: "Ath-Thuqbah"
+    },
+    {
+        value_ar: "الطرف",
+        value_en: "Aṭ-Ṭaraf"
+    },
+    {
+        value_ar: "التوبى",
+        value_en: "At-Tawbī"
+    },
+    {
+        value_ar: "التويثير",
+        value_en: "At-Twaīthīr"
+    },
+    {
+        value_ar: "الظهران",
+        value_en: "Aẓ-Ẓahrān"
+    },
+    {
+        value_ar: "بني معن",
+        value_en: "Banī Ma'an"
+    },
+    {
+        value_ar: "حفر الباطن",
+        value_en: "Ḥafar al-Bāṭin"
+    },
+    {
+        value_ar: "حله محيش",
+        value_en: "Ḥalah Maḥīsh"
+    },
+    {
+        value_ar: "جليجلة",
+        value_en: "Julayjilah"
+    },
+    {
+        value_ar: "مدينةالعسكرية",
+        value_en: "Madīnat al-'Askariyah"
+    },
+    {
+        value_ar: "مليجة",
+        value_en: "Mulayjah"
+    },
+    {
+        value_ar: "قرية العليا",
+        value_en: "Qaryat al-'Ulyā"
+    },
+    {
+        value_ar: "رحيمة",
+        value_en: "Raḥīmah"
+    },
+    {
+        value_ar: "صفوى",
+        value_en: "Ṣafwah"
+    },
+    {
+        value_ar: "سيهات",
+        value_en: "Saīhāt"
+    },
+    {
+        value_ar: "تاروت",
+        value_en: "Tārūt "
+    },
+    {
+        value_ar: "ام الحمام",
+        value_en: "Umm al-Ḥamām"
+    },
+    {
+        value_ar: "أم الساهك",
+        value_en: "'Umm as-Sāhik"
+    }
+];
+
+export const hailCities = [
+    {
+        value_ar: "الحائط",
+        value_en: "Al-Ḥā'īṭ"
+    },
+    {
+        value_ar: "القاعـد",
+        value_en: "Al-Qā'id"
+    },
+    {
+        value_ar: "الشنان",
+        value_en: "Ash-Shanān"
+    },
+    {
+        value_ar: "بقعاء",
+        value_en: "Baq'ā'"
+    },
+    {
+        value_ar: "حائل",
+        value_en: "Ḥā'il "
+    },
+    {
+        value_ar: "جبة",
+        value_en: "Jubah"
+    },
+    {
+        value_ar: "تربة",
+        value_en: "Turubah"
+    }
+];
+
+
+export const jazanCities = [
+    {
+        value_ar: "أبو عريش",
+        value_en: "Abū 'Arīsh"
+    },
+    {
+        value_ar: "ابو السداد",
+        value_en: "Abū as-Sadād"
+    },
+    {
+        value_ar: "ابو السلع",
+        value_en: "Abū as-Sila'"
+    },
+    {
+        value_ar: "الدرب",
+        value_en: "Ad-Darb"
+    },
+    {
+        value_ar: "الدائر",
+        value_en: "Ad-Dā'yir"
+    },
+    {
+        value_ar: "أحد المسارحة",
+        value_en: "Aḥad al-Masāriḥah"
+    },
+    {
+        value_ar: "العالية",
+        value_en: "Al-'Alīyah"
+    },
+    {
+        value_ar: "العارضة",
+        value_en: "Al-'Arḍah"
+    },
+    {
+        value_ar: "العيدابي",
+        value_en: "Al-'Aydābī"
+    },
+    {
+        value_ar: "البديع والقرفي",
+        value_en: "Al-Badī'- Al-Qarafī"
+    },
+    {
+        value_ar: "الحسيني",
+        value_en: "Al-Ḥusaīnī"
+    },
+    {
+        value_ar: "الجاضع",
+        value_en: "Al-Jāḍi'"
+    },
+    {
+        value_ar: "الجرادية",
+        value_en: "Al-Jarādīyah"
+    },
+    {
+        value_ar: "الخوبة",
+        value_en: "Al-Khūbah"
+    },
+    {
+        value_ar: "اللقية",
+        value_en: "Al-Luqīyah"
+    },
+    {
+        value_ar: "المضايا",
+        value_en: "Al-Maḍāyā"
+    },
+    {
+        value_ar: "المطعن",
+        value_en: "Al-Maṭ'an"
+    },
+    {
+        value_ar: "المباركية",
+        value_en: "Al-Mubārakiyah"
+    },
+    {
+        value_ar: "الركوبه",
+        value_en: "Ar-Rakūbah"
+    },
+    {
+        value_ar: "الشقيرى",
+        value_en: "Ash-Shuqayrī"
+    },
+    {
+        value_ar: "الطوال",
+        value_en: "Aṭ-Ṭuwāl"
+    },
+    {
+        value_ar: "الظبية",
+        value_en: "Aẓ-Ẓabyah"
+    },
+    {
+        value_ar: "بيش",
+        value_en: "Bīsh"
+    },
+    {
+        value_ar: "ضمد",
+        value_en: "Ḍamad"
+    },
+    {
+        value_ar: "فرسان",
+        value_en: "Farasān"
+    },
+    {
+        value_ar: "حاكمة",
+        value_en: "Ḥākimat"
+    },
+    {
+        value_ar: "جيزان",
+        value_en: "Jīzān"
+    },
+    {
+        value_ar: "مسلية",
+        value_en: "Masliyah"
+    },
+    {
+        value_ar: "مزهرة",
+        value_en: "Mazharah"
+    },
+    {
+        value_ar: "رخية",
+        value_en: "Rakhiyah"
+    },
+    {
+        value_ar: "صبيا",
+        value_en: "Ṣabyā"
+    },
+    {
+        value_ar: "صامطة",
+        value_en: "Ṣāmiṭah"
+    }
+];
+
+export const meccaCities = [
+    {
+        value_ar: "أضم",
+        value_en: "'Āḍam"
+    },
+    {
+        value_ar: "الحويه",
+        value_en: "Al-Ḥawiyah"
+    },
+    {
+        value_ar: "الهدا",
+        value_en: "Al-Hudā "
+    },
+    {
+        value_ar: "الجموم",
+        value_en: "Al-Jumūm"
+    },
+    {
+        value_ar: "الخضراء",
+        value_en: "Al-Khaḍrā'"
+    },
+    {
+        value_ar: "الخرمة",
+        value_en: "Al-Khurmah"
+    },
+    {
+        value_ar: "الليث",
+        value_en: "Al-Līth"
+    },
+    {
+        value_ar: "المويه",
+        value_en: "Al-Muwayh"
+    },
+    {
+        value_ar: "المظيلف",
+        value_en: "Al-Muẓaylif"
+    },
+    {
+        value_ar: "القنفذة",
+        value_en: "Al-Qunfudhah"
+    },
+    {
+        value_ar: "القوز",
+        value_en: "Al-Qūz"
+    },
+    {
+        value_ar: "عشيرة",
+        value_en: "'Ashīrah"
+    },
+    {
+        value_ar: "السديرة",
+        value_en: "As-Sudaīrah"
+    },
+    {
+        value_ar: "الطائف",
+        value_en: "Aṭ-Ṭa'if"
+    },
+    {
+        value_ar: "بحرة",
+        value_en: "Baḥrah"
+    },
+    {
+        value_ar: "ذهبان",
+        value_en: "Dhahabān "
+    },
+    {
+        value_ar: "جدة",
+        value_en: "Jiddah"
+    },
+    {
+        value_ar: "جعرانة",
+        value_en: "Ju'rānah"
+    },
+    {
+        value_ar: "خليص",
+        value_en: "Khulaīṣ"
+    },
+    {
+        value_ar: "مكة",
+        value_en: "Makkah"
+    },
+    {
+        value_ar: "مستورة",
+        value_en: "Mastūrah"
+    },
+    {
+        value_ar: "ميسان",
+        value_en: "Maysān"
+    },
+    {
+        value_ar: "رابغ",
+        value_en: "Rābigh"
+    },
+    {
+        value_ar: "رنية",
+        value_en: "Ranyah"
+    },
+    {
+        value_ar: "صعبر السفر",
+        value_en: "Ṣa'abar as-Safar"
+    },
+    {
+        value_ar: "ثول",
+        value_en: "Thuwal"
+    },
+    {
+        value_ar: "تربة",
+        value_en: "Turubah"
+    },
+    {
+        value_ar: "أم الدوم",
+        value_en: "'Umm ad-Dūm"
+    },
+    {
+        value_ar: "ظلم",
+        value_en: "Ẓulm"
+    }
+];
+
+export const medinaCities = [
+    {
+        value_ar: "العيص",
+        value_en: "Al-'Aīṣ"
+    },
+    {
+        value_ar: "الحناكية",
+        value_en: "Al-Ḥinākīyah"
+    },
+    {
+        value_ar: "المحفر",
+        value_en: "Al-Madīnah"
+    },
+    {
+        value_ar: "العلا",
+        value_en: "Al-'Ulā"
+    },
+    {
+        value_ar: "الثمد",
+        value_en: "Ath-Thamad"
+    },
+    {
+        value_ar: "بدر",
+        value_en: "Badr"
+    },
+    {
+        value_ar: "خيبر",
+        value_en: "Khaybar"
+    },
+    {
+        value_ar: "مهد الذهب",
+        value_en: "Mahd adh-Dhahab"
+    },
+    {
+        value_ar: "ينبع البحر",
+        value_en: "Yanbu' al-Baḥr"
+    }
+];
+
+export const najranCities = [
+    {
+        value_ar: "المشعلية",
+        value_en: "Al-Mish'alīah"
+    },
+    {
+        value_ar: "حايرة السلم",
+        value_en: "Ḥāīrat as-Sulam"
+    },
+    {
+        value_ar: "حبونا",
+        value_en: "Ḥubūnā"
+    },
+    {
+        value_ar: "نجران",
+        value_en: "Najrān"
+    },
+    {
+        value_ar: "شرورة",
+        value_en: "Sharūrah"
+    },
+    {
+        value_ar: "تصلال",
+        value_en: "Taṣlāl"
+    }
+];
+
+export const northernbordersCities = [
+    {
+        value_ar: "العويقيلة",
+        value_en: "Al-'Uwayqīlah"
+    },
+    {
+        value_ar: "عرعر",
+        value_en: "'Ar'ar"
+    },
+    {
+        value_ar: "جديده عرعر",
+        value_en: "Jadīdah 'Ar'ar"
+    },
+    {
+        value_ar: "رفحاء",
+        value_en: "Rafḥā'"
+    },
+    {
+        value_ar: "روضة هباس",
+        value_en: "Rawḍat Habās"
+    },
+    {
+        value_ar: "طريف",
+        value_en: "Ṭuraīf"
+    }
+];
+
+export const riyadhCities = [
+    {
+        value_ar: "الدوادمي",
+        value_en: "Ad-Dawādmī"
+    },
+    {
+        value_ar: "الدلم",
+        value_en: "Ad-Dilam"
+    },
+    {
+        value_ar: "الدرعية",
+        value_en: "Ad-Dir'iyah"
+    },
+    {
+        value_ar: "الضبيعة",
+        value_en: "Aḍ-Ḍuby'ah"
+    },
+    {
+        value_ar: "عفيف",
+        value_en: "'Afïf"
+    },
+    {
+        value_ar: "الأرطاوية",
+        value_en: "Al-'Arṭāwīyah"
+    },
+    {
+        value_ar: "البديع الشمالي",
+        value_en: "Al-Badī' ash-Shamalī"
+    },
+    {
+        value_ar: "الغاط",
+        value_en: "Al-Ghāṭ"
+    },
+    {
+        value_ar: "الحريق",
+        value_en: "Al-Ḥarīq"
+    },
+    {
+        value_ar: "الهياثم",
+        value_en: "Al-Hayāthim"
+    },
+    {
+        value_ar: "الحائر",
+        value_en: "Al-Ḥā'yir"
+    },
+    {
+        value_ar: "الحلوة",
+        value_en: "Al-Ḥulwah"
+    },
+    {
+        value_ar: "الخرج",
+        value_en: "Al-Kharj"
+    },
+    {
+        value_ar: "المجمعة",
+        value_en: "Al-Majma'ah"
+    },
+    {
+        value_ar: "المزاحمية",
+        value_en: "Al-Muzāḥimiyah"
+    },
+    {
+        value_ar: "القويعية",
+        value_en: "Al-Qūway'iyah"
+    },
+    {
+        value_ar: "العيينة",
+        value_en: "Al-'Uyaynah"
+    },
+    {
+        value_ar: "اليمامة",
+        value_en: "Al-Yamāmah"
+    },
+    {
+        value_ar: "عرجاء",
+        value_en: "'Arjā'"
+    },
+    {
+        value_ar: "الرياض",
+        value_en: "Ar-Riyāḍ"
+    },
+    {
+        value_ar: "الرويضة",
+        value_en: "Ar-Rūyaḍah"
+    },
+    {
+        value_ar: "السليل",
+        value_en: "As-Sulayyil"
+    },
+    {
+        value_ar: "الزلفي",
+        value_en: "Az-Zulfī"
+    },
+    {
+        value_ar: "ضرما",
+        value_en: "Ḍurmā"
+    },
+    {
+        value_ar: "حرمة",
+        value_en: "Ḥarmah"
+    },
+    {
+        value_ar: "حوطة سدير",
+        value_en: "Ḥaūṭat Sudaīr"
+    },
+    {
+        value_ar: "حوطة بني تميم",
+        value_en: "Ḥawṭah Banī Tamīm "
+    },
+    {
+        value_ar: "حي القطار",
+        value_en: "Ḥay al-Qiṭār"
+    },
+    {
+        value_ar: "حريملاء",
+        value_en: "Ḥuraymilā'"
+    },
+    {
+        value_ar: "عرقة",
+        value_en: "'Irqah"
+    },
+    {
+        value_ar: "كليه الحربيه",
+        value_en: "Kuliyah al-Ḥarbiyah"
+    },
+    {
+        value_ar: "ليلى",
+        value_en: "Laylā"
+    },
+    {
+        value_ar: "مرات",
+        value_en: "Marāt"
+    },
+     {
+        value_ar: "نعجان",
+        value_en: "Na'jān"
+    },
+    {
+        value_ar: "قاعدة الامير سلطان",
+        value_en: "Qāi'dat al-Amīr Sulṭān"
+    },
+     {
+        value_ar: "رماح",
+        value_en: "Rimāḥ"
+    },
+    {
+        value_ar: "ساجر",
+        value_en: "Sājir"
+    },
+     {
+        value_ar: "شقراء",
+        value_en: "Shaqrā"
+    },
+    {
+        value_ar: "تمير",
+        value_en: "Tamīr"
+    },
+    {
+        value_ar: "ثادق",
+        value_en: "Thādiq"
+    },
+    {
+        value_ar: "وادي الدواسر",
+        value_en: "Wādī ad-Dawāsir"
+    }
+];
+
+export const taboukCities = [
+    {
+        value_ar: "البدع",
+        value_en: "Al-Bad'"
+    },
+    {
+        value_ar: "الوجه",
+        value_en: "Al-Wajh"
+    },
+    {
+        value_ar: "بئر بن هرماس",
+        value_en: "B'īr Ibn Hirmās"
+    },
+    {
+        value_ar: "ضباء",
+        value_en: "Ḍubā'"
+    },
+    {
+        value_ar: "حاله عمار",
+        value_en: "Ḥalah 'Amār"
+    },
+    {
+        value_ar: "حقل",
+        value_en: "Ḥaql"
+    },
+    {
+        value_ar: "تبوك",
         value_en: "Tabūk"
     },
     {
-        value_ar: "ينبع",
-        value_en: "Yanbuʿ"
+        value_ar: "تيماء",
+        value_en: "Taymā'"
+    },
+    {
+        value_ar: "أملج",
+        value_en: "'Umluj"
     }
 ];
 

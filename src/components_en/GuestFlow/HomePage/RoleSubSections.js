@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 
-const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
+const RoleSubSections = ({ id, role, region, city, roleCategories }) => {
 
     const history = useHistory();
 
@@ -39,19 +39,19 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
 
                                 <img
                                     onClick={() => {
-                                        if (city === "City" && country === "Country") {
-                                            toast.error("Please Select both Country and City");
+                                        if (city === "City" && region === "Region") {
+                                            toast.error("Please Select both Region and City");
                                         }
                                         else if (city === "City") {
                                             toast.error("Please Select the City as well");
                                         }
-                                        else if (country === "Country") {
-                                            toast.error("Please Select the Country");
+                                        else if (region === "Region") {
+                                            toast.error("Please Select the Region");
                                         }
                                         else {
-                                            const searchValues = { role: role, category: val.name.value_en, country: country, city: city, subCategory: "All SubCategories" }
+                                            const searchValues = { role: role, category: val.name.value_en, region: region, city: city, subCategory: "All SubCategories" }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            const location = { country: country, city: city };
+                                            const location = { region: region, city: city };
                                             localStorage.setItem("locationEn", JSON.stringify(location));
                                             history.push("/Users");
                                         }
@@ -63,19 +63,19 @@ const RoleSubSections = ({ id, role, country, city, roleCategories }) => {
                                 <select
                                     className="bottom-dropdown"
                                     onChange={(e) => {
-                                        if (city === "City" && country === "Country") {
-                                            toast.error("Please Select both Country and City");
+                                        if (city === "City" && region === "Region") {
+                                            toast.error("Please Select both Region and City");
                                         }
                                         else if (city === "City") {
                                             toast.error("Please Select the City as well");
                                         }
-                                        else if (country === "Country") {
-                                            toast.error("Please Select the Country");
+                                        else if (region === "Region") {
+                                            toast.error("Please Select the Region");
                                         }
                                         else {
-                                            const searchValues = { role: role, category: val.name.value_en, country: country, city: city, subCategory: e.target.value }
+                                            const searchValues = { role: role, category: val.name.value_en, region: region, city: city, subCategory: e.target.value }
                                             localStorage.setItem("searchValues", JSON.stringify(searchValues));
-                                            const location = { country: country, city: city };
+                                            const location = { region: region, city: city };
                                             localStorage.setItem("locationEn", JSON.stringify(location));
                                             history.push("/Users");
                                         }

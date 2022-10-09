@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useLocation, useHistory } from "react-router-dom";
-import { countries, pakCities, saudiCities } from '../../../utils/constantsEn';
+import { regions, albahahCities, aljawfCities, alqaseemCities, aseerCities, easternregionCities, hailCities, jazanCities, meccaCities, medinaCities, najranCities, northernbordersCities, riyadhCities, taboukCities } from '../../../utils/constantsEn';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import LanguageIcon from '@mui/icons-material/Language';
 
 
-const Location = ({ country, city, setCountry, setCity }) => {
+const Location = ({ region, city, setRegion, setCity }) => {
 
     const location = useLocation();
 
@@ -16,10 +16,15 @@ const Location = ({ country, city, setCountry, setCity }) => {
         <Wrapper>
             <div className="location">
                 <div className='location-dropdown'>
-                    <label>{country} <ArrowDropDownIcon className='dropdown-icon' color="action" /></label>
-                    <select onChange={(e) => setCountry(e.target.value)}>
+                    <label>{region} <ArrowDropDownIcon className='dropdown-icon' color="action" /></label>
+                    <select
+                        onChange={(e) => {
+                            setRegion(e.target.value);
+                            setCity("City");
+                            localStorage.setItem("locationEn", JSON.stringify({ region: e.target.value, city: "City" }));
+                        }}>
                         <option hidden></option>
-                        {countries.map((item, index) => {
+                        {regions.map((item, index) => {
                             return (
                                 <option key={index} value={item.value_en} >
                                     {item.value_en}
@@ -31,20 +36,93 @@ const Location = ({ country, city, setCountry, setCity }) => {
 
                 <div className='location-dropdown'>
                     <label>{city} <ArrowDropDownIcon className='dropdown-icon' color="action" /></label>
-                    <select onChange={(e) => setCity(e.target.value)}>
+                    <select
+                        onChange={(e) => {
+                            localStorage.setItem("locationEn", JSON.stringify({ region: region, city: e.target.value }));
+                            setCity(e.target.value);
+                        }}>
                         <option hidden></option>
-                        {country === "Pakistan"
-                            ? pakCities.map((item, index) => (
-                                <option key={index} value={item.value_en}>
-                                    {item.value_en}
-                                </option>
-                            ))
-                            : country === "Saudia" ? saudiCities.map((item, index) => (
-                                <option key={index} value={item.value_en}>
-                                    {item.value_en}
-                                </option>
-                            )) : null}
-
+                        {
+                            region === "Al-Bahah"
+                                ? albahahCities.map((item, index) => (
+                                    <option key={index} value={item.value_en}>
+                                        {item.value_en}
+                                    </option>
+                                ))
+                                : region === "Al-Jawf"
+                                    ? aljawfCities.map((item, index) => (
+                                        <option key={index} value={item.value_en}>
+                                            {item.value_en}
+                                        </option>
+                                    ))
+                                    : region === "Al-Qaseem"
+                                        ? alqaseemCities.map((item, index) => (
+                                            <option key={index} value={item.value_en}>
+                                                {item.value_en}
+                                            </option>
+                                        ))
+                                        : region === "Aseer"
+                                            ? aseerCities.map((item, index) => (
+                                                <option key={index} value={item.value_en}>
+                                                    {item.value_en}
+                                                </option>
+                                            ))
+                                            : region === "Eastern Region"
+                                                ? easternregionCities.map((item, index) => (
+                                                    <option key={index} value={item.value_en}>
+                                                        {item.value_en}
+                                                    </option>
+                                                ))
+                                                : region === "Ḥā'il"
+                                                    ? hailCities.map((item, index) => (
+                                                        <option key={index} value={item.value_en}>
+                                                            {item.value_en}
+                                                        </option>
+                                                    ))
+                                                    : region === "Jazan"
+                                                        ? jazanCities.map((item, index) => (
+                                                            <option key={index} value={item.value_en}>
+                                                                {item.value_en}
+                                                            </option>
+                                                        ))
+                                                        : region === "Mecca"
+                                                            ? meccaCities.map((item, index) => (
+                                                                <option key={index} value={item.value_en}>
+                                                                    {item.value_en}
+                                                                </option>
+                                                            ))
+                                                            : region === "Medina"
+                                                                ? medinaCities.map((item, index) => (
+                                                                    <option key={index} value={item.value_en}>
+                                                                        {item.value_en}
+                                                                    </option>
+                                                                ))
+                                                                : region === "Najrān"
+                                                                    ? najranCities.map((item, index) => (
+                                                                        <option key={index} value={item.value_en}>
+                                                                            {item.value_en}
+                                                                        </option>
+                                                                    ))
+                                                                    : region === "Northern Borders"
+                                                                        ? northernbordersCities.map((item, index) => (
+                                                                            <option key={index} value={item.value_en}>
+                                                                                {item.value_en}
+                                                                            </option>
+                                                                        ))
+                                                                        : region === "Riyadh"
+                                                                            ? riyadhCities.map((item, index) => (
+                                                                                <option key={index} value={item.value_en}>
+                                                                                    {item.value_en}
+                                                                                </option>
+                                                                            ))
+                                                                            : region === "Tabouk"
+                                                                                ? taboukCities.map((item, index) => (
+                                                                                    <option key={index} value={item.value_en}>
+                                                                                        {item.value_en}
+                                                                                    </option>
+                                                                                ))
+                                                                                : null
+                        }
                     </select>
                 </div>
 

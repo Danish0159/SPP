@@ -28,9 +28,9 @@ export const getCommunityUserThunkAr = async (thunkAPI) => {
 };
 
 
-export const updateProfileThunkAr = async ({ profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar, companyName, companyAbout, companyVision, companyMission, id }, thunkAPI) => {
+export const updateProfileThunkAr = async ({ id, userName, email, roleEn, roleAr, categoryEn, categoryAr, subCategoryEn, subCategoryAr, companyName, companyAddress, companyVision, contactNumber, profilePhoto }, thunkAPI) => {
   try {
-    const resp = await customFetchProfile.patch(`/profile/updateprofilear/${id}`, { profilePhoto, name, email, phoneNumber, role_en, role_ar, category_en, category_ar, subCategory_en, subCategory_ar, companyName, companyAbout, companyVision, companyMission });
+    const resp = await customFetchProfile.patch(`/profile/updateprofilear/${id}`, { userName, email, roleEn, roleAr, categoryEn, categoryAr, subCategoryEn, subCategoryAr, companyName, companyAddress, companyVision, contactNumber, profilePhoto });
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {
@@ -76,7 +76,7 @@ export const addProjectThunkAr = async ({ projectName, projectLocation, projectD
 export const reviewProjectThunkAr = async ({ name, title, stars, phoneNumber, review, profileId, projectId }, thunkAPI) => {
   try {
     // No Header Needed for reviewAPI (So we are using axios direct).
-    const resp = await axios.patch(`https://mahnty.herokuapp.com/api/profile/reviewar/${profileId}/${projectId}`, { name, title, stars, phoneNumber, review });
+    const resp = await axios.patch(`https://backendsaudia.herokuapp.com/api/profile/reviewar/${profileId}/${projectId}`, { name, title, stars, phoneNumber, review });
     if (checkStatus(resp)) { return thunkAPI.rejectWithValue(resp.data.message); }
     return resp.data;
   } catch (error) {
