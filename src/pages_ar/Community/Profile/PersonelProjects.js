@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
-import Accordion from '@mui/material/Accordion';
 import styled from "styled-components";
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import { styles } from '../../../Shared/Styles';
 import { toast } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
-import CancelIcon from '@mui/icons-material/Cancel';
 import Spinner from "../../../components_ar/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProjectAr, updateProjectAr } from '../../../features_ar/profile/profileSlice';
 import Dropzone, { useDropzone } from "react-dropzone";
 import { Button, TextField } from '@mui/material';
-import { styles } from '../../../Shared/Styles';
-import { deleteProjectAr, updateProjectAr } from '../../../features_ar/profile/profileSlice';
+import CircularProgress from '@mui/material/CircularProgress';
+import CancelIcon from '@mui/icons-material/Cancel';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import Tooltip from '@mui/material/Tooltip';
 import Compress from 'compress.js';
 import axios from "axios";
-import CircularProgress from '@mui/material/CircularProgress';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 
 const PersonelProjects = ({ handleStep }) => {
@@ -177,7 +177,7 @@ const PersonelProjects = ({ handleStep }) => {
                         onChange={(e) => setProjectDescription(e.target.value)}
                         required
                     />
-                    <p className="card__subtitle">ملفات المشروع</p>
+                    <p className="card__subtitle">صور المشروع</p>
                     <div className="form-group">
                         <Dropzone
                             onDrop={(acceptedFiles) => {
@@ -277,122 +277,242 @@ const PersonelProjects = ({ handleStep }) => {
     else {
         return (
             <Wrapper>
-                <h2 className='profile__portfolio'>مَلَفّ</h2>
                 {user.profile.portfolio.map((project, index) => {
                     return (
-                        <Accordion key={index}>
-                            <AccordionSummary
-                                expandIcon={
-                                    <>
-                                        {!project.review &&
-                                            <p onClick={() => {
+                        <div className="project" key={index}>
+                            <div className="project__closed">
+                                <div className="container__left">
+                                    <h1 className="title">{project.projectName}</h1>
+                                </div>
+
+                                <div className="container__right">
+                                    <Tooltip title="فتح">
+                                        <ArrowDropDownCircleIcon
+                                            className="dropdown__icon"
+                                            color="primary"
+                                            onClick={() => {
+                                                const open = document.getElementById(`open${index}`);
+                                                if (open.style.display === "none") {
+
+                                                    open.style.display = "block";
+                                                }
+                                                else if (open.style.display === "block") {
+                                                    open.style.display = "none";
+                                                }
+                                            }}
+                                        />
+                                    </Tooltip>
+                                </div>
+                            </div>
+
+                            <div className="project__opened" id={`open${index}`} style={{ display: "none" }}>
+                                <p className="project__location">موقعه هو {project.projectLocation}</p>
+                                <div className='thumbsContainer'>
+                                    {
+                                        project.images.map((image, index) => {
+                                            return (
+                                                <div key={index} className='thumb'>
+                                                    <div className='thumbInner'>
+                                                        <img alt="ProjectImage" src={image} className="project__image" />
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div className="interaction">
+                                    {
+                                        !project.review &&
+                                        <div
+                                            onClick={() => {
                                                 setReview(true);
                                                 setProjectReviewId(project._id);
-                                            }} className="icons">إعادة النظر</p>
-                                        }
-                                        <ModeEditOutlineOutlinedIcon onClick={() => handleProjectUpdate(project._id)} className="icons" />
-                                        <DeleteIcon onClick={() => { handleDelete(project._id) }} className="icons" />
-                                    </>
-                                }
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <p className="profile__title">{project.projectName}</p>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <div className="preview__portfolio">
-                                    <p className="profile__title">اسم المشروع</p>
-                                    <p className="profile__subtitle">{project.projectName}</p>
-                                    <p className="profile__title">موقع المشروع</p>
-                                    <p className="profile__subtitle">{project.projectLocation}</p>
-                                    <p className="profile__title">وصف المشروع</p>
-                                    <p className="profile__subtitle">{project.projectDescription}</p>
-                                    <aside className='thumbsContainer'>
-                                        {
-                                            project.images.map((img, index) => {
-                                                return (
-                                                    <div key={index} className='thumb'>
-                                                        <div className='thumbInner'>
-                                                            <img alt="selected" src={img} className='img' />
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </aside>
+                                            }}
+                                        >
+                                            <Tooltip title="إعادة النظر">
+                                                <RateReviewIcon className="icons" color="warning" />
+                                            </Tooltip>
+                                        </div>
+                                    }
+
+                                    <div
+                                        onClick={() => handleProjectUpdate(project._id)}
+                                    >
+                                        <Tooltip title="يحرر">
+                                            <ModeEditOutlineOutlinedIcon className="icons" color="primary" />
+                                        </Tooltip>
+                                    </div>
+
+                                    <div
+                                        onClick={() => { handleDelete(project._id) }}
+                                    >
+                                        <Tooltip title="حذف">
+                                            <DeleteIcon className="icons" color="error" />
+                                        </Tooltip>
+                                    </div>
+
                                 </div>
-                            </AccordionDetails>
-                        </Accordion>
+                            </div>
+                        </div>
                     )
                 })}
-                <div className="profile__addproject" >
-                    <button
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            marginTop: "2rem"
-                        }}
-                        className="blue-btn card-btn"
-                        onClick={() => handleStep(3)}
+
+                <div className="addproject" >
+                    <Button
+                        className="addproject__btn"
+                        variant="contained"
+                        onClick={() => handleStep(4)}
+                        endIcon={<AddOutlinedIcon className="add__icon"/>}
                     >
-                        أضف مشروع <AddOutlinedIcon fontSize="large" />
-                    </button>
+                        أضف مشروع
+                    </Button>
                 </div>
+
             </Wrapper>
         )
     }
 }
 
-export default PersonelProjects
+export default PersonelProjects;
+
 
 const Wrapper = styled.div`
 
-.edit__div {
-    display:flex;
-    align-items:center;
-    margin-bottom:7px;
-    padding-bottom:0px;
-    justify-content:flex-end;
-}
+    .edit__div {
+        display:flex;
+        align-items:center;
+        margin-bottom:7px;
+        padding-bottom:0px;
+        justify-content:flex-end;
+    }
 
-.edit__icon {
-    color: #656565;
-    font-size: 35px;
-    border: 1px solid #656565;
-    border-radius:50px;
-    margin: .4rem 0rem;
-    padding: 6px;
-    cursor: pointer;
-}
+    .edit__icon {
+        color: #656565;
+        font-size: 35px;
+        border: 1px solid #656565;
+        border-radius:50px;
+        margin: .4rem 0rem;
+        padding: 6px;
+        cursor: pointer;
+    }
 
-.icons {
-    font-size: 20px;
-    margin-right: 8px;
-}
+    .request__title {
+        font-size: 2.7rem;
+    }
 
-.request__title {
-    font-size: 2.7rem;
-}
+    .request__link {
+        background-color:#424d83;
+        color: rgb(255, 255, 255);;
+        border: none;
+        font-size: 1.3rem;
+        padding: 1rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 2rem;
+    }
 
-.request__link {
-    background-color:#424d83;
-    color: rgb(255, 255, 255);;
-    border: none;
-    font-size: 1.3rem;
-    padding: 1rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 2rem;
-    
-}
+    .project {
+        border-radius: 4px;
+        border: 1.5px solid lightgrey;
+        box-shadow: -4px 8px 5px 0px rgba(0,0,0,0.06);
+        padding: 1rem;
+    }
 
-.profile__addproject {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .project__closed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .container__left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title {
+        color: darkblue;
+        font-size: 1.8rem;
+    }
+
+    .dropdown__icon {
+        font-size: 3rem;
+        color: darkblue;
+        cursor: pointer;
+    }
+
+    .project__location {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        color: #2b2b2b;
+    }
+
+    .thumbsContainer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+    }
+
+    .thumb{
+        display: inline-flex;
+        border-radius:2px;
+        border : 1px solid #eaeaea;
+        margin-bottom: 8px;
+        margin-right:8px;
+        width: 125px;
+        height: 125px;
+        padding: 4px;
+        box-sizing:border-box;
+    }
+
+    .thumbInner{
+        display: flex;
+        min-width: 0px;
+        overflow: hidden;
+    }
+
+    .project__image{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .interaction {
+        border-radius: 1rem;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top: 1.5px solid lightgrey;
+        border-left: 1.5px solid lightgrey;
+        border-bottom: 1.5px solid lightgrey;
+        padding: 1rem 0rem;
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .icons {
+        font-size: 2.5rem;
+        cursor: pointer;
+    }
+
+    .addproject {
+        margin-top: 1rem;
+        text-align: center;        
+    }
+
+    .addproject__btn {
+        margin-top: 1rem;
+        font-size: 1.3rem;
+        background-color: #424d83;
+    }
+
+    .add__icon {
+        margin-right: 1rem;
+    }
 
 `;
 

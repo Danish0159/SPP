@@ -47,6 +47,7 @@ const AddProject = ({ handleStep }) => {
 
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         e.target.disabled = true;
         //  API CALL.
         dispatch(
@@ -129,7 +130,7 @@ const AddProject = ({ handleStep }) => {
                         onChange={(e) => setProjectDescription(e.target.value)}
                         required
                     />
-                    <p className="card__subtitle">ملفات المشروع</p>
+                    <p className="card__subtitle">صور المشروع</p>
                     <div className="form-group">
                         <Dropzone
                             onDrop={(acceptedFiles) => {

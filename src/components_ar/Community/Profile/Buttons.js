@@ -3,11 +3,15 @@ import styled from "styled-components";
 import { ButtonsWrapper } from "../../../Shared/CardLayout";
 
 const Buttons = ({ handleStep, step }) => {
+
   const steps = [
     "معلومات شخصية",
-    "مشاريعك",
-    "معاينة الملف الشخصي",
-    "أضف مشروع"
+    "المشاريع الشخصية",
+    "مشاركات المدونة الشخصية",
+    "أفكار شخصية",
+    "أضف مشروع",
+    "أضف منشور مدونة",
+    "أضف فكرة"
   ];
 
   return (

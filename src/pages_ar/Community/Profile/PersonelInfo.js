@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
+import Spinner from "../../../components_ar/Spinner";
+import { styles } from '../../../Shared/Styles';
+import { roles, categories, subCategories } from "../../../utils/constantsAr";
+import { useDispatch, useSelector } from "react-redux";
+import { getCommunityUserAr, updateProfileAr } from '../../../features_ar/profile/profileSlice';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { Select, TextField, MenuItem, Avatar } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { useDispatch, useSelector } from "react-redux";
-import { getCommunityUserAr, updateProfileAr } from '../../../features_ar/profile/profileSlice';
-import Spinner from "../../../components_ar/Spinner";
-import { styles } from '../../../Shared/Styles';
-import { roles, categories, subCategories } from "../../../utils/constantsAr"
 
 const PersonelInfo = () => {
 

@@ -12,10 +12,15 @@ import {
   deleteProjectThunkEn,
   updateProjectThunkEn,
   reviewProjectThunkEn,
+  addIdeaThunkEn,
+  sendCommentThunkEn,
+  getCommentsThunkEn,
+  deleteIdeaThunkEn
 } from './profileThunk';
 
 const initialState = {
   user: null,
+  comments: null,
   isLoading: false,
   isSuccess: false,
   regionFlag: null,
@@ -30,6 +35,10 @@ export const deleteProjectEn = createAsyncThunk('profile/deleteProjectEn', delet
 export const updateProjectEn = createAsyncThunk('profile/updateProjectEn', updateProjectThunkEn);
 export const addProjectEn = createAsyncThunk('profile/addProjectEn', addProjectThunkEn);
 export const reviewProjectEn = createAsyncThunk('profile/reviewProjectEn', reviewProjectThunkEn);
+export const addIdeaEn = createAsyncThunk('profile/addIdeaEn', addIdeaThunkEn);
+export const sendCommentEn = createAsyncThunk('profile/sendCommentEn', sendCommentThunkEn);
+export const getCommentsEn = createAsyncThunk('profile/getCommentsEn', getCommentsThunkEn);
+export const deleteIdeaEn = createAsyncThunk('profile/deleteIdeaEn', deleteIdeaThunkEn);
 
 const profileSlice = createSlice({
   name: 'profile',
@@ -156,6 +165,58 @@ const profileSlice = createSlice({
       state.isSuccess = true;
     },
     [reviewProjectEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [addIdeaEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addIdeaEn.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.user = payload;
+    },
+    [addIdeaEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [sendCommentEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [sendCommentEn.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.user = payload;
+    },
+    [sendCommentEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [getCommentsEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getCommentsEn.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.comments = payload;
+    },
+    [getCommentsEn.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+
+    [deleteIdeaEn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteIdeaEn.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.success(payload.message);
+      state.user = payload;
+    },
+    [deleteIdeaEn.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },

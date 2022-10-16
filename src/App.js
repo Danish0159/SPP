@@ -46,7 +46,7 @@ import { JoinUsEn, DriverEn } from "./pages_en/ProfileCreation";
 import { JoinUsAr, DriverAr } from "./pages_ar/ProfileCreation";
 
 // Flow 3 (Community Flow)
-// import { FeedDriverEn } from "./pages_en/Community/Feed";
+import { FeedDriverEn } from "./pages_en/Community/Feed";
 import { ProfileDriverEn, ClientReviewEn } from "./pages_en/Community/Profile";
 
 // import { FeedDriverAr } from "./pages_ar/Community/Feed";
@@ -64,7 +64,6 @@ const App = () => {
         <Suspense fallback={<LinearProgress />}>
           <ThemeProvider theme={theme}>
             <Switch>
-
               <Route exact path="/ContactUs">
                 <ContactPageEn></ContactPageEn>
               </Route>
@@ -128,7 +127,6 @@ const App = () => {
               <Route exact path="/">
                 <HomePageEn></HomePageEn>
               </Route>
-
 
               <Route exact path="/ar">
                 <HomePageAr></HomePageAr>
@@ -196,17 +194,10 @@ const App = () => {
               {/* ----------------------------------------------- */}
               {/* ExistingUser (Can Access if Profile is Created). */}
 
-              {/* <PrivateWithOutProfileEn
-                exact
-                path="/HomeFeed"
-                component={FeedDriverEn}
-              ></PrivateWithOutProfileEn>
-
-              <PrivateWithOutProfileAr
-                exact
-                path="/HomeFeedar"
-                component={FeedDriverAr}
-              ></PrivateWithOutProfileAr> */}
+          
+              <Route exact path="/HomeFeed">
+                <FeedDriverEn></FeedDriverEn>
+              </Route>
 
               <PrivateWithOutProfileEn
                 exact
@@ -235,7 +226,6 @@ const App = () => {
               <Route exact path="*">
                 <ErrorPage></ErrorPage>
               </Route>
-
             </Switch>
           </ThemeProvider>
         </Suspense>

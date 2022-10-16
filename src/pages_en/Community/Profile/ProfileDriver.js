@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Footer } from "../../../components_en";
 import { Buttons } from "../../../components_en/Community/Profile";
 import { CardLayout } from '../../../Shared/CardLayout';
-import { AddProject, PersonelInfo, PreviewProfile, PersonelProjects } from '../Profile';
+import { AddProject, AddBlogPost, AddIdea, PersonelInfo, PersonelProjects, PersonelBlogPosts, PersonelIdeas } from '../Profile';
 import { CardTitle } from '../../../Shared'
 import { useSelector } from "react-redux";
 import { NavbarCommunity } from '../../../components_en/Navigations'
@@ -16,10 +16,13 @@ const ProfileDriver = () => {
   const [step, setStep] = useState(0);
 
   const steps = [
-    "Personel Info",
-    "Your Projects",
-    "Preview Profile",
+    "Personal Info",
+    "Personal Projects",
+    "Personal Blog Posts",
+    "Personal Ideas",
     "Add Project",
+    "Add Blog Post",
+    "Add Idea"
   ];
 
   const handleStep = (id) => {
@@ -30,8 +33,11 @@ const ProfileDriver = () => {
     switch (step) {
       case 0: return <PersonelInfo></PersonelInfo>
       case 1: return <PersonelProjects handleStep={handleStep} ></PersonelProjects>;
-      case 2: return <PreviewProfile></PreviewProfile>;
-      case 3: return <AddProject handleStep={handleStep} ></AddProject>
+      case 2: return <PersonelBlogPosts handleStep={handleStep} ></PersonelBlogPosts>;
+      case 3: return <PersonelIdeas handleStep={handleStep} ></PersonelIdeas>;
+      case 4: return <AddProject handleStep={handleStep} ></AddProject>
+      case 5: return <AddBlogPost handleStep={handleStep} ></AddBlogPost>
+      case 6: return <AddIdea handleStep={handleStep} ></AddIdea>
       default:
         return <div>Not Found</div>;
     }
@@ -43,10 +49,10 @@ const ProfileDriver = () => {
       <CardLayout>
         <Buttons handleStep={handleStep} step={step}></Buttons>
         <Wrapper>
-        <CardTitle steps={steps} activeStep={step}>
-            </CardTitle>
+          <CardTitle steps={steps} activeStep={step}>
+          </CardTitle>
           <div className="card">
-            
+
             <div className="card__content">
               {_renderStepContent(step)}
             </div>
@@ -65,31 +71,6 @@ const Wrapper = styled.div`
   box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
   -webkit-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
   -moz-box-shadow: -2px 3px 8px 0px rgba(199,185,185,0.75);
-
-
-  .profile__title {
-    font-size: 1.7rem;
-    font-weight: 600;
-    margin-bottom: 0.9rem; 
-  }
-  
-  .profile__subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .profile__avatar {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .profile__portfolio {
-    font-size: 2.3rem;
-    font-weight: 700;
-    margin: 2.5rem 0rem;
-    color: #424d83;
-  }
 
   .helper {
     font-size: 1.5rem;

@@ -11,10 +11,11 @@ export const theme = createTheme({
 // Material UI
 export const styles = {
     textField: {
-        fontSize: "1.5rem",
+        fontSize: "1.8rem",
         fontWeight: "400",
         padding: "12px 14px",
         color: "#2a2a2a",
+        lineHeight: "1.4",
     },
     desciption: {
         fontSize: "1.8rem",

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-const FeedNav = ({ handleStep, step }) => {
-  const steps = ["Feed", "Inbox", "Communities", "(+)", "Courses"];
+const FeedNav = ({ handleStep }) => {
+  const steps = ["Feed", "Communities", "Create Community (+)", "Courses"];
 
   return (
     <Wrapper>
