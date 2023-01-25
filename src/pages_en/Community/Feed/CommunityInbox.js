@@ -2,15 +2,15 @@ import React from 'react'
 import styled from "styled-components";
 
 
-const Communities = () => {
+const CommunityInbox = () => {
     return (
         <Wrapper>
-            <h1>Communities</h1>
+            <h1>CommunityInbox</h1>
         </Wrapper>
     )
 }
 
-export default Communities
+export default CommunityInbox
 
 const Wrapper = styled.div`
 

@@ -45,18 +45,18 @@ const AddProject = ({ handleStep }) => {
         // eslint-disable-next-line
     }, [isSuccess]);
 
+
     const handleSubmit = (e) => {
-        e.preventDefault();
         e.target.disabled = true;
 
         //  API CALL.
         dispatch(
             addProjectEn({
-                id: user.profile._id,
                 projectName,
                 projectLocation,
                 projectDescription,
-                images
+                images,
+                id: user.profile._id,
             })
         );
         // Reset form.
@@ -131,7 +131,7 @@ const AddProject = ({ handleStep }) => {
                         onChange={(e) => setProjectDescription(e.target.value)}
                         required
                     />
-                    <p className="card__subtitle">Project Images</p>
+                    <p className="card__subtitle">Project Files</p>
                     <div className="form-group">
                         <Dropzone
                             onDrop={(acceptedFiles) => {

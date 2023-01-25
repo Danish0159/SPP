@@ -12,15 +12,10 @@ import {
   deleteProjectThunkAr,
   updateProjectThunkAr,
   reviewProjectThunkAr,
-  addIdeaThunkAr,
-  sendCommentThunkAr,
-  getCommentsThunkAr,
-  deleteIdeaThunkAr
 } from './profileThunk';
 
 const initialState = {
   user: null,
-  comments: null,
   isLoading: false,
   isSuccess: false,
   regionFlag: null,
@@ -35,10 +30,6 @@ export const deleteProjectAr = createAsyncThunk('profile/deleteProjectAr', delet
 export const updateProjectAr = createAsyncThunk('profile/updateProjectAr', updateProjectThunkAr);
 export const addProjectAr = createAsyncThunk('profile/addProjectAr', addProjectThunkAr);
 export const reviewProjectAr = createAsyncThunk('profile/reviewProjectAr', reviewProjectThunkAr);
-export const addIdeaAr = createAsyncThunk('profile/addIdeaAr', addIdeaThunkAr);
-export const sendCommentAr = createAsyncThunk('profile/sendCommentAr', sendCommentThunkAr);
-export const getCommentsAr = createAsyncThunk('profile/getCommentsAr', getCommentsThunkAr);
-export const deleteIdeaAr = createAsyncThunk('profile/deleteIdeaAr', deleteIdeaThunkAr);
 
 const profileSlice = createSlice({
   name: 'profile',
@@ -56,6 +47,7 @@ const profileSlice = createSlice({
     },
   },
   extraReducers: {
+
     [profileCreationAr.pending]: (state) => {
       state.isLoading = true;
     },
@@ -104,11 +96,11 @@ const profileSlice = createSlice({
 
       const user = {
         userId: payload.user._id,
-        name_en: payload.user.name_en,
-        role_en: payload.user.role_en,
+        name_ar: payload.user.name_ar,
+        role_ar: payload.user.role_ar,
         phoneNumber: payload.user.phoneNumber,
         token: oldUser.token,
-        profile: payload.user.profile
+        profile: payload.user.profile,
       }
       state.user = payload;
       addUserToLocalStorage(user);
@@ -117,7 +109,7 @@ const profileSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     },
-
+    
     [deleteProjectAr.pending]: (state) => {
       state.isLoading = true;
     },
@@ -168,61 +160,9 @@ const profileSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     },
-
-    [addIdeaAr.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [addIdeaAr.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.user = payload;
-    },
-    [addIdeaAr.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      toast.error(payload);
-    },
-
-    [sendCommentAr.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [sendCommentAr.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.user = payload;
-    },
-    [sendCommentAr.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      toast.error(payload);
-    },
-
-    [getCommentsAr.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [getCommentsAr.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.comments = payload;
-    },
-    [getCommentsAr.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      toast.error(payload);
-    },
-
-    [deleteIdeaAr.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [deleteIdeaAr.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      toast.success(payload.message);
-      state.user = payload;
-    },
-    [deleteIdeaAr.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      toast.error(payload);
-    },
-
+    
   },
 });
 
-export const { reset, updateRegionFlag, updateCategoryFlag } = profileSlice.actions;
+export const { reset, updateCategoryFlag, updateRegionFlag } = profileSlice.actions;
 export default profileSlice.reducer;
