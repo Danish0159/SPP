@@ -3,17 +3,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
-import { theme } from './Shared/Styles';
-import ErrorPage from './utils/ErrorPage'
-import LinearProgress from '@mui/material/LinearProgress';
+import { theme } from "./Shared/Styles";
+import ErrorPage from "./utils/ErrorPage";
+import LinearProgress from "@mui/material/LinearProgress";
 
-// Public Pages. 
+// Public Pages.
 import {
   LoginPageEn,
   SignupPageEn,
   AboutPageEn,
   ContactPageEn,
-  VerifyPageEn
+  VerifyPageEn,
 } from "./pages_en";
 
 import {
@@ -21,7 +21,7 @@ import {
   SignupPageAr,
   AboutPageAr,
   ContactPageAr,
-  VerifyPageAr
+  VerifyPageAr,
 } from "./pages_ar";
 
 // Flow 1 (Guest Flow)
@@ -53,18 +53,26 @@ import { ProfileDriverEn, ClientReviewEn } from "./pages_en/Community/Profile";
 import { ProfileDriverAr, ClientReviewAr } from "./pages_ar/Community/Profile";
 
 // Private Routes.
-import { PrivateWithOutProfileEn, PrivateWithProfileEn, PrivateWithUserEn, PrivateWithOutUserEn } from "./pages_en/ProtectedRoutes";
-import { PrivateWithOutProfileAr, PrivateWithProfileAr, PrivateWithUserAr, PrivateWithOutUserAr } from "./pages_ar/ProtectedRoutes";
+import {
+  PrivateWithOutProfileEn,
+  PrivateWithProfileEn,
+  PrivateWithUserEn,
+  PrivateWithOutUserEn,
+} from "./pages_en/ProtectedRoutes";
+import {
+  PrivateWithOutProfileAr,
+  PrivateWithProfileAr,
+  PrivateWithUserAr,
+  PrivateWithOutUserAr,
+} from "./pages_ar/ProtectedRoutes";
 
 const App = () => {
-
   return (
     <>
       <Router>
         <Suspense fallback={<LinearProgress />}>
           <ThemeProvider theme={theme}>
             <Switch>
-
               <Route exact path="/ContactUs">
                 <ContactPageEn></ContactPageEn>
               </Route>
@@ -128,7 +136,6 @@ const App = () => {
               <Route exact path="/">
                 <HomePageEn></HomePageEn>
               </Route>
-
 
               <Route exact path="/ar">
                 <HomePageAr></HomePageAr>
@@ -235,7 +242,6 @@ const App = () => {
               <Route exact path="*">
                 <ErrorPage></ErrorPage>
               </Route>
-
             </Switch>
           </ThemeProvider>
         </Suspense>
