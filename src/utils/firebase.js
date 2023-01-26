@@ -1,12 +1,12 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAyyE6q6cetgAaf6qJl7Eil5udICHrMOUY",
-    authDomain: "sa-auth-5feb3.firebaseapp.com",
-    projectId: "sa-auth-5feb3",
-    storageBucket: "sa-auth-5feb3.appspot.com",
-    messagingSenderId: "147160756997",
-    appId: "1:147160756997:web:576bec598185654e833d6c"
+  apiKey: "AIzaSyA3R5NkdJxj6VAXxJf0O_SINajfIgI4YHQ",
+  authDomain: "ssp-auth.firebaseapp.com",
+  projectId: "ssp-auth",
+  storageBucket: "ssp-auth.appspot.com",
+  messagingSenderId: "1018733033524",
+  appId: "1:1018733033524:web:e7f097846c977d15b1f261",
 };
 
 const firebaseApp = initializeApp(firebaseConfig);

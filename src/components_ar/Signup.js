@@ -3,27 +3,32 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { MenuItem, TextField, Button, InputAdornment } from "@mui/material";
 import { roles } from "../utils/constantsAr";
-import { styles } from '../Shared/Styles';
+import { styles } from "../Shared/Styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
-import PersonIcon from '@mui/icons-material/Person';
-import EmailIcon from '@mui/icons-material/Email';
-import KeyIcon from '@mui/icons-material/Key';
-import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
-import PhoneIcon from '@mui/icons-material/Phone';
+import PersonIcon from "@mui/icons-material/Person";
+import EmailIcon from "@mui/icons-material/Email";
+import KeyIcon from "@mui/icons-material/Key";
+import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
+import PhoneIcon from "@mui/icons-material/Phone";
 import Spinner from "./Spinner";
 
 const schema = yup.object().shape({
-  name: yup.string().required('مطلوب*'),
-  email: yup.string().email('تنسيق بريد إلكتروني غير صالح').required('مطلوب*'),
-  password: yup.string().min(8, 'قصير جدًا - يجب ألا يقل عن 8 أحرف').required('مطلوب*'),
-  role: yup.string().required('مطلوب*'),
-  phoneNumber: yup.string().min(10, 'يجب أن يكون 10 رقمًا بالضبط').required('مطلوب*')
+  name: yup.string().required("مطلوب*"),
+  email: yup.string().email("تنسيق بريد إلكتروني غير صالح").required("مطلوب*"),
+  password: yup
+    .string()
+    .min(8, "قصير جدًا - يجب ألا يقل عن 8 أحرف")
+    .required("مطلوب*"),
+  role: yup.string().required("مطلوب*"),
+  phoneNumber: yup
+    .string()
+    .min(11, "يجب أن يكون 10 رقمًا بالضبط")
+    .required("مطلوب*"),
 });
 
 const Signup = () => {
-
   const formValues = JSON.parse(localStorage.getItem("formValues"));
 
   const [emailExist, setEmailExist] = useState(false);
@@ -39,17 +44,16 @@ const Signup = () => {
       email: formValues.email,
       password: formValues.password,
       role: formValues.role,
-      phoneNumber: formValues.phoneNumber
-    }
-  }
-  else {
+      phoneNumber: formValues.phoneNumber,
+    };
+  } else {
     initialValues = {
       name: "",
       email: "",
       password: "",
       role: "",
-      phoneNumber: ""
-    }
+      phoneNumber: "",
+    };
   }
 
   const formik = useFormik({
@@ -61,11 +65,9 @@ const Signup = () => {
   });
 
   const onSignUpSubmit = () => {
-
     localStorage.setItem("formValues", JSON.stringify(formik.values));
 
-    history.push('/Verifyar');
-
+    history.push("/Verifyar");
   };
 
   if (loading) {
@@ -75,8 +77,7 @@ const Signup = () => {
   return (
     <Wrapper>
       <div className="signup__grid">
-
-        <h2 className="signup__title" >اشتراك</h2>
+        <h2 className="signup__title">اشتراك</h2>
 
         <div className="form-group">
           <label htmlFor="name">الاسم الكامل</label>
@@ -94,12 +95,22 @@ const Signup = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <PersonIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                  <PersonIcon
+                    sx={{
+                      color: "blue",
+                      fontSize: "3.5rem",
+                      borderLeft: "1px solid grey",
+                      paddingLeft: "10px",
+                      marginLeft: "15px",
+                    }}
+                  />
                 </InputAdornment>
               ),
             }}
           />
-          {formik.touched.name && formik.errors.name ? <p className="error">{formik.errors.name}</p> : null}
+          {formik.touched.name && formik.errors.name ? (
+            <p className="error">{formik.errors.name}</p>
+          ) : null}
         </div>
         <div className="form-group">
           <label htmlFor="name">عنوان البريد الالكترونى</label>
@@ -123,13 +134,25 @@ const Signup = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <EmailIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                  <EmailIcon
+                    sx={{
+                      color: "blue",
+                      fontSize: "3.5rem",
+                      borderLeft: "1px solid grey",
+                      paddingLeft: "10px",
+                      marginLeft: "15px",
+                    }}
+                  />
                 </InputAdornment>
               ),
             }}
           />
-          {formik.touched.email && formik.errors.email ? <p className="error">{formik.errors.email}</p> : null}
-          {emailExist && <p className="error emailexists">البريد الالكتروني موجود بالفعل</p>}
+          {formik.touched.email && formik.errors.email ? (
+            <p className="error">{formik.errors.email}</p>
+          ) : null}
+          {emailExist && (
+            <p className="error emailexists">البريد الالكتروني موجود بالفعل</p>
+          )}
         </div>
 
         <div className="form-group">
@@ -148,12 +171,22 @@ const Signup = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <KeyIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                  <KeyIcon
+                    sx={{
+                      color: "blue",
+                      fontSize: "3.5rem",
+                      borderLeft: "1px solid grey",
+                      paddingLeft: "10px",
+                      marginLeft: "15px",
+                    }}
+                  />
                 </InputAdornment>
               ),
             }}
           />
-          {formik.touched.password && formik.errors.password ? <p className="error">{formik.errors.password}</p> : null}
+          {formik.touched.password && formik.errors.password ? (
+            <p className="error">{formik.errors.password}</p>
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -171,25 +204,32 @@ const Signup = () => {
                 fontSize: "1.5rem",
                 fontWeight: "400",
                 color: "#2a2a2a",
-              }
+              },
             }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <MiscellaneousServicesIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px" }} />
+                  <MiscellaneousServicesIcon
+                    sx={{
+                      color: "blue",
+                      fontSize: "3.5rem",
+                      borderLeft: "1px solid grey",
+                      paddingLeft: "10px",
+                    }}
+                  />
                 </InputAdornment>
               ),
             }}
           >
             {roles.map((role, index) => (
-              <MenuItem
-                sx={styles.menu}
-                key={index} value={role.value_ar}>
+              <MenuItem sx={styles.menu} key={index} value={role.value_ar}>
                 {role.value_ar}
               </MenuItem>
             ))}
           </TextField>
-          {formik.touched.role && formik.errors.role ? <p className="error">{formik.errors.role}</p> : null}
+          {formik.touched.role && formik.errors.role ? (
+            <p className="error">{formik.errors.role}</p>
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -202,7 +242,6 @@ const Signup = () => {
             placeholder="على سبيل المثال ، 0523451759"
             value={formik.values.phoneNumber}
             onChange={(e) => {
-
               let regExp = /^[0-9]*$/;
 
               if (regExp.test(e.target.value)) {
@@ -214,42 +253,55 @@ const Signup = () => {
             onBlur={formik.handleBlur}
             inputProps={{
               style: styles.textField,
-              maxLength: 10
+              maxLength: 11,
             }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <PhoneIcon sx={{ color: "blue", fontSize: "3.5rem", borderLeft: "1px solid grey", paddingLeft: "10px", marginLeft: "15px" }} />
+                  <PhoneIcon
+                    sx={{
+                      color: "blue",
+                      fontSize: "3.5rem",
+                      borderLeft: "1px solid grey",
+                      paddingLeft: "10px",
+                      marginLeft: "15px",
+                    }}
+                  />
                 </InputAdornment>
               ),
             }}
           />
-          {formik.touched.phoneNumber && formik.errors.phoneNumber ? <p className="error">{formik.errors.phoneNumber}</p> : null}
+          {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+            <p className="error">{formik.errors.phoneNumber}</p>
+          ) : null}
         </div>
 
         <Button
-          className={!formik.isValid ? "signup__btndisabled" : "signup__btnactive"}
+          className={
+            !formik.isValid ? "signup__btndisabled" : "signup__btnactive"
+          }
           variant="contained"
           disabled={!formik.isValid}
           onClick={() => {
             setLoading(true);
-            axios.post('https://backendsaudia.herokuapp.com/api/user/checkemail', { email: formik.values.email }).then((response) => {
-              if (response.data.status === "FAILED") {
-                setLoading(false);
-                setEmailExist(true);
-              }
-              else if (response.data.status === "SUCCESS") {
-                setLoading(false);
-                onSignUpSubmit();
-              }
-            })
+            axios
+              .post("https://sspbackend.onrender.com/api/user/checkemail", {
+                email: formik.values.email,
+              })
+              .then((response) => {
+                if (response.data.status === "FAILED") {
+                  setLoading(false);
+                  setEmailExist(true);
+                } else if (response.data.status === "SUCCESS") {
+                  setLoading(false);
+                  onSignUpSubmit();
+                }
+              });
           }}
         >
           يسجل
         </Button>
-
       </div>
-
     </Wrapper>
   );
 };
@@ -257,7 +309,6 @@ const Signup = () => {
 export default Signup;
 
 const Wrapper = styled.section`
-
   height: 100%;
   display: flex;
   justify-content: center;
@@ -289,7 +340,7 @@ const Wrapper = styled.section`
   .form-group label {
     font-size: 1.8rem;
     font-weight: 400;
-    color: "#2a2a2a"
+    color: "#2a2a2a";
   }
 
   .signup__title {
@@ -326,5 +377,4 @@ const Wrapper = styled.section`
     margin-top: 0.8rem;
     color: blue;
   }
- 
 `;

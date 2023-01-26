@@ -2,20 +2,19 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { Button, Avatar } from "@mui/material";
 import { useController } from "react-hook-form";
-import Compress from 'compress.js';
+import Compress from "compress.js";
 import axios from "axios";
 import { styles } from "../../../Shared/Styles";
 
 function UploadField(props) {
-
   const {
     field: { onChange, name, value },
-    fieldState: { error }
+    fieldState: { error },
   } = useController({
     name: props.name,
     control: props.control,
     rules: {
-      required: true
+      required: true,
     },
     defaultValue: "",
   });
@@ -25,46 +24,46 @@ function UploadField(props) {
   const files = useRef();
 
   const onUpload = (e) => {
-
     props.setWait(true);
 
-    compress.compress(files.current, {
-      size: 1,
-      quality: 0.7,
-      maxHeight: 1080,
-      maxWidth: 1080,
-    }).then((result) => {
-
-      const base64str = result[0].data;
-      const imgExt = result[0].ext;
-      const fileToUpload = Compress.convertBase64ToFile(base64str, imgExt);
-
-      const formData = new FormData();
-
-      formData.append("file", fileToUpload);
-      formData.append("upload_preset", "kae4qxnj");
-
-      axios.post("https://api.cloudinary.com/v1_1/mahnty/image/upload", formData).then((Response) => {
-        onChange(Response.data.secure_url);
-        props.setWait(false);
-        props.setCheck(false);
+    compress
+      .compress(files.current, {
+        size: 1,
+        quality: 0.7,
+        maxHeight: 1080,
+        maxWidth: 1080,
       })
+      .then((result) => {
+        const base64str = result[0].data;
+        const imgExt = result[0].ext;
+        const fileToUpload = Compress.convertBase64ToFile(base64str, imgExt);
 
-      return null;
+        const formData = new FormData();
 
-    });
+        formData.append("file", fileToUpload);
+        formData.append("upload_preset", "huarluoc");
+        formData.append("api_key", "642495779825247");
 
+        axios
+          .post(
+            "https://api.cloudinary.com/v1_1/dm1mlee94/image/upload",
+            formData
+          )
+          .then((Response) => {
+            onChange(Response.data.secure_url);
+            props.setWait(false);
+            props.setCheck(false);
+          });
+
+        return null;
+      });
   };
 
   console.log("upload field");
 
   return (
     <Wrapper>
-      <Avatar
-        src={value}
-        sx={{ width: 150, height: 150 }}
-        alt="Avatar"
-      />
+      <Avatar src={value} sx={{ width: 150, height: 150 }} alt="Avatar" />
       <div className="btns">
         <Button
           component="label"
@@ -79,12 +78,7 @@ function UploadField(props) {
           style={styles.uploadBtn}
         >
           {value === "" ? "اختر صورة" : "تغيير الصورة"}
-          <input
-            type="file"
-            accept="image/*"
-            max={1}
-            hidden
-          />
+          <input type="file" accept="image/*" max={1} hidden />
         </Button>
         <Button
           variant="contained"
@@ -94,11 +88,13 @@ function UploadField(props) {
         >
           تحميل الصور
         </Button>
-        {error && error.type === "required" ? <small className="error">مطلوب</small> : null}
+        {error && error.type === "required" ? (
+          <small className="error">مطلوب</small>
+        ) : null}
       </div>
     </Wrapper>
   );
-};
+}
 
 export default UploadField;
 
@@ -113,5 +109,4 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
   }
-
 `;
