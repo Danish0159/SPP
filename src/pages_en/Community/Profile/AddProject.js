@@ -164,9 +164,9 @@ const AddProject = ({ handleStep }) => {
 
                       const formData = new FormData();
 
-                      data.append("file", file);
-                      data.append("upload_preset", "huarluoc");
-                      data.append("api_key", "642495779825247");
+                      formData.append("file", file);
+                      formData.append("upload_preset", "huarluoc");
+                      formData.append("api_key", "642495779825247");
 
                       axios
                         .post(
